@@ -18,19 +18,25 @@ function AppNavbar() {
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-            Google Books Search
+            What's good?
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
-              <Nav.Link as={Link} to='/'>
+              <Nav.Link as={Link} to='/books'>
                 Search For Books
+              </Nav.Link>
+              <Nav.Link as={Link} to='/games'>
+                Search Video Games
               </Nav.Link>
               {/* if user is logged in show saved books and logout */}
               {username ? (
                 <>
-                  <Nav.Link as={Link} to='/saved'>
+                  <Nav.Link as={Link} to='/books/saved'>
                     See {username}'s Books
+                  </Nav.Link>
+                  <Nav.Link as={Link} to='/games/saved'>
+                    See {username}'s Games
                   </Nav.Link>
                   <Nav.Link onClick={AuthService.logout}>Logout</Nav.Link>
                 </>
