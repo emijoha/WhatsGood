@@ -19,6 +19,7 @@ const movieSchema = new Schema({
   },
   image: {
     type: String,
+    required: false,
   },
   // link: {
   //   type: String,

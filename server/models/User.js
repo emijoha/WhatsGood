@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const bookSchema = require('./Book');
 const musicSchema = require('./Music');
 const movieSchema = require('./Movie');
+const friendSchema = require('./Friend')
 
 const userSchema = new Schema(
   {
@@ -29,8 +30,11 @@ const userSchema = new Schema(
     },
     // set savedBooks to be an array of data that adheres to the bookSchema
     savedBooks: [bookSchema],
+    
     savedMusic: [musicSchema],
-    savedMovies: [movieSchema]
+    savedMovies: [movieSchema],
+
+    friends: [friendSchema]
   },
   // set this to use virtual below
   {
