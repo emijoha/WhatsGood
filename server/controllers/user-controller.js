@@ -89,6 +89,7 @@ module.exports = {
     }
     return res.json(updatedUser);
   },
+
   async saveMusic({ user, body }, res) {
     console.log(user);
     try {
@@ -103,10 +104,39 @@ module.exports = {
       return res.status(400).json(err);
     }
   },
+
+  async saveMovie({ user, body }, res) {
+    console.log(user);
+    console.log(body);
+    try {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { savedMovies: body } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
+  async deleteMovie({ user, params }, res) {
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: user._id },
+      { $pull: { savedMovies: { movieId: params.id } } },
+      { new: true }
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ message: "Couldn't find user with this id!" });
+    }
+    return res.json(updatedUser);
+  },
+
   async savePicture({ user, body }, res) {
-     console.log("hey there");
-     console.log(body);
-     
+    console.log("hey there");
+    console.log(body);
+
     try {
 
       console.log(user);

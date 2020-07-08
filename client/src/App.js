@@ -5,6 +5,8 @@ import SavedBooks from './pages/SavedBooks';
 import SavedMedia from './pages/SavedMedia';
 import SearchMusic from './pages/SearchMusic';
 import SavedMusic from './pages/SavedMusic';
+import SearchMovies from './pages/SearchMovies';
+import SavedMovies from './pages/SavedMovies';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -21,11 +23,13 @@ function App() {
   const [userInfo, setUserInfo] = useState({
     savedBooks: [],
     savedMusic: [],
+    savedMovies: [],
     picture: '',
     username: '',
     email: '',
     bookCount: 0,
     musicCount: 0,
+    movieCount: 0,
     // method to get user data after logging in
     getUserData: () => {
       // if user's logged in get the token or return null
@@ -61,6 +65,8 @@ function App() {
             <Route exact path='/saved_books' component={SavedBooks} />
             <Route exact path='/search_music' component={SearchMusic} />
             <Route exact path='/saved_music' component={SavedMusic} />
+            <Route exact path='/search_movies' component={SearchMovies} />
+            <Route exact path='/saved_movies' component={SavedMovies} />
             <Route exact path='/saved_media' component={SavedMedia} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>

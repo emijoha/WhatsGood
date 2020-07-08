@@ -65,3 +65,16 @@ export const savePicture = function (pictureData, token) {
 export const deleteMusic = function (musicId, token) {
   return axios.delete(`/api/users/music/${musicId}`, { headers: { authorization: `Bearer ${token}` } });
 };
+
+export const searchOMDB = function (query) {
+  console.log(query);
+  return axios.get(`http://www.omdbapi.com/?apikey=671512a8&s=${query}`, { params: { q: query } });
+};
+
+export const saveMovie = function (movieData, token) {
+  return axios.put('/api/users/movies', movieData, { headers: { authorization: `Bearer ${token}` } });
+};
+
+export const deleteMovie = function (movieId, token) {
+  return axios.delete(`/api/users/movies/${movieId}`, { headers: { authorization: `Bearer ${token}` } });
+};
