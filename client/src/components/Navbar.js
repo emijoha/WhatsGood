@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
-import SignUpForm from './SignupForm';
-import LoginForm from './LoginForm';
+import { Navbar, Nav, Container, Modal, Tab, NavDropdown } from 'react-bootstrap';
+import UploadPhoto from './UploadPhoto';
 
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
+
+
 
 function AppNavbar() {
   // set modal display state
@@ -13,30 +14,35 @@ function AppNavbar() {
   // get username out of context object to display in nav
   const { username } = useContext(UserInfoContext);
 
+  
   return (
     <>
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
-          <Navbar.Brand as={Link} to='/'>
-            Google Books Search
+          <Navbar.Brand as={Link} to='/home'>
+            What's Good?
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
-              <Nav.Link as={Link} to='/'>
-                Search For Books
-              </Nav.Link>
-              {/* if user is logged in show saved books and logout */}
-              {username ? (
-                <>
-                  <Nav.Link as={Link} to='/saved'>
-                    See {username}'s Books
-                  </Nav.Link>
-                  <Nav.Link onClick={AuthService.logout}>Logout</Nav.Link>
-                </>
-              ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
-              )}
+          
+              <NavDropdown title="Search Media" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/search_books">Search Books</NavDropdown.Item>
+              <NavDropdown.Item href="/search_music">Search Music</NavDropdown.Item>
+              </NavDropdown>
+
+              <NavDropdown title="See My Media" id="basic-nav-dropdown">
+              <NavDropdown.Item href='/saved_media'>All My Media</NavDropdown.Item>
+              <NavDropdown.Item href='/saved_books'>My Books</NavDropdown.Item>
+              <NavDropdown.Item href="/saved_music">My Music</NavDropdown.Item>
+              </NavDropdown>
+
+              <NavDropdown alignRight title={username} >
+
+              <NavDropdown.Item onClick={() => setShowModal(true)}>Upload Profile Pic</NavDropdown.Item>
+  
+              <NavDropdown.Item onClick={AuthService.logout}>Logout</NavDropdown.Item>
+              </NavDropdown>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -46,29 +52,20 @@ function AppNavbar() {
         {/* tab container to do either signup or login component */}
         <Tab.Container defaultActiveKey='login'>
           <Modal.Header closeButton>
-            <Modal.Title id='signup-modal'>
-              <Nav variant='pills'>
-                <Nav.Item>
-                  <Nav.Link eventKey='login'>Login</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
-                </Nav.Item>
-              </Nav>
+            <Modal.Title id='upload-photo-modal'>
+                  Upload Photo              
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Tab.Content>
               <Tab.Pane eventKey='login'>
-                <LoginForm handleModalClose={() => setShowModal(false)} />
-              </Tab.Pane>
-              <Tab.Pane eventKey='signup'>
-                <SignUpForm handleModalClose={() => setShowModal(false)} />
-              </Tab.Pane>
+                <UploadPhoto handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>     
             </Tab.Content>
           </Modal.Body>
         </Tab.Container>
       </Modal>
+  
     </>
   );
 }
