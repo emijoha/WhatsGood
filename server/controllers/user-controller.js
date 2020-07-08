@@ -131,7 +131,7 @@ module.exports = {
 
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $set: { picture: body } },
+        { $set: { picture: body.image } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);

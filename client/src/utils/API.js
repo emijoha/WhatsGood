@@ -59,7 +59,7 @@ export const saveMusic = function (musicData, token) {
 };
 
 export const savePicture = function (pictureData, token) {
-  console.log(pictureData);
+  console.log(pictureData, token);
   return axios.put('/api/users/picture', pictureData, { headers: { authorization: `Bearer ${token}` } });
 };
 
