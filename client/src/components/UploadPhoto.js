@@ -48,7 +48,7 @@ function UploadPhoto({ handleModalClose }) {
         }
 
         
-    
+      
         // send the books data to our api
         savePicture({image}, token)
           .then(() => userData.getUserData())
