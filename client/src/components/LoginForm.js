@@ -7,7 +7,7 @@ import UserInfoContext from '../utils/UserInfoContext';
 import { loginUser } from '../utils/API';
 import AuthService from '../utils/auth';
 
-function LoginForm({ handleModalClose }) {
+function LoginForm() {
   const [userFormData, setUserFormData] = useState({ username: '', password: '' });
   const [validated, setValidation] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -34,7 +34,6 @@ function LoginForm({ handleModalClose }) {
         console.log(data);
         AuthService.login(data.token);
         userData.getUserData();
-        handleModalClose();
       })
       .catch((err) => {
         console.log(err.response);

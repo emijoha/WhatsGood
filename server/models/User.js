@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt');
 // import schema from Book.js
 const bookSchema = require('./Book');
 const gameSchema = require('./Game');
+const musicSchema = require('./Music');
+const friendSchema = require('./Friend')
 
 const userSchema = new Schema(
   {
@@ -22,10 +24,18 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    picture: {
+      type: String,
+      default: ""
+    },
     // set savedBooks to be an array of data that adheres to the bookSchema
     savedBooks: [bookSchema],
 
     savedGames: [gameSchema],
+    
+    savedMusic: [musicSchema],
+
+    friends: [friendSchema]
   },
   // set this to use virtual below
   {
@@ -57,6 +67,10 @@ userSchema.virtual('bookCount').get(function () {
 
 userSchema.virtual('gameCount').get(function () {
   return this.savedGames.length;
+});
+
+userSchema.virtual('musicCount').get(function () {
+  return this.savedMusic.length;
 });
 
 const User = model('User', userSchema);

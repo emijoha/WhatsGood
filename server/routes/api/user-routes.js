@@ -7,6 +7,11 @@ const {
   saveGame,
   deleteBook,
   deleteGame,
+  savePicture,
+  saveFriend,
+  deleteBook,
+  saveMusic,
+  deleteMusic,
   login,
 } = require('../../controllers/user-controller');
 
@@ -14,9 +19,9 @@ const {
 const { authMiddleware } = require('../../utils/auth');
 
 // put authMiddleware anywhere we need to send a token for verification of user
-router.route('/books').get(getAllUsers).post(createUser).put(authMiddleware, saveBook);
+router.route('/signup').get(getAllUsers).post(createUser);
 
-router.route('/games').get(getAllUsers).post(createUser).put(authMiddleware, saveGame);
+router.route('/books').get(getAllUsers).put(authMiddleware, saveBook);
 
 router.route('/login').post(login);
 
@@ -26,6 +31,16 @@ router.route('/:username').get(getSingleUser);
 
 router.route('/books/:id').delete(authMiddleware, deleteBook);
 
+router.route('/games').get(getAllUsers).post(createUser).put(authMiddleware, saveGame);
+
 router.route('/games/:id').delete(authMiddleware, deleteGame);
+
+router.route('/music/:id').delete(authMiddleware, deleteMusic);
+
+router.route('/music').get(getAllUsers).put(authMiddleware, saveMusic);
+
+router.route('/picture').get(getAllUsers).put(authMiddleware, savePicture);
+
+router.route('/friends').put(authMiddleware, saveFriend);
 
 module.exports = router;

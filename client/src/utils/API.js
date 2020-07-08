@@ -15,7 +15,7 @@ export const getUser = function (username) {
 };
 
 export const createUser = function (userData) {
-  return axios.post('/api/users/books', userData);
+  return axios.post('/api/users/signup', userData);
 };
 
 export const loginUser = function (userData) {
@@ -26,6 +26,7 @@ export const loginUser = function (userData) {
 export const saveBook = function (bookData, token) {
   return axios.put('/api/users/books', bookData, { headers: { authorization: `Bearer ${token}` } });
 };
+
 // remove saved book data for a logged in user
 export const deleteBook = function (bookId, token) {
   return axios.delete(`/api/users/books/${bookId}`, { headers: { authorization: `Bearer ${token}` } });
@@ -60,4 +61,37 @@ export const saveGame = function (gameData, token) {
 // delete games
 export const deleteGame = function (gameId, token) {
   return axios.delete(`/api/users/games/${gameId}`, { headers: { authorization: `Bearer ${token}` } });
+};
+export const searchMusic = function(query) {
+    return axios({
+      "method":"GET",
+      "url":"https://deezerdevs-deezer.p.rapidapi.com/search",
+      "headers":{
+      "content-type":"application/octet-stream",
+      "x-rapidapi-host":"deezerdevs-deezer.p.rapidapi.com",
+      "x-rapidapi-key":"f2e833be47mshec0532931a48159p122a41jsn86eecf30e6d3",
+      "useQueryString":true
+      },"params":{
+      "q":query
+      }
+      })
+ 
+};
+
+export const saveMusic = function (musicData, token) {
+  return axios.put('/api/users/music', musicData, { headers: { authorization: `Bearer ${token}` } });
+};
+
+export const savePicture = function (pictureData, token) {
+  console.log(pictureData, token);
+  return axios.put('/api/users/picture', pictureData, { headers: { authorization: `Bearer ${token}` } });
+};
+
+export const deleteMusic = function (musicId, token) {
+  return axios.delete(`/api/users/music/${musicId}`, { headers: { authorization: `Bearer ${token}` } });
+};
+
+// save friend data for a logged in user
+export const saveFriend = function (userData, token) {
+  return axios.put('/api/users/friends', userData, { headers: { authorization: `Bearer ${token}` } });
 };

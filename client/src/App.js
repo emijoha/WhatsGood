@@ -4,7 +4,14 @@ import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import SearchGames from './pages/SearchGames';
 import SavedGames from './pages/SavedGames';
+import SavedMedia from './pages/SavedMedia';
+import SearchMusic from './pages/SearchMusic';
+import SavedMusic from './pages/SavedMusic';
+import SearchUser from './pages/SearchUser';
 import Navbar from './components/Navbar';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Home from './pages/Home';
 
 import * as API from './utils/API';
 import AuthService from './utils/auth';
@@ -15,12 +22,17 @@ import UserInfoContext from './utils/UserInfoContext';
 function App() {
   // set data to be used for UserInfoContext and make it available to all other components
   const [userInfo, setUserInfo] = useState({
-    savedBooks: [],
-    savedGames: [],
+    
     username: '',
     email: '',
+    savedBooks: [],
     bookCount: 0,
+    savedGames: [],
     gameCount: 0,
+    savedMusic: [],
+    musicCount: 0,
+    picture: '',
+    friends: [],
     // method to get user data after logging in
     getUserData: () => {
       // if user's logged in get the token or return null
@@ -30,17 +42,16 @@ function App() {
         return false;
       }
       API.getMe(token)
-        .then(({ data: { username, email, savedBooks, bookCount, savedGames, gameCount} }) =>
-          setUserInfo({ ...userInfo, username, email, savedBooks, bookCount, savedGames, gameCount })
-        )
+        .then(({ data: { username, email, savedBooks, bookCount, savedGames, gameCount, savedMusic, musicCount, picture, friends} }) =>
+          setUserInfo({ ...userInfo, username, email, savedBooks, bookCount, savedGames, gameCount, savedMusic, musicCount, picture, friends}))
         .catch((err) => console.log(err));
-    },
+    }
   });
 
   // on load, get user data if a token exists
   useEffect(() => {
     userInfo.getUserData();
-  });
+  }, []);
 
   return (
     <Router>
@@ -49,9 +60,16 @@ function App() {
         <UserInfoContext.Provider value={userInfo}>
           <Navbar />
           <Switch>
-            <Route exact path='/books' component={SearchBooks} />
+            <Route exact path='/' component={Login} />
+            <Route exact path='/home' component={Home} />
+            <Route exact path='/signup' component={Signup} />
+            <Route exact path='/search_books' component={SearchBooks} />
+            <Route exact path='/saved_books' component={SavedBooks} />
+            <Route exact path='/search_music' component={SearchMusic} />
+            <Route exact path='/saved_music' component={SavedMusic} />
+            <Route exact path='/saved_media' component={SavedMedia} />
+            <Route exact path='/search-user' component={SearchUser} />
             <Route exact path='/games' component={SearchGames} />
-            <Route exact path='/books/saved' component={SavedBooks} />
             <Route exact path='/games/saved' component={SavedGames} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
