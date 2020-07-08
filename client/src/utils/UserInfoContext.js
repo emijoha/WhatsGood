@@ -11,6 +11,7 @@ const UserInfoContext = React.createContext({
   email: '',
   bookCount: 0,
   musicCount: 0,
+  friends: [],
   getUserData: () => undefined,
 });
 
