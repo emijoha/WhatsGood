@@ -103,6 +103,24 @@ module.exports = {
       return res.status(400).json(err);
     }
   },
+
+  async saveFriend({ user, body }, res) {
+    try {
+      console.log("SAVE FRIEND");
+      console.log("USER", user);
+      console.log("BODY", body);
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { friends: body } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+  
   async savePicture({ user, body }, res) {
      console.log("hey there");
      console.log(body);

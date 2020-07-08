@@ -5,6 +5,7 @@ import SavedBooks from './pages/SavedBooks';
 import SavedMedia from './pages/SavedMedia';
 import SearchMusic from './pages/SearchMusic';
 import SavedMusic from './pages/SavedMusic';
+import SearchUser from './pages/SearchUser';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -26,6 +27,7 @@ function App() {
     email: '',
     bookCount: 0,
     musicCount: 0,
+    friends: [],
     // method to get user data after logging in
     getUserData: () => {
       // if user's logged in get the token or return null
@@ -45,7 +47,7 @@ function App() {
   // on load, get user data if a token exists
   useEffect(() => {
     userInfo.getUserData();
-  },[]);
+  }, []);
 
   return (
     <Router>
@@ -62,6 +64,7 @@ function App() {
             <Route exact path='/search_music' component={SearchMusic} />
             <Route exact path='/saved_music' component={SavedMusic} />
             <Route exact path='/saved_media' component={SavedMedia} />
+            <Route exact path='/search-user' component={SearchUser} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </UserInfoContext.Provider>

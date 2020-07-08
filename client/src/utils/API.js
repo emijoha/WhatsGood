@@ -26,6 +26,7 @@ export const loginUser = function (userData) {
 export const saveBook = function (bookData, token) {
   return axios.put('/api/users/books', bookData, { headers: { authorization: `Bearer ${token}` } });
 };
+
 // remove saved book data for a logged in user
 export const deleteBook = function (bookId, token) {
   return axios.delete(`/api/users/books/${bookId}`, { headers: { authorization: `Bearer ${token}` } });
@@ -64,4 +65,9 @@ export const savePicture = function (pictureData, token) {
 
 export const deleteMusic = function (musicId, token) {
   return axios.delete(`/api/users/music/${musicId}`, { headers: { authorization: `Bearer ${token}` } });
+};
+
+// save friend data for a logged in user
+export const saveFriend = function (userData, token) {
+  return axios.put('/api/users/friends', userData, { headers: { authorization: `Bearer ${token}` } });
 };

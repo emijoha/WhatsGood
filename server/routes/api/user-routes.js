@@ -5,6 +5,7 @@ const {
   getSingleUser,
   saveBook,
   savePicture,
+  saveFriend,
   deleteBook,
   saveMusic,
   deleteMusic,
@@ -32,5 +33,7 @@ router.route('/music/:id').delete(authMiddleware, deleteMusic);
 router.route('/music').get(getAllUsers).put(authMiddleware, saveMusic);
 
 router.route('/picture').get(getAllUsers).put(authMiddleware, savePicture);
+
+router.route('/friends').put(authMiddleware, saveFriend);
 
 module.exports = router;
