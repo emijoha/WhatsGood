@@ -74,5 +74,52 @@ module.exports = {
       return res.status(404).json({ message: "Couldn't find user with this id!" });
     }
     return res.json(updatedUser);
+  },  // save a book to a user's `savedBooks` field by adding it to the set (to prevent duplicates)
+  // user comes from `req.user` created in the auth middleware function
+
+  // remove a book from `savedBooks`
+  async deleteMusic({ user, params }, res) {
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: user._id },
+      { $pull: { savedMusic: { musicId: params.id } } },
+      { new: true }
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ message: "Couldn't find user with this id!" });
+    }
+    return res.json(updatedUser);
+  },
+  async saveMusic({ user, body }, res) {
+    console.log(user);
+    try {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { savedMusic: body } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+  async savePicture({ user, body }, res) {
+     console.log("hey there");
+     console.log(body);
+     
+    try {
+
+      console.log(user);
+
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $set: { picture: body } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
   },
 };

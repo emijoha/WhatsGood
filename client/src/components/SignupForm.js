@@ -5,7 +5,7 @@ import UserInfoContext from '../utils/UserInfoContext';
 import { createUser } from '../utils/API';
 import AuthService from '../utils/auth';
 
-function SignupForm({ handleModalClose }) {
+function SignupForm() {
   // set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
   // set state for form validation
@@ -40,7 +40,7 @@ function SignupForm({ handleModalClose }) {
         // execute function from context api in app.js to update state for logged in user
         userData.getUserData();
         // close modal
-        handleModalClose();
+     
       })
       .catch((err) => {
         console.log(err.response);
