@@ -9,6 +9,8 @@ const {
   deleteBook,
   saveMusic,
   deleteMusic,
+  saveMovie,
+  deleteMovie,
   login,
 } = require('../../controllers/user-controller');
 
@@ -30,9 +32,13 @@ router.route('/books/:id').delete(authMiddleware, deleteBook);
 
 router.route('/music/:id').delete(authMiddleware, deleteMusic);
 
+router.route('/movies/:id').delete(authMiddleware, deleteMovie);
+
 router.route('/music').get(getAllUsers).put(authMiddleware, saveMusic);
 
 router.route('/picture').get(getAllUsers).put(authMiddleware, savePicture);
+
+router.route('/movies').get(getAllUsers).put(authMiddleware, saveMovie);
 
 router.route('/friends').put(authMiddleware, saveFriend);
 

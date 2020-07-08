@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 // import schema from Book.js
 const bookSchema = require('./Book');
 const musicSchema = require('./Music');
+const movieSchema = require('./Movie');
 const friendSchema = require('./Friend')
 
 const userSchema = new Schema(
@@ -31,6 +32,7 @@ const userSchema = new Schema(
     savedBooks: [bookSchema],
     
     savedMusic: [musicSchema],
+    savedMovies: [movieSchema],
 
     friends: [friendSchema]
   },
@@ -65,6 +67,10 @@ userSchema.virtual('bookCount').get(function () {
 userSchema.virtual('musicCount').get(function () {
   return this.savedMusic.length;
 });
+
+userSchema.virtual('moviesCount').get(function () {
+  return this.savedMovies.length;
+})
 
 const User = model('User', userSchema);
 

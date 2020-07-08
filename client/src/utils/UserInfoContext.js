@@ -6,11 +6,13 @@ import React from 'react';
 const UserInfoContext = React.createContext({
   savedBooks: [],
   savedMusic: [],
+  savedMovies: [],
   username: '',
   picture: '',
   email: '',
   bookCount: 0,
   musicCount: 0,
+  movieCount: 0,
   friends: [],
   getUserData: () => undefined,
 });

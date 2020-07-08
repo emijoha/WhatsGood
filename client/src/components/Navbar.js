@@ -30,14 +30,16 @@ function AppNavbar() {
               </Nav.Link>
 
               <NavDropdown title="Search Media" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/search_books">Search Books</NavDropdown.Item>
-                <NavDropdown.Item href="/search_music">Search Music</NavDropdown.Item>
+              <NavDropdown.Item href="/search_books">Search Books</NavDropdown.Item>
+              <NavDropdown.Item href="/search_music">Search Music</NavDropdown.Item>
+              <NavDropdown.Item href="/search_movies">Search Movies</NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown title="See My Media" id="basic-nav-dropdown">
-                <NavDropdown.Item href='/saved_media'>All My Media</NavDropdown.Item>
-                <NavDropdown.Item href='/saved_books'>My Books</NavDropdown.Item>
-                <NavDropdown.Item href="/saved_music">My Music</NavDropdown.Item>
+              <NavDropdown.Item href='/saved_media'>All My Media</NavDropdown.Item>
+              <NavDropdown.Item href='/saved_books'>My Books</NavDropdown.Item>
+              <NavDropdown.Item href="/saved_music">My Music</NavDropdown.Item>
+              <NavDropdown.Item href="/saved_movies">My Movies</NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown alignRight title={username} >
