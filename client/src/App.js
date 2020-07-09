@@ -7,6 +7,8 @@ import SavedGames from './pages/SavedGames';
 import SavedMedia from './pages/SavedMedia';
 import SearchMusic from './pages/SearchMusic';
 import SavedMusic from './pages/SavedMusic';
+import SearchMovies from './pages/SearchMovies';
+import SavedMovies from './pages/SavedMovies';
 import SearchUser from './pages/SearchUser';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
@@ -22,17 +24,19 @@ import UserInfoContext from './utils/UserInfoContext';
 function App() {
   // set data to be used for UserInfoContext and make it available to all other components
   const [userInfo, setUserInfo] = useState({
-    
     username: '',
     email: '',
-    savedBooks: [],
-    bookCount: 0,
-    savedGames: [],
-    gameCount: 0,
-    savedMusic: [],
-    musicCount: 0,
     picture: '',
+    savedBooks: [],
+    savedMusic: [],
+    savedMovies: [],
+    savedGames: [],
+    bookCount: 0,
+    musicCount: 0,
+    movieCount: 0,
+    gameCount: 0,
     friends: [],
+
     // method to get user data after logging in
     getUserData: () => {
       // if user's logged in get the token or return null
@@ -42,8 +46,9 @@ function App() {
         return false;
       }
       API.getMe(token)
-        .then(({ data: { username, email, savedBooks, bookCount, savedGames, gameCount, savedMusic, musicCount, picture, friends} }) =>
-          setUserInfo({ ...userInfo, username, email, savedBooks, bookCount, savedGames, gameCount, savedMusic, musicCount, picture, friends}))
+        .then(({ data: { username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, bookCount, musicCount, movieCount, gameCount, friends } }) =>
+          setUserInfo({ ...userInfo, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, bookCount, musicCount, movieCount, gameCount, friends })
+        )
         .catch((err) => console.log(err));
     }
   });
@@ -67,10 +72,12 @@ function App() {
             <Route exact path='/saved_books' component={SavedBooks} />
             <Route exact path='/search_music' component={SearchMusic} />
             <Route exact path='/saved_music' component={SavedMusic} />
+            <Route exact path='/search_movies' component={SearchMovies} />
+            <Route exact path='/saved_movies' component={SavedMovies} />
             <Route exact path='/saved_media' component={SavedMedia} />
             <Route exact path='/search-user' component={SearchUser} />
-            <Route exact path='/games' component={SearchGames} />
-            <Route exact path='/games/saved' component={SavedGames} />
+            <Route exact path='/search_games' component={SearchGames} />
+            <Route exact path='/saved_games' component={SavedGames} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </UserInfoContext.Provider>

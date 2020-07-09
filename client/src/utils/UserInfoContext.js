@@ -4,15 +4,17 @@ import React from 'react';
 // running this gives us our Provider & Consumer
 // we'll set all of this data in App.js and use it throughout other components!
 const UserInfoContext = React.createContext({
+  username: '',
+  email: '',
+  picture: '',
   savedBooks: [],
   savedMusic: [],
+  savedMovies: [],
   savedGames: [],
-  username: '',
-  picture: '',
-  email: '',
   bookCount: 0,
-  gameCount: 0,
   musicCount: 0,
+  movieCount: 0,
+  gameCount: 0,
   friends: [],
   getUserData: () => undefined,
 });
