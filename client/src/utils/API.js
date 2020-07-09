@@ -38,6 +38,30 @@ export const searchGoogleBooks = function (query) {
   return axios.get('https://www.googleapis.com/books/v1/volumes', { params: { q: query } });
 };
 
+export const searchVideoGames = function (title, platform) {
+  return axios({
+    "method":"GET",
+    "url":`https://chicken-coop.p.rapidapi.com/games/${title}`,
+    "headers":{
+    "content-type":"application/octet-stream",
+    "x-rapidapi-host":"chicken-coop.p.rapidapi.com",
+    "x-rapidapi-key":"ad79893db0msh519507ce219a2cep1942b9jsn16290fa29320",
+    "useQueryString":true
+    },"params":{
+    "platform": platform
+    }
+    })
+};
+
+// save games
+export const saveGame = function (gameData, token) {
+  return axios.put('/api/users/games', gameData, { headers: { authorization: `Bearer ${token}` } });
+};
+
+// delete games
+export const deleteGame = function (gameId, token) {
+  return axios.delete(`/api/users/games/${gameId}`, { headers: { authorization: `Bearer ${token}` } });
+};
 export const searchMusic = function(query) {
     return axios({
       "method":"GET",

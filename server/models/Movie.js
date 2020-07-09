@@ -36,7 +36,7 @@ const movieSchema = new Schema({
   },
   title: {
     type: String,
-    required: false,
+    required: false
   },
   image: {
     type: String,

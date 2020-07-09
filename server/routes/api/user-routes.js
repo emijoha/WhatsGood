@@ -4,9 +4,11 @@ const {
   getAllUsers,
   getSingleUser,
   saveBook,
+  saveGame,
+  deleteBook,
+  deleteGame,
   savePicture,
   saveFriend,
-  deleteBook,
   saveMusic,
   deleteMusic,
   saveMovie,
@@ -29,6 +31,10 @@ router.route('/me').get(authMiddleware, getSingleUser);
 router.route('/:username').get(getSingleUser);
 
 router.route('/books/:id').delete(authMiddleware, deleteBook);
+
+router.route('/games').get(getAllUsers).post(createUser).put(authMiddleware, saveGame);
+
+router.route('/games/:id').delete(authMiddleware, deleteGame);
 
 router.route('/music/:id').delete(authMiddleware, deleteMusic);
 
