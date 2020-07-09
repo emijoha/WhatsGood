@@ -3,7 +3,7 @@ import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 
 
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
-import { saveMovie, searchOMDB } from '../utils/API';
+import { saveMovie, searchOMDB, searchEachMovie } from '../utils/API';
 
 function SearchMovies() {
   // create state for holding returned google api data
@@ -21,19 +21,58 @@ function SearchMovies() {
       return false;
     }
 
+    let movieDataArr = [];
+
     searchOMDB(searchInput)
       .then(({ data }) => {
         console.log(data);
-        const movieData = data.Search.map(movie => ({
-          movieId: movie.imdbID,
-          title: movie.Title,
-          image: movie.Poster || '',
-          year: movie.Year
-        }));
-          
+        const movieID = data.Search.map(movie => (movie.imdbID));
+
+        // console.log(movieData);
+        movieID.forEach(id => {
+          searchEachMovie(id)
+            .then((res) => {
+              console.log(res);
+              movieDataArr.push(res);
+              console.log(movieDataArr);
+
+              // console.log(movieData);
+              // return setSearchedMovies(movieData);
+            })
+            .then(() => {
+              const movieData = movieDataArr.map(movie => ({
+                movieId: movie.data.imdbID,
+                actors: movie.data.Actors,
+                director: movie.data.Director,
+                genre: movie.data.Genre,
+                plot: movie.data.Plot,
+                rated: movie.data.Rated,
+                released: movie.data.Released,
+                runtime: movie.data.Runtime,
+                title: movie.data.Title,
+                image: movie.data.Poster || ''
+              }));
+              console.log(movieData);
+
+              return setSearchedMovies(movieData);
+
+            })
+          // movieDataArr.push(searchEachMovie(id));
+          // console.log(movieDataArr);
+        });
+
+        // const movieData = movieDataArr.map(movie => ({
+        //   movieId: data.imdbID,
+        //   title: data.Title,
+        //   image: data.Poster || '',
+        //   year: data.Year
+        // }));
+        // console.log(`movieDataArr: ${movieDataArr}`);
+
+        // const movieData = movieDataArr[0]
         // console.log(movieData);
 
-        return setSearchedMovies(movieData);
+        // return setSearchedMovies(movieData);
       })
       .then(() => setSearchInput(''))
       .catch((err) => console.log(err));
@@ -93,7 +132,13 @@ function SearchMovies() {
                 {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  <p className='small'>Year: {movie.year}</p>
+                  <p className='small'>Released: {movie.released}</p>
+                  <p className='small'>Actors: {movie.actors}</p>
+                  <p className='small'>Director: {movie.director}</p>
+                  <p className='small'>Genre: {movie.genre}</p>
+                  <p className='small'>Plot: {movie.plot}</p>
+                  <p className='small'>Rated: {movie.rated}</p>
+                  <p className='small'>Runtime: {movie.runtime}</p>
                   {userData.username && (
                     <Button
                       disabled={userData.savedMovies?.some((savedMovie) => savedMovie.movieId === movie.movieId)}
