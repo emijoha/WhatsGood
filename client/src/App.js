@@ -8,6 +8,7 @@ import SavedMusic from './pages/SavedMusic';
 import SearchMovies from './pages/SearchMovies';
 import SavedMovies from './pages/SavedMovies';
 import SearchUser from './pages/SearchUser';
+import SavedFriends from './pages/SavedFriends';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -41,8 +42,8 @@ function App() {
         return false;
       }
       API.getMe(token)
-        .then(({ data: { username, email, savedBooks, bookCount, savedMusic, savedMovies, movieCount, musicCount, picture } }) =>
-          setUserInfo({ ...userInfo, username, email, savedBooks, bookCount, savedMusic,savedMovies, movieCount,  musicCount, picture })
+        .then(({ data: { username, email, savedBooks, bookCount, savedMusic, savedMovies, movieCount, musicCount, friends, picture } }) =>
+          setUserInfo({ ...userInfo, username, email, savedBooks, bookCount, savedMusic, savedMovies, movieCount,  musicCount, friends, picture })
         )
         .catch((err) => console.log(err));
     },
@@ -71,6 +72,7 @@ function App() {
             <Route exact path='/saved_movies' component={SavedMovies} />
             <Route exact path='/saved_media' component={SavedMedia} />
             <Route exact path='/search-user' component={SearchUser} />
+            <Route exact path='/saved-friends' component={SavedFriends} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </UserInfoContext.Provider>
