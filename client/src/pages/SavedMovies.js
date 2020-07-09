@@ -46,8 +46,13 @@ function SavedMovies() {
                 {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  {/* <p className='small'>Director: {movie.director}</p> */}
-                  {/* <Card.Text>{movie.description}</Card.Text> */}
+                  <p className='small'>Released: {movie.released}</p>
+                  <p className='small'>Actors: {movie.actors}</p>
+                  <p className='small'>Director: {movie.director}</p>
+                  <p className='small'>Genre: {movie.genre}</p>
+                  <p className='small'>Plot: {movie.plot}</p>
+                  <p className='small'>Rated: {movie.rated}</p>
+                  <p className='small'>Runtime: {movie.runtime}</p>
                   <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie.movieId)}>
                     Delete this Movie!
                   </Button>
