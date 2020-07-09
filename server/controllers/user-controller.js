@@ -128,7 +128,7 @@ module.exports = {
       console.log("BODY", body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { friends: {friendUsername: body.username }}},
+        { $addToSet: { friends: { friendUsername: body.username }}},
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);

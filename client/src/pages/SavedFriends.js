@@ -1,29 +1,52 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 
 // import context for global state
 import UserInfoContext from '../utils/UserInfoContext';
 
 import * as API from '../utils/API';
-import AuthService from '../utils/auth';
+
 
 function SavedFriends() {
+
+    
+   
+    const [friendsArray, setFriendsArray] = useState([]);
+    
     // get whole userData state object from App.js
     const userData = useContext(UserInfoContext);
     console.log("FRIENDS", userData.friends);
 
-    let friendsArray = [];
+   
 
-    function getFriendInfo() {
+    useEffect(() => {
+        if (!userData || !userData.friends) {
+            return
+        }
+       console.log("mounted")
+       console.log(userData)
         userData.friends.map(friend => {
+            console.log("this is friend.friendUSername", friend.friendUsername)
+            
             API.getUser(friend.friendUsername)
                 .then(result => {
-                    friendsArray.push(result.data);
-                    console.log("friendsArray", friendsArray);
+
+                //   if ( friendsArray.some((user) => user.username === result.data.username) ) {
+                //       return
+                //   }
+                console.log(friendsArray, "friends array in loop")
+                const newFriendsArray = friendsArray;
+                newFriendsArray.push(result.data)
+                setFriendsArray(newFriendsArray)
                 })
+        
+               
         });
-    };
-    getFriendInfo();
+
+
+    }, [userData, userData.friends]);
+
+        
 
     // DELETE BOOK FUNCTION THAT COULD BE MODIFIED TO REMOVE FRIENDS
     // create function that accepts the book's mongo _id value as param and deletes the book from the database
@@ -55,6 +78,7 @@ function SavedFriends() {
                     {friendsArray.length
                         ? `Viewing ${friendsArray.length} saved ${friendsArray.length === 1 ? 'friend' : 'friends'}:`
                         : 'You have no friends!'}
+                        {console.log("hey there im in the header", friendsArray)}
                 </h2>
                 <CardColumns>
                     {friendsArray.map(friend => {
@@ -72,7 +96,7 @@ function SavedFriends() {
                         );
                     })
                     }
-                    )}
+                    
                 </CardColumns>
             </Container>
         </>
