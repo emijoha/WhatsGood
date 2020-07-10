@@ -27,7 +27,7 @@ function SearchMovies() {
       .then(({ data }) => {
         console.log(data);
         const movieID = data.Search.map(movie => (movie.imdbID));
-
+      
         // console.log(movieData);
         movieID.forEach(id => {
           searchEachMovie(id)
