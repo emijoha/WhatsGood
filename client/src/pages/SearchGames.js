@@ -10,7 +10,7 @@ function SearchGames() {
   const [searchedGame, setSearchedGame] = useState([]);
   // create state for holding our search field data
   const [searchTitle, setSearchTitle] = useState('');
-  const [searchPlatform, setSearchPlatform] = useState('');
+  const [searchPlatform, setSearchPlatform] = useState('pc');
 
   const userData = useContext(UserInfoContext);
 
@@ -19,7 +19,7 @@ function SearchGames() {
     event.preventDefault();
 
     if (!searchTitle || !searchPlatform) {
-      return false;
+      return;
     }
 
     searchVideoGames(searchTitle, searchPlatform)
