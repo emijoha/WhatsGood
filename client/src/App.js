@@ -10,6 +10,7 @@ import SavedMusic from './pages/SavedMusic';
 import SearchMovies from './pages/SearchMovies';
 import SavedMovies from './pages/SavedMovies';
 import SearchUser from './pages/SearchUser';
+import SavedFriends from './pages/SavedFriends';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -76,6 +77,7 @@ function App() {
             <Route exact path='/saved_movies' component={SavedMovies} />
             <Route exact path='/saved_media' component={SavedMedia} />
             <Route exact path='/search-user' component={SearchUser} />
+            <Route exact path='/saved-friends' component={SavedFriends} />
             <Route exact path='/search_games' component={SearchGames} />
             <Route exact path='/saved_games' component={SavedGames} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />

@@ -28,6 +28,9 @@ function AppNavbar() {
               <Nav.Link as={Link} to='/search-user'>
                 Search For Friends
               </Nav.Link>
+              <Nav.Link as={Link} to='/saved-friends'>
+                View Friends
+              </Nav.Link>
 
               <NavDropdown title="Search Media" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/search_books">Search Books</NavDropdown.Item>
