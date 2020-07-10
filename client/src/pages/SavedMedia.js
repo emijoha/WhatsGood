@@ -53,6 +53,19 @@ function SavedMedia() {
       .catch((err) => console.log(err));
   };
 
+  const handleDeleteGame = (gameId) => {
+    // get token
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+    API.deleteGame(gameId, token)
+      // upon succes, update user data to reflect book change
+      .then(() => userData.getUserData())
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <Jumbotron fluid className='text-light bg-dark'>
@@ -122,6 +135,26 @@ function SavedMedia() {
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
                   <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie.movieId)}>
+                    Delete!
+                  </Button>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardColumns>
+        <h2>
+          {userData.savedGames.length
+            ? `Viewing ${userData.savedGames.length} saved ${userData.savedGames.length === 1 ? 'game' : 'games'}:`
+            : 'You have no saved games!'}
+        </h2>
+        <CardColumns>
+          {userData.savedGames.map((game) => {
+            return (
+              <Card key={game.gameId} border='dark'>
+                {game.image ? <Card.Img src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}
+                <Card.Body>
+                  <Card.Title>{game.title}</Card.Title>
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteGame(game.gameId)}>
                     Delete!
                   </Button>
                 </Card.Body>

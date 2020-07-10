@@ -6,47 +6,34 @@ import UserInfoContext from '../utils/UserInfoContext';
 
 import * as API from '../utils/API';
 
-
 function SavedFriends() {
 
-    
-   
     const [friendsArray, setFriendsArray] = useState([]);
     
     // get whole userData state object from App.js
     const userData = useContext(UserInfoContext);
-    console.log("FRIENDS", userData.friends);
-
-   
 
     useEffect(() => {
-        if (!userData || !userData.friends) {
-            return
-        }
+        // if (!userData || !userData.friends) {
+        //     return
+        // }
        console.log("mounted")
-       console.log(userData)
+       console.log("USER DATA INSIDE USE EFFECT", userData)
         userData.friends.map(friend => {
             console.log("this is friend.friendUSername", friend.friendUsername)
             
             API.getUser(friend.friendUsername)
                 .then(result => {
-
                 //   if ( friendsArray.some((user) => user.username === result.data.username) ) {
                 //       return
                 //   }
-                console.log(friendsArray, "friends array in loop")
-                const newFriendsArray = friendsArray;
-                newFriendsArray.push(result.data)
-                setFriendsArray(newFriendsArray)
+                // console.log("friends array in loop", friendsArray)
+                // const newFriendsArray = friendsArray;
+                // newFriendsArray.push(result.data)
+                setFriendsArray(friendsArray => [...friendsArray, result.data])
                 })
-        
-               
         });
-
-
     }, [userData, userData.friends]);
-
-        
 
     // DELETE BOOK FUNCTION THAT COULD BE MODIFIED TO REMOVE FRIENDS
     // create function that accepts the book's mongo _id value as param and deletes the book from the database
