@@ -54,7 +54,11 @@ function SearchMusic() {
 
     // send the books data to our api
     saveMusic(musicToSave, token)
-      .then(() => userData.getUserData())
+      .then(() => 
+    {userData.getUserData()
+      console.log(userData.savedMusic)
+    }
+      )
       .catch((err) => console.log(err));
   };
 
@@ -102,10 +106,11 @@ function SearchMusic() {
                         />
                   {userData.username && (
                     <Button
-                      disabled={userData.savedMusic?.some((savedMusic) => savedMusic.musicId === music.musicId)}
+                      disabled={userData.savedMusic?.some((savedMusic) => savedMusic.musicId == music.musicId)}
                       className='btn-block btn-info'
-                      onClick={() => handleSaveMusic(music.musicId)}>
-                      {userData.savedMusic?.some((savedMusic) => savedMusic.musicId === music.musicId)
+                      onClick={() => {
+                        handleSaveMusic(music.musicId)}}>
+                      {userData.savedMusic?.some((savedMusic) => savedMusic.musicId == music.musicId)
                         ? 'This has already been saved!'
                         : 'Save!'}
                     </Button>
