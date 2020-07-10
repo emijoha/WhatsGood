@@ -27,7 +27,7 @@ const userSchema = new Schema(
     },
     picture: {
       type: String,
-      default: ""
+      default: "https://res.cloudinary.com/dxrhczeo9/image/upload/v1594230701/l84rsrhhdsfcps2h2hsa.svg"
     },
     // set savedBooks to be an array of data that adheres to the bookSchema
     savedBooks: [bookSchema],
