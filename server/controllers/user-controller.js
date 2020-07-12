@@ -13,7 +13,7 @@ module.exports = {
   // get a single user by either their id or their username
   async getSingleUser({ user = null, params }, res) {
     // console.log("made it to get single user")
-    console.log("params", params);
+    // console.log("params", params);
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
     })
@@ -159,6 +159,21 @@ module.exports = {
       console.log(err);
       return res.status(400).json(err);
     }
+  },
+
+  async deleteFriend({ user, params }, res) {
+    console.log(" delete friend user", user);
+    console.log(" delete friend params", params);
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: user._id },
+      { $pull: { friends: params.id } },
+      { new: true }
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ message: "Couldn't find user with this id!" });
+    }
+    console.log("updatedUser", updatedUser)
+    return res.json(updatedUser);
   },
 
   async deleteMovie({ user, params }, res) {

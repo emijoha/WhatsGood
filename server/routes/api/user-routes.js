@@ -9,6 +9,7 @@ const {
   deleteGame,
   savePicture,
   saveFriend,
+  deleteFriend,
   saveMusic,
   deleteMusic,
   saveMovie,
@@ -49,5 +50,7 @@ router.route('/picture').get(getAllUsers).put(authMiddleware, savePicture);
 router.route('/movies').get(getAllUsers).put(authMiddleware, saveMovie);
 
 router.route('/friends').put(authMiddleware, saveFriend);
+
+router.route('/friends/:id').delete(authMiddleware, deleteFriend);
 
 module.exports = router;

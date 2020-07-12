@@ -119,6 +119,8 @@ export const saveFriend = function (userData, token) {
 };
 
 // save friend data for a logged in user
-export const getFriends = function (userData) {
-  return axios.get('/api/users/friends/', userData);
+export const deleteFriend = function (friendId, token) {
+  console.log("friend id delete", friendId)
+  return axios.delete(`/api/users/friends/${friendId}`, { headers: { authorization: `Bearer ${token}` } });
 };
+

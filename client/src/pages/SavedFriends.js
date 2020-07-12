@@ -3,16 +3,13 @@ import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap
 
 // import context for global state
 import UserInfoContext from '../utils/UserInfoContext';
-
+import AuthService from '../utils/auth';
 import * as API from '../utils/API';
 
 function SavedFriends() {
-
     // const [friendsArray, setFriendsArray] = useState([]);
-
     // get whole userData state object from App.js
     const userData = useContext(UserInfoContext);
-
     // useEffect(() => {
     //     console.log("user data Id", userData)
 
@@ -43,21 +40,21 @@ function SavedFriends() {
     //     });
     // }, [userData, userData.friends]);
 
-    // DELETE BOOK FUNCTION THAT COULD BE MODIFIED TO REMOVE FRIENDS
-    // create function that accepts the book's mongo _id value as param and deletes the book from the database
-    // const handleDeleteBook = (bookId) => {
-    //     // get token
-    //     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+    // create function that accepts the friend's mongo _id value as param and deletes the friend from current user's collection
+    const handleDeleteFriend = (friendId) => {
+        // get token
+        const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
-    //     if (!token) {
-    //         return false;
-    //     }
-    //     API.deleteBook(bookId, token)
-    //         // upon succes, update user data to reflect book change
-    //         .then(() => userData.getUserData())
-    //         .catch((err) => console.log(err));
-    // };
+        if (!token) {
+            return false;
+        }
 
+        API.deleteFriend(friendId, token)
+            // upon succes, update user data to reflect book change
+            .then(() => userData.getUserData(),
+            console.log("made it back"))
+            .catch((err) => console.log(err));
+    };
 
     return (
         <>
@@ -81,7 +78,7 @@ function SavedFriends() {
                                 <Card.Body>
                                     <Card.Title>{friend.username}</Card.Title>
                                     <p className='small'>Email: {friend.email}</p>
-                                    <Button className='btn-block btn-danger' >
+                                    <Button className='btn-block btn-danger' onClick={() => handleDeleteFriend(friend._id)}>
                                         Remove Friend
                                             </Button>
                                 </Card.Body>
