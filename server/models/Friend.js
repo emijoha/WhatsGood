@@ -1,9 +1,10 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const friendSchema = new Schema({
-    friendUsername: {
+    id: {
         type: String,
     }
 });
 
-module.exports = friendSchema;
+const Friend = model("Friend", friendSchema)
+module.exports = Friend;

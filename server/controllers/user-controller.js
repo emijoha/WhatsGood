@@ -1,5 +1,6 @@
 // import user model
-const { User } = require('../models');
+const User = require('../models/User');
+const Friend = require('../models/Friend');
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
 
@@ -11,9 +12,12 @@ module.exports = {
   },
   // get a single user by either their id or their username
   async getSingleUser({ user = null, params }, res) {
+    // console.log("made it to get single user")
+    console.log("params", params);
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    });
+    })
+    .populate('friends')
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
@@ -21,6 +25,18 @@ module.exports = {
 
     res.json(foundUser);
   },
+
+  // get all of Users friends
+  // async getFriends({id}, res) {
+  //   console.log("GETFRIENDS USER", user)
+  //   const populateFriends = await User.findOne({
+  //     _id: id
+  //   })
+  //   .populate('friends')
+
+  //   res.json(populateFriends);
+  // },
+
   // create a user, sign a token, and send it back (to client/src/components/SignUpForm.js)
   async createUser({ body }, res) {
     const user = await User.create(body);
@@ -113,22 +129,30 @@ module.exports = {
         { _id: user._id },
         { $addToSet: { savedMovies: body } },
         { new: true, runValidators: true }
-        );
-        return res.json(updatedUser);
-      } catch (err) {
-        console.log(err);
-        return res.status(400).json(err);
-      }
-    },
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
 
   async saveFriend({ user, body }, res) {
+      console.log("BODY", body);
     try {
       console.log("SAVE FRIEND");
       console.log("USER", user);
-      console.log("BODY", body);
+      
+      
+      const newFriend = await Friend.create(body);
+      console.log("newFriend id", newFriend._id);
+      // .then((result) => {
+      //   console.log("SAVE FRIEND RESULT", result)
+      //   console.log("user id", user._id)
+
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { friends: { friendUsername: body.username }}},
+        { $addToSet: { friends: newFriend._id } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -150,7 +174,7 @@ module.exports = {
     return res.json(updatedUser);
   },
 
-  
+
   async savePicture({ user, body }, res) {
     console.log("hey there");
     console.log(body);

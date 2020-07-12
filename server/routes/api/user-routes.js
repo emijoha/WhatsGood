@@ -28,7 +28,9 @@ router.route('/login').post(login);
 
 router.route('/me').get(authMiddleware, getSingleUser);
 
-router.route('/:username').get(getSingleUser);
+router.route('/:id').get(getSingleUser);
+
+router.route('/find/:username').get(getSingleUser);
 
 router.route('/books/:id').delete(authMiddleware, deleteBook);
 

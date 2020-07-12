@@ -9,31 +9,35 @@ import * as API from '../utils/API';
 function SavedFriends() {
 
     const [friendsArray, setFriendsArray] = useState([]);
-    
+
     // get whole userData state object from App.js
     const userData = useContext(UserInfoContext);
 
     useEffect(() => {
-        // if (!userData || !userData.friends) {
-        //     return
-        // }
-       console.log("mounted")
-       console.log("USER DATA INSIDE USE EFFECT", userData)
-        userData.friends.map(friend => {
-            console.log("this is friend.friendUSername", friend.friendUsername)
-            
-            API.getUser(friend.friendUsername)
+        console.log("user data Id", userData)
+        
+        if (userData._id !== '') {
+            API.getUser(userData._id)
                 .then(result => {
-                //   if ( friendsArray.some((user) => user.username === result.data.username) ) {
-                //       return
-                //   }
-                // console.log("friends array in loop", friendsArray)
-                // const newFriendsArray = friendsArray;
-                // newFriendsArray.push(result.data)
-                setFriendsArray(friendsArray => [...friendsArray, result.data])
-                })
-        });
-    }, [userData, userData.friends]);
+                    setFriendsArray(friendsArray => [...friendsArray, result.data])
+                });
+        }
+    }, [userData])
+    // OLD WAY TO GET FRIENDS
+    // useEffect(() => {
+
+    //    console.log("mounted")
+    //    console.log("USER DATA INSIDE USE EFFECT", userData.friends)
+    //     userData.friends.map(friend => {
+
+    //         console.log("this is friend", friend)
+    //         API.getUser(friend)
+    //             .then(result => {
+
+    //             setFriendsArray(friendsArray => [...friendsArray, result.data])
+    //             })
+    //     });
+    // }, [userData, userData.friends]);
 
     // DELETE BOOK FUNCTION THAT COULD BE MODIFIED TO REMOVE FRIENDS
     // create function that accepts the book's mongo _id value as param and deletes the book from the database
@@ -65,7 +69,7 @@ function SavedFriends() {
                     {friendsArray.length
                         ? `Viewing ${friendsArray.length} saved ${friendsArray.length === 1 ? 'friend' : 'friends'}:`
                         : 'You have no friends!'}
-                        {console.log("hey there im in the header", friendsArray)}
+                    {console.log("hey there im in the header", friendsArray)}
                 </h2>
                 <CardColumns>
                     {friendsArray.map(friend => {
@@ -83,7 +87,7 @@ function SavedFriends() {
                         );
                     })
                     }
-                    
+
                 </CardColumns>
             </Container>
         </>

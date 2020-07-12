@@ -6,7 +6,7 @@ const bookSchema = require('./Book');
 const gameSchema = require('./Game');
 const musicSchema = require('./Music');
 const movieSchema = require('./Movie');
-const friendSchema = require('./Friend')
+// const friendSchema = require('./Friend')
 
 const userSchema = new Schema(
   {
@@ -35,9 +35,15 @@ const userSchema = new Schema(
     savedGames: [gameSchema],
     
     savedMusic: [musicSchema],
+    
     savedMovies: [movieSchema],
 
-    friends: [friendSchema]
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+      }
+    ]
   },
   // set this to use virtual below
   {

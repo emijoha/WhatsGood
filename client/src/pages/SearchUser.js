@@ -3,15 +3,15 @@ import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 
 
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
-import { saveFriend, getUser } from '../utils/API';
+import { saveFriend, searchFriend } from '../utils/API';
 
 function SearchUser() {
     // create state for holding returned google api data
     const [searchedUser, setSearchedUser] = useState([]);
     // create state for holding our search field data
     const [searchInput, setSearchInput] = useState('');
-
     const userData = useContext(UserInfoContext);
+
 
     // create method to search for users and set state on form submit
     const handleFormSubmit = (event) => {
@@ -22,12 +22,12 @@ function SearchUser() {
             return false;
         }
 
-        getUser(searchInput)
+        // NEED TO PASS SEARCHINPUT AS PARAMS.USERNAME
+        searchFriend(searchInput)
             .then(user => setSearchedUser({
                 username: user.data.username,
                 _id: user.data._id
             }))
-            .then(console.log("searchedUser", searchedUser))
     }
 
     // function to handle saving a friend to database
@@ -83,7 +83,7 @@ function SearchUser() {
                 </Container>
             </Jumbotron>
 
-            <Container>
+            {searchedUser._id && <Container>
                 <h2></h2>
                 <CardColumns>
                     <Card key={searchedUser._id} border='dark'>
@@ -102,7 +102,7 @@ function SearchUser() {
                         </Card.Body>
                     </Card>
                 </CardColumns>
-            </Container>
+            </Container>}
         </>
     );
 }
