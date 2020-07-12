@@ -142,17 +142,16 @@ module.exports = {
     try {
       console.log("SAVE FRIEND");
       console.log("USER", user);
+      // check to see if friend document already exist
+      // if it does, add friend to user
+      // if not, create friend, then add to user 
       
-      
-      const newFriend = await Friend.create(body);
-      console.log("newFriend id", newFriend._id);
-      // .then((result) => {
-      //   console.log("SAVE FRIEND RESULT", result)
-      //   console.log("user id", user._id)
+      // const newFriend = await Friend.create(body);
+      // console.log("newFriend id", newFriend._id);
 
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { friends: newFriend._id } },
+        { $addToSet: { friends: body._id} },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);

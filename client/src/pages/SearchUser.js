@@ -27,7 +27,8 @@ function SearchUser() {
             .then(user => setSearchedUser({
                 username: user.data.username,
                 _id: user.data._id
-            }))
+            }),
+                setSearchInput(''));
     }
 
     // function to handle saving a friend to database
@@ -46,6 +47,8 @@ function SearchUser() {
             .then(() => {
                 console.log("saved user", searchedUser);
                 userData.getUserData();
+                console.log(searchedUser)
+
             })
             .catch((err) => console.log(err));
     };
@@ -76,13 +79,12 @@ function SearchUser() {
                             <Col xs={12} md={4}>
                                 <Button type='submit' variant='success' size='lg'>
                                     Submit Search
-                </Button>
+                                </Button>
                             </Col>
                         </Form.Row>
                     </Form>
                 </Container>
             </Jumbotron>
-
             {searchedUser._id && <Container>
                 <h2></h2>
                 <CardColumns>
@@ -94,6 +96,7 @@ function SearchUser() {
                             <Card.Text>{searchedUser.username}</Card.Text>
                             {searchedUser.username && (
                                 <Button
+                                    disabled={userData.friends?.some((friend) => friend == searchedUser._id)}
                                     className='btn-block btn-info save-friend'
                                     onClick={() => handleSaveFriend()}>
                                     Save Friend

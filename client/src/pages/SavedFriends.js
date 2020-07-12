@@ -8,21 +8,25 @@ import * as API from '../utils/API';
 
 function SavedFriends() {
 
-    const [friendsArray, setFriendsArray] = useState([]);
+    // const [friendsArray, setFriendsArray] = useState([]);
 
     // get whole userData state object from App.js
     const userData = useContext(UserInfoContext);
 
-    useEffect(() => {
-        console.log("user data Id", userData)
-        
-        if (userData._id !== '') {
-            API.getUser(userData._id)
-                .then(result => {
-                    setFriendsArray(friendsArray => [...friendsArray, result.data])
-                });
-        }
-    }, [userData])
+    // useEffect(() => {
+    //     console.log("user data Id", userData)
+
+    //     if (userData._id !== '') {
+    //         API.getUser(userData._id)
+    //             .then(result => {
+    //                 console.log("RESULT DATA FRIENDS", result.data.friends);
+    //                 setFriendsArray(friendsArray => [...friendsArray], result.data.friends);
+    //             });
+    //     }
+
+    // }, [userData]);
+
+
     // OLD WAY TO GET FRIENDS
     // useEffect(() => {
 
@@ -54,25 +58,23 @@ function SavedFriends() {
     //         .catch((err) => console.log(err));
     // };
 
+
     return (
         <>
             <Jumbotron fluid className='text-light bg-dark'>
-
                 <Container>
                     <h1>Viewing friends!</h1>
                 </Container>
-
             </Jumbotron>
-
             <Container>
                 <h2>
-                    {friendsArray.length
-                        ? `Viewing ${friendsArray.length} saved ${friendsArray.length === 1 ? 'friend' : 'friends'}:`
+                    {userData.friends.length
+                        ? `Viewing ${userData.friends.length} saved ${userData.friends.length === 1 ? 'friend' : 'friends'}:`
                         : 'You have no friends!'}
-                    {console.log("hey there im in the header", friendsArray)}
+                    {console.log("hey there im in the header", userData.friends)}
                 </h2>
                 <CardColumns>
-                    {friendsArray.map(friend => {
+                    {userData.friends.map(friend => {
                         return (
                             <Card key={friend._id} border='dark'>
                                 {friend.picture ? <Card.Img src={friend.picture} alt={friend.username} variant='top' /> : null}
@@ -87,7 +89,6 @@ function SavedFriends() {
                         );
                     })
                     }
-
                 </CardColumns>
             </Container>
         </>
