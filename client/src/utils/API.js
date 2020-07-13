@@ -10,8 +10,12 @@ export const getMe = function (token) {
 };
 
 // get a user by their username, not being used in the app just showing how it could work
-export const getUser = function (username) {
-  return axios.get(`/api/users/${username}`);
+export const getUser = function (id) {
+  return axios.get(`/api/users/${id}`);
+};
+
+export const searchFriend = function (username) {
+  return axios.get(`/api/users/find/${username}`);
 };
 
 export const createUser = function (userData) {
@@ -113,3 +117,10 @@ export const deleteMovie = function (movieId, token) {
 export const saveFriend = function (userData, token) {
   return axios.put('/api/users/friends', userData, { headers: { authorization: `Bearer ${token}` } });
 };
+
+// save friend data for a logged in user
+export const deleteFriend = function (friendId, token) {
+  console.log("friend id delete", friendId)
+  return axios.delete(`/api/users/friends/${friendId}`, { headers: { authorization: `Bearer ${token}` } });
+};
+
