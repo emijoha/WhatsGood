@@ -6,14 +6,14 @@ import AuthService from '../utils/auth';
 import { saveMovie, searchOMDB, searchEachMovie } from '../utils/API';
 
 function SearchMovies() {
-  // create state for holding returned google api data
+  // create state for holding returned omdb api data
   const [searchedMovies, setSearchedMovies] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
   const userData = useContext(UserInfoContext);
 
-  // create method to search for books and set state on form submit
+  // create method to search for movies and set state on form submit
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
@@ -25,19 +25,12 @@ function SearchMovies() {
 
     searchOMDB(searchInput)
       .then(({ data }) => {
-        console.log(data);
         const movieID = data.Search.map(movie => (movie.imdbID));
       
-        // console.log(movieData);
         movieID.forEach(id => {
           searchEachMovie(id)
             .then((res) => {
-              console.log(res);
               movieDataArr.push(res);
-              console.log(movieDataArr);
-
-              // console.log(movieData);
-              // return setSearchedMovies(movieData);
             })
             .then(() => {
               const movieData = movieDataArr.map(movie => ({
@@ -52,35 +45,18 @@ function SearchMovies() {
                 title: movie.data.Title,
                 image: movie.data.Poster || ''
               }));
-              console.log(movieData);
 
               return setSearchedMovies(movieData);
-
             })
-          // movieDataArr.push(searchEachMovie(id));
-          // console.log(movieDataArr);
         });
-
-        // const movieData = movieDataArr.map(movie => ({
-        //   movieId: data.imdbID,
-        //   title: data.Title,
-        //   image: data.Poster || '',
-        //   year: data.Year
-        // }));
-        // console.log(`movieDataArr: ${movieDataArr}`);
-
-        // const movieData = movieDataArr[0]
-        // console.log(moveiData);
-
-        // return setSearchedMovies(movieData);
       })
       .then(() => setSearchInput(''))
       .catch((err) => console.log(err));
   };
 
-  // create function to handle saving a book to our database
+  // create function to handle saving a movie to the database
   const handleSaveMovie = (movieId) => {
-    // find the book in `searchedBooks` state by the matching id
+    // find the book in `searchedMovies` state by the matching id
     const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
     console.log(movieToSave);
     // get token
@@ -90,7 +66,7 @@ function SearchMovies() {
       return false;
     }
 
-    // send the books data to our api
+    // send the movie data to the api
     saveMovie(movieToSave, token)
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));

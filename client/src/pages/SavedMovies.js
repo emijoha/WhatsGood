@@ -12,7 +12,7 @@ function SavedMovies() {
   const userData = useContext(UserInfoContext);
   console.log(userData);
 
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
+  // create function that accepts the movie's mongo _id value as param and deletes the movie from the database
   const handleDeleteMovie = (movieId) => {
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
@@ -21,7 +21,7 @@ function SavedMovies() {
       return false;
     }
     API.deleteMovie(movieId, token)
-      // upon succes, update user data to reflect book change
+      // upon succes, update user data to reflect movie change
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   };

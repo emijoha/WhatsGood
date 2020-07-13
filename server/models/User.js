@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 const bookSchema = require('./Book');
 const gameSchema = require('./Game');
 const musicSchema = require('./Music');
-const movieSchema = require('./Movie');
+// const movieSchema = require('./Movie');
 const friendSchema = require('./Friend')
 
 const userSchema = new Schema(
@@ -35,7 +35,13 @@ const userSchema = new Schema(
     savedGames: [gameSchema],
     
     savedMusic: [musicSchema],
-    savedMovies: [movieSchema],
+
+    savedMovies: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Movie'
+      }
+    ],
 
     friends: [friendSchema]
   },
@@ -75,9 +81,9 @@ userSchema.virtual('musicCount').get(function () {
   return this.savedMusic.length;
 });
 
-userSchema.virtual('moviesCount').get(function () {
-  return this.savedMovies.length;
-})
+// userSchema.virtual('moviesCount').get(function () {
+  // return this.savedMovies.length;
+// })
 
 const User = model('User', userSchema);
 

@@ -102,7 +102,7 @@ export const searchEachMovie = function (query) {
 };
 
 export const saveMovie = function (movieData, token) {
-  return axios.put('/api/users/movies', movieData, { headers: { authorization: `Bearer ${token}` } });
+  return axios.post('/api/users/movies', movieData, { headers: { authorization: `Bearer ${token}` } });
 };
 
 export const deleteMovie = function (movieId, token) {

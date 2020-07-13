@@ -1,5 +1,5 @@
 // import user model
-const { User } = require('../models');
+const { User, Movie } = require('../models/index');
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
 
@@ -13,7 +13,8 @@ module.exports = {
   async getSingleUser({ user = null, params }, res) {
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    });
+    })
+    .populate('savedMovies');
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
@@ -109,12 +110,14 @@ module.exports = {
     console.log(user);
     console.log(body);
     try {
+      const newMovie = await Movie.create(body);
+      console.log(`newMovie: ${newMovie}`);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedMovies: body } },
+        { $push: { savedMovies: newMovie._id } },
         { new: true, runValidators: true }
         );
-        return res.json(updatedUser);
+        return res.json(newMovie);
       } catch (err) {
         console.log(err);
         return res.status(400).json(err);
