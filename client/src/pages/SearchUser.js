@@ -94,7 +94,7 @@ function SearchUser() {
                             <Card.Title>{searchedUser.username}</Card.Title>
                             <p className='small'>Username: {searchedUser.username}</p>
                             <Card.Text>{searchedUser.username}</Card.Text>
-                            {searchedUser.username && userData.friends.includes(!searchedUser._id) && (
+                            {searchedUser.username && (
                                 <Button
                                     disabled={userData.friends?.some((friend) => friend._id === searchedUser._id)}
                                     className='btn-block btn-info save-friend'
