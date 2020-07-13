@@ -39,7 +39,10 @@ function UploadPhoto({ handleModalClose }) {
     }
 
     const handleSavePicture = (image) => {
-      
+        
+        if (!image) {
+            return false;
+          }
 
         const token = AuthService.loggedIn() ? AuthService.getToken() : null;
     
@@ -47,11 +50,13 @@ function UploadPhoto({ handleModalClose }) {
           return false;
         }
 
-        
       
         // send the books data to our api
         savePicture({image}, token)
-          .then(() => userData.getUserData())
+          .then(() => {       
+            userData.getUserData()
+            handleModalClose();
+          })
           .catch((err) => console.log(err));
       };
 

@@ -10,6 +10,7 @@ import SavedMusic from './pages/SavedMusic';
 import SearchMovies from './pages/SearchMovies';
 import SavedMovies from './pages/SavedMovies';
 import SearchUser from './pages/SearchUser';
+import SavedFriends from './pages/SavedFriends';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -24,6 +25,7 @@ import UserInfoContext from './utils/UserInfoContext';
 function App() {
   // set data to be used for UserInfoContext and make it available to all other components
   const [userInfo, setUserInfo] = useState({
+    _id: '',
     username: '',
     email: '',
     picture: '',
@@ -46,8 +48,8 @@ function App() {
         return false;
       }
       API.getMe(token)
-        .then(({ data: { username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, bookCount, musicCount, movieCount, gameCount, friends } }) =>
-          setUserInfo({ ...userInfo, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, bookCount, musicCount, movieCount, gameCount, friends })
+        .then(({ data: { _id, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, bookCount, musicCount, movieCount, gameCount, friends } }) =>
+          setUserInfo({ ...userInfo, _id, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, bookCount, musicCount, movieCount, gameCount, friends })
         )
         .catch((err) => console.log(err));
     }
@@ -76,6 +78,7 @@ function App() {
             <Route exact path='/saved_movies' component={SavedMovies} />
             <Route exact path='/saved_media' component={SavedMedia} />
             <Route exact path='/search-user' component={SearchUser} />
+            <Route exact path='/saved-friends' component={SavedFriends} />
             <Route exact path='/search_games' component={SearchGames} />
             <Route exact path='/saved_games' component={SavedGames} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />

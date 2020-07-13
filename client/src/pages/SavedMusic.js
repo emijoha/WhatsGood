@@ -13,14 +13,14 @@ function SavedMusic() {
   const userData = useContext(UserInfoContext);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  const handleDeleteMusic = (musicId) => {
+  const handleDeleteMusic = (music_id) => {
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
     if (!token) {
       return false;
     }
-    API.deleteMusic(musicId, token)
+    API.deleteMusic(music_id, token)
       // upon succes, update user data to reflect book change
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
