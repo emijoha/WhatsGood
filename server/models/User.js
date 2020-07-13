@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 // import schema from Book.js
 const bookSchema = require('./Book');
-const gameSchema = require('./Game');
+// const gameSchema = require('./Game');
 const musicSchema = require('./Music');
 const movieSchema = require('./Movie');
 const friendSchema = require('./Friend')
@@ -32,8 +32,13 @@ const userSchema = new Schema(
     // set savedBooks to be an array of data that adheres to the bookSchema
     savedBooks: [bookSchema],
 
-    savedGames: [gameSchema],
-    
+    savedGames: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Game"
+      }
+    ],
+
     savedMusic: [musicSchema],
     savedMovies: [movieSchema],
 

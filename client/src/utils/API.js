@@ -59,8 +59,8 @@ export const saveGame = function (gameData, token) {
 };
 
 // delete games
-export const deleteGame = function (gameId, token) {
-  return axios.delete(`/api/users/games/${gameId}`, { headers: { authorization: `Bearer ${token}` } });
+export const deleteGame = function (game_id, token) {
+  return axios.delete(`/api/users/games/${game_id}`, { headers: { authorization: `Bearer ${token}` } });
 };
 export const searchMusic = function(query) {
     return axios({

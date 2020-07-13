@@ -1,5 +1,5 @@
 // import user model
-const { User } = require('../models');
+const { User, Game } = require('../models');
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
 
@@ -13,7 +13,7 @@ module.exports = {
   async getSingleUser({ user = null, params }, res) {
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    });
+    }).populate('savedGames');
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
@@ -173,11 +173,13 @@ module.exports = {
 
   // ADD function to save and delete video games
   async saveGame({ user, body }, res) {
-    console.log(user);
+    console.log("THE USER:", user);
+    console.log("THE BODY:", body);
     try {
+      const createdGame = await Game.create(body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedGames: body } },
+        { $addToSet: { savedGames: createdGame._id } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -190,12 +192,13 @@ module.exports = {
   async deleteGame({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pull: { savedGames: { gameId: params.id } } },
+      { $pullAll: { savedGames: [params.id] } },
       { new: true }
     );
     if (!updatedUser) {
       return res.status(404).json({ message: "Couldn't find user with this id!" });
     }
+    console.log("AFTER DELETE?", updatedUser);
     return res.json(updatedUser);
   }
 };
