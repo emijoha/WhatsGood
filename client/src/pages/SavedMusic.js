@@ -42,7 +42,7 @@ function SavedMusic() {
         <CardColumns>
           {userData.savedMusic.map((music) => {
             return (
-              <Card key={music.musicId} border='dark'>
+              <Card key={music._id} border='dark'>
                 {music.image ? <Card.Img src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{music.title}</Card.Title>
@@ -52,7 +52,7 @@ function SavedMusic() {
                     src={music.preview}
                       controls
                         />
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteMusic(music.musicId)}>
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteMusic(music._id)}>
                     Delete!
                   </Button>
                 </Card.Body>

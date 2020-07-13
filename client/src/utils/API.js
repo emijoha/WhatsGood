@@ -28,8 +28,8 @@ export const saveBook = function (bookData, token) {
 };
 
 // remove saved book data for a logged in user
-export const deleteBook = function (bookId, token) {
-  return axios.delete(`/api/users/books/${bookId}`, { headers: { authorization: `Bearer ${token}` } });
+export const deleteBook = function (book_id, token) {
+  return axios.delete(`/api/users/books/${book_id}`, { headers: { authorization: `Bearer ${token}` } });
 };
 
 // make a search to google books api

@@ -1,5 +1,5 @@
 // import user model
-const { User, Game } = require('../models');
+const { User, Book, Music, Game } = require('../models');
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
 
@@ -13,7 +13,7 @@ module.exports = {
   async getSingleUser({ user = null, params }, res) {
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    }).populate('savedGames');
+    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('friends');
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
@@ -52,9 +52,10 @@ module.exports = {
   async saveBook({ user, body }, res) {
     console.log(user);
     try {
+      const createdBook = await Book.create(body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedBooks: body } },
+        { $addToSet: { savedBooks: createdBook._id } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -67,7 +68,7 @@ module.exports = {
   async deleteBook({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pull: { savedBooks: { bookId: params.id } } },
+      { $pull: { savedBooks: params.id } },
       { new: true }
     );
     if (!updatedUser) {
@@ -81,7 +82,7 @@ module.exports = {
   async deleteMusic({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pull: { savedMusic: { musicId: params.id } } },
+      { $pull: { savedMusic: params.id }},
       { new: true }
     );
     if (!updatedUser) {
@@ -93,9 +94,10 @@ module.exports = {
   async saveMusic({ user, body }, res) {
     console.log(user);
     try {
+      const createdMusic = await Music.create(body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedMusic: body } },
+        { $addToSet: { savedMusic: createdMusic._id } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -192,7 +194,7 @@ module.exports = {
   async deleteGame({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pullAll: { savedGames: [params.id] } },
+      { $pull: { savedGames: params.id } },
       { new: true }
     );
     if (!updatedUser) {
