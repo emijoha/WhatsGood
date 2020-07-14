@@ -15,6 +15,7 @@ const {
   deleteMusic,
   saveMovie,
   deleteMovie,
+  saveMovieReview,
   login,
   addBookLike,
   addMusicLike,
@@ -24,6 +25,7 @@ const {
 
 // import middleware
 const { authMiddleware } = require('../../utils/auth');
+const auth = require('../../utils/auth');
 
 // put authMiddleware anywhere we need to send a token for verification of user
 router.route('/signup').get(getAllUsers).post(createUser);
@@ -53,6 +55,8 @@ router.route('/music').get(getAllUsers).put(authMiddleware, saveMusic);
 router.route('/picture').get(getAllUsers).put(authMiddleware, savePicture);
 
 router.route('/movies').get(getAllUsers).put(authMiddleware, saveMovie);
+
+router.route('/movie-review').get(getAllUsers).put(authMiddleware, saveMovieReview);
 
 router.route('/likes').get(getAllUsers).put(authMiddleware, saveLike);
 

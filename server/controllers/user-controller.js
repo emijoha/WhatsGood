@@ -97,7 +97,7 @@ module.exports = {
   async deleteMusic({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pull: { savedMusic: params.id }},
+      { $pull: { savedMusic: params.id } },
       { new: true }
     );
     if (!updatedUser) {
@@ -139,21 +139,43 @@ module.exports = {
     }
   },
 
+  async saveMovieReview({ body }, res) {
+    // console.log('user: ', user);
+    console.log('body: ', body);
+    try {
+      const newMovieReview = await Movie.findOneAndUpdate(
+        { _id: body.id },
+        {
+          $set: {
+            movieReview: body.review,
+            userRating: body.userRating
+          }
+        },
+        { new: true, runValidators: true }
+      );
+      console.log('newMovieReview: ', newMovieReview);
+      return res.json(newMovieReview);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
   async saveFriend({ user, body }, res) {
-      console.log("BODY", body);
+    console.log("BODY", body);
     try {
       console.log("SAVE FRIEND");
       console.log("USER", user);
       // check to see if friend document already exist
       // if it does, add friend to user
       // if not, create friend, then add to user 
-      
+
       // const newFriend = await Friend.create(body);
       // console.log("newFriend id", newFriend._id);
 
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { friends: body._id} },
+        { $addToSet: { friends: body._id } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -179,6 +201,8 @@ module.exports = {
   },
 
   async deleteMovie({ user, params }, res) {
+    console.log(user);
+    console.log(params);
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
       { $pull: { savedMovies: params.id } },

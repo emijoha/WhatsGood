@@ -1,0 +1,15 @@
+input {
+    display: none;
+}
+
+.star {
+    cursor: pointer;
+    transition: color 200ms;
+    padding-left: 0.5rem;
+}
+
+.read-only-star {
+    padding-left: 0.5rem;
+}
+/* #ffc107
+#e4e5e9 */

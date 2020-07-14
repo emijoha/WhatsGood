@@ -53,6 +53,16 @@ const movieSchema = new Schema({
   image: {
     type: String,
     required: false,
+  },
+  movieReview: {
+    type: String,
+    required: false,
+    default: ''
+  },
+  userRating: {
+    type: Number,
+    required: false,
+    default: 0
   }
 });
 
