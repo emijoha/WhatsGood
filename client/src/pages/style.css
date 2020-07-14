@@ -1,0 +1,11 @@
+input [type="radio"] {
+    display: none !important;
+}
+
+.star {
+    cursor: pointer;
+    transition: color 200ms;
+}
+
+/* #ffc107
+#e4e5e9 */

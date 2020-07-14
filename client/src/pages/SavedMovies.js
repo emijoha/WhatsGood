@@ -6,9 +6,13 @@ import UserInfoContext from '../utils/UserInfoContext';
 
 import * as API from '../utils/API';
 import AuthService from '../utils/auth';
+import { FaStar } from 'react-icons/fa';
+import './style.css';
 
 function SavedMovies() {
   const [reviewInput, setReviewInput] = useState('');
+  const [userRating, setUserRating] = useState(null);
+  const [hover, setHover] = useState(null);
 
   // set state to activate review form
   const [selectedMovie, setSelectedMovie] = useState('');
@@ -36,13 +40,15 @@ function SavedMovies() {
 
     let updateCriteria = {
       id: selectedMovie._id,
-      review: reviewInput
+      review: reviewInput,
+      userRating: userRating
     }
     console.log(updateCriteria);
 
     API.saveMovieReview(updateCriteria, token)
       .then(() => setReviewInput(''))
       .then(() => setSelectedMovie(''))
+      .then(() => setUserRating(''))
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   }
@@ -94,6 +100,7 @@ function SavedMovies() {
                   <p className='small'>Plot: {movie.plot}</p>
                   <p className='small'>Rated: {movie.rated}</p>
                   <p className='small'>Runtime: {movie.runtime}</p>
+                  <p className='bold'>Your Rating: {movie.userRating}</p>
                   <p className='bold'>Your Review: {movie.movieReview}</p>
 
                   {userData.username && (
@@ -113,38 +120,49 @@ function SavedMovies() {
                   )}
 
                   {selectedMovie._id && (
-                        <>
-                          {movie._id === selectedMovie._id
-                            ?
-                            <Form onSubmit={handleFormSubmit}>
-                              <Form.Row>
-                                <Col xs={12} md={8}>
-                                  <Form.Control
-                                    name='reviewInput'
-                                    value={reviewInput}
-                                    onChange={(e) => setReviewInput(e.target.value)}
-                                    type='text'
-                                    size='lg'
-                                    placeholder='Review this movie'
-                                  />
-                                </Col>
-                                <Col xs={12} md={4}>
-                                  <Button type='submit' variant='success' size='lg'>
-                                    Submit Review
+                    <>
+                      {movie._id === selectedMovie._id
+                        ?
+                        <Form onSubmit={handleFormSubmit}>
+                          <Col xs={12} md={8}>
+                            <Form.Control
+                              name='reviewInput'
+                              value={reviewInput}
+                              onChange={(e) => setReviewInput(e.target.value)}
+                              type='text'
+                              size='lg'
+                              placeholder='Review this movie'
+                            />
+                          </Col>
+                          {[...Array(5)].map((star, i) => {
+                            const ratingValue = i + 1;
+                            return (
+                              <label>
+                                <input type='radio' name='rating'
+                                 value={ratingValue} onClick={() => setUserRating(ratingValue)}
+                                 onMouseEnter={() => setHover(ratingValue)}
+                                 onMouseLeave={() => setHover(null)} />
+                                <FaStar key={ratingValue} className='star' color={ratingValue <= (hover || userRating) ? '#ffc107' : '#e4e5e9' } size={10} />
+                              </label>
+                            )
+                          })}
+
+                          <Col xs={12} md={4}>
+                            <Button type='submit' variant='success' size='lg'>
+                              Submit Review
                                   </Button>
-                                </Col>
-                              </Form.Row>
-                            </Form>
-                            : null
-                          }
-                        </>
+                          </Col>
+                        </Form>
+                        : null
+                      }
+                    </>
 
-                      )}
+                  )}
 
-                      <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie._id)}>
-                        Delete this Movie!
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie._id)}>
+                    Delete this Movie!
                   </Button>
-                    </Card.Body>
+                </Card.Body>
               </Card>
             );
           })}
