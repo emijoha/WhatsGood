@@ -104,7 +104,7 @@ function SavedMovies() {
                   {[...Array(movie.userRating)].map((star, i) => {
                     return (
                       <label>
-                        <FaVideo key={movie.userRating} className='read-only-star' color='#ffc107' size={40} />
+                        <FaVideo key={movie.userRating} className='read-only-star' color='black' size={40} />
                       </label>
                     )
                   })}
@@ -149,7 +149,7 @@ function SavedMovies() {
                                 <input type='radio' name='rating'
                                   value={i} onClick={() => setUserRating(ratingValue)} />
                                 <FaVideo key={ratingValue} className='star' onMouseEnter={() => setHover(ratingValue)}
-                                  onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? '#ffc107' : '#e4e5e9'} size={40} />
+                                  onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? 'black' : '#e4e5e9'} size={40} />
                               </label>
                             )
                           })}
