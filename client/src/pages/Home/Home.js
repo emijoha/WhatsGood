@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button, Col, Row } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 import moment from 'moment'
@@ -8,13 +8,14 @@ import "./style.css";
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
+import LikeButton from '../../components/LikeButton'
 
 
 function Home() {
 
-  const [friendsArray, setFriendsArray] = useState([]);
+
   const [allFriendsMediaState, setAllFriendsMediaState] = useState([]);
-  const [allMediaLikeState, setAllMediaLikeState] = useState([]);
+
 
 
   function compareTimeStamp(a, b) {
@@ -24,9 +25,12 @@ function Home() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
 
+
+
   useEffect(() => {
 
     userData.friends.map(friend => {
+
 
 
       API.getUser(friend.id)
@@ -176,7 +180,11 @@ function Home() {
   // }, [userData, userData.friends]);
 }, [userData.username]);
 
-  const handleSaveLike = (likeMediaType, like_id, mediaLikes) => {
+
+
+
+
+  const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes) => {
     // find the friend in `searchedUser` state by the matching id
     // const userToSave = searchedUser.find((user) => user._id === userId);
 
@@ -186,7 +194,14 @@ function Home() {
         return false;
     }
 
+    
+
     let likeData = {
+      mediaType: likeMediaType,
+      mediaId: like_id,
+    }
+
+    let addLikeData = {
       mediaType: likeMediaType,
       _id: like_id,
       likes: mediaLikes
@@ -196,14 +211,14 @@ function Home() {
     // send the friend data to our api
     API.saveLike(likeData, token)
         .then(() => {
-         
+          console.log("Token: ", token, "likeData: ", likeData);
             userData.getUserData();
        
 
         })
         .catch((err) => console.log(err));
 
-    API.addLike(likeData, token)
+    API.addLike(addLikeData, token)
         .then(() => {
          
             userData.getUserData();
@@ -211,7 +226,7 @@ function Home() {
 
         })
         .catch((err) => console.log(err));     
-};
+  });
 
 
 
@@ -265,6 +280,7 @@ function Home() {
 
               if (media.mediaType === "book") {
 
+                  
                 return (
 
                   <Card key={media._id} border='dark'>
@@ -279,14 +295,16 @@ function Home() {
                       <Card.Title>{media.title}</Card.Title>
                       <p className='small'>Authors: {media.authors}</p>
                       <Card.Text>{media.description}</Card.Text>
-                    
-                      <Card.Text>Likes: {media.likes}</Card.Text>
-                      <Button className='btn-block btn-primary'    disabled={userData.savedLikes?.some((savedLike) => savedLike._id == media._id)}         
-                              onClick={() => handleSaveLike(media.mediaType, media._id, media.likes)}>
-                         {userData.savedLikes?.some((savedLike) => savedLike._id == media._id)
-                        ? 'Liked!'
-                        : 'Like!'}
-                      </Button>
+                      
+                     
+                      <LikeButton mediaLikes={media.likes} 
+                                  mediaType={media.mediaType}
+                                  mediaId={media._id}
+                                  cb={handleSaveLike}
+                                  userData={userData}
+                                  
+                                  
+                                  ></LikeButton>
                       <Button className='btn-block btn-danger' >
                         Comment
                       </Button>
@@ -310,18 +328,17 @@ function Home() {
                       <Card.Title>{media.title}</Card.Title>
 
                       <p className='small'>Artist: {media.artist}</p>
-                      <Card.Text>Likes: {media.likes}</Card.Text>
+                    
                       <ReactAudioPlayer id="music-player"
                         src={media.preview}
                         controls
                       />
-                      <Button className='btn-block btn-primary'    disabled={userData.savedLikes?.some((savedLike) => savedLike._id == media._id)}         
-                              onClick={() => handleSaveLike(media.mediaType, media._id, media.likes)}>
-                         {userData.savedLikes?.some((savedLike) => savedLike._id == media._id)
-                        ? 'Liked!'
-                        : 'Like!'}
-                       
-                      </Button>
+                      <LikeButton mediaLikes={media.likes} 
+                                  mediaType={media.mediaType}
+                                  mediaId={media._id}
+                                  cb={handleSaveLike}
+                                  userData={userData}          
+                      ></LikeButton>
                       <Button className='btn-block btn-danger' >
                         Comment
                       </Button>
@@ -353,13 +370,12 @@ function Home() {
                       <p className='small'>Plot: {media.plot}</p>
                       <p className='small'>Rated: {media.rated}</p>
                       <p className='small'>Runtime: {media.runtime}</p>
-                      <Card.Text>Likes: {media.likes}</Card.Text>
-                      <Button className='btn-block btn-primary'    disabled={userData.savedLikes?.some((savedLike) => savedLike._id == media._id)}         
-                              onClick={() => handleSaveLike(media.mediaType, media._id, media.likes)}>
-                         {userData.savedLikes?.some((savedLike) => savedLike._id == media._id)
-                        ? 'Liked!'
-                        : 'Like!'}
-                      </Button>
+                      <LikeButton mediaLikes={media.likes} 
+                                  mediaType={media.mediaType}
+                                  mediaId={media._id}
+                                  cb={handleSaveLike}
+                                  userData={userData}          
+                      ></LikeButton>
                       <Button className='btn-block btn-danger' >
                         Comment
                       </Button>
@@ -385,13 +401,14 @@ function Home() {
                       <Card.Title>{media.title}</Card.Title>
                       <p className='small'>Developer: {media.developer}</p>
                       <Card.Text>{media.description}</Card.Text>
-                      <Card.Text>Likes: {media.likes}</Card.Text>
-                      <Button className='btn-block btn-primary'    disabled={userData.savedLikes?.some((savedLike) => savedLike._id == media._id)}         
-                              onClick={() => handleSaveLike(media.mediaType, media._id, media.likes)}>
-                         {userData.savedLikes?.some((savedLike) => savedLike._id == media._id)
-                        ? 'Liked!'
-                        : 'Like!'}
-                      </Button>
+                   
+
+                      <LikeButton mediaLikes={media.likes} 
+                                  mediaType={media.mediaType}
+                                  mediaId={media._id}
+                                  cb={handleSaveLike}
+                                  userData={userData}          
+                      ></LikeButton>
 
                       <Button className='btn-block btn-danger' >
                         Comment
@@ -417,3 +434,8 @@ function Home() {
 }
 
 export default Home;
+
+
+
+
+

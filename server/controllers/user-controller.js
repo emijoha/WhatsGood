@@ -247,19 +247,10 @@ module.exports = {
   
   async addBookLike({ body }, res) {
 
-    console.log("addBookLike Body: ", body)
-   
-    // console.log("hey there");
-    // console.log(body);
-
     try {
 
-    
-      console.log("this is the body in the server", body);
 
       let newLikeTotal = body.likes + 1;
-
-      console.log("newLikeTotal: ", newLikeTotal);
 
       const updatedBook = await Book.findOneAndUpdate(
         { _id: body._id },
@@ -273,6 +264,67 @@ module.exports = {
       return res.status(400).json(err);
     }
   },
+
+  async addMusicLike({ body }, res) {
+
+    try {
+
+
+      let newLikeTotal = body.likes + 1;
+
+      const updatedMusic = await Music.findOneAndUpdate(
+        { _id: body._id },
+        { $set: { likes: newLikeTotal } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedMusic);
+    
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
+  async addGameLike({ body }, res) {
+
+    try {
+
+
+      let newLikeTotal = body.likes + 1;
+
+      const updatedGame = await Game.findOneAndUpdate(
+        { _id: body._id },
+        { $set: { likes: newLikeTotal } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedGame);
+    
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
+  async addMovieLike({ body }, res) {
+
+    try {
+
+
+      let newLikeTotal = body.likes + 1;
+
+      const updatedMovie = await Movie.findOneAndUpdate(
+        { _id: body._id },
+        { $set: { likes: newLikeTotal } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedMovie);
+    
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
   async deleteGame({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },

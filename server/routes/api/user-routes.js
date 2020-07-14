@@ -16,7 +16,10 @@ const {
   saveMovie,
   deleteMovie,
   login,
-  addBookLike
+  addBookLike,
+  addMusicLike,
+  addMovieLike,
+  addGameLike
 } = require('../../controllers/user-controller');
 
 // import middleware
@@ -39,11 +42,11 @@ router.route('/books/:id').delete(authMiddleware, deleteBook).put(addBookLike);
 
 router.route('/games').get(getAllUsers).post(createUser).put(authMiddleware, saveGame);
 
-router.route('/games/:id').delete(authMiddleware, deleteGame);
+router.route('/games/:id').delete(authMiddleware, deleteGame).put(addGameLike);;
 
-router.route('/music/:id').delete(authMiddleware, deleteMusic);
+router.route('/music/:id').delete(authMiddleware, deleteMusic).put(addMusicLike);;
 
-router.route('/movies/:id').delete(authMiddleware, deleteMovie);
+router.route('/movies/:id').delete(authMiddleware, deleteMovie).put(addMovieLike);;
 
 router.route('/music').get(getAllUsers).put(authMiddleware, saveMusic);
 
