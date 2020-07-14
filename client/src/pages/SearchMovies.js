@@ -35,6 +35,8 @@ function SearchMovies() {
             .then(() => {
               const movieData = movieDataArr.map(movie => ({
                 movieId: movie.data.imdbID,
+                timeStamp: Date.now(),
+                createdAt: Date(), 
                 actors: movie.data.Actors,
                 director: movie.data.Director,
                 genre: movie.data.Genre,

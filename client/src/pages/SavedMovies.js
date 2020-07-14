@@ -18,7 +18,7 @@ function SavedMovies() {
   const [selectedMovie, setSelectedMovie] = useState('');
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
-  console.log('userData: ', userData);
+  console.log("this is the user data, ", userData);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
 
@@ -104,7 +104,7 @@ function SavedMovies() {
                   {[...Array(movie.userRating)].map((star, i) => {
                     return (
                       <label>
-                        <FaVideo key={movie.userRating} className='read-only-star' color='black' size={40} />
+                        <FaVideo key={movie.userRating} className='read-only-star' color='black' size={30} />
                       </label>
                     )
                   })}
@@ -149,7 +149,7 @@ function SavedMovies() {
                                 <input type='radio' name='rating'
                                   value={i} onClick={() => setUserRating(ratingValue)} />
                                 <FaVideo key={ratingValue} className='star' onMouseEnter={() => setHover(ratingValue)}
-                                  onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? 'black' : '#e4e5e9'} size={40} />
+                                  onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? 'black' : '#e4e5e9'} size={30} />
                               </label>
                             )
                           })}
