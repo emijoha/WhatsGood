@@ -6,6 +6,18 @@ const movieSchema = new Schema({
     type: String,
     required: true,
   },
+  timeStamp: {
+    type: Number,
+    required: true,
+  },
+  createdAt: {
+    type: String,
+  },
+  likes: {
+    type: Number,
+    required: true,
+    default: 0
+  },
   actors: {
     type: String,
     required: false
@@ -41,6 +53,16 @@ const movieSchema = new Schema({
   image: {
     type: String,
     required: false,
+  },
+  movieReview: {
+    type: String,
+    required: false,
+    default: ''
+  },
+  userRating: {
+    type: Number,
+    required: false,
+    default: 0
   }
 });
 

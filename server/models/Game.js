@@ -14,6 +14,18 @@ const gameSchema = new Schema({
     type: String,
     required: true,
   },
+  timeStamp: {
+    type: Number,
+    required: true,
+  },
+  createdAt: {
+    type: String,
+  },
+  likes: {
+    type: Number,
+    required: true,
+    default: 0
+  },
   image: {
     type: String,
   },
