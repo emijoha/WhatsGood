@@ -41,7 +41,7 @@ function SavedFriends() {
     // }, [userData, userData.friends]);
 
     // create function that accepts the friend's mongo _id value as param and deletes the friend from current user's collection
-    const handleDeleteFriend = (friendId) => {
+    const handleDeleteFriend = (friend_id) => {
         // get token
         const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
@@ -49,7 +49,7 @@ function SavedFriends() {
             return false;
         }
 
-        API.deleteFriend(friendId, token)
+        API.deleteFriend(friend_id, token)
             // upon succes, update user data to reflect book change
             .then(() => userData.getUserData(),
             console.log("made it back"))

@@ -10,16 +10,18 @@ import AuthService from '../utils/auth';
 function SavedGames() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
+  console.log("USER DATA", userData);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  const handleDeleteGame = (gameId) => {
+  const handleDeleteGame = (game_id) => {
+    console.log(game_id)
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
     if (!token) {
       return false;
     }
-    API.deleteGame(gameId, token)
+    API.deleteGame(game_id, token)
       // upon succes, update user data to reflect book change
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
@@ -41,13 +43,13 @@ function SavedGames() {
         <CardColumns>
           {userData.savedGames.map((game) => {
             return (
-              <Card key={game.gameId} border='dark'>
+              <Card key={game._id} border='dark'>
                 {game.image ? <Card.Img src={game.image} alt={`The image for ${game.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{game.title}</Card.Title>
                   <p className='small'>Developer: {game.developer}</p>
                   <Card.Text>{game.description}</Card.Text>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteGame(game.gameId)}>
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteGame(game._id)}>
                     Delete this Game!
                   </Button>
                 </Card.Body>

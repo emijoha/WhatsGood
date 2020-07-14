@@ -82,13 +82,13 @@ function SavedMedia() {
         <CardColumns>
           {userData.savedBooks.map((book) => {
             return (
-              <Card key={book.bookId} border='dark'>
+              <Card key={book._id} border='dark'>
                 {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{book.title}</Card.Title>
                   <p className='small'>Authors: {book.authors}</p>
                   <Card.Text>{book.description}</Card.Text>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book.bookId)}>
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book._id)}>
                     Delete this Book!
                   </Button>
                 </Card.Body>
@@ -104,7 +104,7 @@ function SavedMedia() {
         <CardColumns>
           {userData.savedMusic.map((music) => {
             return (
-              <Card key={music.musicId} border='dark'>
+              <Card key={music._id} border='dark'>
                 {music.image ? <Card.Img src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{music.title}</Card.Title>
@@ -114,7 +114,7 @@ function SavedMedia() {
                     src={music.preview}
                       controls
                         />
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteMusic(music.musicId)}>
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteMusic(music._id)}>
                     Delete!
                   </Button>
                 </Card.Body>
@@ -130,11 +130,11 @@ function SavedMedia() {
         <CardColumns>
           {userData.savedMovies.map((movie) => {
             return (
-              <Card key={movie.movieId} border='dark'>
+              <Card key={movie._id} border='dark'>
                 {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie.movieId)}>
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie._id)}>
                     Delete!
                   </Button>
                 </Card.Body>
@@ -150,11 +150,11 @@ function SavedMedia() {
         <CardColumns>
           {userData.savedGames.map((game) => {
             return (
-              <Card key={game.gameId} border='dark'>
+              <Card key={game._id} border='dark'>
                 {game.image ? <Card.Img src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{game.title}</Card.Title>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteGame(game.gameId)}>
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteGame(game._id)}>
                     Delete!
                   </Button>
                 </Card.Body>

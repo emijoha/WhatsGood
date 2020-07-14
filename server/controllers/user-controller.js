@@ -1,6 +1,6 @@
 // import user model
-const User = require('../models/User');
-const Friend = require('../models/Friend');
+const { User, Book, Music, Movie, Game } = require('../models');
+
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
 
@@ -16,8 +16,7 @@ module.exports = {
     // console.log("params", params);
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    })
-    .populate('friends')
+    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends');
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
@@ -68,9 +67,10 @@ module.exports = {
   async saveBook({ user, body }, res) {
     console.log(user);
     try {
+      const createdBook = await Book.create(body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedBooks: body } },
+        { $addToSet: { savedBooks: createdBook._id } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -83,7 +83,7 @@ module.exports = {
   async deleteBook({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pull: { savedBooks: { bookId: params.id } } },
+      { $pull: { savedBooks: params.id } },
       { new: true }
     );
     if (!updatedUser) {
@@ -97,7 +97,7 @@ module.exports = {
   async deleteMusic({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pull: { savedMusic: { musicId: params.id } } },
+      { $pull: { savedMusic: params.id }},
       { new: true }
     );
     if (!updatedUser) {
@@ -109,9 +109,10 @@ module.exports = {
   async saveMusic({ user, body }, res) {
     console.log(user);
     try {
+      const createdMusic = await Music.create(body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedMusic: body } },
+        { $addToSet: { savedMusic: createdMusic._id } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -125,9 +126,10 @@ module.exports = {
     console.log(user);
     console.log(body);
     try {
+      const createdMovie = await Movie.create(body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedMovies: body } },
+        { $addToSet: { savedMovies: createdMovie._id } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -179,7 +181,7 @@ module.exports = {
   async deleteMovie({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pull: { savedMovies: { movieId: params.id } } },
+      { $pull: { savedMovies: params.id } },
       { new: true }
     );
     if (!updatedUser) {
@@ -211,11 +213,13 @@ module.exports = {
 
   // ADD function to save and delete video games
   async saveGame({ user, body }, res) {
-    console.log(user);
+    console.log("THE USER:", user);
+    console.log("THE BODY:", body);
     try {
+      const createdGame = await Game.create(body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedGames: body } },
+        { $addToSet: { savedGames: createdGame._id } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -228,12 +232,13 @@ module.exports = {
   async deleteGame({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pull: { savedGames: { gameId: params.id } } },
+      { $pull: { savedGames: params.id } },
       { new: true }
     );
     if (!updatedUser) {
       return res.status(404).json({ message: "Couldn't find user with this id!" });
     }
+    console.log("AFTER DELETE?", updatedUser);
     return res.json(updatedUser);
   }
 };

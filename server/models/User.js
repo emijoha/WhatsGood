@@ -1,13 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// import schema from Book.js
-const bookSchema = require('./Book');
-const gameSchema = require('./Game');
-const musicSchema = require('./Music');
-const movieSchema = require('./Movie');
-// const friendSchema = require('./Friend')
-
 const userSchema = new Schema(
   {
     username: {
@@ -30,13 +23,32 @@ const userSchema = new Schema(
       default: "https://res.cloudinary.com/dxrhczeo9/image/upload/v1594230701/l84rsrhhdsfcps2h2hsa.svg"
     },
     // set savedBooks to be an array of data that adheres to the bookSchema
-    savedBooks: [bookSchema],
+    savedBooks: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Book"
+      }
+    ],
 
-    savedGames: [gameSchema],
-    
-    savedMusic: [musicSchema],
-    
-    savedMovies: [movieSchema],
+    savedGames: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Game"
+      }
+    ],
+
+    savedMusic: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Music"
+      }
+    ],
+    savedMovies: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Movie"
+      }
+    ],
 
     friends: [
       {

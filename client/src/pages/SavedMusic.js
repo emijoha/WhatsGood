@@ -13,14 +13,14 @@ function SavedMusic() {
   const userData = useContext(UserInfoContext);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  const handleDeleteMusic = (musicId) => {
+  const handleDeleteMusic = (music_id) => {
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
     if (!token) {
       return false;
     }
-    API.deleteMusic(musicId, token)
+    API.deleteMusic(music_id, token)
       // upon succes, update user data to reflect book change
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
@@ -42,7 +42,7 @@ function SavedMusic() {
         <CardColumns>
           {userData.savedMusic.map((music) => {
             return (
-              <Card key={music.musicId} border='dark'>
+              <Card key={music._id} border='dark'>
                 {music.image ? <Card.Img src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{music.title}</Card.Title>
@@ -52,7 +52,7 @@ function SavedMusic() {
                     src={music.preview}
                       controls
                         />
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteMusic(music.musicId)}>
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteMusic(music._id)}>
                     Delete!
                   </Button>
                 </Card.Body>
