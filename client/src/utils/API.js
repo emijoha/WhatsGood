@@ -110,7 +110,8 @@ export const saveMovie = function (movieData, token) {
 };
 
 export const saveMovieReview = function (movieReview, token) {
-  return axios.post('/api/user/movie-review', movieReview, { headers: { authorization: `Bearer ${token}` } });
+  console.log(movieReview, token);
+  return axios.put('/api/users/movie-review', movieReview, { headers: { authorization: `Bearer ${token}` } });
 };
 
 export const deleteMovie = function (movie_id, token) {

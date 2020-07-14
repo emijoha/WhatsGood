@@ -8,29 +8,49 @@ import * as API from '../utils/API';
 import AuthService from '../utils/auth';
 
 function SavedMovies() {
-  // const [reviewInput, setReviewInput] = useState('');
+  const [reviewInput, setReviewInput] = useState('');
+
+  // set state to activate review form
+  const [selectedMovie, setSelectedMovie] = useState('');
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
-  console.log(userData);
+  console.log('userData: ', userData);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  const handleSaveMovieReview = (event) => {
+
+  const handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log(`value: ${event.target.value}`);
+
+    console.log('hey dickhead');
+
+    saveMovieReview();
+  }
+
+  const saveMovieReview = () => {
+
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
     if (!token) {
       return false;
     }
 
-    // if (!reviewInput) {
-    //   return false;
-    // }
+    let updateCriteria = {
+      id: selectedMovie._id,
+      review: reviewInput
+    }
+    console.log(updateCriteria);
 
-    API.saveMovieReview(event.target.value, token)
-    // .then(() => setReviewInput(''))
-    .then(() => userData.getUserData())
-    .catch((err) => console.log(err));
+    API.saveMovieReview(updateCriteria, token)
+      .then(() => setReviewInput(''))
+      .then(() => setSelectedMovie(''))
+      .then(() => userData.getUserData())
+      .catch((err) => console.log(err));
+  }
+
+  const startReview = ({ movie }) => {
+    console.log('movie: ', movie);
+
+    setSelectedMovie(movie);
   }
 
   // create function that accepts the movie's mongo _id value as param and deletes the movie from the database
@@ -74,29 +94,57 @@ function SavedMovies() {
                   <p className='small'>Plot: {movie.plot}</p>
                   <p className='small'>Rated: {movie.rated}</p>
                   <p className='small'>Runtime: {movie.runtime}</p>
-                  <Form onSubmit={handleSaveMovieReview}>
-                    <Form.Row>
-                      <Col xs={12} md={8}>
-                        <Form.Control
-                          name='reviewInput'
-                          // value=
-                          // onChange={(e) => setReviewInput(e.target.value)}
-                          type='text'
-                          size='lg'
-                          placeholder='Review this movie'
-                        />
-                      </Col>
-                      <Col xs={12} md={4}>
-                        <Button type='submit' variant='success' size='lg'>
-                          Submit Review
+                  <p className='bold'>Your Review: {movie.movieReview}</p>
+
+                  {userData.username && (
+                    <>
+                      {userData.savedMovies?.some((savedMovie) => savedMovie.movieReview) ?
+                        <Button className='btn-block btn-success' onClick={() => startReview({ movie })}  >
+                          Update your rating/review?
                         </Button>
-                      </Col>
-                    </Form.Row>
-                  </Form>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie._id)}>
-                    Delete this Movie!
+
+                        :
+
+                        <Button className='btn-block btn-success' onClick={() => startReview({ movie })}  >
+                          Review and Rate this Movie!
+                        </Button>
+                      }
+                    </>
+                  )}
+
+                  {selectedMovie._id && (
+                        <>
+                          {movie._id === selectedMovie._id
+                            ?
+                            <Form onSubmit={handleFormSubmit}>
+                              <Form.Row>
+                                <Col xs={12} md={8}>
+                                  <Form.Control
+                                    name='reviewInput'
+                                    value={reviewInput}
+                                    onChange={(e) => setReviewInput(e.target.value)}
+                                    type='text'
+                                    size='lg'
+                                    placeholder='Review this movie'
+                                  />
+                                </Col>
+                                <Col xs={12} md={4}>
+                                  <Button type='submit' variant='success' size='lg'>
+                                    Submit Review
+                                  </Button>
+                                </Col>
+                              </Form.Row>
+                            </Form>
+                            : null
+                          }
+                        </>
+
+                      )}
+
+                      <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie._id)}>
+                        Delete this Movie!
                   </Button>
-                </Card.Body>
+                    </Card.Body>
               </Card>
             );
           })}

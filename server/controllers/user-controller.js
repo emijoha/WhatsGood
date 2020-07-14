@@ -140,11 +140,15 @@ module.exports = {
   },
 
   async saveMovieReview({ user, body }, res) {
-    console.log(`user: ${user}`);
-    console.log(`body: ${body}`);
+    console.log('user: ', user);
+    console.log('body: ', body);
     try {
-      const newMovieReview = await MovieReview.create(body);
-      console.log(newMovieReview);
+      const newMovieReview = await Movie.findOneAndUpdate (
+        { _id: body.id },
+        { $set: { movieReview: body.review } },
+        { new: true, runValidators: true }
+      );
+      console.log('newMovieReview: ', newMovieReview);
       return res.json(newMovieReview);
     } catch (err) {
       console.log(err);

@@ -49,9 +49,9 @@ router.route('/music').get(getAllUsers).put(authMiddleware, saveMusic);
 
 router.route('/picture').get(getAllUsers).put(authMiddleware, savePicture);
 
-router.route('/movies').get(getAllUsers).post(authMiddleware, saveMovie);
+router.route('/movies').get(getAllUsers).put(authMiddleware, saveMovie);
 
-router.route('/movie-review').get(getAllUsers).post(authMiddleware, saveMovieReview);
+router.route('/movie-review').get(getAllUsers).put(authMiddleware, saveMovieReview);
 
 router.route('/friends').put(authMiddleware, saveFriend);
 

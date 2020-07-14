@@ -43,8 +43,9 @@ const movieSchema = new Schema({
     required: false,
   },
   movieReview: {
-    type: Schema.Types.ObjectId,
-    ref: 'MovieReview'
+    type: String,
+    required: false,
+    default: ''
   }
 });
 
