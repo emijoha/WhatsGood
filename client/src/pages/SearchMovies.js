@@ -56,7 +56,7 @@ function SearchMovies() {
 
   // create function to handle saving a movie to the database
   const handleSaveMovie = (movieId) => {
-    // find the book in `searchedMovies` state by the matching id
+    // find the movie in `searchedMovies` state by the matching id
     const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
     console.log(movieToSave);
     // get token

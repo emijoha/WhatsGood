@@ -41,6 +41,10 @@ const movieSchema = new Schema({
   image: {
     type: String,
     required: false,
+  },
+  movieReview: {
+    type: Schema.Types.ObjectId,
+    ref: 'MovieReview'
   }
 });
 

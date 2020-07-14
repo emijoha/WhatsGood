@@ -139,6 +139,19 @@ module.exports = {
     }
   },
 
+  async saveMovieReview({ user, body }, res) {
+    console.log(`user: ${user}`);
+    console.log(`body: ${body}`);
+    try {
+      const newMovieReview = await MovieReview.create(body);
+      console.log(newMovieReview);
+      return res.json(newMovieReview);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
   async saveFriend({ user, body }, res) {
       console.log("BODY", body);
     try {
@@ -179,6 +192,8 @@ module.exports = {
   },
 
   async deleteMovie({ user, params }, res) {
+    console.log(user);
+    console.log(params);
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
       { $pull: { savedMovies: params.id } },
