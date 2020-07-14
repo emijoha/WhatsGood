@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button, Form, Col } from 'react-bootstrap';
+import { FaVideo } from 'react-icons/fa';
 
 // import context for global state
 import UserInfoContext from '../utils/UserInfoContext';
 
 import * as API from '../utils/API';
 import AuthService from '../utils/auth';
-import { FaStar } from 'react-icons/fa';
 import './style.css';
 
 function SavedMovies() {
@@ -48,7 +48,7 @@ function SavedMovies() {
     API.saveMovieReview(updateCriteria, token)
       .then(() => setReviewInput(''))
       .then(() => setSelectedMovie(''))
-      .then(() => setUserRating(''))
+      .then(() => setUserRating(null))
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   }
@@ -100,7 +100,15 @@ function SavedMovies() {
                   <p className='small'>Plot: {movie.plot}</p>
                   <p className='small'>Rated: {movie.rated}</p>
                   <p className='small'>Runtime: {movie.runtime}</p>
-                  <p className='bold'>Your Rating: {movie.userRating}</p>
+                  <p className='bold'>Your Rating:
+                  {[...Array(movie.userRating)].map((star, i) => {
+                    return (
+                      <label>
+                        <FaVideo key={movie.userRating} className='read-only-star' color='#ffc107' size={40} />
+                      </label>
+                    )
+                  })}
+                  </p>
                   <p className='bold'>Your Review: {movie.movieReview}</p>
 
                   {userData.username && (
@@ -139,9 +147,9 @@ function SavedMovies() {
                             return (
                               <label>
                                 <input type='radio' name='rating'
-                                 value={ratingValue} onClick={() => setUserRating(ratingValue)} />
-                                <FaStar key={ratingValue} className='star' onMouseEnter={() => setHover(ratingValue)}
-                                 onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? '#ffc107' : '#e4e5e9' } size={50} />
+                                  value={i} onClick={() => setUserRating(ratingValue)} />
+                                <FaVideo key={ratingValue} className='star' onMouseEnter={() => setHover(ratingValue)}
+                                  onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? '#ffc107' : '#e4e5e9'} size={40} />
                               </label>
                             )
                           })}

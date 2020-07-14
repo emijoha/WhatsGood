@@ -50,7 +50,7 @@ const movieSchema = new Schema({
   userRating: {
     type: Number,
     required: false,
-    default: null
+    default: 0
   }
 });
 
