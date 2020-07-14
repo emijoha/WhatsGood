@@ -10,8 +10,12 @@ export const getMe = function (token) {
 };
 
 // get a user by their username, not being used in the app just showing how it could work
-export const getUser = function (username) {
-  return axios.get(`/api/users/${username}`);
+export const getUser = function (id) {
+  return axios.get(`/api/users/${id}`);
+};
+
+export const searchFriend = function (username) {
+  return axios.get(`/api/users/find/${username}`);
 };
 
 export const createUser = function (userData) {
@@ -28,8 +32,8 @@ export const saveBook = function (bookData, token) {
 };
 
 // remove saved book data for a logged in user
-export const deleteBook = function (bookId, token) {
-  return axios.delete(`/api/users/books/${bookId}`, { headers: { authorization: `Bearer ${token}` } });
+export const deleteBook = function (book_id, token) {
+  return axios.delete(`/api/users/books/${book_id}`, { headers: { authorization: `Bearer ${token}` } });
 };
 
 // make a search to google books api
@@ -59,8 +63,8 @@ export const saveGame = function (gameData, token) {
 };
 
 // delete games
-export const deleteGame = function (gameId, token) {
-  return axios.delete(`/api/users/games/${gameId}`, { headers: { authorization: `Bearer ${token}` } });
+export const deleteGame = function (game_id, token) {
+  return axios.delete(`/api/users/games/${game_id}`, { headers: { authorization: `Bearer ${token}` } });
 };
 export const searchMusic = function(query) {
     return axios({
@@ -87,8 +91,8 @@ export const savePicture = function (pictureData, token) {
   return axios.put('/api/users/picture', pictureData, { headers: { authorization: `Bearer ${token}` } });
 };
 
-export const deleteMusic = function (musicId, token) {
-  return axios.delete(`/api/users/music/${musicId}`, { headers: { authorization: `Bearer ${token}` } });
+export const deleteMusic = function (music_id, token) {
+  return axios.delete(`/api/users/music/${music_id}`, { headers: { authorization: `Bearer ${token}` } });
 };
 
 export const searchOMDB = function (query) {
@@ -105,11 +109,18 @@ export const saveMovie = function (movieData, token) {
   return axios.post('/api/users/movies', movieData, { headers: { authorization: `Bearer ${token}` } });
 };
 
-export const deleteMovie = function (movieId, token) {
-  return axios.delete(`/api/users/movies/${movieId}`, { headers: { authorization: `Bearer ${token}` } });
+export const deleteMovie = function (movie_id, token) {
+  return axios.delete(`/api/users/movies/${movie_id}`, { headers: { authorization: `Bearer ${token}` } });
 };
 
 // save friend data for a logged in user
 export const saveFriend = function (userData, token) {
   return axios.put('/api/users/friends', userData, { headers: { authorization: `Bearer ${token}` } });
 };
+
+// save friend data for a logged in user
+export const deleteFriend = function (friend_id, token) {
+  console.log("friend id delete", friend_id)
+  return axios.delete(`/api/users/friends/${friend_id}`, { headers: { authorization: `Bearer ${token}` } });
+};
+

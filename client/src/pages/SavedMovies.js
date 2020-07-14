@@ -12,16 +12,16 @@ function SavedMovies() {
   const userData = useContext(UserInfoContext);
   console.log(userData);
 
-  // create function that accepts the movie's mongo _id value as param and deletes the movie from the database
-  const handleDeleteMovie = (movieId) => {
+  // create function that accepts the book's mongo _id value as param and deletes the book from the database
+  const handleDeleteMovie = (movie_id) => {
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
     if (!token) {
       return false;
     }
-    API.deleteMovie(movieId, token)
-      // upon succes, update user data to reflect movie change
+    API.deleteMovie(movie_id, token)
+      // upon succes, update user data to reflect book change
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   };
@@ -42,7 +42,7 @@ function SavedMovies() {
         <CardColumns>
           {userData.savedMovies.map((movie) => {
             return (
-              <Card key={movie.movieId} border='dark'>
+              <Card key={movie._id} border='dark'>
                 {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
@@ -53,7 +53,7 @@ function SavedMovies() {
                   <p className='small'>Plot: {movie.plot}</p>
                   <p className='small'>Rated: {movie.rated}</p>
                   <p className='small'>Runtime: {movie.runtime}</p>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie.movieId)}>
+                  <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie._id)}>
                     Delete this Movie!
                   </Button>
                 </Card.Body>

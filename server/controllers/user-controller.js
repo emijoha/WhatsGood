@@ -1,5 +1,6 @@
 // import user model
-const { User, Movie } = require('../models/index');
+const { User, Book, Music, Movie, Game } = require('../models');
+
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
 
@@ -11,10 +12,11 @@ module.exports = {
   },
   // get a single user by either their id or their username
   async getSingleUser({ user = null, params }, res) {
+    // console.log("made it to get single user")
+    // console.log("params", params);
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    })
-    .populate('savedMovies');
+    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends');
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
@@ -22,6 +24,18 @@ module.exports = {
 
     res.json(foundUser);
   },
+
+  // get all of Users friends
+  // async getFriends({id}, res) {
+  //   console.log("GETFRIENDS USER", user)
+  //   const populateFriends = await User.findOne({
+  //     _id: id
+  //   })
+  //   .populate('friends')
+
+  //   res.json(populateFriends);
+  // },
+
   // create a user, sign a token, and send it back (to client/src/components/SignUpForm.js)
   async createUser({ body }, res) {
     const user = await User.create(body);
@@ -53,9 +67,10 @@ module.exports = {
   async saveBook({ user, body }, res) {
     console.log(user);
     try {
+      const createdBook = await Book.create(body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedBooks: body } },
+        { $addToSet: { savedBooks: createdBook._id } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -68,7 +83,7 @@ module.exports = {
   async deleteBook({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pull: { savedBooks: { bookId: params.id } } },
+      { $pull: { savedBooks: params.id } },
       { new: true }
     );
     if (!updatedUser) {
@@ -82,7 +97,7 @@ module.exports = {
   async deleteMusic({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pull: { savedMusic: { musicId: params.id } } },
+      { $pull: { savedMusic: params.id }},
       { new: true }
     );
     if (!updatedUser) {
@@ -94,9 +109,10 @@ module.exports = {
   async saveMusic({ user, body }, res) {
     console.log(user);
     try {
+      const createdMusic = await Music.create(body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedMusic: body } },
+        { $addToSet: { savedMusic: createdMusic._id } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -110,28 +126,10 @@ module.exports = {
     console.log(user);
     console.log(body);
     try {
-      const newMovie = await Movie.create(body);
-      console.log(`newMovie: ${newMovie}`);
+      const createdMovie = await Movie.create(body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $push: { savedMovies: newMovie._id } },
-        { new: true, runValidators: true }
-        );
-        return res.json(newMovie);
-      } catch (err) {
-        console.log(err);
-        return res.status(400).json(err);
-      }
-    },
-
-  async saveFriend({ user, body }, res) {
-    try {
-      console.log("SAVE FRIEND");
-      console.log("USER", user);
-      console.log("BODY", body);
-      const updatedUser = await User.findOneAndUpdate(
-        { _id: user._id },
-        { $addToSet: { friends: { friendUsername: body.username }}},
+        { $addToSet: { savedMovies: createdMovie._id } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -141,10 +139,49 @@ module.exports = {
     }
   },
 
+  async saveFriend({ user, body }, res) {
+      console.log("BODY", body);
+    try {
+      console.log("SAVE FRIEND");
+      console.log("USER", user);
+      // check to see if friend document already exist
+      // if it does, add friend to user
+      // if not, create friend, then add to user 
+      
+      // const newFriend = await Friend.create(body);
+      // console.log("newFriend id", newFriend._id);
+
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { friends: body._id} },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
+  async deleteFriend({ user, params }, res) {
+    console.log(" delete friend user", user);
+    console.log(" delete friend params", params);
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: user._id },
+      { $pull: { friends: params.id } },
+      { new: true }
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ message: "Couldn't find user with this id!" });
+    }
+    console.log("updatedUser", updatedUser)
+    return res.json(updatedUser);
+  },
+
   async deleteMovie({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pull: { savedMovies: { movieId: params.id } } },
+      { $pull: { savedMovies: params.id } },
       { new: true }
     );
     if (!updatedUser) {
@@ -153,7 +190,7 @@ module.exports = {
     return res.json(updatedUser);
   },
 
-  
+
   async savePicture({ user, body }, res) {
     console.log("hey there");
     console.log(body);
@@ -176,11 +213,13 @@ module.exports = {
 
   // ADD function to save and delete video games
   async saveGame({ user, body }, res) {
-    console.log(user);
+    console.log("THE USER:", user);
+    console.log("THE BODY:", body);
     try {
+      const createdGame = await Game.create(body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedGames: body } },
+        { $addToSet: { savedGames: createdGame._id } },
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -193,12 +232,13 @@ module.exports = {
   async deleteGame({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pull: { savedGames: { gameId: params.id } } },
+      { $pull: { savedGames: params.id } },
       { new: true }
     );
     if (!updatedUser) {
       return res.status(404).json({ message: "Couldn't find user with this id!" });
     }
+    console.log("AFTER DELETE?", updatedUser);
     return res.json(updatedUser);
   }
 };
