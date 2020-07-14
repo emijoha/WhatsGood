@@ -181,9 +181,6 @@ function Home() {
 }, [userData.username]);
 
 
-
-
-
   const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes) => {
     // find the friend in `searchedUser` state by the matching id
     // const userToSave = searchedUser.find((user) => user._id === userId);
