@@ -1,5 +1,5 @@
-input [type="radio"] {
-    display: none !important;
+input {
+    display: none;
 }
 
 .star {

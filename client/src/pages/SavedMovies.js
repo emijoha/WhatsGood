@@ -139,10 +139,9 @@ function SavedMovies() {
                             return (
                               <label>
                                 <input type='radio' name='rating'
-                                 value={ratingValue} onClick={() => setUserRating(ratingValue)}
-                                 onMouseEnter={() => setHover(ratingValue)}
-                                 onMouseLeave={() => setHover(null)} />
-                                <FaStar key={ratingValue} className='star' color={ratingValue <= (hover || userRating) ? '#ffc107' : '#e4e5e9' } size={10} />
+                                 value={ratingValue} onClick={() => setUserRating(ratingValue)} />
+                                <FaStar key={ratingValue} className='star' onMouseEnter={() => setHover(ratingValue)}
+                                 onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? '#ffc107' : '#e4e5e9' } size={50} />
                               </label>
                             )
                           })}
