@@ -14,7 +14,7 @@ import SavedFriends from './pages/SavedFriends';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 
 import * as API from './utils/API';
 import AuthService from './utils/auth';
@@ -33,6 +33,7 @@ function App() {
     savedMusic: [],
     savedMovies: [],
     savedGames: [],
+    savedLikes: [],
     bookCount: 0,
     musicCount: 0,
     movieCount: 0,
@@ -48,8 +49,8 @@ function App() {
         return false;
       }
       API.getMe(token)
-        .then(({ data: { _id, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, bookCount, musicCount, movieCount, gameCount, friends } }) =>
-          setUserInfo({ ...userInfo, _id, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, bookCount, musicCount, movieCount, gameCount, friends })
+        .then(({ data: { _id, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends } }) =>
+          setUserInfo({ ...userInfo, _id, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends })
         )
         .catch((err) => console.log(err));
     }

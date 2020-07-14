@@ -1,5 +1,5 @@
 // import user model
-const { User, Book, Music, Movie, Game } = require('../models');
+const { User, Book, Music, Movie, Game, Like } = require('../models');
 
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
@@ -16,7 +16,7 @@ module.exports = {
     // console.log("params", params);
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends');
+    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends').populate('savedLikes');
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
@@ -223,6 +223,102 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+  async saveLike({ user, body }, res) {
+    console.log("THE USER:", user);
+    console.log("THE BODY:", body);
+    try {
+      const createdLike = await Like.create(body);
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { savedLikes: createdLike._id } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  }, 
+  
+  async addBookLike({ body }, res) {
+
+    try {
+
+
+      let newLikeTotal = body.likes + 1;
+
+      const updatedBook = await Book.findOneAndUpdate(
+        { _id: body._id },
+        { $set: { likes: newLikeTotal } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedBook);
+    
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
+  async addMusicLike({ body }, res) {
+
+    try {
+
+
+      let newLikeTotal = body.likes + 1;
+
+      const updatedMusic = await Music.findOneAndUpdate(
+        { _id: body._id },
+        { $set: { likes: newLikeTotal } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedMusic);
+    
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
+  async addGameLike({ body }, res) {
+
+    try {
+
+
+      let newLikeTotal = body.likes + 1;
+
+      const updatedGame = await Game.findOneAndUpdate(
+        { _id: body._id },
+        { $set: { likes: newLikeTotal } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedGame);
+    
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
+  async addMovieLike({ body }, res) {
+
+    try {
+
+
+      let newLikeTotal = body.likes + 1;
+
+      const updatedMovie = await Movie.findOneAndUpdate(
+        { _id: body._id },
+        { $set: { likes: newLikeTotal } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedMovie);
+    
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);

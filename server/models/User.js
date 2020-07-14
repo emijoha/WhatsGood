@@ -49,6 +49,12 @@ const userSchema = new Schema(
         ref: "Movie"
       }
     ],
+    savedLikes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Like"
+      }
+    ],
 
     friends: [
       {

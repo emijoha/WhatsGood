@@ -26,6 +26,8 @@ function SearchMusic() {
       .then(({ data }) => {
         const musicData = data.data.map((music) => ({
           musicId: music.id,
+          timeStamp: Date.now(),
+          createdAt: Date(), 
           title: music.title || ['No title to display'],
           artist: music.artist.name || ['No artist to display'],
           link: music.link,

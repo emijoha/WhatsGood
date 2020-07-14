@@ -26,6 +26,8 @@ function SearchGames() {
       .then(({ data }) => {
         const gameData = [{
           gameId: `${data.result.title}-${data.result.developer}-${searchPlatform}`,
+          timeStamp: Date.now(),
+          createdAt: Date(), 
           developer: data.result.developer || ['No developer to display'],
           title: data.result.title,
           description: data.result.description,

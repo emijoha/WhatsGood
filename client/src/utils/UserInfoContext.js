@@ -12,6 +12,7 @@ const UserInfoContext = React.createContext({
   savedMusic: [],
   savedMovies: [],
   savedGames: [],
+  savedLikes: [],
   bookCount: 0,
   musicCount: 0,
   movieCount: 0,

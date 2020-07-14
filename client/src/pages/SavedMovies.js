@@ -10,7 +10,7 @@ import AuthService from '../utils/auth';
 function SavedMovies() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
-  console.log(userData);
+  console.log("this is the user data, ", userData);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteMovie = (movie_id) => {

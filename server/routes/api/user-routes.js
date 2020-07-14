@@ -9,12 +9,17 @@ const {
   deleteGame,
   savePicture,
   saveFriend,
+  saveLike,
   deleteFriend,
   saveMusic,
   deleteMusic,
   saveMovie,
   deleteMovie,
   login,
+  addBookLike,
+  addMusicLike,
+  addMovieLike,
+  addGameLike
 } = require('../../controllers/user-controller');
 
 // import middleware
@@ -33,21 +38,23 @@ router.route('/:id').get(getSingleUser);
 
 router.route('/find/:username').get(getSingleUser);
 
-router.route('/books/:id').delete(authMiddleware, deleteBook);
+router.route('/books/:id').delete(authMiddleware, deleteBook).put(addBookLike);
 
 router.route('/games').get(getAllUsers).post(createUser).put(authMiddleware, saveGame);
 
-router.route('/games/:id').delete(authMiddleware, deleteGame);
+router.route('/games/:id').delete(authMiddleware, deleteGame).put(addGameLike);;
 
-router.route('/music/:id').delete(authMiddleware, deleteMusic);
+router.route('/music/:id').delete(authMiddleware, deleteMusic).put(addMusicLike);;
 
-router.route('/movies/:id').delete(authMiddleware, deleteMovie);
+router.route('/movies/:id').delete(authMiddleware, deleteMovie).put(addMovieLike);;
 
 router.route('/music').get(getAllUsers).put(authMiddleware, saveMusic);
 
 router.route('/picture').get(getAllUsers).put(authMiddleware, savePicture);
 
 router.route('/movies').get(getAllUsers).put(authMiddleware, saveMovie);
+
+router.route('/likes').get(getAllUsers).put(authMiddleware, saveLike);
 
 router.route('/friends').put(authMiddleware, saveFriend);
 
