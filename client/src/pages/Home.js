@@ -1,9 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
+import UserInfoContext from '../utils/UserInfoContext';
 
 
 function Home() {
+
+  const userData = useContext(UserInfoContext);
+  
+  console.log(userData);
  
 
   return (

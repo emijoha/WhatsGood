@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+import NotLoggedIn from '../components/NotLoggedIn/NotLoggedIn';
 
 // import context for global state
 import UserInfoContext from '../utils/UserInfoContext';
@@ -58,7 +59,9 @@ function SavedFriends() {
 
     return (
         <>
-            <Jumbotron fluid className='text-light bg-dark'>
+            {userData.username ? 
+                <>
+                <Jumbotron fluid className='text-light bg-dark'>
                 <Container>
                     <h1>Viewing friends!</h1>
                 </Container>
@@ -87,7 +90,9 @@ function SavedFriends() {
                     })
                     }
                 </CardColumns>
-            </Container>
+            </Container> 
+            </> :
+            <NotLoggedIn />}
         </>
     );
 }
