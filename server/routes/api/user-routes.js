@@ -9,12 +9,14 @@ const {
   deleteGame,
   savePicture,
   saveFriend,
+  saveLike,
   deleteFriend,
   saveMusic,
   deleteMusic,
   saveMovie,
   deleteMovie,
   login,
+  addBookLike
 } = require('../../controllers/user-controller');
 
 // import middleware
@@ -33,7 +35,7 @@ router.route('/:id').get(getSingleUser);
 
 router.route('/find/:username').get(getSingleUser);
 
-router.route('/books/:id').delete(authMiddleware, deleteBook);
+router.route('/books/:id').delete(authMiddleware, deleteBook).put(addBookLike);
 
 router.route('/games').get(getAllUsers).post(createUser).put(authMiddleware, saveGame);
 
@@ -48,6 +50,8 @@ router.route('/music').get(getAllUsers).put(authMiddleware, saveMusic);
 router.route('/picture').get(getAllUsers).put(authMiddleware, savePicture);
 
 router.route('/movies').get(getAllUsers).put(authMiddleware, saveMovie);
+
+router.route('/likes').get(getAllUsers).put(authMiddleware, saveLike);
 
 router.route('/friends').put(authMiddleware, saveFriend);
 

@@ -72,6 +72,7 @@ function SavedFriends() {
                 </h2>
                 <CardColumns>
                     {userData.friends.map(friend => {
+                        console.log("this is my friend, ", friend)
                         return (
                             <Card key={friend._id} border='dark'>
                                 {friend.picture ? <Card.Img src={friend.picture} alt={friend.username} variant='top' /> : null}

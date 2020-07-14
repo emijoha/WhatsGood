@@ -3,5 +3,6 @@ module.exports = {
     Book: require('./Book'),
     Music: require('./Music'),
     Movie: require('./Movie'),
-    Game: require('./Game')
+    Game: require('./Game'),
+    Like: require('./Like')
 };
