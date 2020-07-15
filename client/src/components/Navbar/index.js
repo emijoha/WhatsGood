@@ -20,18 +20,21 @@ function AppNavbar() {
     <>
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
-          <Navbar.Brand as={Link} to='/home'>
+          {username ? <Navbar.Brand as={Link} to='/home'>
             What's Good?
-          </Navbar.Brand>
+          </Navbar.Brand> : 
+          <Navbar.Brand as={Link} to='/'>
+            What's Good?
+          </Navbar.Brand>}
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
               <Nav.Link as={Link} to='/search-user'>
                 Search For Friends
               </Nav.Link>
-              <Nav.Link as={Link} to='/saved-friends'>
+              {username && <Nav.Link as={Link} to='/saved-friends'>
                 View Friends
-              </Nav.Link>
+              </Nav.Link>}
 
               <NavDropdown title="Search Media" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/search_books">Search Books</NavDropdown.Item>
@@ -41,15 +44,15 @@ function AppNavbar() {
               </NavDropdown>
 
 
-              <NavDropdown title="See My Media" id="basic-nav-dropdown">
+              {username && <NavDropdown title="See My Media" id="basic-nav-dropdown">
                 <NavDropdown.Item href='/saved_media'>All My Media</NavDropdown.Item>
                 <NavDropdown.Item href='/saved_books'>My Books</NavDropdown.Item>
                 <NavDropdown.Item href="/saved_music">My Music</NavDropdown.Item>
                 <NavDropdown.Item href="/saved_movies">My Movies</NavDropdown.Item>
                 <NavDropdown.Item href="/saved_games">My Games</NavDropdown.Item>
-              </NavDropdown>
+              </NavDropdown>}
 
-              <NavDropdown alignRight title={
+              {username && <NavDropdown alignRight title={
                 <ProfilePic 
                   picture={picture}
                   username={username}
@@ -59,7 +62,7 @@ function AppNavbar() {
                 <NavDropdown.Item onClick={() => setShowModal(true)}>Upload Profile Pic</NavDropdown.Item>
 
                 <NavDropdown.Item onClick={AuthService.logout}>Logout</NavDropdown.Item>
-              </NavDropdown>
+              </NavDropdown>}
             </Nav>
           </Navbar.Collapse>
         </Container>
