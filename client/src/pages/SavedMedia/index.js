@@ -3,12 +3,12 @@ import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap
 import ReactAudioPlayer from 'react-audio-player';
 
 // import context for global state
-import UserInfoContext from '../utils/UserInfoContext';
+import UserInfoContext from '../../utils/UserInfoContext';
 
-import * as API from '../utils/API';
-import AuthService from '../utils/auth';
-import NotLoggedIn from '../components/NotLoggedIn';
-import SavedCards from '../components/SavedCards';
+import * as API from '../../utils/API';
+import AuthService from '../../utils/auth';
+import NotLoggedIn from '../../components/NotLoggedIn';
+import SavedCards from '../../components/SavedCards';
 
 function SavedMedia() {
   // get whole userData state object from App.js

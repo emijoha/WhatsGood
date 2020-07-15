@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
-import SearchCards from '../components/SearchCards';
-import UserInfoContext from '../utils/UserInfoContext';
-import AuthService from '../utils/auth';
-import { saveMovie, searchOMDB, searchEachMovie } from '../utils/API';
+import SearchCards from '../../components/SearchCards';
+import UserInfoContext from '../../utils/UserInfoContext';
+import AuthService from '../../utils/auth';
+import { saveMovie, searchOMDB, searchEachMovie } from '../../utils/API';
 
 function SearchMovies() {
   // create state for holding returned omdb api data

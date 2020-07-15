@@ -1,14 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
-import ReactAudioPlayer from 'react-audio-player';
-import SearchCards from '../components/SearchCards';
-import UserInfoContext from '../utils/UserInfoContext';
-import AuthService from '../utils/auth';
-import { saveMusic, searchMusic } from '../utils/API';
+import SearchCards from '../../components/SearchCards';
+import UserInfoContext from '../../utils/UserInfoContext';
+import AuthService from '../../utils/auth';
+import { saveBook, searchGoogleBooks } from '../../utils/API';
 
-function SearchMusic() {
+function SearchBooks() {
   // create state for holding returned google api data
-  const [searchedMusic, setSearchedMusic] = useState([]);
+  const [searchedBooks, setSearchedBooks] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
@@ -22,30 +21,29 @@ function SearchMusic() {
       return false;
     }
 
-    searchMusic(searchInput)
+    searchGoogleBooks(searchInput)
       .then(({ data }) => {
-        const musicData = data.data.map((music) => ({
-          musicId: music.id,
+        const bookData = data.items.map((book) => ({
+          bookId: book.id,
           timeStamp: Date.now(),
-          createdAt: Date(),
-          title: music.title || ['No title to display'],
-          artist: music.artist.name || ['No artist to display'],
-          link: music.link,
-          preview: music.preview,
-          image: music.album.cover_big || '',
+          createdAt: Date(), 
+          authors: book.volumeInfo.authors || ['No author to display'],
+          title: book.volumeInfo.title,
+          description: book.volumeInfo.description,
+          image: book.volumeInfo.imageLinks?.thumbnail || '',
         }));
-        console.log(musicData);
+        console.log(bookData);
 
-        return setSearchedMusic(musicData);
+        return setSearchedBooks(bookData);
       })
       .then(() => setSearchInput(''))
       .catch((err) => console.log(err));
   };
 
   // create function to handle saving a book to our database
-  const handleSaveMusic = (musicId) => {
+  const handleSaveBook = (bookId) => {
     // find the book in `searchedBooks` state by the matching id
-    const musicToSave = searchedMusic.find((music) => music.musicId === musicId);
+    const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
 
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
@@ -55,12 +53,8 @@ function SearchMusic() {
     }
 
     // send the books data to our api
-    saveMusic(musicToSave, token)
-      .then(() => {
-        userData.getUserData()
-        console.log(userData.savedMusic)
-      }
-      )
+    saveBook(bookToSave, token)
+      .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   };
 
@@ -68,7 +62,7 @@ function SearchMusic() {
     <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
-          <h1>Search for Music!</h1>
+          <h1>Search for Books!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -91,16 +85,16 @@ function SearchMusic() {
         </Container>
       </Jumbotron>
       <Container>
-        <SearchCards
-          cardType='searchedMusic'
-          resultArray={searchedMusic}
-          savedArray={userData.savedMusic}
-          username={userData.username}
-          handleSaveMusic={handleSaveMusic}
-        />
+      <SearchCards 
+        cardType='searchedBooks'
+        resultArray={searchedBooks}
+        savedArray={userData.savedBooks}
+        username={userData.username}
+        handleBtnClick={handleSaveBook}
+      />
       </Container>
     </>
   );
 }
 
-export default SearchMusic;
+export default SearchBooks;

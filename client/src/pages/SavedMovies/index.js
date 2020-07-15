@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import NotLoggedIn from '../components/NotLoggedIn';
+import NotLoggedIn from '../../components/NotLoggedIn';
 import { Jumbotron, Container, CardColumns, Card, Button, Form, Col } from 'react-bootstrap';
 import { FaVideo } from 'react-icons/fa';
 // import SavedCards from '../components/SavedCards';
@@ -7,11 +7,10 @@ import { FaVideo } from 'react-icons/fa';
 // ratings/review form shoudl be seperate component with its own state, with just bare necessities of props needed from savedMovies state/functionality
 
 // import context for global state
-import UserInfoContext from '../utils/UserInfoContext';
+import UserInfoContext from '../../utils/UserInfoContext';
 
-import * as API from '../utils/API';
-import AuthService from '../utils/auth';
-import './style.css';
+import * as API from '../../utils/API';
+import AuthService from '../../utils/auth';
 
 function SavedMovies() {
   const [reviewInput, setReviewInput] = useState('');

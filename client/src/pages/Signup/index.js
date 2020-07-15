@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import SignupForm from '../components/SignupForm';
+import SignupForm from '../../components/SignupForm';
 import { Link } from "react-router-dom";
 
 function Signup() {

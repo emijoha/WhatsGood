@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
-import NotLoggedIn from '../components/NotLoggedIn';
+import NotLoggedIn from '../../components/NotLoggedIn';
 
 // import context for global state
-import UserInfoContext from '../utils/UserInfoContext';
-import AuthService from '../utils/auth';
-import * as API from '../utils/API';
-import SavedCards from '../components/SavedCards';
+import UserInfoContext from '../../utils/UserInfoContext';
+import AuthService from '../../utils/auth';
+import * as API from '../../utils/API';
+import SavedCards from '../../components/SavedCards';
 function SavedFriends() {
     // const [friendsArray, setFriendsArray] = useState([]);
     // get whole userData state object from App.js
