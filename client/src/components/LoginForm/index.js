@@ -3,9 +3,9 @@
 import React, { useState, useContext } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
-import UserInfoContext from '../utils/UserInfoContext';
-import { loginUser } from '../utils/API';
-import AuthService from '../utils/auth';
+import UserInfoContext from '../../utils/UserInfoContext';
+import { loginUser } from '../../utils/API';
+import AuthService from '../../utils/auth';
 
 function LoginForm() {
   const [userFormData, setUserFormData] = useState({ username: '', password: '' });

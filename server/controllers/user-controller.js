@@ -67,13 +67,27 @@ module.exports = {
   async saveBook({ user, body }, res) {
     console.log(user);
     try {
-      const createdBook = await Book.create(body);
-      const updatedUser = await User.findOneAndUpdate(
-        { _id: user._id },
-        { $addToSet: { savedBooks: createdBook._id } },
-        { new: true, runValidators: true }
+      
+      const findBook = await Book.findOne(
+        {bookId: body.bookId}
       );
-      return res.json(updatedUser);
+      
+      if (findBook === null) {
+        const createdBook = await Book.create(body);
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: user._id },
+          { $addToSet: { savedBooks: createdBook._id } },
+          { new: true, runValidators: true }
+        );
+        return res.json(updatedUser);
+      } else {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: user._id },
+          { $addToSet: { savedBooks: findBook._id } },
+          { new: true, runValidators: true }
+        );
+        return res.json(updatedUser);
+      } 
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
