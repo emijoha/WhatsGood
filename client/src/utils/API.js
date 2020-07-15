@@ -114,6 +114,11 @@ export const saveMovieReview = function (movieReview, token) {
   return axios.put('/api/users/movie-review', movieReview, { headers: { authorization: `Bearer ${token}` } });
 };
 
+export const saveUserRating = function (userRating, token) {
+  console.log(userRating, token);
+  return axios.put('/api/users/user-rating', userRating, { headers: { authorization: `Bearer ${token}` } });
+};
+
 export const deleteMovie = function (movie_id, token) {
   return axios.delete(`/api/users/movies/${movie_id}`, { headers: { authorization: `Bearer ${token}` } });
 };

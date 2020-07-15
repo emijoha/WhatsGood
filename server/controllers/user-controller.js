@@ -145,16 +145,27 @@ module.exports = {
     try {
       const newMovieReview = await Movie.findOneAndUpdate(
         { _id: body.id },
-        {
-          $set: {
-            movieReview: body.review,
-            userRating: body.userRating
-          }
-        },
+        { $set: { movieReview: body.review, } },
         { new: true, runValidators: true }
       );
       console.log('newMovieReview: ', newMovieReview);
       return res.json(newMovieReview);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
+  async saveUserRating({ body }, res) {
+    console.log('body: ', body);
+    try {
+      const newUserRating = await Movie.findOneAndUpdate(
+        { _id: body.id },
+        { $set: { userRating: body.userRating, } },
+        { new: true, runValidators: true }
+      );
+      console.log('newUserRating: ', newUserRating);
+      return res.json(newUserRating);
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);

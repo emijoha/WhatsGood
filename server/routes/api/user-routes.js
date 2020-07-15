@@ -20,7 +20,8 @@ const {
   addBookLike,
   addMusicLike,
   addMovieLike,
-  addGameLike
+  addGameLike,
+  saveUserRating
 } = require('../../controllers/user-controller');
 
 // import middleware
@@ -57,6 +58,8 @@ router.route('/picture').get(getAllUsers).put(authMiddleware, savePicture);
 router.route('/movies').get(getAllUsers).put(authMiddleware, saveMovie);
 
 router.route('/movie-review').get(getAllUsers).put(authMiddleware, saveMovieReview);
+
+router.route('/user-rating').get(getAllUsers).put(authMiddleware, saveUserRating);
 
 router.route('/likes').get(getAllUsers).put(authMiddleware, saveLike);
 
