@@ -13,25 +13,17 @@ import LikeButton from '../../components/LikeButton'
 
 function Home() {
 
-
   const [allFriendsMediaState, setAllFriendsMediaState] = useState([]);
-
-
 
   function compareTimeStamp(a, b) {
     return b.timeStamp - a.timeStamp;
   }
 
-  // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
-
-
 
   useEffect(() => {
 
     userData.friends.map(friend => {
-
-
 
       API.getUser(friend.id)
         .then(result => {
@@ -123,10 +115,6 @@ function Home() {
                 likes: savedMovie.likes
               }
 
-
-
-
-
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData].sort(compareTimeStamp))
 
 
@@ -155,10 +143,6 @@ function Home() {
                 likes: savedGame.likes
               }
 
-
-
-
-
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedGameData].sort(compareTimeStamp))
 
 
@@ -167,32 +151,21 @@ function Home() {
 
           }
 
-
-        // }
-
-        // )
-
       })
 
     });
 
-
-  // }, [userData, userData.friends]);
 }, [userData.username]);
 
 
   const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes) => {
-    // find the friend in `searchedUser` state by the matching id
-    // const userToSave = searchedUser.find((user) => user._id === userId);
-
-    // get token
+ 
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
     if (!token) {
         return false;
     }
 
     
-
     let likeData = {
       mediaType: likeMediaType,
       mediaId: like_id,
@@ -205,7 +178,7 @@ function Home() {
     }
 
     console.log("data for like, ", likeData)
-    // send the friend data to our api
+    
     API.saveLike(likeData, token)
         .then(() => {
           console.log("Token: ", token, "likeData: ", likeData);
@@ -225,27 +198,6 @@ function Home() {
         .catch((err) => console.log(err));     
   });
 
-
-
-
-
-  console.log("this is allFriendsMediaState outside of the loop: ", allFriendsMediaState);
-
-
-  // DELETE BOOK FUNCTION THAT COULD BE MODIFIED TO REMOVE FRIENDS
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  // const handleDeleteBook = (bookId) => {
-  //     // get token
-  //     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-
-  //     if (!token) {
-  //         return false;
-  //     }
-  //     API.deleteBook(bookId, token)
-  //         // upon succes, update user data to reflect book change
-  //         .then(() => userData.getUserData())
-  //         .catch((err) => console.log(err));
-  // };
 
   return (
 
@@ -271,9 +223,6 @@ function Home() {
 
 
             {allFriendsMediaState.map(media => {
-              // if (friend.savedMusic === []) {
-              //   return
-              // }
 
               if (media.mediaType === "book") {
 
@@ -342,8 +291,6 @@ function Home() {
                     </Card.Body>
                   </Card>)
 
-
-
               }
 
               if (media.mediaType === "movie") {
@@ -379,8 +326,6 @@ function Home() {
                     </Card.Body>
                   </Card>)
 
-
-
               }
 
               if (media.mediaType === "game") {
@@ -412,9 +357,6 @@ function Home() {
                       </Button>
                     </Card.Body>
                   </Card>)
-
-
-
               }
 
             }

@@ -62,8 +62,16 @@ function UploadPhoto({ handleModalClose }) {
 
   return (
     <div>
+
+
+
+
+
         <input type="file" name="file" placeholder="Upload a photo"
         onChange={uploadImage}/>
+       
+     
+        
 
         {
             loading? (
