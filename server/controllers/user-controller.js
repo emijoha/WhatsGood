@@ -1,5 +1,5 @@
 // import user model
-const { User, Book, Music, Movie, Game, Like } = require('../models');
+const { User, Book, Music, Movie, Game, Like, Notification } = require('../models');
 
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
@@ -267,8 +267,8 @@ module.exports = {
       console.log(err);
       return res.status(400).json(err);
     }
-  }, 
-  
+  },
+
   async addBookLike({ body }, res) {
 
     try {
@@ -282,7 +282,7 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(updatedBook);
-    
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
@@ -302,7 +302,7 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(updatedMusic);
-    
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
@@ -322,7 +322,7 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(updatedGame);
-    
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
@@ -342,7 +342,7 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(updatedMovie);
-    
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
@@ -360,5 +360,23 @@ module.exports = {
     }
     console.log("AFTER DELETE?", updatedUser);
     return res.json(updatedUser);
+  },
+
+  // create notifications and update the user that the notification is pushed to
+  async addNotification({ body }, res) {
+    console.log("notification body", body);
+    try {
+      const notification = await Notification.create(body);
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: body.ownerId },
+        { $addToSet: { notifications: notification._id } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+
   }
 };

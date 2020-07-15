@@ -152,3 +152,7 @@ export const addLike = function (likeData, token) {
     }
 };
 
+export const addNotification = function (notificationData, token) {
+  return axios.put('/api/users/notifications', notificationData, { headers: { authorization: `Bearer ${token}` } });
+};
+

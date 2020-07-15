@@ -20,7 +20,8 @@ const {
   addBookLike,
   addMusicLike,
   addMovieLike,
-  addGameLike
+  addGameLike,
+  addNotification
 } = require('../../controllers/user-controller');
 
 // import middleware
@@ -63,5 +64,7 @@ router.route('/likes').get(getAllUsers).put(authMiddleware, saveLike);
 router.route('/friends').put(authMiddleware, saveFriend);
 
 router.route('/friends/:id').delete(authMiddleware, deleteFriend);
+
+router.route('/notifications').put(addNotification);
 
 module.exports = router;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, Button, Text } from 'react-bootstrap';
 
 
-const LikeButton = ({ mediaLikes, mediaType, mediaId, userData, cb }) => {
+const LikeButton = ({ mediaLikes, mediaType, ownerId, mediaId, userData, title, cb }) => {
 
     const [internalCount, setInternalCount] = useState(0);
 
@@ -12,7 +12,7 @@ const LikeButton = ({ mediaLikes, mediaType, mediaId, userData, cb }) => {
 
     const handleSave = () => {
       setInternalCount(internalCount + 1);
-      cb(mediaType, mediaId, mediaLikes);
+      cb(mediaType, mediaId, mediaLikes, ownerId, title);
     }
     return (
 
