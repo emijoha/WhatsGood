@@ -8,7 +8,7 @@ import "./style.css";
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
-import LikeButton from '../../components/LikeButton'
+import LikeButton from '../../components/LikeButton';
 
 
 function Home() {
