@@ -96,9 +96,9 @@ function SavedMovies() {
       .catch((err) => console.log(err));
   }
 
-  
 
-  
+
+
   // create function that accepts the movie's mongo _id value as param and deletes the movie from the database
   const handleDeleteMovie = (movie_id) => {
     // get token
@@ -154,15 +154,15 @@ function SavedMovies() {
 
                       {userData.username && (
                         <>
-                          {userData.savedMovies?.some((savedMovie) => savedMovie.userRating) ?
+                          {(movie.userRating === 0) ?
                             <Button className='btn-block btn-success' onClick={() => startRating({ movie })}  >
-                              Update your Rating?
+                              Rate this Movie!
                             </Button>
 
                             :
 
                             <Button className='btn-block btn-success' onClick={() => startRating({ movie })}  >
-                              Rate this Movie!
+                              Update your Rating?
                             </Button>
                           }
                         </>
@@ -202,15 +202,15 @@ function SavedMovies() {
 
                       {userData.username && (
                         <>
-                          {userData.savedMovies?.some((savedMovie) => savedMovie.movieReview) ?
+                          {(movie.movieReview === '') ?
                             <Button className='btn-block btn-success' onClick={() => startReview({ movie })}  >
-                              Update your Review?
+                              Review this Movie!
                             </Button>
 
                             :
 
                             <Button className='btn-block btn-success' onClick={() => startReview({ movie })}  >
-                              Review this Movie!
+                              Update your Review?
                             </Button>
                           }
                         </>
@@ -245,7 +245,7 @@ function SavedMovies() {
                         </>
                       )}
 
-                      
+
 
                       <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie._id)}>
                         Delete this Movie!
