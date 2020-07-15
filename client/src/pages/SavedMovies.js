@@ -131,22 +131,22 @@ function SavedMovies() {
             <CardColumns>
               {userData.savedMovies.map((movie) => {
                 return (
-                  <Card key={movie._id} border='dark'>
-                    {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
+                  <Card key={movie.movieId} border='dark'>
+                    {movie.image === 'N/A' ? null : <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' />}
                     <Card.Body>
                       <Card.Title>{movie.title}</Card.Title>
-                      <p className='small'>Released: {movie.released}</p>
-                      <p className='small'>Actors: {movie.actors}</p>
-                      <p className='small'>Director: {movie.director}</p>
-                      <p className='small'>Genre: {movie.genre}</p>
-                      <p className='small'>Plot: {movie.plot}</p>
-                      <p className='small'>Rated: {movie.rated}</p>
-                      <p className='small'>Runtime: {movie.runtime}</p>
+                      {movie.released === 'N/A' ? null : <p className='small'>Released: {movie.released}</p>}
+                      {movie.actors === 'N/A' ? null : <p className='small'>Actors: {movie.actors}</p>}
+                      {movie.director === 'N/A' ? null : <p className='small'>Director: {movie.director}</p>}
+                      {movie.genre === 'N/A' ? null : <p className='small'>Genre: {movie.genre}</p>}
+                      {movie.plot === 'N/A' ? null : <p className='small'>Plot: {movie.plot}</p>}
+                      {movie.rated === 'N/A' ? null : <p className='small'>Rated: {movie.rated}</p>}
+                      {movie.runtime === 'N/A' ? null : <p className='small'>Runtime: {movie.runtime}</p>}
                       <p className='bold'>Your Rating:
                       {[...Array(movie.userRating)].map((star, i) => {
                         return (
-                          <label>
-                            <FaVideo key={movie.userRating} className='read-only-star' color='black' size={30} />
+                          <label key={i}>
+                            <FaVideo className='read-only-star' color='black' size={30} />
                           </label>
                         )
                       })}
@@ -177,7 +177,7 @@ function SavedMovies() {
                               {[...Array(5)].map((star, i) => {
                                 const ratingValue = i + 1;
                                 return (
-                                  <label>
+                                  <label key={i}>
                                     <input type='radio' name='rating'
                                       value={i} onClick={() => setUserRating(ratingValue)} />
                                     <FaVideo key={ratingValue} className='star' onMouseEnter={() => setHover(ratingValue)}

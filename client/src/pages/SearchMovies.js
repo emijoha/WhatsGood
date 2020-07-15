@@ -152,7 +152,7 @@ function SearchMovies() {
                 {movie.image === 'N/A' ? null : <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' />}
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
-                  {movie.release === 'N/A' ? null : <p className='small'>Released: {movie.released}</p>}
+                  {movie.released === 'N/A' ? null : <p className='small'>Released: {movie.released}</p>}
                   {movie.actors === 'N/A' ? null : <p className='small'>Actors: {movie.actors}</p>}
                   {movie.director === 'N/A' ? null : <p className='small'>Director: {movie.director}</p>}
                   {movie.genre === 'N/A' ? null : <p className='small'>Genre: {movie.genre}</p>}
