@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+import NotLoggedIn from '../components/NotLoggedIn/NotLoggedIn';
 
 // import context for global state
 import UserInfoContext from '../utils/UserInfoContext';
@@ -28,6 +29,8 @@ function SavedBooks() {
   
 
   return (
+    <>
+    {userData.username ? 
     <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
@@ -58,6 +61,8 @@ function SavedBooks() {
           })}
         </CardColumns>
       </Container>
+      </> : 
+    <NotLoggedIn />}    
     </>
   );
 }

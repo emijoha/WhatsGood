@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import NotLoggedIn from '../components/NotLoggedIn/NotLoggedIn';
 import { Jumbotron, Container, CardColumns, Card, Button, Form, Col } from 'react-bootstrap';
 import { FaVideo } from 'react-icons/fa';
 
@@ -75,6 +76,8 @@ function SavedMovies() {
 
   return (
     <>
+    {userData.username ?
+      <>
       <Jumbotron fluid className='text-light bg-dark'>
         <Container>
           <h1>Viewing saved movies!</h1>
@@ -175,6 +178,8 @@ function SavedMovies() {
           })}
         </CardColumns>
       </Container>
+      </> :
+      <NotLoggedIn />}
     </>
   );
 }
