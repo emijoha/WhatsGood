@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
-
+import SearchCards from '../components/SearchCards';
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
 import { saveMovie, searchOMDB, searchEachMovie } from '../utils/API';
@@ -26,7 +26,7 @@ function SearchMovies() {
     searchOMDB(searchInput)
       .then(({ data }) => {
         const movieID = data.Search.map(movie => (movie.imdbID));
-      
+
         movieID.forEach(id => {
           searchEachMovie(id)
             .then((res) => {
@@ -36,7 +36,7 @@ function SearchMovies() {
               const movieData = movieDataArr.map(movie => ({
                 movieId: movie.data.imdbID,
                 timeStamp: Date.now(),
-                createdAt: Date(), 
+                createdAt: Date(),
                 actors: movie.data.Actors,
                 director: movie.data.Director,
                 genre: movie.data.Genre,
@@ -100,38 +100,14 @@ function SearchMovies() {
           </Form>
         </Container>
       </Jumbotron>
-
       <Container>
-        <h2>{searchedMovies.length ? `Viewing ${searchedMovies.length} results:` : 'Search for a movie to begin'}</h2>
-        <CardColumns>
-          {searchedMovies.map((movie) => {
-            return (
-              <Card key={movie.movieId} border='dark'>
-                {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
-                <Card.Body>
-                  <Card.Title>{movie.title}</Card.Title>
-                  <p className='small'>Released: {movie.released}</p>
-                  <p className='small'>Actors: {movie.actors}</p>
-                  <p className='small'>Director: {movie.director}</p>
-                  <p className='small'>Genre: {movie.genre}</p>
-                  <p className='small'>Plot: {movie.plot}</p>
-                  <p className='small'>Rated: {movie.rated}</p>
-                  <p className='small'>Runtime: {movie.runtime}</p>
-                  {userData.username && (
-                    <Button
-                      disabled={userData.savedMovies?.some((savedMovie) => savedMovie.movieId === movie.movieId)}
-                      className='btn-block btn-info'
-                      onClick={() => handleSaveMovie(movie.movieId)}>
-                      {userData.savedMovies?.some((savedMovie) => savedMovie.movieId === movie.movieId)
-                        ? 'This movie has already been saved!'
-                        : 'Save this Movie!'}
-                    </Button>
-                  )}
-                </Card.Body>
-              </Card>
-            );
-          })}
-        </CardColumns>
+        <SearchCards
+          cardType='searchedMovies'
+          resultArray={searchedMovies}
+          savedArray={userData.savedMovies}
+          username={userData.username}
+          handleBtnClick={handleSaveMovie}
+        />
       </Container>
     </>
   );

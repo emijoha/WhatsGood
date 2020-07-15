@@ -67,27 +67,13 @@ module.exports = {
   async saveBook({ user, body }, res) {
     console.log(user);
     try {
-      
-      const findBook = await Book.findOne(
-        {bookId: body.bookId}
+      const createdBook = await Book.create(body);
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { savedBooks: createdBook._id } },
+        { new: true, runValidators: true }
       );
-      
-      if (findBook === null) {
-        const createdBook = await Book.create(body);
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: user._id },
-          { $addToSet: { savedBooks: createdBook._id } },
-          { new: true, runValidators: true }
-        );
-        return res.json(updatedUser);
-      } else {
-        const updatedUser = await User.findOneAndUpdate(
-          { _id: user._id },
-          { $addToSet: { savedBooks: findBook._id } },
-          { new: true, runValidators: true }
-        );
-        return res.json(updatedUser);
-      } 
+      return res.json(updatedUser);
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
@@ -281,8 +267,8 @@ module.exports = {
       console.log(err);
       return res.status(400).json(err);
     }
-  }, 
-  
+  },
+
   async addBookLike({ body }, res) {
 
     try {
@@ -296,7 +282,7 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(updatedBook);
-    
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
@@ -316,7 +302,7 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(updatedMusic);
-    
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
@@ -336,7 +322,7 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(updatedGame);
-    
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
@@ -356,7 +342,7 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(updatedMovie);
-    
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);

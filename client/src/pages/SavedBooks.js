@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
-import NotLoggedIn from '../components/NotLoggedIn/NotLoggedIn';
+import NotLoggedIn from '../components/NotLoggedIn';
+import SavedCards from '../components/SavedCards';
 
 // import context for global state
 import UserInfoContext from '../utils/UserInfoContext';
@@ -26,43 +27,24 @@ function SavedBooks() {
       .catch((err) => console.log(err));
   };
 
-  
-
   return (
     <>
-    {userData.username ? 
-    <>
-      <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
-          <h1>Viewing saved books!</h1>
-        </Container>
-      </Jumbotron>
-      <Container>
-        <h2>
-          {userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
-            : 'You have no saved books!'}
-        </h2>
-        <CardColumns>
-          {userData.savedBooks.map((book) => {
-            return (
-              <Card key={book._id} border='dark'>
-                {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
-                <Card.Body>
-                  <Card.Title>{book.title}</Card.Title>
-                  <p className='small'>Authors: {book.authors}</p>
-                  <Card.Text>{book.description}</Card.Text>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book._id)}>
-                    Delete this Book!
-                  </Button>
-                </Card.Body>
-              </Card>
-            );
-          })}
-        </CardColumns>
-      </Container>
-      </> : 
-    <NotLoggedIn />}    
+      {userData.username ?
+        <>
+          <Jumbotron fluid className='text-light bg-dark'>
+            <Container>
+              <h1>Viewing saved books!</h1>
+            </Container>
+          </Jumbotron>
+          <Container>
+            <SavedCards
+              cardType='savedBooks'
+              savedArray={userData.savedBooks}
+              handleDeleteBook={handleDeleteBook}
+            />
+          </Container>
+        </> :
+        <NotLoggedIn />}
     </>
   );
 }

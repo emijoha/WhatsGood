@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
-
+import SearchCards from '../components/SearchCards';
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
 import { saveMusic, searchMusic } from '../utils/API';
@@ -27,7 +27,7 @@ function SearchMusic() {
         const musicData = data.data.map((music) => ({
           musicId: music.id,
           timeStamp: Date.now(),
-          createdAt: Date(), 
+          createdAt: Date(),
           title: music.title || ['No title to display'],
           artist: music.artist.name || ['No artist to display'],
           link: music.link,
@@ -56,10 +56,10 @@ function SearchMusic() {
 
     // send the books data to our api
     saveMusic(musicToSave, token)
-      .then(() => 
-    {userData.getUserData()
-      console.log(userData.savedMusic)
-    }
+      .then(() => {
+        userData.getUserData()
+        console.log(userData.savedMusic)
+      }
       )
       .catch((err) => console.log(err));
   };
@@ -90,38 +90,14 @@ function SearchMusic() {
           </Form>
         </Container>
       </Jumbotron>
-
       <Container>
-        <h2>{searchedMusic.length ? `Viewing ${searchedMusic.length} results:` : 'Search for music to begin'}</h2>
-        <CardColumns>
-          {searchedMusic.map((music) => {
-            return (
-              <Card key={music.musicId} border='dark'>
-                {music.image ? <Card.Img src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
-                <Card.Body>
-                  <Card.Title>{music.title}</Card.Title>
-                  <p className='small'>Artist: {music.artist}</p>
-                  {/* <Card.Text>Link: {music.link}</Card.Text> */}
-                  <ReactAudioPlayer
-                    src={music.preview}
-                      controls
-                        />
-                  {userData.username && (
-                    <Button
-                      disabled={userData.savedMusic?.some((savedMusic) => savedMusic.musicId == music.musicId)}
-                      className='btn-block btn-info'
-                      onClick={() => {
-                        handleSaveMusic(music.musicId)}}>
-                      {userData.savedMusic?.some((savedMusic) => savedMusic.musicId == music.musicId)
-                        ? 'This has already been saved!'
-                        : 'Save!'}
-                    </Button>
-                  )}
-                </Card.Body>
-              </Card>
-            );
-          })}
-        </CardColumns>
+        <SearchCards
+          cardType='searchedMusic'
+          resultArray={searchedMusic}
+          savedArray={userData.savedMusic}
+          username={userData.username}
+          handleSaveMusic={handleSaveMusic}
+        />
       </Container>
     </>
   );

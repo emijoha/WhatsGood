@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
-
+import SearchCards from '../components/SearchCards';
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
 import { saveBook, searchGoogleBooks } from '../utils/API';
@@ -84,33 +84,14 @@ function SearchBooks() {
           </Form>
         </Container>
       </Jumbotron>
-
       <Container>
-        <h2>{searchedBooks.length ? `Viewing ${searchedBooks.length} results:` : 'Search for a book to begin'}</h2>
-        <CardColumns>
-          {searchedBooks.map((book) => {
-            return (
-              <Card key={book.bookId} border='dark'>
-                {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
-                <Card.Body>
-                  <Card.Title>{book.title}</Card.Title>
-                  <p className='small'>Authors: {book.authors}</p>
-                  <Card.Text>{book.description}</Card.Text>
-                  {userData.username && (
-                    <Button
-                      disabled={userData.savedBooks?.some((savedBook) => savedBook.bookId === book.bookId)}
-                      className='btn-block btn-info'
-                      onClick={() => handleSaveBook(book.bookId)}>
-                      {userData.savedBooks?.some((savedBook) => savedBook.bookId === book.bookId)
-                        ? 'This book has already been saved!'
-                        : 'Save this Book!'}
-                    </Button>
-                  )}
-                </Card.Body>
-              </Card>
-            );
-          })}
-        </CardColumns>
+      <SearchCards 
+        cardType='searchedBooks'
+        resultArray={searchedBooks}
+        savedArray={userData.savedBooks}
+        username={userData.username}
+        handleBtnClick={handleSaveBook}
+      />
       </Container>
     </>
   );

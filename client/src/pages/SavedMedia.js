@@ -7,7 +7,8 @@ import UserInfoContext from '../utils/UserInfoContext';
 
 import * as API from '../utils/API';
 import AuthService from '../utils/auth';
-import NotLoggedIn from '../components/NotLoggedIn/NotLoggedIn';
+import NotLoggedIn from '../components/NotLoggedIn';
+import SavedCards from '../components/SavedCards';
 
 function SavedMedia() {
   // get whole userData state object from App.js
@@ -77,94 +78,26 @@ function SavedMedia() {
             </Container>
           </Jumbotron>
           <Container>
-            <h2>
-              {userData.savedBooks.length
-                ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
-                : 'You have no saved books!'}
-            </h2>
-            <CardColumns>
-              {userData.savedBooks.map((book) => {
-                return (
-                  <Card key={book._id} border='dark'>
-                    {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
-                    <Card.Body>
-                      <Card.Title>{book.title}</Card.Title>
-                      <p className='small'>Authors: {book.authors}</p>
-                      <Card.Text>{book.description}</Card.Text>
-                      <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book._id)}>
-                        Delete this Book!
-                  </Button>
-                    </Card.Body>
-                  </Card>
-                );
-              })}
-            </CardColumns>
-            <h2>
-              {userData.savedMusic.length
-                ? `Viewing ${userData.savedMusic.length} saved ${userData.savedMusic.length === 1 ? 'music' : 'music'}:`
-                : 'You have no saved music!'}
-            </h2>
-            <CardColumns>
-              {userData.savedMusic.map((music) => {
-                return (
-                  <Card key={music._id} border='dark'>
-                    {music.image ? <Card.Img src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
-                    <Card.Body>
-                      <Card.Title>{music.title}</Card.Title>
-                      <p className='small'>Artist: {music.artist}</p>
-
-                      <ReactAudioPlayer
-                        src={music.preview}
-                        controls
-                      />
-                      <Button className='btn-block btn-danger' onClick={() => handleDeleteMusic(music._id)}>
-                        Delete!
-                  </Button>
-                    </Card.Body>
-                  </Card>
-                );
-              })}
-            </CardColumns>
-            <h2>
-              {userData.savedMovies.length
-                ? `Viewing ${userData.savedMovies.length} saved ${userData.savedMovies.length === 1 ? 'movie' : 'movies'}:`
-                : 'You have no saved movies!'}
-            </h2>
-            <CardColumns>
-              {userData.savedMovies.map((movie) => {
-                return (
-                  <Card key={movie._id} border='dark'>
-                    {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
-                    <Card.Body>
-                      <Card.Title>{movie.title}</Card.Title>
-                      <Button className='btn-block btn-danger' onClick={() => handleDeleteMovie(movie._id)}>
-                        Delete!
-                  </Button>
-                    </Card.Body>
-                  </Card>
-                );
-              })}
-            </CardColumns>
-            <h2>
-              {userData.savedGames.length
-                ? `Viewing ${userData.savedGames.length} saved ${userData.savedGames.length === 1 ? 'game' : 'games'}:`
-                : 'You have no saved games!'}
-            </h2>
-            <CardColumns>
-              {userData.savedGames.map((game) => {
-                return (
-                  <Card key={game._id} border='dark'>
-                    {game.image ? <Card.Img src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}
-                    <Card.Body>
-                      <Card.Title>{game.title}</Card.Title>
-                      <Button className='btn-block btn-danger' onClick={() => handleDeleteGame(game._id)}>
-                        Delete!
-                  </Button>
-                    </Card.Body>
-                  </Card>
-                );
-              })}
-            </CardColumns>
+            <SavedCards
+              cardType='savedBooks'
+              savedArray={userData.savedBooks}
+              handleDeleteBook={handleDeleteBook}
+            />
+            <SavedCards
+              cardType='savedMusic'
+              savedArray={userData.savedMusic}
+              handleDeleteMusic={handleDeleteMusic}
+            />
+            <SavedCards
+              cardType='savedMovies'
+              savedArray={userData.savedMovies}
+              handleDeleteMovie={handleDeleteMovie}
+            />
+            <SavedCards
+              cardType='savedGames'
+              savedArray={userData.savedGames}
+              handleDeleteGame={handleDeleteGame}
+            />
           </Container>
         </> :
         <NotLoggedIn />}

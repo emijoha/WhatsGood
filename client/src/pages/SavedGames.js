@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
-import NotLoggedIn from '../components/NotLoggedIn/NotLoggedIn';
-
+import NotLoggedIn from '../components/NotLoggedIn';
+import SavedCards from '../components/SavedCards';
 // import context for global state
 import UserInfoContext from '../utils/UserInfoContext';
 
@@ -38,28 +38,11 @@ function SavedGames() {
             </Container>
           </Jumbotron>
           <Container>
-            <h2>
-              {userData.savedGames.length
-                ? `Viewing ${userData.savedGames.length} saved ${userData.savedGames.length === 1 ? 'video game' : 'video games'}:`
-                : 'You have no saved video games!'}
-            </h2>
-            <CardColumns>
-              {userData.savedGames.map((game) => {
-                return (
-                  <Card key={game._id} border='dark'>
-                    {game.image ? <Card.Img src={game.image} alt={`The image for ${game.title}`} variant='top' /> : null}
-                    <Card.Body>
-                      <Card.Title>{game.title}</Card.Title>
-                      <p className='small'>Developer: {game.developer}</p>
-                      <Card.Text>{game.description}</Card.Text>
-                      <Button className='btn-block btn-danger' onClick={() => handleDeleteGame(game._id)}>
-                        Delete this Game!
-                  </Button>
-                    </Card.Body>
-                  </Card>
-                );
-              })}
-            </CardColumns>
+            <SavedCards
+              cardType='savedGames'
+              savedArray={userData.savedGames}
+              handleDeleteGame={handleDeleteGame}
+            />
           </Container>
         </> :
         <NotLoggedIn />}
