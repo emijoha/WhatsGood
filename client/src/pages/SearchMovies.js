@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import { FaVideo } from 'react-icons/fa';
 
 import * as API from '../utils/API';
@@ -14,11 +15,11 @@ function SearchMovies() {
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
-  const [movieToReview, setMovieToReview] = useState('');
+  // const [movieToReview, setMovieToReview] = useState('');
   // const [movieToRate, setMovieToRate] = useState('');
 
   // const [selectedMovieRating, setSelectedMovieRating] = useState('');
-  const [userRating, setUserRating] = useState(null);
+  const [userRating, setUserRating] = useState(0);
   const [hover, setHover] = useState(null);
   const [reviewInput, setReviewInput] = useState('');
 
@@ -216,7 +217,9 @@ function SearchMovies() {
 
                           <h6>You have saved this movie to your movies! You can see it now in its new home, MyMedia!</h6>
                           <Button className='btn-block btn-success' onClick={() => console.log(({ movie }))}  >
-                            Go to My Movies
+                            <Link to='saved_movies' >
+                              Go to My Movies
+                            </Link>
                           </Button>
 
                         </>
