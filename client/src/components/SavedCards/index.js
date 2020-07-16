@@ -16,7 +16,8 @@ function SavedCards(props) {
                 <CardColumns>
                     {props.savedArray.map((book) => {
                         return (
-                            <Card key={book._id} border='dark'>
+
+                            <Card className='mediaCard' key={book._id} border='dark'>
                                 {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{book.title}</Card.Title>
@@ -27,6 +28,7 @@ function SavedCards(props) {
                                     </Button>
                                 </Card.Body>
                             </Card>
+
                         );
                     })}
                 </CardColumns>
@@ -43,7 +45,8 @@ function SavedCards(props) {
                 <CardColumns>
                     {props.savedArray.map((music) => {
                         return (
-                            <Card key={music._id} border='dark'>
+
+                            <Card className='mediaCard' key={music._id} border='dark'>
                                 {music.image ? <Card.Img src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{music.title}</Card.Title>
@@ -54,9 +57,10 @@ function SavedCards(props) {
                                     />
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMusic(music._id)}>
                                         Delete!
-                  </Button>
+                                    </Button>
                                 </Card.Body>
                             </Card>
+
                         );
                     })}
                 </CardColumns>
@@ -76,7 +80,8 @@ function SavedCards(props) {
                 <CardColumns>
                     {props.savedArray.map((movie) => {
                         return (
-                            <Card key={movie._id} border='dark'>
+
+                            <Card className='mediaCard' key={movie._id} border='dark'>
                                 {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{movie.title}</Card.Title>
@@ -92,6 +97,7 @@ function SavedCards(props) {
                                 </Button>
                                 </Card.Body>
                             </Card>
+
                         );
                     })}
                 </CardColumns>
@@ -108,7 +114,8 @@ function SavedCards(props) {
                 <CardColumns>
                     {props.savedArray.map((game) => {
                         return (
-                            <Card key={game._id} border='dark'>
+
+                            <Card className='mediaCard' key={game._id} border='dark'>
                                 {game.image ? <Card.Img src={game.image} alt={`The image for ${game.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{game.title}</Card.Title>
@@ -119,6 +126,7 @@ function SavedCards(props) {
                                     </Button>
                                 </Card.Body>
                             </Card>
+
                         );
                     })}
                 </CardColumns>
@@ -137,7 +145,8 @@ function SavedCards(props) {
                     {props.savedArray.map(friend => {
                         console.log("this is my friend, ", friend)
                         return (
-                            <Card key={friend._id} border='dark'>
+
+                            <Card className='mediaCard' key={friend._id} border='dark'>
                                 {friend.picture ? <Card.Img src={friend.picture} alt={friend.username} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{friend.username}</Card.Title>
@@ -147,6 +156,7 @@ function SavedCards(props) {
                                     </Button>
                                 </Card.Body>
                             </Card>
+
                         );
                     })
                     }
