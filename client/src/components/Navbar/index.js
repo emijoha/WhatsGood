@@ -1,12 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container, Modal, Tab, NavDropdown, Button } from 'react-bootstrap';
-import UploadPhoto from './UploadPhoto';
-import ProfilePic from './ProfilePic/ProfilePic';
-import NotificationDropdownItem from './NotificationDropdownItem/NotificationDropdownItem';
-
-import UserInfoContext from '../utils/UserInfoContext';
-import AuthService from '../utils/auth';
+import { Navbar, Nav, Container, Modal, Tab, NavDropdown } from 'react-bootstrap';
+import UploadPhoto from '../UploadPhoto';
+import ProfilePic from '../ProfilePic';
+import NotificationDropdownItem from '../NotificationDropdownItem/NotificationDropdownItem';
+import UserInfoContext from '../../utils/UserInfoContext';
+import AuthService from '../../utils/auth';
 
 
 

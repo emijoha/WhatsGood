@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
-
-import UserInfoContext from '../utils/UserInfoContext';
-import AuthService from '../utils/auth';
-import { saveGame, searchVideoGames } from '../utils/API';
+import SearchCards from '../../components/SearchCards';
+import UserInfoContext from '../../utils/UserInfoContext';
+import AuthService from '../../utils/auth';
+import { saveGame, searchVideoGames } from '../../utils/API';
 
 function SearchGames() {
   // create state for holding returned api data
@@ -27,7 +27,7 @@ function SearchGames() {
         const gameData = [{
           gameId: `${data.result.title}-${data.result.developer}-${searchPlatform}`,
           timeStamp: Date.now(),
-          createdAt: Date(), 
+          createdAt: Date(),
           developer: data.result.developer || ['No developer to display'],
           title: data.result.title,
           description: data.result.description,
@@ -39,7 +39,7 @@ function SearchGames() {
       })
       .then(() => {
         setSearchTitle('');
-        setSearchPlatform('');
+        setSearchPlatform('pc');
       })
       .catch((err) => console.log(err));
   };
@@ -75,11 +75,11 @@ function SearchGames() {
                   size='lg'
                   placeholder='Game title'
                 />
-                <Form.Control 
-                  type='text' 
-                  size='lg' 
-                  name='searchPlatform' 
-                  onChange={(e) => setSearchPlatform(e.target.value)} 
+                <Form.Control
+                  type='text'
+                  size='lg'
+                  name='searchPlatform'
+                  onChange={(e) => setSearchPlatform(e.target.value)}
                   as='select'
                 >
                   <option value='pc'>PC</option>
@@ -98,33 +98,14 @@ function SearchGames() {
           </Form>
         </Container>
       </Jumbotron>
-
       <Container>
-        <h2>{searchedGame.length ? `Viewing ${searchedGame.length} results:` : 'Search for a video game to begin'}</h2>
-        <CardColumns>
-          {searchedGame.map((game) => {
-            return (
-              <Card key={game.gameId} border='dark'>
-                {game.image ? <Card.Img src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}
-                <Card.Body >
-                  <Card.Title>{game.title}</Card.Title>
-                  <p className='small'>Developer: {game.developer}</p>
-                  <Card.Text>{game.description}</Card.Text>
-                  {userData.username && (
-                    <Button
-                      disabled={userData.savedGames?.some((savedGame) => savedGame.gameId === game.gameId)}
-                      className='btn-block btn-info'
-                      onClick={() => handleSaveGame()}>
-                      {userData.savedGames?.some((savedGame) => savedGame.gameId === game.gameId)
-                        ? 'This game has already been saved!'
-                        : 'Save this game!'}
-                    </Button>
-                  )}
-                </Card.Body>
-              </Card>
-            );
-          })}
-        </CardColumns>
+        <SearchCards
+          cardType='searchedGames'
+          resultArray={searchedGame}
+          savedArray={userData.savedGames}
+          username={userData.username}
+          handleSaveGame={handleSaveGame}
+        />
       </Container>
     </>
   );
