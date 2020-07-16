@@ -1,0 +1,14 @@
+.login-card {
+    border: solid;
+    border-image-slice: 1;
+    border-width: 20px;
+    border-image-source: linear-gradient(to bottom right, rgb(97, 0, 253), rgb(190, 8, 223));
+    margin-top: 60px !important;
+    
+}
+
+.signup-link {
+    padding: 30px;
+    padding-top: 0px;
+    padding-left: 40px;
+}

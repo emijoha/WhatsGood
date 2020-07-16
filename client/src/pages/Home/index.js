@@ -204,20 +204,10 @@ function Home() {
 
 
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
-
-        <Container>
-          <h1>Viewing friends Media!</h1>
-        </Container>
-
-      </Jumbotron>
+     
 
       <Container >
-        <Row className="justify-content-center">
-          <h2>
-            My Feed
-                </h2>
-        </Row>
+       
         <Row className="justify-content-center">
           <Col xs={12} md={8} >
 

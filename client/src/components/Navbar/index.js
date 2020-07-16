@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab, NavDropdown } from 'react-bootstrap';
 import UploadPhoto from '../UploadPhoto';
 import ProfilePic from '../ProfilePic';
+import "./style.css";
 
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
@@ -18,50 +19,73 @@ function AppNavbar() {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar sticky="top" expand='lg' id="new-navbar">
         <Container fluid>
-          {username ? <Navbar.Brand as={Link} to='/home'>
-            What's Good?
+          {username ? <Navbar.Brand id="navbar-brand" as={Link} to='/home'>
+            <h5>WHAT'S GOOD</h5>
           </Navbar.Brand> : 
-          <Navbar.Brand as={Link} to='/'>
-            What's Good?
+          <Navbar.Brand id="navbar-brand" as={Link} to='/'>
+            <h5>WHAT'S GOOD</h5>
           </Navbar.Brand>}
-          <Navbar.Toggle aria-controls='navbar' />
-          <Navbar.Collapse id='navbar'>
-            <Nav className='ml-auto'>
-              <Nav.Link as={Link} to='/search-user'>
-                Search For Friends
-              </Nav.Link>
-              {username && <Nav.Link as={Link} to='/saved-friends'>
-                View Friends
-              </Nav.Link>}
 
-              <NavDropdown title="Search Media" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/search_books">Search Books</NavDropdown.Item>
-                <NavDropdown.Item href="/search_music">Search Music</NavDropdown.Item>
-                <NavDropdown.Item href="/search_movies">Search Movies</NavDropdown.Item>
-                <NavDropdown.Item href="/search_games">Search Games</NavDropdown.Item>
+          <Navbar.Toggle aria-controls='navbar' />
+          <Navbar.Collapse id='navbar-group'>
+            <Nav className='ml-auto'>
+
+          
+              {/* <Nav.Link className="nav-link-group" as={Link} to='/search-user'>
+                Search For Friends
+              </Nav.Link> */}
+             
+              
+              
+              {username ?
+              
+              <NavDropdown className="nav-link-group" title="SEARCH" id="basic-nav-dropdown" >
+                <NavDropdown.Item href="/search-user">SEARCH FOR FRIENDS</NavDropdown.Item>
+                <NavDropdown.Item href="/search_books">SEARCH BOOKS</NavDropdown.Item>
+                <NavDropdown.Item href="/search_music">SEARCH MUSIC</NavDropdown.Item>
+                <NavDropdown.Item href="/search_movies">SEARCH MOVIES</NavDropdown.Item>
+                <NavDropdown.Item href="/search_games">SEARCH GAMES</NavDropdown.Item>
               </NavDropdown>
 
+              :
 
-              {username && <NavDropdown title="See My Media" id="basic-nav-dropdown">
-                <NavDropdown.Item href='/saved_media'>All My Media</NavDropdown.Item>
-                <NavDropdown.Item href='/saved_books'>My Books</NavDropdown.Item>
-                <NavDropdown.Item href="/saved_music">My Music</NavDropdown.Item>
-                <NavDropdown.Item href="/saved_movies">My Movies</NavDropdown.Item>
-                <NavDropdown.Item href="/saved_games">My Games</NavDropdown.Item>
+              <NavDropdown className="nav-link-group" title="SEARCH" id="basic-nav-dropdown" alignRight>
+                <NavDropdown.Item href="/search-user">SEARCH FOR FRIENDS</NavDropdown.Item>
+                <NavDropdown.Item href="/search_books">SEARCH BOOKS</NavDropdown.Item>
+                <NavDropdown.Item href="/search_music">SEARCH MUSIC</NavDropdown.Item>
+                <NavDropdown.Item href="/search_movies">SEARCH MOVIES</NavDropdown.Item>
+                <NavDropdown.Item href="/search_games">SEARCH GAMES</NavDropdown.Item>
+              </NavDropdown>
+              
+              
+              }
+
+
+              {username && <NavDropdown className="nav-link-group" title="MY MEDIA" id="basic-nav-dropdown">
+                <NavDropdown.Item href='/saved_media'>ALL MY MEDIA</NavDropdown.Item>
+                <NavDropdown.Item href='/saved_books'>MY BOOKS</NavDropdown.Item>
+                <NavDropdown.Item href="/saved_music">MY MUSIC</NavDropdown.Item>
+                <NavDropdown.Item href="/saved_movies">MY MOVIES</NavDropdown.Item>
+                <NavDropdown.Item href="/saved_games">MY GAMES</NavDropdown.Item>
               </NavDropdown>}
 
-              {username && <NavDropdown alignRight title={
+              {username && <Nav.Link className="nav-link-group" as={Link} to='/saved-friends'>
+                MY FRIENDS
+              </Nav.Link>}
+              
+              
+              {username && <NavDropdown className="btn dropdown-toggle" data-toggle="dropdown" alignRight title={
                 <ProfilePic 
                   picture={picture}
                   username={username}
                 />
               } >
 
-                <NavDropdown.Item onClick={() => setShowModal(true)}>Upload Profile Pic</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => setShowModal(true)}>UPLOAD PROFILE PIC</NavDropdown.Item>
 
-                <NavDropdown.Item onClick={AuthService.logout}>Logout</NavDropdown.Item>
+                <NavDropdown.Item onClick={AuthService.logout}>LOGOUT</NavDropdown.Item>
               </NavDropdown>}
             </Nav>
           </Navbar.Collapse>

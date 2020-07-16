@@ -1,0 +1,53 @@
+#new-navbar {
+    background-color: rgba(255, 255, 255, 0) !important;
+    backdrop-filter: blur(90px)
+   
+}
+
+h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+    font-size: 35px;
+  }
+
+  .nav-link-group {
+   margin-top: 3.2%;
+   font-size: 20px;
+   
+  }
+
+  a {
+      color: black !important;
+      
+  }
+
+ a:active {
+    color: rgb(121, 38, 255) !important;
+
+ }
+
+
+ a:hover {
+    color: rgb(121, 38, 255) !important;
+ }
+
+  .btn {
+      content: none;
+      background: none;
+      border: none;
+      
+  }
+
+  
+
+  .btn:hover {
+    content: none;
+    background: none;
+    border: none;  
+  }
+
+  .dropdown-toggle::after { 
+    content: none; 
+} 
+
+  
