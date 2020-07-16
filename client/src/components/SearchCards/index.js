@@ -14,6 +14,7 @@ function SearchCards(props) {
                 <CardColumns>
                     {props.resultArray.map((book) => {
                         return (
+
                             <Card key={book.bookId} border='dark'>
                                 {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
                                 <Card.Body>
@@ -32,6 +33,7 @@ function SearchCards(props) {
                                     )}
                                 </Card.Body>
                             </Card>
+
                         );
                     })}
                 </CardColumns>
@@ -46,6 +48,7 @@ function SearchCards(props) {
                 <CardColumns>
                     {props.resultArray.map((music) => {
                         return (
+
                             <Card key={music.musicId} border='dark'>
                                 {music.image ? <Card.Img src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
                                 <Card.Body>
@@ -70,6 +73,7 @@ function SearchCards(props) {
                                     )}
                                 </Card.Body>
                             </Card>
+
                         );
                     })}
                 </CardColumns>
@@ -85,6 +89,7 @@ function SearchCards(props) {
                 <CardColumns>
                     {props.resultArray.map((movie) => {
                         return (
+
                             <Card key={movie.movieId} border='dark'>
                                 {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
                                 <Card.Body>
@@ -108,6 +113,7 @@ function SearchCards(props) {
                                     )}
                                 </Card.Body>
                             </Card>
+
                         );
                     })}
                 </CardColumns>
@@ -116,12 +122,13 @@ function SearchCards(props) {
     } else if (props.cardType === 'searchedGames') {
         return (
             <>
-                <h2>{props.resultArray.length 
-                    ? `Viewing ${props.resultArray.length} results:` 
+                <h2>{props.resultArray.length
+                    ? `Viewing ${props.resultArray.length} results:`
                     : 'Search for a video game to begin'}</h2>
                 <CardColumns>
                     {props.resultArray.map((game) => {
                         return (
+
                             <Card key={game.gameId} border='dark'>
                                 {game.image ? <Card.Img src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}
                                 <Card.Body >
@@ -140,6 +147,7 @@ function SearchCards(props) {
                                     )}
                                 </Card.Body>
                             </Card>
+
                         );
                     })}
                 </CardColumns>
@@ -149,6 +157,7 @@ function SearchCards(props) {
         return (
             <>
                 <CardColumns>
+
                     <Card key={props.searchedUser._id} border='dark'>
                         <Card.Img src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
                         <Card.Body>
@@ -168,6 +177,7 @@ function SearchCards(props) {
                                 </Button>}
                         </Card.Body>
                     </Card>
+
                 </CardColumns>
             </>
         );
