@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import NotLoggedIn from '../../components/NotLoggedIn';
 import { Jumbotron, Container, CardColumns, Card, Button, Form, Col } from 'react-bootstrap';
 import { FaVideo } from 'react-icons/fa';
@@ -27,6 +27,10 @@ function SavedMovies() {
   console.log("this is the user data, ", userData);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const startReview = (movie) => {
     console.log('movie: ', movie);

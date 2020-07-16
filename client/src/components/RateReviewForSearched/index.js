@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Col, Form, Button } from 'react-bootstrap';
 import { FaVideo } from 'react-icons/fa';
 import './style.css';
 
 function RateReviewForSearched(props) {
+
+    const [userRating, setUserRating] = useState(0);
+    const [hover, setHover] = useState(null);
+  
 
     return (
         <>
@@ -29,14 +33,14 @@ function RateReviewForSearched(props) {
                         <>
 
                             <p className='bold'>Your Rating!
-                {[...Array(5)].map((star, i) => {
+                            {[...Array(5)].map((star, i) => {
                                 const ratingValue = i + 1;
                                 return (
                                     <label key={i}>
                                         <input type='radio' name={props.media.movieId}
-                                            value={i} onClick={() => props.setUserRating(ratingValue)} />
-                                        <FaVideo className='star' onMouseEnter={() => props.setHover(ratingValue)}
-                                            onMouseLeave={() => props.setHover(null)} color={ratingValue <= (props.hover || props.userRating) ? 'black' : '#e4e5e9'} size={25} />
+                                            value={i} onClick={() => setUserRating(ratingValue)} />
+                                        <FaVideo className='star' onMouseEnter={() => setHover(ratingValue)}
+                                            onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? 'black' : '#e4e5e9'} size={25} />
                                     </label>
                                 )
                             })}
@@ -60,7 +64,7 @@ function RateReviewForSearched(props) {
                             </Form>
                             <Button
                                 className='btn-block btn-info'
-                                onClick={() => props.handleSaveMedia(props.media)}>
+                                onClick={() => props.cb(props.media, userRating)}>
                                 Save this Movie
                             </Button>
                         </>

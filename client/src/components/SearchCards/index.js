@@ -110,12 +110,8 @@ function SearchCards(props) {
                                         savedArray={props.savedArray}
                                         mediatype={'movie'}
                                         media={media}
-                                        setUserRating={props.setUserRating}
-                                        userRating={props.userRating}
-                                        setHover={props.setHover}
-                                        hover={props.hover}
+                                        cb={props.cb}
                                         setReviewInput={props.setReviewInput}
-                                        handleSaveMedia={props.handleSaveMedia}
                                     />
 
 

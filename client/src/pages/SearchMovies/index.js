@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import { Jumbotron, Container, Col, Form, Button } from 'react-bootstrap';
 
 import * as API from '../../utils/API';
@@ -18,14 +18,14 @@ function SearchMovies() {
   // const [movieToRate, setMovieToRate] = useState('');
 
   // const [selectedMovieRating, setSelectedMovieRating] = useState('');
-  const [userRating, setUserRating] = useState(0);
-  const [hover, setHover] = useState(null);
+  // const [userRating, setUserRating] = useState(0);
+  // const [hover, setHover] = useState(null);
   const [reviewInput, setReviewInput] = useState('');
 
 
   const userData = useContext(UserInfoContext);
 
-  console.log('reviewInput: ', reviewInput, 'userRating: ', userRating);
+  // console.log('reviewInput: ', reviewInput, 'userRating: ', userRating);
 
   // create method to search for movies and set state on form submit
   const handleFormSubmit = (event) => {
@@ -71,7 +71,8 @@ function SearchMovies() {
   };
 
   // create function to handle saving a movie to the database
-  const handleSaveMedia = (movie) => {
+
+  const handleSaveMedia = useCallback((movie, userRating) => {
     // find the movie in `searchedMovies` state by the matching id
     const movieToSave = {
       movieId: movie.movieId,
@@ -102,7 +103,8 @@ function SearchMovies() {
     API.saveMovie(movieToSave, token)
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
-  };
+  });
+  
 
   return (
     <>
@@ -136,12 +138,8 @@ function SearchMovies() {
         resultArray={searchedMovies}
         savedArray={userData.savedMovies}
         username={userData.username}
-        setUserRating={setUserRating}
-        userRating={userRating}
-        setHover={setHover}
-        hover={hover}
         setReviewInput={setReviewInput}
-        handleSaveMedia={handleSaveMedia}
+        cb={handleSaveMedia}
         />
       </Container>
     </>
