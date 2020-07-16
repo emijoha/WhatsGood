@@ -3,6 +3,7 @@ import { Jumbotron, Container, CardColumns, Card, Button, Form, Col } from 'reac
 import { FaVideo } from 'react-icons/fa';
 import ReactAudioPlayer from 'react-audio-player';
 import RateSaved from '../../components/RateSaved';
+import ReviewSaved from '../ReviewSaved';
 
 function SavedCards(props) {
 
@@ -107,7 +108,6 @@ function SavedCards(props) {
 
                                     <RateSaved
                                         username={props.username}
-                                        savedArray={props.savedArray}
                                         mediaType={'Movie'}
                                         media={media}
                                         startRating={props.startRating}
@@ -119,50 +119,15 @@ function SavedCards(props) {
                                         hover={props.hover}
                                     />
 
-                                    {props.username && (
-                                        <>
-                                            {(media.movieReview === '') ?
-                                                <Button className='btn-block btn-success' onClick={() => props.startReview(media)}  >
-                                                    Review this Movie!
-                                                </Button>
-
-                                                :
-
-                                                <Button className='btn-block btn-success' onClick={() => props.startReview(media)}  >
-                                                    Update your Review?
-                                                </Button>
-                                            }
-                                        </>
-                                    )}
-
-                                    {props.selectedMovieReview._id && (
-                                        <>
-                                            {media._id === props.selectedMovieReview._id
-                                                ?
-                                                <Form onSubmit={props.handleReviewFormSubmit}>
-                                                    <Col>
-                                                        <Form.Control
-                                                            name='reviewInput'
-                                                            value={props.reviewInput}
-                                                            onChange={(e) => props.setReviewInput(e.target.value)}
-                                                            type='text'
-                                                            size='md'
-                                                            as='textarea'
-                                                            rows='6'
-                                                            placeholder='Review this movie'
-                                                        />
-                                                    </Col>
-                                                    <Col>
-                                                        <Button type='submit' variant='success' size='md'>
-                                                            Submit Review
-                                                        </Button>
-                                                    </Col>
-                                                </Form>
-
-                                                : null
-                                            }
-                                        </>
-                                    )}
+                                    <ReviewSaved
+                                        username={props.username}
+                                        mediaType={'Movie'}
+                                        media={media}
+                                        startReview={props.startReview}
+                                        selectedMovieReview={props.selectedMovieReview}
+                                        handleReviewFormSubmit={props.handleReviewFormSubmit}
+                                        setReviewInput={props.setReviewInput}
+                                    />
 
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMovie(media._id)}>
                                         Delete this Movie!
