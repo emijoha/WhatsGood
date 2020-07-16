@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab, NavDropdown } from 'react-bootstrap';
-import UploadPhoto from './UploadPhoto';
-import ProfilePic from './ProfilePic/ProfilePic';
+import UploadPhoto from '../UploadPhoto';
+import ProfilePic from '../ProfilePic';
 
-import UserInfoContext from '../utils/UserInfoContext';
-import AuthService from '../utils/auth';
+import UserInfoContext from '../../utils/UserInfoContext';
+import AuthService from '../../utils/auth';
 
 
 

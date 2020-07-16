@@ -278,8 +278,8 @@ module.exports = {
       console.log(err);
       return res.status(400).json(err);
     }
-  }, 
-  
+  },
+
   async addBookLike({ body }, res) {
 
     try {
@@ -293,7 +293,7 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(updatedBook);
-    
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
@@ -313,7 +313,7 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(updatedMusic);
-    
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
@@ -333,7 +333,7 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(updatedGame);
-    
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
@@ -353,7 +353,7 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(updatedMovie);
-    
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);

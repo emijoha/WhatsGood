@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
-
-import UserInfoContext from '../utils/UserInfoContext';
-import AuthService from '../utils/auth';
-import { saveFriend, searchFriend, deleteFriend } from '../utils/API';
+import SearchCards from '../../components/SearchCards';
+import UserInfoContext from '../../utils/UserInfoContext';
+import AuthService from '../../utils/auth';
+import { saveFriend, searchFriend, deleteFriend } from '../../utils/API';
 
 function SearchUser() {
     // create state for holding returned google api data
@@ -92,30 +92,17 @@ function SearchUser() {
                     </Form>
                 </Container>
             </Jumbotron>
-            {searchedUser._id && <Container>
-                <h2></h2>
-                <CardColumns>
-                    <Card key={searchedUser._id} border='dark'>
-                        <Card.Img src={searchedUser.picture} alt={` ${searchedUser.username}`} variant='top' />
-                        <Card.Body>
-                            <Card.Title>{searchedUser.username}</Card.Title>
-                            <p className='small'>Username: {searchedUser.username}</p>
-                            <Card.Text>{searchedUser.username}</Card.Text>
-                            {userData.friends?.every((friend) => friend._id !== searchedUser._id)
-                                ? <Button
-                                    className='btn-block btn-info save-friend'
-                                    onClick={() => handleSaveFriend()}>
-                                    Save Friend
-                                </Button>
-                                : <Button
-                                    className='btn-block btn-info save-friend'
-                                    onClick={() => handleDeleteFriend(searchedUser._id)}>
-                                    Remove Friend
-                                </Button>}
-                        </Card.Body>
-                    </Card>
-                </CardColumns>
-            </Container>}
+            {searchedUser._id &&
+                <Container>
+                    <SearchCards
+                        cardType='searchedUsers'
+                        searchedUser={searchedUser}
+                        savedArray={userData.friends}
+                        handleSaveFriend={handleSaveFriend}
+                        handleDeleteFriend={handleDeleteFriend}
+                    />
+                </Container>
+            }
         </>
     );
 }

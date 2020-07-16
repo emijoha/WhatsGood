@@ -1,14 +1,16 @@
 import React, { useState, useContext } from 'react';
-import NotLoggedIn from '../components/NotLoggedIn/NotLoggedIn';
+import NotLoggedIn from '../../components/NotLoggedIn';
 import { Jumbotron, Container, CardColumns, Card, Button, Form, Col } from 'react-bootstrap';
 import { FaVideo } from 'react-icons/fa';
+// import SavedCards from '../components/SavedCards';
+// savedMovies page does not currently use this component, left it as is for now
+// ratings/review form shoudl be seperate component with its own state, with just bare necessities of props needed from savedMovies state/functionality
 
 // import context for global state
-import UserInfoContext from '../utils/UserInfoContext';
+import UserInfoContext from '../../utils/UserInfoContext';
 
-import * as API from '../utils/API';
-import AuthService from '../utils/auth';
-import './style.css';
+import * as API from '../../utils/API';
+import AuthService from '../../utils/auth';
 
 function SavedMovies() {
   const [reviewInput, setReviewInput] = useState('');
@@ -146,7 +148,7 @@ function SavedMovies() {
                       {[...Array(movie.userRating)].map((star, i) => {
                         return (
                           <label key={i}>
-                            <FaVideo className='read-only-star' color='black' size={30} />
+                            <FaVideo className='read-only-star' color='black' size={25} />
                           </label>
                         )
                       })}
@@ -183,7 +185,7 @@ function SavedMovies() {
                                     <input type='radio' name='rating'
                                       value={i} onClick={() => setUserRating(ratingValue)} />
                                     <FaVideo key={ratingValue} className='star' onMouseEnter={() => setHover(ratingValue)}
-                                      onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? 'black' : '#e4e5e9'} size={30} />
+                                      onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? 'black' : '#e4e5e9'} size={25} />
                                   </label>
                                 )
                               })}

@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
-import UserInfoContext from '../utils/UserInfoContext';
-import AuthService from '../utils/auth';
-import { savePicture } from '../utils/API';
+import UserInfoContext from '../../utils/UserInfoContext';
+import AuthService from '../../utils/auth';
+import { savePicture } from '../../utils/API';
 
 
 var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dxrhczeo9/upload/";

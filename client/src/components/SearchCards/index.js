@@ -1,0 +1,242 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import ReactAudioPlayer from 'react-audio-player';
+import { FaVideo } from 'react-icons/fa';
+
+function SearchCards(props) {
+
+    if (props.cardType === 'searchedBooks') {
+        return (
+            <>
+                <h2>{props.resultArray.length
+                    ? `Viewing ${props.resultArray.length} ${props.resultArray.length === 1 ? 'result' : 'results'}:`
+                    : 'Search for a book to begin'}
+                </h2>
+                <CardColumns>
+                    {props.resultArray.map((book) => {
+                        return (
+
+                            <Card key={book.bookId} border='dark'>
+                                {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+                                <Card.Body>
+                                    <Card.Title>{book.title}</Card.Title>
+                                    <p className='small'>Authors: {book.authors}</p>
+                                    <Card.Text>{book.description}</Card.Text>
+                                    {props.username && (
+                                        <Button
+                                            disabled={props.savedArray?.some((savedBook) => savedBook.bookId === book.bookId)}
+                                            className='btn-block btn-info'
+                                            onClick={() => props.handleBtnClick(book.bookId)}>
+                                            {props.savedArray?.some((savedBook) => savedBook.bookId === book.bookId)
+                                                ? 'This book has already been saved!'
+                                                : 'Save this Book!'}
+                                        </Button>
+                                    )}
+                                </Card.Body>
+                            </Card>
+
+                        );
+                    })}
+                </CardColumns>
+            </>
+        )
+    } else if (props.cardType === 'searchedMusic') {
+        return (
+            <>
+                <h2>{props.resultArray.length
+                    ? `Viewing ${props.resultArray.length} ${props.resultArray.length === 1 ? 'result' : 'results'}:`
+                    : 'Search for music to begin'}</h2>
+                <CardColumns>
+                    {props.resultArray.map((music) => {
+                        return (
+
+                            <Card key={music.musicId} border='dark'>
+                                {music.image ? <Card.Img src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
+                                <Card.Body>
+                                    <Card.Title>{music.title}</Card.Title>
+                                    <p className='small'>Artist: {music.artist}</p>
+                                    {/* <Card.Text>Link: {music.link}</Card.Text> */}
+                                    <ReactAudioPlayer
+                                        src={music.preview}
+                                        controls
+                                    />
+                                    {props.username && (
+                                        <Button
+                                            disabled={props.savedArray?.some((savedMusic) => savedMusic.musicId === music.musicId)}
+                                            className='btn-block btn-info'
+                                            onClick={() => {
+                                                props.handleSaveMusic(music.musicId)
+                                            }}>
+                                            {props.savedArray?.some((savedMusic) => savedMusic.musicId === music.musicId)
+                                                ? 'This has already been saved!'
+                                                : 'Save!'}
+                                        </Button>
+                                    )}
+                                </Card.Body>
+                            </Card>
+
+                        );
+                    })}
+                </CardColumns>
+            </>
+        );
+    } else if (props.cardType === 'searchedMovies') {
+        return (
+            <>
+                <h2>{props.resultArray.length
+                    ? `Viewing ${props.resultArray.length} ${props.resultArray.length === 1 ? 'result' : 'results'}:`
+                    : 'Search for a movie to begin'}
+                </h2>
+                <CardColumns>
+                    {props.resultArray.map((movie) => {
+                        return (
+
+                            <Card key={movie.movieId} border='dark'>
+                                {movie.image === 'N/A' ? null : <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' />}
+                                <Card.Body>
+                                    <Card.Title>{movie.title}</Card.Title>
+                                    {movie.released === 'N/A' ? null : <p className='small'>Released: {movie.released}</p>}
+                                    {movie.actors === 'N/A' ? null : <p className='small'>Actors: {movie.actors}</p>}
+                                    {movie.director === 'N/A' ? null : <p className='small'>Director: {movie.director}</p>}
+                                    {movie.genre === 'N/A' ? null : <p className='small'>Genre: {movie.genre}</p>}
+                                    {movie.plot === 'N/A' ? null : <p className='small'>Plot: {movie.plot}</p>}
+                                    {movie.rated === 'N/A' ? null : <p className='small'>Rated: {movie.rated}</p>}
+                                    {movie.runtime === 'N/A' ? null : <p className='small'>Runtime: {movie.runtime}</p>}
+                                    {props.username && (
+                                        <>
+                                            {props.savedArray?.some((savedMovie) => savedMovie.movieId === movie.movieId)
+                                                ?
+
+                                                <>
+
+                                                    <h6>You have saved this movie to your movies! You can see it now in its new home, MyMedia!</h6>
+                                                    <Button className='btn-block btn-success' onClick={() => console.log(({ movie }))}  >
+                                                        <Link to='saved_movies' >
+                                                            Go to My Movies
+                                                        </Link>
+                                                    </Button>
+
+                                                </>
+
+                                                :
+                                                <>
+
+                                                    <p className='bold'>Your Rating!
+                                                    {[...Array(5)].map((star, i) => {
+                                                        const ratingValue = i + 1;
+                                                        return (
+                                                            <label key={i}>
+                                                                <input type='radio' name={movie.movieId}
+                                                                    value={i} onClick={() => props.setUserRating(ratingValue)} />
+                                                                <FaVideo className='star' onMouseEnter={() => props.setHover(ratingValue)}
+                                                                    onMouseLeave={() => props.setHover(null)} color={ratingValue <= (props.hover || props.userRating) ? 'black' : '#e4e5e9'} size={25} />
+                                                            </label>
+                                                        )
+                                                    })}
+                                                    </p>
+
+                                                    <p className='bold'>Your Review!</p>
+
+                                                    <Form>
+                                                        <Col>
+                                                            <Form.Control
+                                                                name={movie.movieId}
+                                                                defaultValue=''
+                                                                onChange={(e) => props.setReviewInput(e.target.value)}
+                                                                type='text'
+                                                                size='md'
+                                                                as='textarea'
+                                                                rows='6'
+                                                                placeholder='enter your review here'
+                                                            />
+                                                        </Col>
+                                                    </Form>
+                                                    <Button
+                                                        className='btn-block btn-info'
+                                                        onClick={() => props.handleSaveMovie(movie)}>
+                                                        Save this Movie
+                                                    </Button>
+                                                </>
+                                            }
+                                        </>
+                                    )}
+
+
+
+
+                                </Card.Body>
+                            </Card>
+
+                        );
+                    })}
+                </CardColumns>
+            </>
+        )
+    } else if (props.cardType === 'searchedGames') {
+        return (
+            <>
+                <h2>{props.resultArray.length
+                    ? `Viewing ${props.resultArray.length} results:`
+                    : 'Search for a video game to begin'}</h2>
+                <CardColumns>
+                    {props.resultArray.map((game) => {
+                        return (
+
+                            <Card key={game.gameId} border='dark'>
+                                {game.image ? <Card.Img src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}
+                                <Card.Body >
+                                    <Card.Title>{game.title}</Card.Title>
+                                    <p className='small'>Developer: {game.developer}</p>
+                                    <Card.Text>{game.description}</Card.Text>
+                                    {props.username && (
+                                        <Button
+                                            disabled={props.savedArray?.some((savedGame) => savedGame.gameId === game.gameId)}
+                                            className='btn-block btn-info'
+                                            onClick={() => props.handleSaveGame()}>
+                                            {props.savedArray?.some((savedGame) => savedGame.gameId === game.gameId)
+                                                ? 'This game has already been saved!'
+                                                : 'Save this game!'}
+                                        </Button>
+                                    )}
+                                </Card.Body>
+                            </Card>
+
+                        );
+                    })}
+                </CardColumns>
+            </>
+        );
+    } else if (props.cardType === 'searchedUsers') {
+        return (
+            <>
+                <CardColumns>
+
+                    <Card key={props.searchedUser._id} border='dark'>
+                        <Card.Img src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
+                        <Card.Body>
+                            <Card.Title>{props.searchedUser.username}</Card.Title>
+                            <p className='small'>Username: {props.searchedUser.username}</p>
+                            <Card.Text>{props.searchedUser.username}</Card.Text>
+                            {props.savedArray?.every((friend) => friend._id !== props.searchedUser._id)
+                                ? <Button
+                                    className='btn-block btn-info save-friend'
+                                    onClick={() => props.handleSaveFriend()}>
+                                    Save Friend
+                                </Button>
+                                : <Button
+                                    className='btn-block btn-info save-friend'
+                                    onClick={() => props.handleDeleteFriend(props.searchedUser._id)}>
+                                    Remove Friend
+                                </Button>}
+                        </Card.Body>
+                    </Card>
+
+                </CardColumns>
+            </>
+        );
+    }
+
+}
+
+export default SearchCards;
