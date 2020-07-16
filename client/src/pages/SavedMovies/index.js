@@ -28,7 +28,7 @@ function SavedMovies() {
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
 
-  const startReview = ({ movie }) => {
+  const startReview = (movie) => {
     console.log('movie: ', movie);
 
     setSelectedMovieReview(movie);
@@ -63,7 +63,7 @@ function SavedMovies() {
       .catch((err) => console.log(err));
   }
 
-  const startRating = ({ movie }) => {
+  const startRating = (movie) => {
     console.log('movie: ', movie);
 
     setSelectedMovieRating(movie);
