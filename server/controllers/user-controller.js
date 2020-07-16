@@ -16,7 +16,7 @@ module.exports = {
     // console.log("params", params);
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends').populate('savedLikes');
+    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends').populate('savedLikes').populate('notifications');
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
@@ -378,5 +378,19 @@ module.exports = {
       return res.status(400).json(err);
     }
 
+  },
+
+  async deleteNotification({params}, res) {
+    console.log("delete notification params", params);
+    try {
+      const deletedNotification = await Notification.deleteOne(
+        { _id: params.id},
+        { new: true, runValidators: true }
+      );
+      return res.json(deletedNotification)
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
   }
 };

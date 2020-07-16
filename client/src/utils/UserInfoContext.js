@@ -18,6 +18,7 @@ const UserInfoContext = React.createContext({
   movieCount: 0,
   gameCount: 0,
   friends: [],
+  notifications: [],
   getUserData: () => undefined,
 });
 

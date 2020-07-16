@@ -13,9 +13,8 @@ import LikeButton from '../../components/LikeButton'
 
 function Home() {
 
-
+  
   const [allFriendsMediaState, setAllFriendsMediaState] = useState([]);
-
 
 
   function compareTimeStamp(a, b) {
@@ -24,9 +23,11 @@ function Home() {
 
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
+  console.log("userDATA", userData);
 
   // to pass into notifications so user knows who liked something
-  const likerId = userData._id;
+  // const likerId = userData._id;
+  const likerUsername = userData.username;
 
   useEffect(() => {
 
@@ -210,7 +211,7 @@ function Home() {
 
     // info for notification
     const notficationData = {
-      likerId: likerId,
+      likerUsername: likerUsername,
       title: title,
       ownerId: ownerId
     }
@@ -350,10 +351,12 @@ function Home() {
                         controls
                       />
                       <LikeButton mediaLikes={media.likes}
-                        mediaType={media.mediaType}
-                        mediaId={media._id}
-                        cb={handleSaveLike}
-                        userData={userData}
+                      mediaType={media.mediaType}
+                      ownerId={media.userId}
+                      mediaId={media._id}
+                      title={media.title}
+                      cb={handleSaveLike}
+                      userData={userData}
                       ></LikeButton>
                       <Button className='btn-block btn-danger' >
                         Comment
@@ -387,10 +390,12 @@ function Home() {
                       <p className='small'>Rated: {media.rated}</p>
                       <p className='small'>Runtime: {media.runtime}</p>
                       <LikeButton mediaLikes={media.likes}
-                        mediaType={media.mediaType}
-                        mediaId={media._id}
-                        cb={handleSaveLike}
-                        userData={userData}
+                      mediaType={media.mediaType}
+                      ownerId={media.userId}
+                      mediaId={media._id}
+                      title={media.title}
+                      cb={handleSaveLike}
+                      userData={userData}
                       ></LikeButton>
                       <Button className='btn-block btn-danger' >
                         Comment
@@ -420,10 +425,12 @@ function Home() {
 
 
                       <LikeButton mediaLikes={media.likes}
-                        mediaType={media.mediaType}
-                        mediaId={media._id}
-                        cb={handleSaveLike}
-                        userData={userData}
+                      mediaType={media.mediaType}
+                      ownerId={media.userId}
+                      mediaId={media._id}
+                      title={media.title}
+                      cb={handleSaveLike}
+                      userData={userData}
                       ></LikeButton>
 
                       <Button className='btn-block btn-danger' >
