@@ -151,6 +151,9 @@ function SavedMovies() {
                         )
                       })}
                       </p>
+                      <p className='bold'>Your Review: {movie.movieReview}</p>
+
+                      <br></br>
 
                       {userData.username && (
                         <>
@@ -167,7 +170,6 @@ function SavedMovies() {
                           }
                         </>
                       )}
-                      <br></br>
 
                       {selectedMovieRating._id && (
                         <>
@@ -198,8 +200,6 @@ function SavedMovies() {
 
                       )}
 
-                      <p className='bold'>Your Review: {movie.movieReview}</p>
-
                       {userData.username && (
                         <>
                           {(movie.movieReview === '') ?
@@ -215,6 +215,13 @@ function SavedMovies() {
                           }
                         </>
                       )}
+
+
+
+
+
+
+
 
                       {selectedMovieReview._id && (
                         <>

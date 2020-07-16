@@ -14,46 +14,54 @@ function SearchMovies() {
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
-  const [selectedMovieRating, setSelectedMovieRating] = useState('');
+  const [movieToReview, setMovieToReview] = useState('');
+  // const [movieToRate, setMovieToRate] = useState('');
+
+  // const [selectedMovieRating, setSelectedMovieRating] = useState('');
   const [userRating, setUserRating] = useState(null);
   const [hover, setHover] = useState(null);
+  const [reviewInput, setReviewInput] = useState('');
+
 
   const userData = useContext(UserInfoContext);
 
-  const startRating = ({ movie }) => {
-    console.log('movie: ', movie);
+  console.log('reviewInput: ', reviewInput, 'userRating: ', userRating);
 
-    setSelectedMovieRating(movie);
-  }
+  // console.log(movieToReview);
+  // const startRating = ({ movie }) => {
+  //   console.log('movie: ', movie);
 
-  const handleRatingFormSubmit = (event) => {
-    event.preventDefault();
+  //   setSelectedMovieRating(movie);
+  // }
 
-    console.log('hey asshole');
+  // const handleRatingFormSubmit = (event) => {
+  //   event.preventDefault();
 
-    saveUserRating();
-  }
+  //   console.log('hey asshole');
 
-  const saveUserRating = () => {
+  //   saveUserRating();
+  // }
 
-    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+  // const saveUserRating = () => {
 
-    if (!token) {
-      return false;
-    }
+  //   const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
-    let updateCriteria = {
-      id: selectedMovieRating._id,
-      userRating: userRating
-    }
-    console.log(updateCriteria);
+  //   if (!token) {
+  //     return false;
+  //   }
 
-    API.saveUserRating(updateCriteria, token)
-      .then(() => setUserRating(null))
-      .then(() => setSelectedMovieRating(''))
-      .then(() => userData.getUserData())
-      .catch((err) => console.log(err));
-  }
+  //   let updateCriteria = {
+  //     id: selectedMovieRating._id,
+  //     userRating: userRating
+  //   }
+  //   console.log(updateCriteria);
+
+  //   API.saveUserRating(updateCriteria, token)
+  //     .then(() => setUserRating(null))
+  //     .then(() => setSelectedMovieRating(''))
+  //     .then(() => userData.getUserData())
+  //     .catch((err) => console.log(err));
+  // }
 
   // create method to search for movies and set state on form submit
   const handleFormSubmit = (event) => {
@@ -87,7 +95,7 @@ function SearchMovies() {
                 released: movie.data.Released,
                 runtime: movie.data.Runtime,
                 title: movie.data.Title,
-                image: movie.data.Poster || ''
+                image: movie.data.Poster || '',
               }));
 
               return setSearchedMovies(movieData);
@@ -99,16 +107,37 @@ function SearchMovies() {
   };
 
   // create function to handle saving a movie to the database
-  const handleSaveMovie = (movieId) => {
+  const handleSaveMovie = (movie) => {
     // find the movie in `searchedMovies` state by the matching id
-    const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
-    console.log(movieToSave);
+    const movieToSave = {
+      movieId: movie.movieId,
+      timeStamp: Date.now(),
+      createdAt: Date(),
+      actors: movie.actors,
+      director: movie.director,
+      genre: movie.genre,
+      plot: movie.plot,
+      rated: movie.rated,
+      released: movie.released,
+      runtime: movie.runtime,
+      title: movie.title,
+      image: movie.image || '',
+      userRating: userRating,
+      movieReview: reviewInput
+    }
+
+
+
+    console.log('movieToSave: ', movieToSave);
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
     if (!token) {
       return false;
     }
+
+
+
 
     // send the movie data to the api
     API.saveMovie(movieToSave, token)
@@ -159,43 +188,88 @@ function SearchMovies() {
                   {movie.plot === 'N/A' ? null : <p className='small'>Plot: {movie.plot}</p>}
                   {movie.rated === 'N/A' ? null : <p className='small'>Rated: {movie.rated}</p>}
                   {movie.runtime === 'N/A' ? null : <p className='small'>Runtime: {movie.runtime}</p>}
-                  
+
+
+
+
+
+                  {/* {userData.username && (
+                    <>
+                      {movie.movieId
+                        ?
+                        <> */}
+
+                  {/* </>
+
+                        : null
+                      }
+                    </>
+                  )} */}
+
+
                   {userData.username && (
                     <>
                       {userData.savedMovies?.some((savedMovie) => savedMovie.movieId === movie.movieId)
                         ?
-                        <>
-                          <h6>You have saved this movie to your movies! Would you like to add a rating?</h6>
-                          <Button className='btn-block btn-success' onClick={() => startRating({ movie })}  >
-                            Rate this Movie
-                          </Button>
-                        </>
-                        :
-                        <Button
-                          className='btn-block btn-info'
-                          onClick={() => handleSaveMovie(movie.movieId)}>
-                          Save this Movie
-                        </Button>
-                      }
-                    </>
-                  )}
 
-                  {selectedMovieRating._id && (
-                    <>
-                      {userData.savedMovies?.some((savedMovie) => savedMovie._id === selectedMovieRating._id)
-                        ?
-                        <Form onSubmit={handleRatingFormSubmit}>
+                        <>
+
+                          <h6>You have saved this movie to your movies! You can see it now in its new home, MyMedia!</h6>
+                          <Button className='btn-block btn-success' onClick={() => console.log(({ movie }))}  >
+                            Go to My Movies
+                          </Button>
+
+                        </>
+
+                        :
+                        <>
+
+                          <p className='bold'>Your Rating!
                           {[...Array(5)].map((star, i) => {
                             const ratingValue = i + 1;
                             return (
-                              <label>
-                                <input type='radio' name='rating'
+                              <label key={i}>
+                                <input type='radio' name={movie.movieId}
                                   value={i} onClick={() => setUserRating(ratingValue)} />
-                                <FaVideo key={ratingValue} className='star' onMouseEnter={() => setHover(ratingValue)}
+                                <FaVideo className='star' onMouseEnter={() => setHover(ratingValue)}
                                   onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? 'black' : '#e4e5e9'} size={30} />
                               </label>
                             )
                           })}
+                          </p>
+
+                          <p className='bold'>Your Review!</p>
+
+                          <Form>
+                            <Col>
+                              <Form.Control
+                                name={movie.movieId}
+                                defaultValue=''
+                                onChange={(e) => setReviewInput(e.target.value)}
+                                type='text'
+                                size='md'
+                                as='textarea'
+                                rows='6'
+                                placeholder='enter your review here'
+                              />
+                            </Col>
+                          </Form>
+                          <Button
+                            className='btn-block btn-info'
+                            onClick={() => handleSaveMovie(movie)}>
+                            Save this Movie
+                          </Button>
+                        </>
+                      }
+                    </>
+                  )}
+
+                  {/* {selectedMovieRating._id && (
+                    <>
+                      {userData.savedMovies?.some((savedMovie) => savedMovie._id === selectedMovieRating._id)
+                        ?
+                        <Form onSubmit={handleRatingFormSubmit}>
+
 
                           <Col>
                             <Button type='submit' variant='success' size='md'>
@@ -207,7 +281,7 @@ function SearchMovies() {
                       }
                     </>
 
-                  )}
+                  )} */}
 
                 </Card.Body>
               </Card>

@@ -114,7 +114,7 @@ function Home() {
                 image: savedMovie.image,
                 title: savedMovie.title,
                 runtime: savedMovie.runtime,
-                release: savedMovie.released,
+                released: savedMovie.released,
                 rated: savedMovie.rated,
                 plot: savedMovie.plot,
                 genre: savedMovie.genre,
