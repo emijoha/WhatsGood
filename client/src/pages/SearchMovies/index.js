@@ -72,7 +72,7 @@ function SearchMovies() {
   };
 
   // create function to handle saving a movie to the database
-  const handleSaveMovie = (movie) => {
+  const handleSaveMedia = (movie) => {
     // find the movie in `searchedMovies` state by the matching id
     const movieToSave = {
       movieId: movie.movieId,
@@ -137,13 +137,12 @@ function SearchMovies() {
         resultArray={searchedMovies}
         savedArray={userData.savedMovies}
         username={userData.username}
-        handleBtnClick={handleSaveMovie}
         setUserRating={setUserRating}
         userRating={userRating}
         setHover={setHover}
         hover={hover}
         setReviewInput={setReviewInput}
-        handleSaveMovie={handleSaveMovie}
+        handleSaveMedia={handleSaveMedia}
         />
       </Container>
     </>

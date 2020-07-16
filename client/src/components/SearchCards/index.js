@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 import { FaVideo } from 'react-icons/fa';
+import RateReviewForSearched from '../RateReviewForSearched';
 
 function SearchCards(props) {
 
@@ -89,80 +90,33 @@ function SearchCards(props) {
                     : 'Search for a movie to begin'}
                 </h2>
                 <CardColumns>
-                    {props.resultArray.map((movie) => {
+                    {props.resultArray.map((media) => {
                         return (
 
-                            <Card key={movie.movieId} border='dark'>
-                                {movie.image === 'N/A' ? null : <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' />}
+                            <Card key={media.movieId} border='dark'>
+                                {media.image === 'N/A' ? null : <Card.Img src={media.image} alt={`The cover for ${media.title}`} variant='top' />}
                                 <Card.Body>
-                                    <Card.Title>{movie.title}</Card.Title>
-                                    {movie.released === 'N/A' ? null : <p className='small'>Released: {movie.released}</p>}
-                                    {movie.actors === 'N/A' ? null : <p className='small'>Actors: {movie.actors}</p>}
-                                    {movie.director === 'N/A' ? null : <p className='small'>Director: {movie.director}</p>}
-                                    {movie.genre === 'N/A' ? null : <p className='small'>Genre: {movie.genre}</p>}
-                                    {movie.plot === 'N/A' ? null : <p className='small'>Plot: {movie.plot}</p>}
-                                    {movie.rated === 'N/A' ? null : <p className='small'>Rated: {movie.rated}</p>}
-                                    {movie.runtime === 'N/A' ? null : <p className='small'>Runtime: {movie.runtime}</p>}
-                                    {props.username && (
-                                        <>
-                                            {props.savedArray?.some((savedMovie) => savedMovie.movieId === movie.movieId)
-                                                ?
+                                    <Card.Title>{media.title}</Card.Title>
+                                    {media.released === 'N/A' ? null : <p className='small'>Released: {media.released}</p>}
+                                    {media.actors === 'N/A' ? null : <p className='small'>Actors: {media.actors}</p>}
+                                    {media.director === 'N/A' ? null : <p className='small'>Director: {media.director}</p>}
+                                    {media.genre === 'N/A' ? null : <p className='small'>Genre: {media.genre}</p>}
+                                    {media.plot === 'N/A' ? null : <p className='small'>Plot: {media.plot}</p>}
+                                    {media.rated === 'N/A' ? null : <p className='small'>Rated: {media.rated}</p>}
+                                    {media.runtime === 'N/A' ? null : <p className='small'>Runtime: {media.runtime}</p>}
 
-                                                <>
-
-                                                    <h6>You have saved this movie to your movies! You can see it now in its new home, MyMedia!</h6>
-                                                    <Button className='btn-block btn-success' onClick={() => console.log(({ movie }))}  >
-                                                        <Link to='saved_movies' >
-                                                            Go to My Movies
-                                                        </Link>
-                                                    </Button>
-
-                                                </>
-
-                                                :
-                                                <>
-
-                                                    <p className='bold'>Your Rating!
-                                                    {[...Array(5)].map((star, i) => {
-                                                        const ratingValue = i + 1;
-                                                        return (
-                                                            <label key={i}>
-                                                                <input type='radio' name={movie.movieId}
-                                                                    value={i} onClick={() => props.setUserRating(ratingValue)} />
-                                                                <FaVideo className='star' onMouseEnter={() => props.setHover(ratingValue)}
-                                                                    onMouseLeave={() => props.setHover(null)} color={ratingValue <= (props.hover || props.userRating) ? 'black' : '#e4e5e9'} size={25} />
-                                                            </label>
-                                                        )
-                                                    })}
-                                                    </p>
-
-                                                    <p className='bold'>Your Review!</p>
-
-                                                    <Form>
-                                                        <Col>
-                                                            <Form.Control
-                                                                name={movie.movieId}
-                                                                defaultValue=''
-                                                                onChange={(e) => props.setReviewInput(e.target.value)}
-                                                                type='text'
-                                                                size='md'
-                                                                as='textarea'
-                                                                rows='6'
-                                                                placeholder='enter your review here'
-                                                            />
-                                                        </Col>
-                                                    </Form>
-                                                    <Button
-                                                        className='btn-block btn-info'
-                                                        onClick={() => props.handleSaveMovie(movie)}>
-                                                        Save this Movie
-                                                    </Button>
-                                                </>
-                                            }
-                                        </>
-                                    )}
-
-
+                                    <RateReviewForSearched
+                                        username={props.username}
+                                        savedArray={props.savedArray}
+                                        mediatype={'movie'}
+                                        media={media}
+                                        setUserRating={props.setUserRating}
+                                        userRating={props.userRating}
+                                        setHover={props.setHover}
+                                        hover={props.hover}
+                                        setReviewInput={props.setReviewInput}
+                                        handleSaveMedia={props.handleSaveMedia}
+                                    />
 
 
                                 </Card.Body>
