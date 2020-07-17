@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
+import "./style.css";
 
 import UserInfoContext from '../../utils/UserInfoContext';
 import { createUser } from '../../utils/API';
@@ -50,17 +51,19 @@ function SignupForm() {
   };
 
   return (
-    <>
+    <div className="form-outer-div">
       {/* This is needed for the validation functionality above */}
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <h5>SIGNUP</h5>
         {/* show alert if server response is bad */}
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           {errorText || 'Something went wrong with your signup!'}
         </Alert>
 
         <Form.Group>
-          <Form.Label htmlFor='username'>Username</Form.Label>
+          <Form.Label className="form-label" htmlFor='username'>USERNAME</Form.Label>
           <Form.Control
+            className="form-input"
             type='text'
             placeholder='Your username'
             name='username'
@@ -72,8 +75,9 @@ function SignupForm() {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='email'>Email</Form.Label>
+          <Form.Label className="form-label" htmlFor='email'>EMAIL</Form.Label>
           <Form.Control
+            className="form-input"
             type='email'
             placeholder='Your email address'
             name='email'
@@ -85,8 +89,9 @@ function SignupForm() {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='password'>Password</Form.Label>
+          <Form.Label className="form-label" htmlFor='password'>PASSWORD</Form.Label>
           <Form.Control
+            className="form-input"
             type='password'
             placeholder='Your password'
             name='password'
@@ -96,14 +101,17 @@ function SignupForm() {
           />
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
+        <div className="text-right">
         <Button
+          className="form-button"
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
           variant='success'>
           Submit
         </Button>
+        </div>
       </Form>
-    </>
+    </div>
   );
 }
 

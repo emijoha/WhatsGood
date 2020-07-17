@@ -4,5 +4,6 @@ module.exports = {
     Music: require('./Music'),
     Movie: require('./Movie'),
     Game: require('./Game'),
-    Like: require('./Like')
+    Like: require('./Like'),
+    Notification: require('./Notification')
 };

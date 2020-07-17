@@ -5,18 +5,31 @@ import { Link } from "react-router-dom";
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { saveBook, searchGoogleBooks } from '../../utils/API';
+import "./style.css";
 
 function Login() {
   
+  const userData = useContext(UserInfoContext);
 
   return (
+
+    userData.username ? window.location.assign('/home') :
+
     <>
-      <Container>
+     
+     <Row className="justify-content-center">
+      <Col xs={12} md={6} >
+      <div className="login-card">
       <LoginForm />
-      </Container>
-      <Link as={Link} to='/signup'>
-        Signup
+      <div className="signup-link"> 
+      <Link  as={Link} to='/signup'>
+        SIGNUP
       </Link>
+      </div>
+      </div>
+      </Col>
+      </Row>
+      
     </>
   );
 }

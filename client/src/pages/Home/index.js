@@ -15,26 +15,22 @@ import FeedCard from '../../components/FeedCard';
 
 function Home() {
 
-
   const [allFriendsMediaState, setAllFriendsMediaState] = useState([]);
-
-
 
   function compareTimeStamp(a, b) {
     return b.timeStamp - a.timeStamp;
   }
 
-  // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
+  console.log("userDATA", userData);
 
-
+  // to pass into notifications so user knows who liked something
+  // const likerId = userData._id;
+  const likerUsername = userData.username;
 
   useEffect(() => {
 
     userData.friends.map(friend => {
-
-
-
       API.getUser(friend.id)
         .then(result => {
 
@@ -81,6 +77,7 @@ function Home() {
                 _id: savedMusic._id,
                 username: friend.username,
                 picture: friend.picture,
+                userId: friend.id,
                 image: savedMusic.image,
                 title: savedMusic.title,
                 link: savedMusic.link,
@@ -113,6 +110,7 @@ function Home() {
                 _id: savedMovie._id,
                 username: friend.username,
                 picture: friend.picture,
+                userId: friend.id,
                 image: savedMovie.image,
                 title: savedMovie.title,
                 runtime: savedMovie.runtime,
@@ -124,10 +122,6 @@ function Home() {
                 actors: savedMovie.actors,
                 likes: savedMovie.likes
               }
-
-
-
-
 
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData].sort(compareTimeStamp))
 
@@ -150,6 +144,7 @@ function Home() {
                 _id: savedGame._id,
                 username: friend.username,
                 picture: friend.picture,
+                userId: friend.id,
                 image: savedGame.image,
                 title: savedGame.title,
                 developer: savedGame.developer,
@@ -166,11 +161,12 @@ function Home() {
           // )
 
         })
-    });
-    // }, [userData, userData.friends]);
-  }, [userData.username]);
 
-  const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes) => {
+        })
+    }, [userData.username]);
+
+
+  const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes, ownerId, title) => {
     // find the friend in `searchedUser` state by the matching id
     // const userToSave = searchedUser.find((user) => user._id === userId);
 
@@ -191,8 +187,15 @@ function Home() {
       likes: mediaLikes
     }
 
+    // info for notification
+    const notficationData = {
+      likerUsername: likerUsername,
+      title: title,
+      ownerId: ownerId
+    }
+
     console.log("data for like, ", likeData)
-    // send the friend data to our api
+    
     API.saveLike(likeData, token)
       .then(() => {
         console.log("Token: ", token, "likeData: ", likeData);
@@ -204,27 +207,20 @@ function Home() {
 
     API.addLike(addLikeData, token)
       .then(() => {
+
         userData.getUserData();
+
+
       })
       .catch((err) => console.log(err));
+    //call to send notification to user  
+    
+    API.addNotification(notficationData, token)
+      .then(() => {
+        userData.getUserData();
+      })
   });
 
-  console.log("this is allFriendsMediaState outside of the loop: ", allFriendsMediaState);
-
-  // DELETE BOOK FUNCTION THAT COULD BE MODIFIED TO REMOVE FRIENDS
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  // const handleDeleteBook = (bookId) => {
-  //     // get token
-  //     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-
-  //     if (!token) {
-  //         return false;
-  //     }
-  //     API.deleteBook(bookId, token)
-  //         // upon succes, update user data to reflect book change
-  //         .then(() => userData.getUserData())
-  //         .catch((err) => console.log(err));
-  // };
 
   return (
     <>
@@ -234,11 +230,7 @@ function Home() {
         </Container>
       </Jumbotron>
       <Container >
-        <Row className="justify-content-center">
-          <h2>
-            My Feed
-                </h2>
-        </Row>
+       
         <Row className="justify-content-center">
           <Col xs={12} md={8} >
             {allFriendsMediaState.map(media => {

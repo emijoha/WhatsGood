@@ -24,6 +24,7 @@ function SearchMusic() {
 
     searchMusic(searchInput)
       .then(({ data }) => {
+        console.log(data.data);
         const musicData = data.data.map((music) => ({
           musicId: music.id,
           timeStamp: Date.now(),
