@@ -1,5 +1,5 @@
 // import user model
-const { User, Book, Music, Movie, Game, Like } = require('../models');
+const { User, Book, Music, Movie, Game, Like, Notification } = require('../models');
 
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
@@ -16,7 +16,7 @@ module.exports = {
     // console.log("params", params);
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends').populate('savedLikes');
+    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends').populate('savedLikes').populate('notifications');
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
@@ -360,5 +360,37 @@ module.exports = {
     }
     console.log("AFTER DELETE?", updatedUser);
     return res.json(updatedUser);
+  },
+
+  // create notifications and update the user that the notification is pushed to
+  async addNotification({ body }, res) {
+    console.log("notification body", body);
+    try {
+      const notification = await Notification.create(body);
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: body.ownerId },
+        { $addToSet: { notifications: notification._id } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+
+  },
+
+  async deleteNotification({params}, res) {
+    console.log("delete notification params", params);
+    try {
+      const deletedNotification = await Notification.deleteOne(
+        { _id: params.id},
+        { new: true, runValidators: true }
+      );
+      return res.json(deletedNotification)
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
   }
 };
