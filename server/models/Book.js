@@ -12,9 +12,13 @@ const bookSchema = new Schema({
     required: false,
   },
   // saved book id from GoogleBooks
-  bookId: {
+  mediaId: {
     type: String,
     required: true,
+  },
+  mediaType: {
+    type: String,
+    default: 'Book'
   },
   timeStamp: {
     type: Number,
@@ -37,6 +41,16 @@ const bookSchema = new Schema({
   title: {
     type: String,
     required: true,
+  },
+  userReview: {
+    type: String,
+    required: false,
+    default: ''
+  },
+  userRating: {
+    type: Number,
+    required: false,
+    default: 0
   }
 });
 
