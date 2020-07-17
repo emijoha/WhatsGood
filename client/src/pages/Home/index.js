@@ -13,15 +13,12 @@ import LikeButton from '../../components/LikeButton';
 
 function Home() {
 
-  
   const [allFriendsMediaState, setAllFriendsMediaState] = useState([]);
-
 
   function compareTimeStamp(a, b) {
     return b.timeStamp - a.timeStamp;
   }
 
-  // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
   console.log("userDATA", userData);
 
@@ -32,8 +29,6 @@ function Home() {
   useEffect(() => {
 
     userData.friends.map(friend => {
-
-
 
       API.getUser(friend.id)
         .then(result => {
@@ -127,10 +122,6 @@ function Home() {
                 likes: savedMovie.likes
               }
 
-
-
-
-
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData].sort(compareTimeStamp))
 
 
@@ -159,10 +150,6 @@ function Home() {
                 description: savedGame.description,
                 likes: savedGame.likes
               }
-
-
-
-
 
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedGameData].sort(compareTimeStamp))
 
@@ -217,7 +204,7 @@ function Home() {
     }
 
     console.log("data for like, ", likeData)
-    // send the friend data to our api
+    
     API.saveLike(likeData, token)
       .then(() => {
         console.log("Token: ", token, "likeData: ", likeData);
@@ -244,54 +231,20 @@ function Home() {
   });
 
 
-
-
-
-  console.log("this is allFriendsMediaState outside of the loop: ", allFriendsMediaState);
-
-
-  // DELETE BOOK FUNCTION THAT COULD BE MODIFIED TO REMOVE FRIENDS
-  // create function that accepts the book's mongo _id value as param and deletes the book from the database
-  // const handleDeleteBook = (bookId) => {
-  //     // get token
-  //     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-
-  //     if (!token) {
-  //         return false;
-  //     }
-  //     API.deleteBook(bookId, token)
-  //         // upon succes, update user data to reflect book change
-  //         .then(() => userData.getUserData())
-  //         .catch((err) => console.log(err));
-  // };
-
   return (
 
 
 
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
-
-        <Container>
-          <h1>Viewing friends Media!</h1>
-        </Container>
-
-      </Jumbotron>
+     
 
       <Container >
-        <Row className="justify-content-center">
-          <h2>
-            My Feed
-                </h2>
-        </Row>
+       
         <Row className="justify-content-center">
           <Col xs={12} md={8} >
 
 
             {allFriendsMediaState.map(media => {
-              // if (friend.savedMusic === []) {
-              //   return
-              // }
 
               if (media.mediaType === "book") {
 
@@ -322,7 +275,7 @@ function Home() {
 
 
                       ></LikeButton>
-                      <Button className='btn-block btn-danger' >
+                      <Button id="comment-button" className='btn-block btn-danger' >
                         Comment
                       </Button>
                     </Card.Body>
@@ -358,13 +311,11 @@ function Home() {
                       cb={handleSaveLike}
                       userData={userData}
                       ></LikeButton>
-                      <Button className='btn-block btn-danger' >
+                      <Button id="comment-button" className='btn-block btn-danger' >
                         Comment
                       </Button>
                     </Card.Body>
                   </Card>)
-
-
 
               }
 
@@ -397,13 +348,11 @@ function Home() {
                       cb={handleSaveLike}
                       userData={userData}
                       ></LikeButton>
-                      <Button className='btn-block btn-danger' >
+                      <Button id="comment-button" className='btn-block btn-danger' >
                         Comment
                       </Button>
                     </Card.Body>
                   </Card>)
-
-
 
               }
 
@@ -433,14 +382,11 @@ function Home() {
                       userData={userData}
                       ></LikeButton>
 
-                      <Button className='btn-block btn-danger' >
+                      <Button id="comment-button" className='btn-block btn-danger' >
                         Comment
                       </Button>
                     </Card.Body>
                   </Card>)
-
-
-
               }
 
             }

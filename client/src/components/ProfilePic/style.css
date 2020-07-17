@@ -2,4 +2,5 @@
     height: 40px;
     width: 40px;
     border-radius: 100%;
+    border: 2px solid rgb(121, 38, 255);
 }
