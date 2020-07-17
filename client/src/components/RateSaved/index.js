@@ -23,9 +23,9 @@ function RateSaved(props) {
             </>
         )}
         
-        {props.selectedMovieRating._id && (
+        {props.selectedMediaRating._id && (
             <>
-                {props.media._id === props.selectedMovieRating._id
+                {props.media._id === props.selectedMediaRating._id
                     ?
                     <Form onSubmit={props.handleRatingFormSubmit}>
                         {[...Array(5)].map((star, i) => {

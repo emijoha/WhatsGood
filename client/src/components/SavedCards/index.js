@@ -111,7 +111,7 @@ function SavedCards(props) {
                                         mediaType={'Movie'}
                                         media={media}
                                         startRating={props.startRating}
-                                        selectedMovieRating={props.selectedMovieRating}
+                                        selectedMediaRating={props.selectedMediaRating}
                                         handleRatingFormSubmit={props.handleRatingFormSubmit}
                                         setUserRating={props.setUserRating}
                                         userRating={props.userRating}

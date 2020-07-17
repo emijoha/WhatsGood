@@ -11,7 +11,7 @@ const musicSchema = new Schema({
     required: true,
   },
   // saved book id from GoogleBooks
-  musicId: {
+  mediaId: {
     type: String,
     required: true,
   },

@@ -10,7 +10,7 @@ const gameSchema = new Schema({
     required: true,
   },
   // saved book id from API
-  gameId: {
+  mediaId: {
     type: String,
     required: true,
   },

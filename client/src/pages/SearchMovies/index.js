@@ -14,18 +14,7 @@ function SearchMovies() {
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
-  // const [movieToReview, setMovieToReview] = useState('');
-  // const [movieToRate, setMovieToRate] = useState('');
-
-  // const [selectedMovieRating, setSelectedMovieRating] = useState('');
-  // const [userRating, setUserRating] = useState(0);
-  // const [hover, setHover] = useState(null);
-  const [reviewInput, setReviewInput] = useState('');
-
-
   const userData = useContext(UserInfoContext);
-
-  // console.log('reviewInput: ', reviewInput, 'userRating: ', userRating);
 
   // create method to search for movies and set state on form submit
   const handleFormSubmit = (event) => {
@@ -48,7 +37,7 @@ function SearchMovies() {
             })
             .then(() => {
               const movieData = movieDataArr.map(movie => ({
-                movieId: movie.data.imdbID,
+                mediaId: movie.data.imdbID,
                 timeStamp: Date.now(),
                 createdAt: Date(),
                 actors: movie.data.Actors,
@@ -75,7 +64,7 @@ function SearchMovies() {
   const handleSaveMedia = useCallback((movie, userRating, userReview) => {
     // find the movie in `searchedMovies` state by the matching id
     const movieToSave = {
-      movieId: movie.movieId,
+      mediaId: movie.mediaId,
       timeStamp: Date.now(),
       createdAt: Date(),
       actors: movie.actors,
@@ -138,7 +127,6 @@ function SearchMovies() {
         resultArray={searchedMovies}
         savedArray={userData.savedMovies}
         username={userData.username}
-        setReviewInput={setReviewInput}
         cb={handleSaveMedia}
         />
       </Container>

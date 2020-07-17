@@ -18,22 +18,21 @@ function SearchCards(props) {
                     {props.resultArray.map((book) => {
                         return (
 
-                            <Card key={book.bookId} border='dark'>
+                            <Card key={book.mediaId} border='dark'>
                                 {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{book.title}</Card.Title>
                                     <p className='small'>Authors: {book.authors}</p>
                                     <Card.Text>{book.description}</Card.Text>
-                                    {props.username && (
-                                        <Button
-                                            disabled={props.savedArray?.some((savedBook) => savedBook.bookId === book.bookId)}
-                                            className='btn-block btn-info'
-                                            onClick={() => props.handleBtnClick(book.bookId)}>
-                                            {props.savedArray?.some((savedBook) => savedBook.bookId === book.bookId)
-                                                ? 'This book has already been saved!'
-                                                : 'Save this Book!'}
-                                        </Button>
-                                    )}
+
+                                    <RateReviewForSearched
+                                        username={props.username}
+                                        savedArray={props.savedArray}
+                                        mediatype={'book'}
+                                        media={book}
+                                        cb={props.cb}
+                                        link={'/saved_books'}
+                                    />
                                 </Card.Body>
                             </Card>
 
@@ -52,7 +51,7 @@ function SearchCards(props) {
                     {props.resultArray.map((music) => {
                         return (
 
-                            <Card key={music.musicId} border='dark'>
+                            <Card key={music.mediaId} border='dark'>
                                 {music.image ? <Card.Img src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{music.title}</Card.Title>
@@ -62,18 +61,15 @@ function SearchCards(props) {
                                         src={music.preview}
                                         controls
                                     />
-                                    {props.username && (
-                                        <Button
-                                            disabled={props.savedArray?.some((savedMusic) => savedMusic.musicId === music.musicId)}
-                                            className='btn-block btn-info'
-                                            onClick={() => {
-                                                props.handleSaveMusic(music.musicId)
-                                            }}>
-                                            {props.savedArray?.some((savedMusic) => savedMusic.musicId === music.musicId)
-                                                ? 'This has already been saved!'
-                                                : 'Save!'}
-                                        </Button>
-                                    )}
+
+                                    <RateReviewForSearched
+                                        username={props.username}
+                                        savedArray={props.savedArray}
+                                        mediatype={'movie'}
+                                        media={music}
+                                        cb={props.cb}
+                                        link={'/saved_music'}
+                                    />
                                 </Card.Body>
                             </Card>
 
@@ -93,7 +89,7 @@ function SearchCards(props) {
                     {props.resultArray.map((media) => {
                         return (
 
-                            <Card key={media.movieId} border='dark'>
+                            <Card key={media.mediaId} border='dark'>
                                 {media.image === 'N/A' ? null : <Card.Img src={media.image} alt={`The cover for ${media.title}`} variant='top' />}
                                 <Card.Body>
                                     <Card.Title>{media.title}</Card.Title>
@@ -111,7 +107,7 @@ function SearchCards(props) {
                                         mediatype={'movie'}
                                         media={media}
                                         cb={props.cb}
-                                        setReviewInput={props.setReviewInput}
+                                        link={'/saved_movies'}
                                     />
 
 
@@ -133,22 +129,21 @@ function SearchCards(props) {
                     {props.resultArray.map((game) => {
                         return (
 
-                            <Card key={game.gameId} border='dark'>
+                            <Card key={game.mediaId} border='dark'>
                                 {game.image ? <Card.Img src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}
                                 <Card.Body >
                                     <Card.Title>{game.title}</Card.Title>
                                     <p className='small'>Developer: {game.developer}</p>
                                     <Card.Text>{game.description}</Card.Text>
-                                    {props.username && (
-                                        <Button
-                                            disabled={props.savedArray?.some((savedGame) => savedGame.gameId === game.gameId)}
-                                            className='btn-block btn-info'
-                                            onClick={() => props.handleSaveGame()}>
-                                            {props.savedArray?.some((savedGame) => savedGame.gameId === game.gameId)
-                                                ? 'This game has already been saved!'
-                                                : 'Save this game!'}
-                                        </Button>
-                                    )}
+
+                                    <RateReviewForSearched
+                                        username={props.username}
+                                        savedArray={props.savedArray}
+                                        mediatype={'game'}
+                                        media={game}
+                                        cb={props.cb}
+                                        link={'/saved_games'}
+                                    />
                                 </Card.Body>
                             </Card>
 

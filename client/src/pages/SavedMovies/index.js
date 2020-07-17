@@ -19,7 +19,7 @@ function SavedMovies() {
 
   // set state to activate review form
   const [selectedMediaReview, setSelectedMediaReview] = useState('');
-  const [selectedMovieRating, setSelectedMovieRating] = useState('');
+  const [selectedMediaRating, setSelectedMediaRating] = useState(0);
 
 
   // get whole userData state object from App.js
@@ -71,7 +71,7 @@ function SavedMovies() {
   const startRating = (movie) => {
     console.log('movie: ', movie);
 
-    setSelectedMovieRating(movie);
+    setSelectedMediaRating(movie);
   }
 
   const handleRatingFormSubmit = (event) => {
@@ -92,14 +92,14 @@ function SavedMovies() {
 
     let updateCriteria = {
       type: 'Movie',
-      id: selectedMovieRating._id,
+      id: selectedMediaRating._id,
       userRating: userRating
     }
     console.log(updateCriteria);
 
     API.saveUserRating(updateCriteria, token)
       .then(() => setUserRating(null))
-      .then(() => setSelectedMovieRating(''))
+      .then(() => setSelectedMediaRating(0))
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   }
@@ -134,7 +134,7 @@ function SavedMovies() {
               username={userData.username}
               userData={userData}
               startRating={startRating}
-              selectedMovieRating={selectedMovieRating}
+              selectedMediaRating={selectedMediaRating}
               handleRatingFormSubmit={handleRatingFormSubmit}
               setUserRating={setUserRating}
               setHover={setHover}
