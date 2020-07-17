@@ -1,11 +1,5 @@
-
-html,
-body,
-#root,
-#root > div,
-div[data-reactroot] {
-  overflow-x: hidden;
-
+body {
+  font-family: 'Montserrat', sans-serif;
 }
 
 
@@ -25,10 +19,11 @@ body {
 
 
 .small {
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
 }
 
+/* eventually put this in component styling */
 /* card styling */
 .card {
   border: solid;
@@ -36,5 +31,9 @@ body {
   border-width: 20px;
   border-image-source: linear-gradient(to bottom right, rgb(97, 0, 253), rgb(190, 8, 223));
   margin-bottom: 24px !important;
+}
+
+.mediaImage {
+  border-radius: 0px !important;
 }
 
