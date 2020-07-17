@@ -20,6 +20,11 @@ function Home() {
   }
 
   const userData = useContext(UserInfoContext);
+  console.log("userDATA", userData);
+
+  // to pass into notifications so user knows who liked something
+  // const likerId = userData._id;
+  const likerUsername = userData.username;
 
   useEffect(() => {
 
@@ -27,7 +32,7 @@ function Home() {
 
       API.getUser(friend.id)
         .then(result => {
-  
+
           if (result.data.savedBooks.length > 0) {
 
             result.data.savedBooks.map(savedBook => {
@@ -71,6 +76,7 @@ function Home() {
                 _id: savedMusic._id,
                 username: friend.username,
                 picture: friend.picture,
+                userId: friend.id,
                 image: savedMusic.image,
                 title: savedMusic.title,
                 link: savedMusic.link,
@@ -103,6 +109,7 @@ function Home() {
                 _id: savedMovie._id,
                 username: friend.username,
                 picture: friend.picture,
+                userId: friend.id,
                 image: savedMovie.image,
                 title: savedMovie.title,
                 runtime: savedMovie.runtime,
@@ -136,6 +143,7 @@ function Home() {
                 _id: savedGame._id,
                 username: friend.username,
                 picture: friend.picture,
+                userId: friend.id,
                 image: savedGame.image,
                 title: savedGame.title,
                 developer: savedGame.developer,
@@ -151,21 +159,32 @@ function Home() {
 
           }
 
-      })
+
+          // }
+
+          // )
+
+        })
 
     });
 
-}, [userData.username]);
+
+    // }, [userData, userData.friends]);
+  }, [userData.username]);
 
 
-  const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes) => {
- 
+  const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes, ownerId, title) => {
+    // find the friend in `searchedUser` state by the matching id
+    // const userToSave = searchedUser.find((user) => user._id === userId);
+
+    // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
     if (!token) {
-        return false;
+      return false;
     }
 
-    
+
+
     let likeData = {
       mediaType: likeMediaType,
       mediaId: like_id,
@@ -177,25 +196,38 @@ function Home() {
       likes: mediaLikes
     }
 
+    // info for notification
+    const notficationData = {
+      likerUsername: likerUsername,
+      title: title,
+      ownerId: ownerId
+    }
+
     console.log("data for like, ", likeData)
     
     API.saveLike(likeData, token)
-        .then(() => {
-          console.log("Token: ", token, "likeData: ", likeData);
-            userData.getUserData();
-       
+      .then(() => {
+        console.log("Token: ", token, "likeData: ", likeData);
+        userData.getUserData();
 
-        })
-        .catch((err) => console.log(err));
+
+      })
+      .catch((err) => console.log(err));
 
     API.addLike(addLikeData, token)
-        .then(() => {
-         
-            userData.getUserData();
-       
+      .then(() => {
 
-        })
-        .catch((err) => console.log(err));     
+        userData.getUserData();
+
+
+      })
+      .catch((err) => console.log(err));
+    //call to send notification to user  
+    
+    API.addNotification(notficationData, token)
+      .then(() => {
+        userData.getUserData();
+      })
   });
 
 
@@ -216,32 +248,34 @@ function Home() {
 
               if (media.mediaType === "book") {
 
-                  
+
                 return (
 
                   <Card key={media._id} border='dark'>
 
                     <Card.Body>
                       {media.picture ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' /> : null}
-                      
+
                       <Card.Text>{media.username}</Card.Text>
                       <Card.Text>{moment(media.createdAt).calendar()}</Card.Text>
-                     
+
                       {media.image ? <Card.Img id="media-pic" src={media.image} alt={`The cover for ${media.title}`} variant='top' /> : null}
                       <Card.Title>{media.title}</Card.Title>
                       <p className='small'>Authors: {media.authors}</p>
                       <Card.Text>{media.description}</Card.Text>
-                      
-                     
-                      <LikeButton mediaLikes={media.likes} 
-                                  mediaType={media.mediaType}
-                                  mediaId={media._id}
-                                  cb={handleSaveLike}
-                                  userData={userData}
-                                  
-                                  
-                                  ></LikeButton>
-                      <Button className='btn-block btn-danger' >
+
+
+                      <LikeButton mediaLikes={media.likes}
+                        mediaType={media.mediaType}
+                        ownerId={media.userId}
+                        mediaId={media._id}
+                        title={media.title}
+                        cb={handleSaveLike}
+                        userData={userData}
+
+
+                      ></LikeButton>
+                      <Button id="comment-button" className='btn-block btn-danger' >
                         Comment
                       </Button>
                     </Card.Body>
@@ -256,7 +290,7 @@ function Home() {
 
                   <Card key={media._id} border='dark'>
                     <Card.Body>
-                      {media.picture ? <Card.Img id="profile-pic"  src={media.picture} alt={media.username} variant='top' /> : null}
+                      {media.picture ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' /> : null}
 
                       <Card.Text>{media.username}</Card.Text>
                       <Card.Text>{moment(media.createdAt).calendar()}</Card.Text>
@@ -264,18 +298,20 @@ function Home() {
                       <Card.Title>{media.title}</Card.Title>
 
                       <p className='small'>Artist: {media.artist}</p>
-                    
+
                       <ReactAudioPlayer id="music-player"
                         src={media.preview}
                         controls
                       />
-                      <LikeButton mediaLikes={media.likes} 
-                                  mediaType={media.mediaType}
-                                  mediaId={media._id}
-                                  cb={handleSaveLike}
-                                  userData={userData}          
+                      <LikeButton mediaLikes={media.likes}
+                      mediaType={media.mediaType}
+                      ownerId={media.userId}
+                      mediaId={media._id}
+                      title={media.title}
+                      cb={handleSaveLike}
+                      userData={userData}
                       ></LikeButton>
-                      <Button className='btn-block btn-danger' >
+                      <Button id="comment-button" className='btn-block btn-danger' >
                         Comment
                       </Button>
                     </Card.Body>
@@ -289,10 +325,10 @@ function Home() {
 
 
                   <Card key={media._id} border='dark'>
-                    
+
                     <Card.Body>
 
-                    {media.picture ? <Card.Img id="profile-pic"  src={media.picture} alt={media.username} variant='top' /> : null}
+                      {media.picture ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' /> : null}
                       <Card.Text>{media.username}</Card.Text>
                       <Card.Text>{moment(media.createdAt).calendar()}</Card.Text>
                       {media.image ? <Card.Img id="media-pic" src={media.image} alt={`The cover for ${media.title}`} variant='top' /> : null}
@@ -304,13 +340,15 @@ function Home() {
                       <p className='small'>Plot: {media.plot}</p>
                       <p className='small'>Rated: {media.rated}</p>
                       <p className='small'>Runtime: {media.runtime}</p>
-                      <LikeButton mediaLikes={media.likes} 
-                                  mediaType={media.mediaType}
-                                  mediaId={media._id}
-                                  cb={handleSaveLike}
-                                  userData={userData}          
+                      <LikeButton mediaLikes={media.likes}
+                      mediaType={media.mediaType}
+                      ownerId={media.userId}
+                      mediaId={media._id}
+                      title={media.title}
+                      cb={handleSaveLike}
+                      userData={userData}
                       ></LikeButton>
-                      <Button className='btn-block btn-danger' >
+                      <Button id="comment-button" className='btn-block btn-danger' >
                         Comment
                       </Button>
                     </Card.Body>
@@ -324,25 +362,27 @@ function Home() {
 
 
                   <Card key={media._id} border='dark'>
-                    
+
                     <Card.Body>
-                    {media.picture ? <Card.Img  id="profile-pic" src={media.picture} alt={media.username} variant='top' /> : null}
+                      {media.picture ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' /> : null}
                       <Card.Text>{media.username}</Card.Text>
                       <Card.Text>{moment(media.createdAt).calendar()}</Card.Text>
                       {media.image ? <Card.Img id="media-pic" src={media.image} alt={`The image for ${media.title}`} variant='top' /> : null}
                       <Card.Title>{media.title}</Card.Title>
                       <p className='small'>Developer: {media.developer}</p>
                       <Card.Text>{media.description}</Card.Text>
-                   
 
-                      <LikeButton mediaLikes={media.likes} 
-                                  mediaType={media.mediaType}
-                                  mediaId={media._id}
-                                  cb={handleSaveLike}
-                                  userData={userData}          
+
+                      <LikeButton mediaLikes={media.likes}
+                      mediaType={media.mediaType}
+                      ownerId={media.userId}
+                      mediaId={media._id}
+                      title={media.title}
+                      cb={handleSaveLike}
+                      userData={userData}
                       ></LikeButton>
 
-                      <Button className='btn-block btn-danger' >
+                      <Button id="comment-button" className='btn-block btn-danger' >
                         Comment
                       </Button>
                     </Card.Body>

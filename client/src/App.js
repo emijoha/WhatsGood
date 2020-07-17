@@ -39,6 +39,7 @@ function App() {
     movieCount: 0,
     gameCount: 0,
     friends: [],
+    notifications: [],
 
     // method to get user data after logging in
     getUserData: () => {
@@ -49,8 +50,8 @@ function App() {
         return false;
       }
       API.getMe(token)
-        .then(({ data: { _id, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends } }) =>
-          setUserInfo({ ...userInfo, _id, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends })
+        .then(({ data: { _id, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends, notifications } }) =>
+          setUserInfo({ ...userInfo, _id, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends, notifications })
         )
         .catch((err) => console.log(err));
     }

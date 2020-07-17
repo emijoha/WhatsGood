@@ -9,3 +9,8 @@
 #media-pic {
     width: 400px;
 }
+
+#comment-button {
+    background-color: rgb(0, 162, 255);
+    color: white;
+}
