@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Form, Button } from 'react-bootstrap';
-import { FaVideo } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVideo, faBookOpen, faGamepad, faMusic } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function RateReviewForSearched(props) {
@@ -9,6 +10,38 @@ function RateReviewForSearched(props) {
     const [userRating, setUserRating] = useState(0);
     const [hover, setHover] = useState(null);
     const [reviewInput, setReviewInput] = useState('');
+
+    const [faIcon, setFaIcon] = useState('');
+
+    useEffect(() => {
+
+        let icon;
+
+        console.log('mediaType: ', props.mediaTypeSg);
+
+        switch (props.mediaTypeSg) {
+            case 'Book':
+                icon = faBookOpen;
+                setFaIcon(icon);
+                console.log(icon);
+                break;
+            case 'Music':
+                icon = faMusic;
+                setFaIcon(icon);
+                console.log(icon);
+                break;
+            case 'Game':
+                icon = faGamepad;
+                setFaIcon(icon);
+                console.log(icon);
+                break;
+            default:
+                icon = faVideo;
+                setFaIcon(icon);
+                console.log(icon);
+        }
+
+    });
 
 
     return (
@@ -33,21 +66,22 @@ function RateReviewForSearched(props) {
                         :
                         <>
                             {console.log('savedArray: ', props.savedArray, 'media: ', props.media.mediaId)}
-                            <p className='bold'>Your Rating!
+                            <p className='bold'>Rate:
+                            <br></br>
                             {[...Array(5)].map((star, i) => {
                                 const ratingValue = i + 1;
                                 return (
                                     <label key={i}>
                                         <input type='radio' name={props.media.mediaId}
                                             value={i} onClick={() => setUserRating(ratingValue)} />
-                                        <FaVideo className='star' onMouseEnter={() => setHover(ratingValue)}
-                                            onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? 'black' : '#e4e5e9'} size={25} />
+                                        <FontAwesomeIcon key={ratingValue} icon={faIcon} className='star' onMouseEnter={() => setHover(ratingValue)}
+                                            onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? 'black' : '#e4e5e9'} size={'lg'} />
                                     </label>
                                 )
                             })}
                             </p>
 
-                            <p className='bold'>Your Review!</p>
+                            <p className='bold'>Review:</p>
 
                             <Form>
                                 <Col>

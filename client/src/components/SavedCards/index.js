@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardColumns, Card, Button } from 'react-bootstrap';
-import { FaVideo } from 'react-icons/fa';
-import ReactAudioPlayer from 'react-audio-player';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVideo, faBookOpen, faGamepad, faMusic } from '@fortawesome/free-solid-svg-icons';import ReactAudioPlayer from 'react-audio-player';
 import RateSaved from '../RateSaved';
 import ReviewSaved from '../ReviewSaved';
 import './style.css';
@@ -27,15 +27,18 @@ function SavedCards(props) {
                                     <p className='small'>Authors: {book.authors}</p>
                                     <Card.Text>{book.description}</Card.Text>
                                     <p className='bold'>Your Rating:
+                                    <br></br>
                                     {[...Array(book.userRating)].map((star, i) => {
                                         return (
                                             <label key={i}>
-                                                <FaVideo className='read-only-star' color='black' size={25} />
+                                                <FontAwesomeIcon className='read-only-star' icon={faBookOpen} color='black' size={'lg'} />
                                             </label>
                                         )
                                     })}
                                     </p>
-                                    <p className='bold'>Your Review: {book.userReview}</p>
+                                    <p className='bold'>Your Review:
+                                    <br></br>
+                                    {book.userReview}</p>
 
                                     <br></br>
 
@@ -97,15 +100,18 @@ function SavedCards(props) {
                                         controls
                                     />
                                     <p className='bold'>Your Rating:
+                                    <br></br>
                                     {[...Array(music.userRating)].map((star, i) => {
                                         return (
                                             <label key={i}>
-                                                <FaVideo className='read-only-star' color='black' size={25} />
+                                                <FontAwesomeIcon className='read-only-star' icon={faMusic} color='black' size={'lg'} />
                                             </label>
                                         )
                                     })}
                                     </p>
-                                    <p className='bold'>Your Review: {music.userReview}</p>
+                                    <p className='bold'>Your Review:
+                                    <br></br>
+                                    {music.userReview}</p>
 
                                     <br></br>
 
@@ -168,15 +174,18 @@ function SavedCards(props) {
                                     {media.rated === 'N/A' ? null : <p className='small'>Rated: {media.rated}</p>}
                                     {media.runtime === 'N/A' ? null : <p className='small'>Runtime: {media.runtime}</p>}
                                     <p className='bold'>Your Rating:
+                                    <br></br>
                                     {[...Array(media.userRating)].map((star, i) => {
                                         return (
                                             <label key={i}>
-                                                <FaVideo className='read-only-star' color='black' size={25} />
+                                                <FontAwesomeIcon className='read-only-star' icon={faVideo} color='black' size={'lg'} />
                                             </label>
                                         )
                                     })}
                                     </p>
-                                    <p className='bold'>Your Review: {media.userReview}</p>
+                                    <p className='bold'>Your Review:
+                                    <br></br>
+                                    {media.userReview}</p>
 
                                     <br></br>
 
@@ -233,10 +242,11 @@ function SavedCards(props) {
                                     <Card.Text>{game.description}</Card.Text>
 
                                     <p className='bold'>Your Rating:
+                                    <br></br>
                                     {[...Array(game.userRating)].map((star, i) => {
                                         return (
                                             <label key={i}>
-                                                <FaVideo className='read-only-star' color='black' size={25} />
+                                                <FontAwesomeIcon className='read-only-star' icon={faGamepad} color='black' size={'lg'} />
                                             </label>
                                         )
                                     })}
