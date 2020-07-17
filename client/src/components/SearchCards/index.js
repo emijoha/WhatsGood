@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
+import './style.css';
 
 function SearchCards(props) {
 
@@ -16,7 +17,7 @@ function SearchCards(props) {
                         return (
 
                             <Card key={book.bookId} border='dark'>
-                                {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+                                {book.image ? <Card.Img className='mediaImage' src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{book.title}</Card.Title>
                                     <p className='small'>Authors: {book.authors}</p>
@@ -50,7 +51,7 @@ function SearchCards(props) {
                         return (
 
                             <Card key={music.musicId} border='dark'>
-                                {music.image ? <Card.Img src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
+                                {music.image ? <Card.Img className='mediaImage' src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{music.title}</Card.Title>
                                     <p className='small'>Artist: {music.artist}</p>
@@ -91,7 +92,7 @@ function SearchCards(props) {
                         return (
 
                             <Card key={movie.movieId} border='dark'>
-                                {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
+                                {movie.image ? <Card.Img className='mediaImage' src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{movie.title}</Card.Title>
                                     <p className='small'>Released: {movie.released}</p>
@@ -130,7 +131,7 @@ function SearchCards(props) {
                         return (
 
                             <Card key={game.gameId} border='dark'>
-                                {game.image ? <Card.Img src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}
+                                {game.image ? <Card.Img className='mediaImage' src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}
                                 <Card.Body >
                                     <Card.Title>{game.title}</Card.Title>
                                     <p className='small'>Developer: {game.developer}</p>
@@ -159,7 +160,7 @@ function SearchCards(props) {
                 <CardColumns>
 
                     <Card key={props.searchedUser._id} border='dark'>
-                        <Card.Img src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
+                        <Card.Img className='mediaImage' src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
                         <Card.Body>
                             <Card.Title>{props.searchedUser.username}</Card.Title>
                             <p className='small'>Username: {props.searchedUser.username}</p>
