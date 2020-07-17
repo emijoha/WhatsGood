@@ -31,8 +31,10 @@ function FeedCard(props) {
                     </div>
                     <LikeButton mediaLikes={media.likes}
                         mediaType={media.mediaType}
+                        ownerId={media.userId}
                         mediaId={media._id}
-                        cb={props.handleSaveLike}
+                        title={media.title}
+                        cb={props.cb}
                         userData={props.userData}
                     />
                     <Button className='btn-block btn-danger' >
@@ -71,8 +73,10 @@ function FeedCard(props) {
                     </div>
                     <LikeButton mediaLikes={media.likes}
                         mediaType={media.mediaType}
+                        ownerId={media.userId}
                         mediaId={media._id}
-                        cb={props.handleSaveLike}
+                        title={media.title}
+                        cb={props.cb}
                         userData={props.userData}
                     />
                     <Button className='btn-block btn-danger' >
@@ -106,8 +110,10 @@ function FeedCard(props) {
                     </div>
                     <LikeButton mediaLikes={media.likes}
                         mediaType={media.mediaType}
+                        ownerId={media.userId}
                         mediaId={media._id}
-                        cb={props.handleSaveLike}
+                        title={media.title}
+                        cb={props.cb}
                         userData={props.userData}
                     />
                     <Button className='btn-block btn-danger' >
@@ -141,8 +147,10 @@ function FeedCard(props) {
                     </div>
                     <LikeButton mediaLikes={media.likes}
                         mediaType={media.mediaType}
+                        ownerId={media.userId}
                         mediaId={media._id}
-                        cb={props.handleSaveLike}
+                        title={media.title}
+                        cb={props.cb}
                         userData={props.userData}
                     />
                     <Button className='btn-block btn-danger' >

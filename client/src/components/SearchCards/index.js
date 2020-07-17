@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
+import './style.css';
 
 function SearchCards(props) {
 

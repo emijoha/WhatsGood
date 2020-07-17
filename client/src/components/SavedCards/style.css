@@ -1,0 +1,7 @@
+button {
+    color: darkmagenta !important;
+    background-color: rgba(255, 255, 255, 0) !important;
+    border-color: darkmagenta !important;
+    border: solid !important;
+    border-width: 1px !important;
+}

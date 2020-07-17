@@ -2,6 +2,7 @@ import React from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button, Form, Col } from 'react-bootstrap';
 import { FaVideo } from 'react-icons/fa';
 import ReactAudioPlayer from 'react-audio-player';
+import './style.css';
 
 function SavedCards(props) {
 
@@ -82,7 +83,7 @@ function SavedCards(props) {
                         return (
 
                             <Card key={movie._id} border='dark'>
-                                {movie.image ? <Card.Img className='mediaImage' vsrc={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
+                                {movie.image ? <Card.Img className='mediaImage' src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{movie.title}</Card.Title>
                                     <p className='small'>Released: {movie.released}</p>

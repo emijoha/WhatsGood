@@ -217,6 +217,7 @@ function Home() {
     
     API.addNotification(notficationData, token)
       .then(() => {
+        console.log("NOTIFICATION ADDED");
         userData.getUserData();
       })
   });
@@ -224,11 +225,11 @@ function Home() {
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
+      {/* <Jumbotron fluid className='text-light bg-dark'>
         <Container>
           <h1>Viewing friends Media!</h1>
         </Container>
-      </Jumbotron>
+      </Jumbotron> */}
       <Container >
        
         <Row className="justify-content-center">
@@ -239,7 +240,7 @@ function Home() {
                   <FeedCard
                     mediaType='book'
                     media={media}
-                    handleSaveLike={handleSaveLike}
+                    cb={handleSaveLike}
                     userData={userData}
                   />
                 );
@@ -249,7 +250,7 @@ function Home() {
                   <FeedCard
                     mediaType='music'
                     media={media}
-                    handleSaveLike={handleSaveLike}
+                    cb={handleSaveLike}
                     userData={userData}
                   />
                 );
@@ -259,7 +260,7 @@ function Home() {
                   <FeedCard
                     mediaType='movie'
                     media={media}
-                    handleSaveLike={handleSaveLike}
+                    cb={handleSaveLike}
                     userData={userData}
                   />
                 );
@@ -270,7 +271,7 @@ function Home() {
                   <FeedCard
                     mediaType='game'
                     media={media}
-                    handleSaveLike={handleSaveLike}
+                    cb={handleSaveLike}
                     userData={userData}
                   />
                 );
