@@ -5,5 +5,6 @@ module.exports = {
     Movie: require('./Movie'),
     Game: require('./Game'),
     Like: require('./Like'),
+    Comment: require('./Comment'),
     Notification: require('./Notification')
 };

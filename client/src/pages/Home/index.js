@@ -9,6 +9,7 @@ import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
 import LikeButton from '../../components/LikeButton';
+import CommentComponent from '../../components/CommentComponent';
 
 
 function Home() {
@@ -197,10 +198,11 @@ function Home() {
     }
 
     // info for notification
-    const notficationData = {
+    const notificationData = {
       likerUsername: likerUsername,
       title: title,
-      ownerId: ownerId
+      ownerId: ownerId, 
+      type: "like"
     }
 
     console.log("data for like, ", likeData)
@@ -224,12 +226,14 @@ function Home() {
       .catch((err) => console.log(err));
     //call to send notification to user  
     
-    API.addNotification(notficationData, token)
+    API.addNotification(notificationData, token)
       .then(() => {
         userData.getUserData();
       })
+      .catch(err => console.log(err));
   });
 
+  
 
   return (
 
@@ -275,9 +279,12 @@ function Home() {
 
 
                       ></LikeButton>
-                      <Button id="comment-button" className='btn-block btn-danger' >
-                        Comment
-                      </Button>
+                      <CommentComponent
+                      mediaId={media._id}
+                      mediaType={media.mediaType}
+                      title={media.title}
+                      ownerId={media.userId}
+                      commenterUsername={userData.username}/>
                     </Card.Body>
                   </Card>)
 
@@ -311,9 +318,12 @@ function Home() {
                       cb={handleSaveLike}
                       userData={userData}
                       ></LikeButton>
-                      <Button id="comment-button" className='btn-block btn-danger' >
-                        Comment
-                      </Button>
+                      <CommentComponent
+                      mediaId={media._id}
+                      mediaType={media.mediaType}
+                      title={media.title}
+                      ownerId={media.userId}
+                      commenterUsername={userData.username}/>
                     </Card.Body>
                   </Card>)
 
@@ -348,9 +358,12 @@ function Home() {
                       cb={handleSaveLike}
                       userData={userData}
                       ></LikeButton>
-                      <Button id="comment-button" className='btn-block btn-danger' >
-                        Comment
-                      </Button>
+                      <CommentComponent
+                      mediaId={media._id}
+                      mediaType={media.mediaType}
+                      title={media.title}
+                      ownerId={media.userId}
+                      commenterUsername={userData.username}/>
                     </Card.Body>
                   </Card>)
 
@@ -382,9 +395,12 @@ function Home() {
                       userData={userData}
                       ></LikeButton>
 
-                      <Button id="comment-button" className='btn-block btn-danger' >
-                        Comment
-                      </Button>
+                      <CommentComponent
+                      mediaId={media._id}
+                      mediaType={media.mediaType}
+                      title={media.title}
+                      ownerId={media.userId}
+                      commenterUsername={userData.username}/>
                     </Card.Body>
                   </Card>)
               }

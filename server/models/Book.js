@@ -28,6 +28,10 @@ const bookSchema = new Schema({
     required: true,
     default: 0
   },
+  comments: {
+    type: Schema.Types.ObjectId,
+    ref: 'Comment'
+  },
   image: {
     type: String,
   },

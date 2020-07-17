@@ -1,5 +1,5 @@
 // import user model
-const { User, Book, Music, Movie, Game, Like, Notification } = require('../models');
+const { User, Book, Music, Movie, Game, Like, Notification, Comment } = require('../models');
 
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
@@ -16,7 +16,7 @@ module.exports = {
     // console.log("params", params);
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends').populate('savedLikes').populate('notifications');
+    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends').populate('savedLikes').populate('notifications').populate({path: 'savedBooks', populate: {path: 'comments'}});
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
@@ -392,5 +392,78 @@ module.exports = {
       console.log(err);
       return res.status(400).json(err);
     }
+  },
+  async addMovieComment({ body }, res) {
+
+    try {
+      const newComment = await Comment.create(
+        { content: body.content }
+      );
+      const updatedMovie = await Movie.findOneAndUpdate(
+        { _id: body.mediaId },
+        { $addToSet: { comments: newComment._id } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedMovie);
+  
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+  async addBookComment({ body }, res) {
+
+    try {
+      const newComment = await Comment.create(
+        { content: body.content }
+      );
+      const updatedBook = await Book.findOneAndUpdate(
+        { _id: body.mediaId },
+        { $addToSet: { comments: newComment._id } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedBook);
+  
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+  async addMusicComment({ body }, res) {
+
+    try {
+      const newComment = await Comment.create(
+        { content: body.content }
+      );
+      const updatedMovie = await Music.findOneAndUpdate(
+        { _id: body.mediaId },
+        { $addToSet: { comments: newComment._id } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedMovie);
+  
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+  async addGameComment({ body }, res) {
+
+    try {
+      const newComment = await Comment.create(
+        { content: body.content }
+      );
+      const updatedGame = await Game.findOneAndUpdate(
+        { _id: body.mediaId },
+        { $addToSet: { comments: newComment._id } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedGame);
+  
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
   }
 };
+
