@@ -102,7 +102,7 @@ function SavedCards(props) {
                                         )
                                     })}
                                     </p>
-                                    <p className='bold'>Your Review: {media.movieReview}</p>
+                                    <p className='bold'>Your Review: {media.userReview}</p>
 
                                     <br></br>
 
@@ -124,7 +124,7 @@ function SavedCards(props) {
                                         mediaType={'Movie'}
                                         media={media}
                                         startReview={props.startReview}
-                                        selectedMovieReview={props.selectedMovieReview}
+                                        selectedMediaReview={props.selectedMediaReview}
                                         handleReviewFormSubmit={props.handleReviewFormSubmit}
                                         setReviewInput={props.setReviewInput}
                                     />

@@ -32,6 +32,16 @@ const gameSchema = new Schema({
   title: {
     type: String,
     required: true,
+  },
+  userReview: {
+    type: String,
+    required: false,
+    default: ''
+  },
+  userRating: {
+    type: Number,
+    required: false,
+    default: 0
   }
 });
 

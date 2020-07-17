@@ -54,7 +54,7 @@ const movieSchema = new Schema({
     type: String,
     required: false,
   },
-  movieReview: {
+  userReview: {
     type: String,
     required: false,
     default: ''

@@ -8,6 +8,7 @@ function RateReviewForSearched(props) {
 
     const [userRating, setUserRating] = useState(0);
     const [hover, setHover] = useState(null);
+    const [reviewInput, setReviewInput] = useState('');
   
 
     return (
@@ -21,7 +22,7 @@ function RateReviewForSearched(props) {
                         <>
 
                             <h6>You have saved this {props.mediatype} to your media pages! You can see it now in its new home, MyMedia!</h6>
-                            <Link to='saved_movies' >
+                            <Link to='/saved_movies'>
                                 <Button className='btn-block btn-success' onClick={() => console.log(( props.media ))}  >
                                     Go to My Movies
                                 </Button>
@@ -52,8 +53,8 @@ function RateReviewForSearched(props) {
                                 <Col>
                                     <Form.Control
                                         name={props.media.movieId}
-                                        defaultValue=''
-                                        onChange={(e) => props.setReviewInput(e.target.value)}
+                                        value={reviewInput}
+                                        onChange={(e) => setReviewInput(e.target.value)}
                                         type='text'
                                         size='md'
                                         as='textarea'
@@ -64,7 +65,7 @@ function RateReviewForSearched(props) {
                             </Form>
                             <Button
                                 className='btn-block btn-info'
-                                onClick={() => props.cb(props.media, userRating)}>
+                                onClick={() => props.cb(props.media, userRating, reviewInput)}>
                                 Save this Movie
                             </Button>
                         </>

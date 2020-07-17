@@ -37,6 +37,16 @@ const musicSchema = new Schema({
     type: String,
     required: true,
   },
+  userReview: {
+    type: String,
+    required: false,
+    default: ''
+  },
+  userRating: {
+    type: Number,
+    required: false,
+    default: 0
+  }
 });
 
 const Music = model('Music', musicSchema);

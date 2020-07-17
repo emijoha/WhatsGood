@@ -18,7 +18,7 @@ function SavedMovies() {
   const [hover, setHover] = useState(null);
 
   // set state to activate review form
-  const [selectedMovieReview, setSelectedMovieReview] = useState('');
+  const [selectedMediaReview, setSelectedMediaReview] = useState('');
   const [selectedMovieRating, setSelectedMovieRating] = useState('');
 
 
@@ -32,10 +32,10 @@ function SavedMovies() {
     window.scrollTo(0, 0)
   }, [])
 
-  const startReview = (movie) => {
-    console.log('movie: ', movie);
+  const startReview = (media) => {
+    console.log('media: ', media);
 
-    setSelectedMovieReview(movie);
+    setSelectedMediaReview(media);
   }
 
   const handleReviewFormSubmit = (event) => {
@@ -43,10 +43,10 @@ function SavedMovies() {
 
     console.log('hey dickhead');
 
-    saveMovieReview();
+    saveUserReview();
   }
 
-  const saveMovieReview = () => {
+  const saveUserReview = () => {
 
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
@@ -55,14 +55,15 @@ function SavedMovies() {
     }
 
     let updateCriteria = {
-      id: selectedMovieReview._id,
+      type: 'Movie',
+      id: selectedMediaReview._id,
       review: reviewInput
     }
     console.log(updateCriteria);
 
-    API.saveMovieReview(updateCriteria, token)
+    API.saveUserReview(updateCriteria, token)
       .then(() => setReviewInput(''))
-      .then(() => setSelectedMovieReview(''))
+      .then(() => setSelectedMediaReview(''))
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   }
@@ -90,6 +91,7 @@ function SavedMovies() {
     }
 
     let updateCriteria = {
+      type: 'Movie',
       id: selectedMovieRating._id,
       userRating: userRating
     }
@@ -139,7 +141,7 @@ function SavedMovies() {
               hover={hover}
               userRating={userRating}
               startReview={startReview}
-              selectedMovieReview={selectedMovieReview}
+              selectedMediaReview={selectedMediaReview}
               handleReviewFormSubmit={handleReviewFormSubmit}
               reviewInput={reviewInput}
               setReviewInput={setReviewInput}

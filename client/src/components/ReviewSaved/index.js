@@ -8,7 +8,7 @@ function ReviewSaved(props) {
         <>
             {props.username && (
                 <>
-                    {(props.media.movieReview === '') ?
+                    {(props.media.userReview === '') ?
                         <Button className='btn-block btn-success' onClick={() => props.startReview(props.media)}  >
                             Review this {props.mediaType}!
                         </Button>
@@ -22,9 +22,9 @@ function ReviewSaved(props) {
                 </>
             )}
 
-            {props.selectedMovieReview._id && (
+            {props.selectedMediaReview._id && (
                 <>
-                    {props.media._id === props.selectedMovieReview._id
+                    {props.media._id === props.selectedMediaReview._id
                         ?
                         <Form onSubmit={props.handleReviewFormSubmit}>
                             <Col>

@@ -72,7 +72,7 @@ function SearchMovies() {
 
   // create function to handle saving a movie to the database
 
-  const handleSaveMedia = useCallback((movie, userRating) => {
+  const handleSaveMedia = useCallback((movie, userRating, userReview) => {
     // find the movie in `searchedMovies` state by the matching id
     const movieToSave = {
       movieId: movie.movieId,
@@ -88,7 +88,7 @@ function SearchMovies() {
       title: movie.title,
       image: movie.image || '',
       userRating: userRating,
-      movieReview: reviewInput
+      userReview: userReview
     }
 
     console.log('movieToSave: ', movieToSave);
