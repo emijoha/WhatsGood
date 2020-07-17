@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import NotLoggedIn from '../../components/NotLoggedIn';
-import { Jumbotron, Container, CardColumns, Card, Button, Form, Col } from 'react-bootstrap';
-import { FaVideo } from 'react-icons/fa';
+import { Jumbotron, Container } from 'react-bootstrap';
 import SavedCards from '../../components/SavedCards';
 // savedMovies page does not currently use this component, left it as is for now
 // ratings/review form shoudl be seperate component with its own state, with just bare necessities of props needed from savedMovies state/functionality
@@ -14,7 +13,7 @@ import AuthService from '../../utils/auth';
 
 function SavedMovies() {
   const [reviewInput, setReviewInput] = useState('');
-  const [userRating, setUserRating] = useState(null);
+  const [userRating, setUserRating] = useState(0);
   const [hover, setHover] = useState(null);
 
   // set state to activate review form
@@ -40,8 +39,6 @@ function SavedMovies() {
 
   const handleReviewFormSubmit = (event) => {
     event.preventDefault();
-
-    console.log('hey dickhead');
 
     saveUserReview();
   }
@@ -77,8 +74,6 @@ function SavedMovies() {
   const handleRatingFormSubmit = (event) => {
     event.preventDefault();
 
-    console.log('hey asshole');
-
     saveUserRating();
   }
 
@@ -98,7 +93,7 @@ function SavedMovies() {
     console.log(updateCriteria);
 
     API.saveUserRating(updateCriteria, token)
-      .then(() => setUserRating(null))
+      .then(() => setUserRating(0))
       .then(() => setSelectedMediaRating(0))
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));

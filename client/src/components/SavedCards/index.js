@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Container, CardColumns, Card, Button, Form, Col } from 'react-bootstrap';
+import { CardColumns, Card, Button } from 'react-bootstrap';
 import { FaVideo } from 'react-icons/fa';
 import ReactAudioPlayer from 'react-audio-player';
 import RateSaved from '../../components/RateSaved';
@@ -25,9 +25,47 @@ function SavedCards(props) {
                                     <Card.Title>{book.title}</Card.Title>
                                     <p className='small'>Authors: {book.authors}</p>
                                     <Card.Text>{book.description}</Card.Text>
-                                    <Button className='btn-block btn-danger' onClick={() => props.handleDeleteBook(book._id)}>
-                                        Delete this Book!
+                                    <p className='bold'>Your Rating:
+                                    {[...Array(book.userRating)].map((star, i) => {
+                                        return (
+                                            <label key={i}>
+                                                <FaVideo className='read-only-star' color='black' size={25} />
+                                            </label>
+                                        )
+                                    })}
+                                    </p>
+                                    <p className='bold'>Your Review: {book.userReview}</p>
+
+                                    <br></br>
+
+                                    <RateSaved
+                                        username={props.username}
+                                        mediaType={'Book'}
+                                        media={book}
+                                        startRating={props.startRating}
+                                        selectedMediaRating={props.selectedMediaRating}
+                                        handleRatingFormSubmit={props.handleRatingFormSubmit}
+                                        setUserRating={props.setUserRating}
+                                        userRating={props.userRating}
+                                        setHover={props.setHover}
+                                        hover={props.hover}
+                                    />
+
+                                    <ReviewSaved
+                                        username={props.username}
+                                        mediaType={'Book'}
+                                        media={book}
+                                        startReview={props.startReview}
+                                        selectedMediaReview={props.selectedMediaReview}
+                                        handleReviewFormSubmit={props.handleReviewFormSubmit}
+                                        setReviewInput={props.setReviewInput}
+                                    />
+
+                                    <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMovie(book._id)}>
+                                        Delete this Movie!
                                     </Button>
+
+
                                 </Card.Body>
                             </Card>
 
@@ -57,6 +95,41 @@ function SavedCards(props) {
                                         src={music.preview}
                                         controls
                                     />
+                                    <p className='bold'>Your Rating:
+                                    {[...Array(music.userRating)].map((star, i) => {
+                                        return (
+                                            <label key={i}>
+                                                <FaVideo className='read-only-star' color='black' size={25} />
+                                            </label>
+                                        )
+                                    })}
+                                    </p>
+                                    <p className='bold'>Your Review: {music.userReview}</p>
+
+                                    <br></br>
+
+                                    <RateSaved
+                                        username={props.username}
+                                        mediaType={'Music'}
+                                        media={music}
+                                        startRating={props.startRating}
+                                        selectedMediaRating={props.selectedMediaRating}
+                                        handleRatingFormSubmit={props.handleRatingFormSubmit}
+                                        setUserRating={props.setUserRating}
+                                        userRating={props.userRating}
+                                        setHover={props.setHover}
+                                        hover={props.hover}
+                                    />
+
+                                    <ReviewSaved
+                                        username={props.username}
+                                        mediaType={'Music'}
+                                        media={music}
+                                        startReview={props.startReview}
+                                        selectedMediaReview={props.selectedMediaReview}
+                                        handleReviewFormSubmit={props.handleReviewFormSubmit}
+                                        setReviewInput={props.setReviewInput}
+                                    />
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMusic(music._id)}>
                                         Delete!
                                     </Button>
@@ -82,7 +155,7 @@ function SavedCards(props) {
                 <CardColumns>
                     {props.savedArray.map((media) => {
                         return (
-                            <Card key={media.movieId} border='dark'>
+                            <Card key={media.mediaId} border='dark'>
                                 {media.image === 'N/A' ? null : <Card.Img src={media.image} alt={`The cover for ${media.title}`} variant='top' />}
                                 <Card.Body>
                                     <Card.Title>{media.title}</Card.Title>
@@ -157,6 +230,43 @@ function SavedCards(props) {
                                     <Card.Title>{game.title}</Card.Title>
                                     <p className='small'>Developer: {game.developer}</p>
                                     <Card.Text>{game.description}</Card.Text>
+
+                                    <p className='bold'>Your Rating:
+                                    {[...Array(game.userRating)].map((star, i) => {
+                                        return (
+                                            <label key={i}>
+                                                <FaVideo className='read-only-star' color='black' size={25} />
+                                            </label>
+                                        )
+                                    })}
+                                    </p>
+                                    <p className='bold'>Your Review: {game.userReview}</p>
+
+                                    <br></br>
+
+                                    <RateSaved
+                                        username={props.username}
+                                        mediaType={'Game'}
+                                        media={game}
+                                        startRating={props.startRating}
+                                        selectedMediaRating={props.selectedMediaRating}
+                                        handleRatingFormSubmit={props.handleRatingFormSubmit}
+                                        setUserRating={props.setUserRating}
+                                        userRating={props.userRating}
+                                        setHover={props.setHover}
+                                        hover={props.hover}
+                                    />
+
+                                    <ReviewSaved
+                                        username={props.username}
+                                        mediaType={'Game'}
+                                        media={game}
+                                        startReview={props.startReview}
+                                        selectedMediaReview={props.selectedMediaReview}
+                                        handleReviewFormSubmit={props.handleReviewFormSubmit}
+                                        setReviewInput={props.setReviewInput}
+                                    />
+
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteGame(game._id)}>
                                         Delete this Game!
                                     </Button>
