@@ -30,43 +30,43 @@ function AppNavbar() {
         <Container fluid>
           {userData.username ? <Navbar.Brand id="navbar-brand" as={Link} to='/home'>
             <h5>WHAT'S GOOD</h5>
-          </Navbar.Brand> : 
-          <Navbar.Brand id="navbar-brand" as={Link} to='/'>
-            <h5>WHAT'S GOOD</h5>
-          </Navbar.Brand>}
+          </Navbar.Brand> :
+            <Navbar.Brand id="navbar-brand" as={Link} to='/'>
+              <h5>WHAT'S GOOD</h5>
+            </Navbar.Brand>}
 
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar-group'>
             <Nav className='ml-auto'>
 
-          
+
               {/* <Nav.Link className="nav-link-group" as={Link} to='/search-user'>
                 Search For Friends
               </Nav.Link> */}
-             
-              
-              
+
+
+
               {userData.username ?
-              
-              <NavDropdown className="nav-link-group" title="SEARCH" id="basic-nav-dropdown" >
-                <NavDropdown.Item href="/search-user">SEARCH FOR FRIENDS</NavDropdown.Item>
-                <NavDropdown.Item href="/search_books">SEARCH BOOKS</NavDropdown.Item>
-                <NavDropdown.Item href="/search_music">SEARCH MUSIC</NavDropdown.Item>
-                <NavDropdown.Item href="/search_movies">SEARCH MOVIES</NavDropdown.Item>
-                <NavDropdown.Item href="/search_games">SEARCH GAMES</NavDropdown.Item>
-              </NavDropdown>
 
-              :
+                <NavDropdown className="nav-link-group" title="SEARCH" id="basic-nav-dropdown" >
+                  <NavDropdown.Item href="/search-user">SEARCH FOR FRIENDS</NavDropdown.Item>
+                  <NavDropdown.Item href="/search_books">SEARCH BOOKS</NavDropdown.Item>
+                  <NavDropdown.Item href="/search_music">SEARCH MUSIC</NavDropdown.Item>
+                  <NavDropdown.Item href="/search_movies">SEARCH MOVIES</NavDropdown.Item>
+                  <NavDropdown.Item href="/search_games">SEARCH GAMES</NavDropdown.Item>
+                </NavDropdown>
 
-              <NavDropdown className="nav-link-group" title="SEARCH" id="basic-nav-dropdown" alignRight>
-                <NavDropdown.Item href="/search-user">SEARCH FOR FRIENDS</NavDropdown.Item>
-                <NavDropdown.Item href="/search_books">SEARCH BOOKS</NavDropdown.Item>
-                <NavDropdown.Item href="/search_music">SEARCH MUSIC</NavDropdown.Item>
-                <NavDropdown.Item href="/search_movies">SEARCH MOVIES</NavDropdown.Item>
-                <NavDropdown.Item href="/search_games">SEARCH GAMES</NavDropdown.Item>
-              </NavDropdown>
-              
-              
+                :
+
+                <NavDropdown className="nav-link-group" title="SEARCH" id="basic-nav-dropdown" alignRight>
+                  <NavDropdown.Item href="/search-user">SEARCH FOR FRIENDS</NavDropdown.Item>
+                  <NavDropdown.Item href="/search_books">SEARCH BOOKS</NavDropdown.Item>
+                  <NavDropdown.Item href="/search_music">SEARCH MUSIC</NavDropdown.Item>
+                  <NavDropdown.Item href="/search_movies">SEARCH MOVIES</NavDropdown.Item>
+                  <NavDropdown.Item href="/search_games">SEARCH GAMES</NavDropdown.Item>
+                </NavDropdown>
+
+
               }
 
 
@@ -81,27 +81,25 @@ function AppNavbar() {
               {userData.username && <Nav.Link className="nav-link-group" as={Link} to='/saved-friends'>
                 MY FRIENDS
               </Nav.Link>}
-              
+
 
               {userData.notifications.length > 0 && (<h4>{userData.notifications.length}</h4>)}
 
-              {userData.username && <NavDropdown alignRight title={
-                <ProfilePic
-                  picture={userData.picture}
-                  username={userData.username}
-                />
-              } >
-
+              {userData.username && 
+                <NavDropdown alignRight title={
+                  <ProfilePic
+                    picture={userData.picture}
+                    username={userData.username}
+                  />
+                }>
                 <NavDropdown.Item onClick={() => setShowModal(true)}>UPLOAD PROFILE PIC</NavDropdown.Item>
-
                 {userData.notifications.map((notification) => {
-                  {console.log("notification in navbar", notification)}
+                  { console.log("notification in navbar", notification) }
                   return (
                     <NotificationDropdownItem
-                    likerUsername={notification.likerUsername}
-                    title={notification.title}
-                    notificationId={notification._id}/>
-                    
+                      likerUsername={notification.likerUsername}
+                      title={notification.title}
+                      notificationId={notification._id} />
                   )
                 })}
 

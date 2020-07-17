@@ -42,7 +42,7 @@ function SavedGames() {
     }
 
     let updateCriteria = {
-      type: 'Game',
+      type: selectedMediaReview.mediaType,
       id: selectedMediaReview._id,
       review: reviewInput
     }
@@ -76,7 +76,7 @@ function SavedGames() {
     }
 
     let updateCriteria = {
-      type: 'Game',
+      type: selectedMediaRating.mediaType,
       id: selectedMediaRating._id,
       userRating: userRating
     }

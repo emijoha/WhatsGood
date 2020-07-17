@@ -15,6 +15,10 @@ const musicSchema = new Schema({
     type: String,
     required: true,
   },
+  mediaType: {
+    type: String,
+    default: 'Music'
+  },
   timeStamp: {
     type: Number,
     required: true,

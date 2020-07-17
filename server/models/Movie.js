@@ -6,6 +6,10 @@ const movieSchema = new Schema({
     type: String,
     required: true,
   },
+  mediaType: {
+    type: String,
+    default: 'Movie'
+  },
   timeStamp: {
     type: Number,
     required: true,

@@ -48,7 +48,7 @@ function SavedMusic() {
     }
 
     let updateCriteria = {
-      type: 'Music',
+      type: selectedMediaReview.mediaType,
       id: selectedMediaReview._id,
       review: reviewInput
     }
@@ -82,7 +82,7 @@ function SavedMusic() {
     }
 
     let updateCriteria = {
-      type: 'Music',
+      type: selectedMediaRating.mediaType,
       id: selectedMediaRating._id,
       userRating: userRating
     }

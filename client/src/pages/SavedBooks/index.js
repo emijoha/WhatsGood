@@ -43,7 +43,7 @@ function SavedBooks() {
     }
 
     let updateCriteria = {
-      type: 'Book',
+      type: selectedMediaReview.mediaType,
       id: selectedMediaReview._id,
       review: reviewInput
     }
@@ -77,7 +77,7 @@ function SavedBooks() {
     }
 
     let updateCriteria = {
-      type: 'Book',
+      type: selectedMediaRating.mediaType,
       id: selectedMediaRating._id,
       userRating: userRating
     }

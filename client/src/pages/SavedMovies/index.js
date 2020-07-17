@@ -52,7 +52,7 @@ function SavedMovies() {
     }
 
     let updateCriteria = {
-      type: 'Movie',
+      type: selectedMediaReview.mediaType,
       id: selectedMediaReview._id,
       review: reviewInput
     }
@@ -65,10 +65,10 @@ function SavedMovies() {
       .catch((err) => console.log(err));
   }
 
-  const startRating = (movie) => {
-    console.log('movie: ', movie);
+  const startRating = (media) => {
+    console.log('movie: ', media);
 
-    setSelectedMediaRating(movie);
+    setSelectedMediaRating(media);
   }
 
   const handleRatingFormSubmit = (event) => {
@@ -86,7 +86,7 @@ function SavedMovies() {
     }
 
     let updateCriteria = {
-      type: 'Movie',
+      type: selectedMediaRating.mediaType,
       id: selectedMediaRating._id,
       userRating: userRating
     }

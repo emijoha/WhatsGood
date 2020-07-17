@@ -16,6 +16,10 @@ const bookSchema = new Schema({
     type: String,
     required: true,
   },
+  mediaType: {
+    type: String,
+    default: 'Book'
+  },
   timeStamp: {
     type: Number,
     required: true,

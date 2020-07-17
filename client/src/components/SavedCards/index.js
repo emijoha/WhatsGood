@@ -2,8 +2,9 @@ import React from 'react';
 import { CardColumns, Card, Button } from 'react-bootstrap';
 import { FaVideo } from 'react-icons/fa';
 import ReactAudioPlayer from 'react-audio-player';
-import RateSaved from '../../components/RateSaved';
+import RateSaved from '../RateSaved';
 import ReviewSaved from '../ReviewSaved';
+import './style.css';
 
 function SavedCards(props) {
 
@@ -19,8 +20,8 @@ function SavedCards(props) {
                     {props.savedArray.map((book) => {
                         return (
 
-                            <Card className='mediaCard' key={book._id} border='dark'>
-                                {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+                            <Card key={book._id} border='dark'>
+                                {book.image ? <Card.Img className='mediaImage' src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{book.title}</Card.Title>
                                     <p className='small'>Authors: {book.authors}</p>
@@ -86,8 +87,8 @@ function SavedCards(props) {
                     {props.savedArray.map((music) => {
                         return (
 
-                            <Card className='mediaCard' key={music._id} border='dark'>
-                                {music.image ? <Card.Img src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
+                            <Card key={music._id} border='dark'>
+                                {music.image ? <Card.Img className='mediaImage' src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{music.title}</Card.Title>
                                     <p className='small'>Artist: {music.artist}</p>
@@ -156,7 +157,7 @@ function SavedCards(props) {
                     {props.savedArray.map((media) => {
                         return (
                             <Card key={media.mediaId} border='dark'>
-                                {media.image === 'N/A' ? null : <Card.Img src={media.image} alt={`The cover for ${media.title}`} variant='top' />}
+                                {media.image === 'N/A' ? null : <Card.Img className='mediaImage' src={media.image} alt={`The cover for ${media.title}`} variant='top' />}
                                 <Card.Body>
                                     <Card.Title>{media.title}</Card.Title>
                                     {media.released === 'N/A' ? null : <p className='small'>Released: {media.released}</p>}
@@ -224,8 +225,8 @@ function SavedCards(props) {
                     {props.savedArray.map((game) => {
                         return (
 
-                            <Card className='mediaCard' key={game._id} border='dark'>
-                                {game.image ? <Card.Img src={game.image} alt={`The image for ${game.title}`} variant='top' /> : null}
+                            <Card key={game._id} border='dark'>
+                                {game.image ? <Card.Img className='mediaImage' src={game.image} alt={`The image for ${game.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{game.title}</Card.Title>
                                     <p className='small'>Developer: {game.developer}</p>
@@ -292,8 +293,8 @@ function SavedCards(props) {
                         console.log("this is my friend, ", friend)
                         return (
 
-                            <Card className='mediaCard' key={friend._id} border='dark'>
-                                {friend.picture ? <Card.Img src={friend.picture} alt={friend.username} variant='top' /> : null}
+                            <Card key={friend._id} border='dark'>
+                                {friend.picture ? <Card.Img className='mediaImage' src={friend.picture} alt={friend.username} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{friend.username}</Card.Title>
                                     <p className='small'>Email: {friend.email}</p>

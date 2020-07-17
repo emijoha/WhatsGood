@@ -14,6 +14,10 @@ const gameSchema = new Schema({
     type: String,
     required: true,
   },
+  mediaType: {
+    type: String,
+    default: 'Game'
+  },
   timeStamp: {
     type: Number,
     required: true,
