@@ -29,6 +29,8 @@ function SearchCards(props) {
                                         username={props.username}
                                         savedArray={props.savedArray}
                                         mediatype={'book'}
+                                        mediaType={'Books'}
+                                        mediaTypeSg={'Book'}
                                         media={book}
                                         cb={props.cb}
                                         link={'/saved_books'}
@@ -65,7 +67,9 @@ function SearchCards(props) {
                                     <RateReviewForSearched
                                         username={props.username}
                                         savedArray={props.savedArray}
-                                        mediatype={'movie'}
+                                        mediatype={'music'}
+                                        mediaType={'Music'}
+                                        mediaTypeSg={'Music'}
                                         media={music}
                                         cb={props.cb}
                                         link={'/saved_music'}
@@ -105,6 +109,8 @@ function SearchCards(props) {
                                         username={props.username}
                                         savedArray={props.savedArray}
                                         mediatype={'movie'}
+                                        mediaType={'Movies'}
+                                        mediaTypeSg={'Movie'}
                                         media={media}
                                         cb={props.cb}
                                         link={'/saved_movies'}
@@ -140,6 +146,8 @@ function SearchCards(props) {
                                         username={props.username}
                                         savedArray={props.savedArray}
                                         mediatype={'game'}
+                                        mediaType={'Games'}
+                                        mediaTypeSg={'Game'}
                                         media={game}
                                         cb={props.cb}
                                         link={'/saved_games'}

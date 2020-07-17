@@ -24,7 +24,7 @@ function RateReviewForSearched(props) {
                             <h6>You have saved this {props.mediatype} to your media pages! You can see it now in its new home, MyMedia!</h6>
                             <Link to={props.link}>
                                 <Button className='btn-block btn-success' onClick={() => console.log((props.media))}  >
-                                    Go to My Movies
+                                    Go to My {props.mediaType}
                                 </Button>
                             </Link>
 
@@ -66,7 +66,7 @@ function RateReviewForSearched(props) {
                             <Button
                                 className='btn-block btn-info'
                                 onClick={() => props.cb(props.media, userRating, reviewInput)}>
-                                Save this Movie
+                                Save this {props.mediaTypeSg}
                             </Button>
                         </>
                     }

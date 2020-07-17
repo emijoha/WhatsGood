@@ -61,8 +61,8 @@ function SavedCards(props) {
                                         setReviewInput={props.setReviewInput}
                                     />
 
-                                    <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMovie(book._id)}>
-                                        Delete this Movie!
+                                    <Button className='btn-block btn-danger' onClick={() => props.handleDeleteBook(book._id)}>
+                                        Delete this Book!
                                     </Button>
 
 
