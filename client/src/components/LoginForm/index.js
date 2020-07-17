@@ -2,10 +2,12 @@
 
 import React, { useState, useContext } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
+import "./style.css";
 
 import UserInfoContext from '../../utils/UserInfoContext';
 import { loginUser } from '../../utils/API';
 import AuthService from '../../utils/auth';
+
 
 function LoginForm() {
   const [userFormData, setUserFormData] = useState({ username: '', password: '' });
@@ -43,14 +45,17 @@ function LoginForm() {
   };
 
   return (
-    <>
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+    <div className="form-outer-div">
+    
+      <Form  noValidate validated={validated} onSubmit={handleFormSubmit}>
+        <h5>LOGIN</h5>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           {errorText || 'Something went wrong with your login credentials!'}
         </Alert>
         <Form.Group>
-          <Form.Label htmlFor='username'>Username</Form.Label>
+          <Form.Label className="form-label" htmlFor='username'>USERNAME</Form.Label>
           <Form.Control
+            className="form-input"
             type='text'
             placeholder='Your username'
             name='username'
@@ -62,8 +67,9 @@ function LoginForm() {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='password'>Password</Form.Label>
+          <Form.Label className="form-label" htmlFor='password'>PASSWORD</Form.Label>
           <Form.Control
+            className="form-input"
             type='password'
             placeholder='Your password'
             name='password'
@@ -73,11 +79,13 @@ function LoginForm() {
           />
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
-        <Button disabled={!(userFormData.username && userFormData.password)} type='submit' variant='success'>
-          Submit
+        <div className="text-right">
+        <Button className="form-button" disabled={!(userFormData.username && userFormData.password)} type='submit' variant='success'>
+          SUBMIT
         </Button>
+        </div>
       </Form>
-    </>
+    </div>
   );
 }
 
