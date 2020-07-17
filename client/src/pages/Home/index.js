@@ -10,6 +10,8 @@ import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
 import LikeButton from '../../components/LikeButton';
 
+import FeedCard from '../../components/FeedCard';
+
 
 function Home() {
 
@@ -35,7 +37,7 @@ function Home() {
 
       API.getUser(friend.id)
         .then(result => {
-  
+
           if (result.data.savedBooks.length > 0) {
 
             result.data.savedBooks.map(savedBook => {
@@ -154,32 +156,19 @@ function Home() {
                 description: savedGame.description,
                 likes: savedGame.likes
               }
-
-
-
-
-
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedGameData].sort(compareTimeStamp))
-
-
             })
-
-
           }
 
 
-        // }
+          // }
 
-        // )
+          // )
 
-      })
-
+        })
     });
-
-
-  // }, [userData, userData.friends]);
-}, [userData.username]);
-
+    // }, [userData, userData.friends]);
+  }, [userData.username]);
 
   const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes) => {
     // find the friend in `searchedUser` state by the matching id
@@ -188,10 +177,8 @@ function Home() {
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
     if (!token) {
-        return false;
+      return false;
     }
-
-    
 
     let likeData = {
       mediaType: likeMediaType,
@@ -207,30 +194,22 @@ function Home() {
     console.log("data for like, ", likeData)
     // send the friend data to our api
     API.saveLike(likeData, token)
-        .then(() => {
-          console.log("Token: ", token, "likeData: ", likeData);
-            userData.getUserData();
-       
+      .then(() => {
+        console.log("Token: ", token, "likeData: ", likeData);
+        userData.getUserData();
 
-        })
-        .catch((err) => console.log(err));
+
+      })
+      .catch((err) => console.log(err));
 
     API.addLike(addLikeData, token)
-        .then(() => {
-         
-            userData.getUserData();
-       
-
-        })
-        .catch((err) => console.log(err));     
+      .then(() => {
+        userData.getUserData();
+      })
+      .catch((err) => console.log(err));
   });
 
-
-
-
-
   console.log("this is allFriendsMediaState outside of the loop: ", allFriendsMediaState);
-
 
   // DELETE BOOK FUNCTION THAT COULD BE MODIFIED TO REMOVE FRIENDS
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
@@ -248,18 +227,12 @@ function Home() {
   // };
 
   return (
-
-
-
     <>
       <Jumbotron fluid className='text-light bg-dark'>
-
         <Container>
           <h1>Viewing friends Media!</h1>
         </Container>
-
       </Jumbotron>
-
       <Container >
         <Row className="justify-content-center">
           <h2>
@@ -268,161 +241,49 @@ function Home() {
         </Row>
         <Row className="justify-content-center">
           <Col xs={12} md={8} >
-
-
             {allFriendsMediaState.map(media => {
-              // if (friend.savedMusic === []) {
-              //   return
-              // }
-
               if (media.mediaType === "book") {
-
-                  
                 return (
-
-                  <Card key={media._id} border='dark'>
-
-                    <Card.Body>
-                      {media.picture ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' /> : null}
-                      
-                      <Card.Text>{media.username}</Card.Text>
-                      <Card.Text>{moment(media.createdAt).calendar()}</Card.Text>
-                     
-                      {media.image ? <Card.Img id="media-pic" src={media.image} alt={`The cover for ${media.title}`} variant='top' /> : null}
-                      <Card.Title>{media.title}</Card.Title>
-                      <p className='small'>Authors: {media.authors}</p>
-                      <Card.Text>{media.description}</Card.Text>
-                      
-                     
-                      <LikeButton mediaLikes={media.likes} 
-                                  mediaType={media.mediaType}
-                                  mediaId={media._id}
-                                  cb={handleSaveLike}
-                                  userData={userData}
-                                  
-                                  
-                                  ></LikeButton>
-                      <Button className='btn-block btn-danger' >
-                        Comment
-                      </Button>
-                    </Card.Body>
-                  </Card>)
-
+                  <FeedCard
+                    mediaType='book'
+                    media={media}
+                    handleSaveLike={handleSaveLike}
+                    userData={userData}
+                  />
+                );
               }
-
               if (media.mediaType === "music") {
-
                 return (
-
-
-                  <Card key={media._id} border='dark'>
-                    <Card.Body>
-                      {media.picture ? <Card.Img id="profile-pic"  src={media.picture} alt={media.username} variant='top' /> : null}
-
-                      <Card.Text>{media.username}</Card.Text>
-                      <Card.Text>{moment(media.createdAt).calendar()}</Card.Text>
-                      <Card.Img id="media-pic" src={media.image} alt={media.artist} variant='top' />
-                      <Card.Title>{media.title}</Card.Title>
-
-                      <p className='small'>Artist: {media.artist}</p>
-                    
-                      <ReactAudioPlayer id="music-player"
-                        src={media.preview}
-                        controls
-                      />
-                      <LikeButton mediaLikes={media.likes} 
-                                  mediaType={media.mediaType}
-                                  mediaId={media._id}
-                                  cb={handleSaveLike}
-                                  userData={userData}          
-                      ></LikeButton>
-                      <Button className='btn-block btn-danger' >
-                        Comment
-                      </Button>
-                    </Card.Body>
-                  </Card>)
-
-
-
+                  <FeedCard
+                    mediaType='music'
+                    media={media}
+                    handleSaveLike={handleSaveLike}
+                    userData={userData}
+                  />
+                );
               }
-
               if (media.mediaType === "movie") {
-
                 return (
-
-
-                  <Card key={media._id} border='dark'>
-                    
-                    <Card.Body>
-
-                    {media.picture ? <Card.Img id="profile-pic"  src={media.picture} alt={media.username} variant='top' /> : null}
-                      <Card.Text>{media.username}</Card.Text>
-                      <Card.Text>{moment(media.createdAt).calendar()}</Card.Text>
-                      {media.image ? <Card.Img id="media-pic" src={media.image} alt={`The cover for ${media.title}`} variant='top' /> : null}
-                      <Card.Title>{media.title}</Card.Title>
-                      <p className='small'>Released: {media.released}</p>
-                      <p className='small'>Actors: {media.actors}</p>
-                      <p className='small'>Director: {media.director}</p>
-                      <p className='small'>Genre: {media.genre}</p>
-                      <p className='small'>Plot: {media.plot}</p>
-                      <p className='small'>Rated: {media.rated}</p>
-                      <p className='small'>Runtime: {media.runtime}</p>
-                      <LikeButton mediaLikes={media.likes} 
-                                  mediaType={media.mediaType}
-                                  mediaId={media._id}
-                                  cb={handleSaveLike}
-                                  userData={userData}          
-                      ></LikeButton>
-                      <Button className='btn-block btn-danger' >
-                        Comment
-                      </Button>
-                    </Card.Body>
-                  </Card>)
-
-
-
+                  <FeedCard
+                    mediaType='movie'
+                    media={media}
+                    handleSaveLike={handleSaveLike}
+                    userData={userData}
+                  />
+                );
               }
 
               if (media.mediaType === "game") {
-
                 return (
-
-
-                  <Card key={media._id} border='dark'>
-                    
-                    <Card.Body>
-                    {media.picture ? <Card.Img  id="profile-pic" src={media.picture} alt={media.username} variant='top' /> : null}
-                      <Card.Text>{media.username}</Card.Text>
-                      <Card.Text>{moment(media.createdAt).calendar()}</Card.Text>
-                      {media.image ? <Card.Img id="media-pic" src={media.image} alt={`The image for ${media.title}`} variant='top' /> : null}
-                      <Card.Title>{media.title}</Card.Title>
-                      <p className='small'>Developer: {media.developer}</p>
-                      <Card.Text>{media.description}</Card.Text>
-                   
-
-                      <LikeButton mediaLikes={media.likes} 
-                                  mediaType={media.mediaType}
-                                  mediaId={media._id}
-                                  cb={handleSaveLike}
-                                  userData={userData}          
-                      ></LikeButton>
-
-                      <Button className='btn-block btn-danger' >
-                        Comment
-                      </Button>
-                    </Card.Body>
-                  </Card>)
-
-
-
+                  <FeedCard
+                    mediaType='game'
+                    media={media}
+                    handleSaveLike={handleSaveLike}
+                    userData={userData}
+                  />
+                );
               }
-
-            }
-
-            )
-
-
-            }
+            })}
           </Col>
         </Row>
       </Container>

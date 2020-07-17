@@ -1,5 +1,5 @@
 body {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 h1,
@@ -12,10 +12,11 @@ h6 {
 }
 
 .small {
-  font-weight: 300;
+  font-weight: 400;
   font-style: italic;
 }
 
+/* eventually put this in component styling */
 /* card styling */
 .card {
   border: solid;
@@ -23,5 +24,9 @@ h6 {
   border-width: 20px;
   border-image-source: linear-gradient(to bottom right, rgb(97, 0, 253), rgb(190, 8, 223));
   margin-bottom: 24px !important;
+}
+
+.mediaImage {
+  border-radius: 0px !important;
 }
 

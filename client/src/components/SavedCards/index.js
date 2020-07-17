@@ -17,8 +17,8 @@ function SavedCards(props) {
                     {props.savedArray.map((book) => {
                         return (
 
-                            <Card className='mediaCard' key={book._id} border='dark'>
-                                {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+                            <Card key={book._id} border='dark'>
+                                {book.image ? <Card.Img className='mediaImage' src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{book.title}</Card.Title>
                                     <p className='small'>Authors: {book.authors}</p>
@@ -46,8 +46,8 @@ function SavedCards(props) {
                     {props.savedArray.map((music) => {
                         return (
 
-                            <Card className='mediaCard' key={music._id} border='dark'>
-                                {music.image ? <Card.Img src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
+                            <Card key={music._id} border='dark'>
+                                {music.image ? <Card.Img className='mediaImage' src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{music.title}</Card.Title>
                                     <p className='small'>Artist: {music.artist}</p>
@@ -81,8 +81,8 @@ function SavedCards(props) {
                     {props.savedArray.map((movie) => {
                         return (
 
-                            <Card className='mediaCard' key={movie._id} border='dark'>
-                                {movie.image ? <Card.Img src={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
+                            <Card key={movie._id} border='dark'>
+                                {movie.image ? <Card.Img className='mediaImage' vsrc={movie.image} alt={`The cover for ${movie.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{movie.title}</Card.Title>
                                     <p className='small'>Released: {movie.released}</p>
@@ -115,8 +115,8 @@ function SavedCards(props) {
                     {props.savedArray.map((game) => {
                         return (
 
-                            <Card className='mediaCard' key={game._id} border='dark'>
-                                {game.image ? <Card.Img src={game.image} alt={`The image for ${game.title}`} variant='top' /> : null}
+                            <Card key={game._id} border='dark'>
+                                {game.image ? <Card.Img className='mediaImage' src={game.image} alt={`The image for ${game.title}`} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{game.title}</Card.Title>
                                     <p className='small'>Developer: {game.developer}</p>
@@ -146,8 +146,8 @@ function SavedCards(props) {
                         console.log("this is my friend, ", friend)
                         return (
 
-                            <Card className='mediaCard' key={friend._id} border='dark'>
-                                {friend.picture ? <Card.Img src={friend.picture} alt={friend.username} variant='top' /> : null}
+                            <Card key={friend._id} border='dark'>
+                                {friend.picture ? <Card.Img className='mediaImage' src={friend.picture} alt={friend.username} variant='top' /> : null}
                                 <Card.Body>
                                     <Card.Title>{friend.username}</Card.Title>
                                     <p className='small'>Email: {friend.email}</p>
