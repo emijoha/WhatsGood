@@ -38,7 +38,39 @@ h6 {
   border: solid;
   border-image-slice: 1;
   border-width: 20px;
-  border-image-source: linear-gradient(to bottom right, rgb(97, 0, 253), rgb(190, 8, 223));
+  border-image-source: linear-gradient(to top right,  rgb(164, 253, 0), rgb(34, 201, 243));
+  margin-bottom: 24px !important;
+}
+
+.purple1 {
+  border: solid;
+  border-image-slice: 1;
+  border-width: 20px;
+  border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
+  margin-bottom: 24px !important;
+}
+
+.purple2 {
+  border: solid;
+  border-image-slice: 1;
+  border-width: 20px;
+  border-image-source: linear-gradient(to top right,  rgb(75, 13, 246), rgb(171, 0, 214));
+  margin-bottom: 24px !important;
+}
+
+.purple3 {
+  border: solid;
+  border-image-slice: 1;
+  border-width: 20px;
+  border-image-source: linear-gradient(to bottom left, rgb(102, 13, 246), rgb(214, 0, 168));
+  margin-bottom: 24px !important;
+}
+
+.purple4 {
+  border: solid;
+  border-image-slice: 1;
+  border-width: 20px;
+  border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
   margin-bottom: 24px !important;
 }
 
