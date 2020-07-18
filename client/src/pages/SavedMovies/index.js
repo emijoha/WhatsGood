@@ -31,6 +31,36 @@ function SavedMovies() {
     window.scrollTo(0, 0)
   }, [])
 
+  const makeFavorite = (media) => {
+    console.log('from SavedMovies: ', media);
+
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    let isFavorite;
+    
+    if (media.userFavorite === true) {
+      isFavorite = false;
+    } else {
+      isFavorite = true;
+    }
+
+    let updateCriteria = {
+      type: media.mediaType,
+      id: media._id,
+      favorite: isFavorite
+    }
+
+    console.log('updateCriteria: ', updateCriteria);
+
+    API.makeFavorite(updateCriteria, token)
+    .then(() => userData.getUserData())
+    .catch((err) => console.log(err));
+  }
+
   const startReview = (media) => {
     console.log('media: ', media);
 
@@ -140,6 +170,7 @@ function SavedMovies() {
               handleReviewFormSubmit={handleReviewFormSubmit}
               reviewInput={reviewInput}
               setReviewInput={setReviewInput}
+              makeFavorite={makeFavorite}
               handleDeleteMovie={handleDeleteMovie}
             />
           </Container>

@@ -1,35 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Form, Button } from 'react-bootstrap';
 
-function Favorite(props) {
+function MakeFavorite(props) {
 
   return (
     <>
       {props.username && (
         <>
           {props.media.userFavorite
-
-          ?
-            <p>This is your favorite {props.media.mediaType.toLowerCase()}</p>
-
-          :
+            ?
             <Button
-
-            >
-
+              className='btn btn-success'
+              onClick={() => props.makeFavorite(props.media)} >
+              UNFAVE
             </Button>
-          
+            :
+            <Button
+              className='btn btn-success'
+              onClick={() => props.makeFavorite(props.media)} >
+              MAKE FAVE
+            </Button>
           }
-
-
         </>
       )}
-
-
-
-
     </>
   )
 }
 
-export default Favorite;
+export default MakeFavorite;

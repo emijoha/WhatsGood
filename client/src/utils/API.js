@@ -190,3 +190,8 @@ export const addComment = function (commentData, token) {
     return axios.put(`/api/users/games/comments/${commentData.mediaId}`, commentData, { headers: { authorization: `Bearer ${token}` } });
     }
 };
+
+export const makeFavorite = function (favorite, token) {
+  console.log(favorite);
+  return axios.put('/api/users/make-favorite', favorite, { headers: { authorization: `Bearer ${token}` } });
+};

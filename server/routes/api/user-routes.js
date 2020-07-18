@@ -28,7 +28,8 @@ const {
   saveUserReview,
   saveUserRating,
   addNotification,
-  deleteNotification
+  deleteNotification,
+  makeFavorite
 } = require('../../controllers/user-controller');
 
 // import middleware
@@ -88,6 +89,7 @@ router.route('/music/comments/:id').put(addMusicComment);
 
 router.route('/movies/comments/:id').put(addMovieComment);
 
+router.route('/make-favorite').get(getAllUsers).put(authMiddleware, makeFavorite);
 
 
 

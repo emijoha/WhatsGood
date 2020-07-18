@@ -546,6 +546,50 @@ module.exports = {
       console.log(err);
       return res.status(400).json(err);
     }
+  },
+
+  async makeFavorite({ body }, res) {
+    console.log('body: ', body);
+    try {
+      const model = body.type;
+      switch (model) {
+        case 'Movie':
+          const newMovieFavorite = await Movie.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userFavorite: body.favorite, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newMovieFavorite: ', newMovieFavorite);
+          return res.json(newMovieFavorite);
+        case 'Book':
+          const newBookFavorite = await Book.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userFavorite: body.favorite, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newBookFavorite: ', newBookFavorite);
+          return res.json(newBookFavorite);
+        case 'Music':
+          const newMusicFavorite = await Music.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userFavorite: body.favorite, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newMusicFavorite: ', newMusicFavorite);
+          return res.json(newMusicFavorite);
+        default:
+          const newGameFavorite = await Game.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userFavorite: body.favorite, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newGameFavorite: ', newGameFavorite);
+          return res.json(newGameFavorite);
+      }
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
   }
 };
 

@@ -26,6 +26,35 @@ function SavedMusic() {
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
 
+  const makeFavorite = (media) => {
+    console.log('from SavedMovies: ', media);
+
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    let isFavorite;
+    
+    if (media.userFavorite === true) {
+      isFavorite = false;
+    } else {
+      isFavorite = true;
+    }
+
+    let updateCriteria = {
+      type: media.mediaType,
+      id: media._id,
+      favorite: isFavorite
+    }
+
+    console.log('updateCriteria: ', updateCriteria);
+
+    API.makeFavorite(updateCriteria, token)
+    .then(() => userData.getUserData())
+    .catch((err) => console.log(err));
+  }
 
   const startReview = (media) => {
     console.log('media: ', media);
@@ -136,6 +165,7 @@ function SavedMusic() {
               handleReviewFormSubmit={handleReviewFormSubmit}
               reviewInput={reviewInput}
               setReviewInput={setReviewInput}
+              makeFavorite={makeFavorite}
               handleDeleteMusic={handleDeleteMusic}
             />
           </Container>
