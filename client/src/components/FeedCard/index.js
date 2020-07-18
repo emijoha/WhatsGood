@@ -7,10 +7,15 @@ import CommentComponent from '../../components/CommentComponent'
 import './style.css';
 
 function FeedCard(props) {
+
+    function randomNum() {
+        return Math.floor(Math.random() * 4) + 1;
+    }
+    
     if (props.mediaType === 'book') {
         const media = props.media;
         return (
-            <Card key={media._id} border='dark'>
+            <Card className={`book-border${randomNum()}`} key={media._id} border='dark'>
                 <Card.Body>
                     {media.picture
                         ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -56,7 +61,7 @@ function FeedCard(props) {
     } else if (props.mediaType === 'music') {
         const media = props.media;
         return (
-            <Card key={media._id} border='dark'>
+            <Card className={`music-border${randomNum()}`} key={media._id} border='dark'>
                 <Card.Body>
                     {media.picture
                         ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -107,7 +112,7 @@ function FeedCard(props) {
     } else if (props.mediaType === 'movie') {
         const media = props.media;
         return (
-            <Card key={media._id} border='dark'>
+            <Card className={`movie-border${randomNum()}`} key={media._id} border='dark'>
                 <Card.Body>
                     {media.picture
                         ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -153,7 +158,7 @@ function FeedCard(props) {
     } else if (props.mediaType === 'game') {
         const media = props.media;
         return (
-            <Card key={media._id} border='dark'>
+            <Card className={`game-border${randomNum()}`} key={media._id} border='dark'>
                 <Card.Body>
                     {media.picture
                         ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />

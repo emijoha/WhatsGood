@@ -8,6 +8,10 @@ import './style.css';
 
 function SavedCards(props) {
 
+    function randomNum() {
+        return Math.floor(Math.random() * 4) + 1;
+    }
+
     if (props.cardType === 'savedBooks') {
         return (
             <>
@@ -20,7 +24,7 @@ function SavedCards(props) {
                     {props.savedArray.map((book) => {
                         return (
 
-                            <Card key={book._id} border='dark'>
+                            <Card className={`book-border${randomNum()}`} key={book._id} border='dark'>
                                 <div className='center-wrap'>
                                     {book.image ? <Card.Img className='mediaImage' src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
                                 </div>
@@ -97,7 +101,7 @@ function SavedCards(props) {
                     {props.savedArray.map((music) => {
                         return (
 
-                            <Card key={music._id} border='dark'>
+                            <Card className={`music-border${randomNum()}`} key={music._id} border='dark'>
                                 <div className='center-wrap'>
                                     {music.image ? <Card.Img className='mediaImage' src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
                                 </div>
@@ -178,7 +182,7 @@ function SavedCards(props) {
                 <CardColumns>
                     {props.savedArray.map((media) => {
                         return (
-                            <Card key={media.mediaId} border='dark'>
+                            <Card className={`movie-border${randomNum()}`} key={media.mediaId} border='dark'>
                                 <div className='center-wrap'>
                                     {media.image === 'N/A' ? null : <Card.Img className='mediaImage' src={media.image} alt={`The cover for ${media.title}`} variant='top' />}
                                 </div>
@@ -259,7 +263,7 @@ function SavedCards(props) {
                     {props.savedArray.map((game) => {
                         return (
 
-                            <Card key={game._id} border='dark'>
+                            <Card className={`game-border${randomNum()}`} key={game._id} border='dark'>
                                 <div className='center-wrap'>
                                     {game.image ? <Card.Img className='mediaImage' src={game.image} alt={`The image for ${game.title}`} variant='top' /> : null}
                                 </div>

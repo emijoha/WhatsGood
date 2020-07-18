@@ -57,7 +57,7 @@ const CommentComponent = ({ mediaId, mediaType, title, ownerId, commenterUsernam
                 </Form.Group>
                 <Button id="comment-button" className='btn-block btn-primary' onClick={() => handleSaveComment()}>
                     Comment!
-            </Button>
+                </Button>
             </Form>
         </div>
 
