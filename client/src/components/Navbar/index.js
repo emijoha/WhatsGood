@@ -98,9 +98,11 @@ function AppNavbar() {
                   { console.log("notification in navbar", notification) }
                   return (
                     <NotificationDropdownItem
-                      likerUsername={notification.likerUsername}
-                      title={notification.title}
-                      notificationId={notification._id} />
+                    likerUsername={notification.likerUsername}
+                    title={notification.title}
+                    notificationId={notification._id}
+                    type={notification.type}/>
+                    
                   )
                 })}
 

@@ -9,6 +9,7 @@ import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
 import LikeButton from '../../components/LikeButton';
+import CommentComponent from '../../components/CommentComponent';
 
 import FeedCard from '../../components/FeedCard';
 import SideBar from '../../components/SideBar';
@@ -58,7 +59,8 @@ function Home() {
                   title: savedBook.title,
                   authors: savedBook.authors,
                   description: savedBook.description,
-                  likes: savedBook.likes
+                  likes: savedBook.likes,
+                  comments: savedBook.comments
                 }
   
   
@@ -91,7 +93,8 @@ function Home() {
                   link: savedMusic.link,
                   artist: savedMusic.artist,
                   preview: savedMusic.preview,
-                  likes: savedMusic.likes
+                  likes: savedMusic.likes,
+                  comments: savedMusic.comments
                 }
   
   
@@ -128,7 +131,8 @@ function Home() {
                   genre: savedMovie.genre,
                   director: savedMovie.director,
                   actors: savedMovie.actors,
-                  likes: savedMovie.likes
+                  likes: savedMovie.likes,
+                  comments: savedMovie.comments
                 }
   
                 setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData].sort(compareTimeStamp))
@@ -157,7 +161,8 @@ function Home() {
                   title: savedGame.title,
                   developer: savedGame.developer,
                   description: savedGame.description,
-                  likes: savedGame.likes
+                  likes: savedGame.likes,
+                  comments: savedGame.comments
                 }
                 setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedGameData].sort(compareTimeStamp))
               })
@@ -203,7 +208,9 @@ function Home() {
                   link: savedMusic.link,
                   artist: savedMusic.artist,
                   preview: savedMusic.preview,
-                  likes: savedMusic.likes
+                  likes: savedMusic.likes,
+                  comments: savedMusic.comments
+        
                 }
                 
                 setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMusicData].sort(compareTimeStamp))
@@ -236,7 +243,8 @@ function Home() {
                   title: savedGame.title,
                   developer: savedGame.developer,
                   description: savedGame.description,
-                  likes: savedGame.likes
+                  likes: savedGame.likes,
+                  comments: savedGame.comments
                 }
                 setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedGameData].sort(compareTimeStamp))
               })
@@ -271,7 +279,8 @@ function Home() {
                     genre: savedMovie.genre,
                     director: savedMovie.director,
                     actors: savedMovie.actors,
-                    likes: savedMovie.likes
+                    likes: savedMovie.likes,
+                    comments: savedMovie.comments
                   }
     
                   setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData].sort(compareTimeStamp))
@@ -303,7 +312,8 @@ function Home() {
                       title: savedBook.title,
                       authors: savedBook.authors,
                       description: savedBook.description,
-                      likes: savedBook.likes
+                      likes: savedBook.likes,
+                      comments: savedBook.comments
                     }
       
       
@@ -348,14 +358,15 @@ function Home() {
     }
 
     // info for notification
-    const notficationData = {
+    const notificationData = {
       likerUsername: likerUsername,
       title: title,
-      ownerId: ownerId
+      ownerId: ownerId,
+      type: "like"
     }
 
     console.log("data for like, ", likeData)
-    
+
     API.saveLike(likeData, token)
       .then(() => {
         console.log("Token: ", token, "likeData: ", likeData);
@@ -374,13 +385,15 @@ function Home() {
       })
       .catch((err) => console.log(err));
     //call to send notification to user  
-    
-    API.addNotification(notficationData, token)
+
+    API.addNotification(notificationData, token)
       .then(() => {
         console.log("NOTIFICATION ADDED");
         userData.getUserData();
       })
+      .catch(err => console.log(err));
   });
+
 
 
   return (
@@ -414,7 +427,8 @@ function Home() {
                     media={media}
                     cb={handleSaveLike}
                     userData={userData}
-                  />
+                  >
+                  </FeedCard>
                 );
               }
               if (media.mediaType === "music") {

@@ -21,6 +21,10 @@ const {
   addMusicLike,
   addMovieLike,
   addGameLike,
+  addBookComment,
+  addMovieComment,
+  addMusicComment,
+  addGameComment,
   saveUserReview,
   saveUserRating,
   addNotification,
@@ -44,7 +48,7 @@ router.route('/:id').get(getSingleUser);
 
 router.route('/find/:username').get(getSingleUser);
 
-router.route('/books/:id').delete(authMiddleware, deleteBook).put(addBookLike);
+router.route('/books/:id').delete(authMiddleware, deleteBook).put(addBookLike).put();
 
 router.route('/games').get(getAllUsers).post(createUser).put(authMiddleware, saveGame);
 
@@ -75,6 +79,17 @@ router.route('/friends/:id').delete(authMiddleware, deleteFriend);
 router.route('/notifications').put(addNotification);
 
 router.route('/notifications/:id').delete(deleteNotification);
+
+router.route('/books/comments/:id').put(addBookComment);
+
+router.route('/games/comments/:id').put(addGameComment);
+
+router.route('/music/comments/:id').put(addMusicComment);
+
+router.route('/movies/comments/:id').put(addMovieComment);
+
+
+
 
 
 module.exports = router;
