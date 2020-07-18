@@ -302,6 +302,21 @@ module.exports = {
     }
   },
 
+  async saveUserBio({ user, body }, res) {
+    try {
+      console.log('user: ', user, 'body: ', body);
+      const updatedBio = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $set: { bio: body.bioText } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedBio);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
   // ADD function to save and delete video games
   async saveGame({ user, body }, res) {
     console.log("THE USER:", user);

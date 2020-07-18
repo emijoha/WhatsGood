@@ -91,6 +91,11 @@ export const savePicture = function (pictureData, token) {
   return axios.put('/api/users/picture', pictureData, { headers: { authorization: `Bearer ${token}` } });
 };
 
+export const saveUserBio = function (userBio, token) {
+  console.log('userBio: ', userBio)
+  return axios.put('/api/users/user-bio', userBio, { headers: { authorization: `Bearer ${token}` } });
+}
+
 export const deleteMusic = function (music_id, token) {
   return axios.delete(`/api/users/music/${music_id}`, { headers: { authorization: `Bearer ${token}` } });
 };

@@ -8,6 +8,7 @@ const {
   deleteBook,
   deleteGame,
   savePicture,
+  saveUserBio,
   saveFriend,
   saveLike,
   deleteFriend,
@@ -56,6 +57,8 @@ router.route('/movies/:id').delete(authMiddleware, deleteMovie).put(addMovieLike
 router.route('/music').get(getAllUsers).put(authMiddleware, saveMusic);
 
 router.route('/picture').get(getAllUsers).put(authMiddleware, savePicture);
+
+router.route('/user-bio').get(getAllUsers).put(authMiddleware, saveUserBio);
 
 router.route('/movies').get(getAllUsers).put(authMiddleware, saveMovie);
 

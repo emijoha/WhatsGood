@@ -67,6 +67,10 @@ const movieSchema = new Schema({
     type: Number,
     required: false,
     default: 0
+  },
+  userFavorite: {
+    type: Boolean,
+    default: false
   }
 });
 
