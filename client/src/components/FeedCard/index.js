@@ -3,6 +3,7 @@ import { Jumbotron, Container, CardColumns, Card, Button, Col, Row } from 'react
 import ReactAudioPlayer from 'react-audio-player';
 import moment from 'moment';
 import LikeButton from '../LikeButton';
+import CommentComponent from '../../components/CommentComponent'
 import './style.css';
 
 function FeedCard(props) {
@@ -37,9 +38,18 @@ function FeedCard(props) {
                         cb={props.cb}
                         userData={props.userData}
                     />
-                    <Button className='btn-block btn-danger' >
-                        Comment
-                    </Button>
+                    <h6>Comments</h6>
+                    {media.comments.map(comment => {
+                        return(
+                        <p>{comment.commenterUsername}:{comment.content}</p>
+                        )
+                    })}
+                    <CommentComponent
+                        mediaId={media._id}
+                        mediaType={media.mediaType}
+                        title={media.title}
+                        ownerId={media.userId}
+                        commenterUsername={props.userData.username} />
                 </Card.Body>
             </Card>
         )
@@ -79,9 +89,18 @@ function FeedCard(props) {
                         cb={props.cb}
                         userData={props.userData}
                     />
-                    <Button className='btn-block btn-danger' >
-                        Comment
-                    </Button>
+                    <h6>Comments</h6>
+                    {media.comments.map(comment => {
+                        return(
+                        <p>{comment.commenterUsername}:{comment.content}</p>
+                        )
+                    })}
+                    <CommentComponent
+                        mediaId={media._id}
+                        mediaType={media.mediaType}
+                        title={media.title}
+                        ownerId={media.userId}
+                        commenterUsername={props.userData.username} />
                 </Card.Body>
             </Card>
         );
@@ -116,9 +135,18 @@ function FeedCard(props) {
                         cb={props.cb}
                         userData={props.userData}
                     />
-                    <Button className='btn-block btn-danger' >
-                        Comment
-                    </Button>
+                    <h6>Comments</h6>
+                    {media.comments.map(comment => {
+                        return(
+                        <p>{comment.commenterUsername}:{comment.content}</p>
+                        )
+                    })}
+                    <CommentComponent
+                        mediaId={media._id}
+                        mediaType={media.mediaType}
+                        title={media.title}
+                        ownerId={media.userId}
+                        commenterUsername={props.userData.username} />
                 </Card.Body>
             </Card>
         );
@@ -153,9 +181,18 @@ function FeedCard(props) {
                         cb={props.cb}
                         userData={props.userData}
                     />
-                    <Button className='btn-block btn-danger' >
-                        Comment
-                    </Button>
+                    <h6>Comments</h6>
+                    {media.comments.map(comment => {
+                        return(
+                        <p>{comment.commenterUsername}:{comment.content}</p>
+                        )
+                    })}
+                    <CommentComponent
+                        mediaId={media._id}
+                        mediaType={media.mediaType}
+                        title={media.title}
+                        ownerId={media.userId}
+                        commenterUsername={props.userData.username} />
                 </Card.Body>
             </Card>
         );
