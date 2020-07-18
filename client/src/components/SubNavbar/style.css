@@ -3,6 +3,7 @@
     #sub-navbar-menu {
         
       display: none !important;
+     
     }
   
 }
@@ -13,13 +14,11 @@
     width: 100%;
     z-index: 1;
    
-    border: none;
-   
 }
 
 #table-row {
-    /* background-color: white; */
-    backdrop-filter: blur(100px);
+   
+    background-color: rgb(255, 255, 255) !important;
 }
 
 
