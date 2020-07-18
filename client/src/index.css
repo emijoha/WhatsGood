@@ -42,37 +42,84 @@ h6 {
   margin-bottom: 24px !important;
 }
 
-.purple1 {
-  border: solid;
-  border-image-slice: 1;
-  border-width: 20px;
+.book-border1 {
   border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
-  margin-bottom: 24px !important;
 }
 
-.purple2 {
-  border: solid;
-  border-image-slice: 1;
-  border-width: 20px;
+.book-border2 {
   border-image-source: linear-gradient(to top right,  rgb(75, 13, 246), rgb(171, 0, 214));
-  margin-bottom: 24px !important;
 }
 
-.purple3 {
-  border: solid;
-  border-image-slice: 1;
-  border-width: 20px;
+.book-border3 {
   border-image-source: linear-gradient(to bottom left, rgb(102, 13, 246), rgb(214, 0, 168));
-  margin-bottom: 24px !important;
 }
 
-.purple4 {
-  border: solid;
-  border-image-slice: 1;
-  border-width: 20px;
+.book-border4 {
   border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
-  margin-bottom: 24px !important;
 }
 
+.music-border1 {
+  border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
+}
+
+.music-border2 {
+  border-image-source: linear-gradient(to top right,  rgb(75, 13, 246), rgb(171, 0, 214));
+}
+
+.music-border3 {
+  border-image-source: linear-gradient(to bottom left, rgb(102, 13, 246), rgb(214, 0, 168));
+}
+
+.music-border4 {
+  border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
+}
+
+.movie-border1 {
+  border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
+}
+
+.movie-border2 {
+  border-image-source: linear-gradient(to top right,  rgb(75, 13, 246), rgb(171, 0, 214));
+}
+
+.movie-border3 {
+  border-image-source: linear-gradient(to bottom left, rgb(102, 13, 246), rgb(214, 0, 168));
+}
+
+.movie-border4 {
+  border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
+}
+
+.game-border1 {
+  border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
+}
+
+.game-border2 {
+  border-image-source: linear-gradient(to top right,  rgb(75, 13, 246), rgb(171, 0, 214));
+}
+
+.game-border3 {
+  border-image-source: linear-gradient(to bottom left, rgb(102, 13, 246), rgb(214, 0, 168));
+}
+
+.game-border4 {
+  border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
+}
+
+.friend-border1 {
+  border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
+}
+
+.friend-border2 {
+  border-image-source: linear-gradient(to top right,  rgb(75, 13, 246), rgb(171, 0, 214));
+}
+
+.friend-border3 {
+  border-image-source: linear-gradient(to bottom left, rgb(102, 13, 246), rgb(214, 0, 168));
+}
+
+.friend-border4 {
+  border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
+}
 
 
