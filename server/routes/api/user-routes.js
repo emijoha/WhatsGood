@@ -15,7 +15,6 @@ const {
   deleteMusic,
   saveMovie,
   deleteMovie,
-  saveMovieReview,
   login,
   addBookLike,
   addMusicLike,
@@ -25,6 +24,8 @@ const {
   addMovieComment,
   addMusicComment,
   addGameComment,
+  saveUserReview,
+  saveUserRating,
   addNotification,
   deleteNotification
 } = require('../../controllers/user-controller');
@@ -62,7 +63,9 @@ router.route('/picture').get(getAllUsers).put(authMiddleware, savePicture);
 
 router.route('/movies').get(getAllUsers).put(authMiddleware, saveMovie);
 
-router.route('/movie-review').get(getAllUsers).put(authMiddleware, saveMovieReview);
+router.route('/user-review').get(getAllUsers).put(authMiddleware, saveUserReview);
+
+router.route('/user-rating').get(getAllUsers).put(authMiddleware, saveUserRating);
 
 router.route('/likes').get(getAllUsers).put(authMiddleware, saveLike);
 

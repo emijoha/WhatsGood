@@ -139,22 +139,89 @@ module.exports = {
     }
   },
 
-  async saveMovieReview({ body }, res) {
+  async saveUserReview({ body }, res) {
     // console.log('user: ', user);
     console.log('body: ', body);
     try {
-      const newMovieReview = await Movie.findOneAndUpdate(
-        { _id: body.id },
-        {
-          $set: {
-            movieReview: body.review,
-            userRating: body.userRating
-          }
-        },
-        { new: true, runValidators: true }
-      );
-      console.log('newMovieReview: ', newMovieReview);
-      return res.json(newMovieReview);
+      const model = body.type;
+      switch (model) {
+        case 'Movie':
+          const newMovieReview = await Movie.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userReview: body.review, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newMovieReview: ', newMovieReview);
+          return res.json(newMovieReview);
+        case 'Book':
+          const newBookReview = await Book.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userReview: body.review, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newBookReview: ', newBookReview);
+          return res.json(newBookReview);
+        case 'Music':
+          const newMusicReview = await Music.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userReview: body.review, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newMusicReview: ', newMusicReview);
+          return res.json(newMusicReview);
+        default:
+          const newGameReview = await Game.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userReview: body.review, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newGameReview: ', newGameReview);
+          return res.json(newGameReview);
+      }
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
+  async saveUserRating({ body }, res) {
+    console.log('body: ', body);
+    try {
+      const model = body.type;
+      switch (model) {
+        case 'Movie':
+          const newMovieRating = await Movie.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userRating: body.userRating, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newMovieRating: ', newMovieRating);
+          return res.json(newMovieRating);
+        case 'Book':
+          const newBookRating = await Book.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userRating: body.userRating, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newBookRating: ', newBookRating);
+          return res.json(newBookRating);
+        case 'Music':
+          const newMusicRating = await Music.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userRating: body.userRating, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newMusicRating: ', newMusicRating);
+          return res.json(newMusicRating);
+        default:
+          const newGameRating = await Game.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userRating: body.userRating, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newGameRating: ', newGameRating);
+          return res.json(newGameRating);
+      }
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
@@ -380,11 +447,11 @@ module.exports = {
 
   },
 
-  async deleteNotification({params}, res) {
+  async deleteNotification({ params }, res) {
     console.log("delete notification params", params);
     try {
       const deletedNotification = await Notification.deleteOne(
-        { _id: params.id},
+        { _id: params.id },
         { new: true, runValidators: true }
       );
       return res.json(deletedNotification)

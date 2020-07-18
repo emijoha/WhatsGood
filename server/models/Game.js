@@ -10,9 +10,13 @@ const gameSchema = new Schema({
     required: true,
   },
   // saved book id from API
-  gameId: {
+  mediaId: {
     type: String,
     required: true,
+  },
+  mediaType: {
+    type: String,
+    default: 'Game'
   },
   timeStamp: {
     type: Number,
@@ -38,6 +42,16 @@ const gameSchema = new Schema({
   title: {
     type: String,
     required: true,
+  },
+  userReview: {
+    type: String,
+    required: false,
+    default: ''
+  },
+  userRating: {
+    type: Number,
+    required: false,
+    default: 0
   }
 });
 

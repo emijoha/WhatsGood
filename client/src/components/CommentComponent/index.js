@@ -41,6 +41,7 @@ const CommentComponent = ({ mediaId, mediaType, title, ownerId, commenterUsernam
                 userData.getUserData();
             })
             .catch(err => console.log(err));
+
     }
 
 

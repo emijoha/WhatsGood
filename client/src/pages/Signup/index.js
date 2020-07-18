@@ -15,7 +15,7 @@ function Signup() {
     
   
       <Row className="justify-content-center">
-      <Col xs={12} md={6} >
+      <Col id="signup-card-column" xs={12} md={6} >
       <Container>
       <div className="signup-card">
       <SignupForm />
