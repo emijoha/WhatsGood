@@ -85,7 +85,7 @@ function Home() {
                 artist: savedMusic.artist,
                 preview: savedMusic.preview,
                 likes: savedMusic.likes,
-                comments: savedMusic.comments.content
+                comments: savedMusic.comments
               }
 
 
@@ -123,7 +123,7 @@ function Home() {
                 director: savedMovie.director,
                 actors: savedMovie.actors,
                 likes: savedMovie.likes,
-                comments: savedMovie.comments.content
+                comments: savedMovie.comments
               }
 
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData].sort(compareTimeStamp))
@@ -153,7 +153,7 @@ function Home() {
                 developer: savedGame.developer,
                 description: savedGame.description,
                 likes: savedGame.likes,
-                comments: savedGame.comments.content
+                comments: savedGame.comments
               }
 
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedGameData].sort(compareTimeStamp))
@@ -281,12 +281,12 @@ function Home() {
                         title={media.title}
                         cb={handleSaveLike}
                         userData={userData}
-
-
-                      ></LikeButton>
-                      {media.comments.map(comment =>(
+                         ></LikeButton>
+                      
+                         {media.comments && (media.comments.map(comment => (
                         <p>{comment.commenterUsername}:{comment.content}</p>
-                      ))}
+                      )))}
+
                       <CommentComponent
                         mediaId={media._id}
                         mediaType={media.mediaType}
@@ -326,6 +326,11 @@ function Home() {
                         cb={handleSaveLike}
                         userData={userData}
                       ></LikeButton>
+                      
+                      {media.comments && (media.comments.map(comment => (
+                        <p>{comment.commenterUsername}:{comment.content}</p>
+                      )))}
+                 
                       <CommentComponent
                         mediaId={media._id}
                         mediaType={media.mediaType}
@@ -366,6 +371,10 @@ function Home() {
                         cb={handleSaveLike}
                         userData={userData}
                       ></LikeButton>
+                      
+                      {media.comments && (media.comments.map(comment => (
+                        <p>{comment.commenterUsername}:{comment.content}</p>
+                      )))}
                       <CommentComponent
                         mediaId={media._id}
                         mediaType={media.mediaType}
@@ -402,7 +411,11 @@ function Home() {
                         cb={handleSaveLike}
                         userData={userData}
                       ></LikeButton>
-
+                      
+                      {media.comments && (media.comments.map(comment => (
+                        <p>{comment.commenterUsername}:{comment.content}</p>
+                      )))}
+                     
                       <CommentComponent
                         mediaId={media._id}
                         mediaType={media.mediaType}

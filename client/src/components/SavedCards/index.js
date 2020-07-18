@@ -61,6 +61,12 @@ function SavedCards(props) {
                                         src={music.preview}
                                         controls
                                     />
+                                    {music.comments && (<p>Comments:</p>)}
+                                    {music.comments.map(comment => {
+                                        return (
+                                            <p>{comment.commenterUsername}:{comment.content}</p>
+                                        )
+                                    })}
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMusic(music._id)}>
                                         Delete!
                                     </Button>
@@ -98,6 +104,12 @@ function SavedCards(props) {
                                     <p className='small'>Plot: {movie.plot}</p>
                                     <p className='small'>Rated: {movie.rated}</p>
                                     <p className='small'>Runtime: {movie.runtime}</p>
+                                    {movie.comments && (<p>Comments:</p>)}
+                                    {movie.comments.map(comment => {
+                                        return (
+                                            <p>{comment.commenterUsername}:{comment.content}</p>
+                                        )
+                                    })}
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMovie(movie._id)}>
                                         Delete this Movie!
                                 </Button>
@@ -127,6 +139,12 @@ function SavedCards(props) {
                                     <Card.Title>{game.title}</Card.Title>
                                     <p className='small'>Developer: {game.developer}</p>
                                     <Card.Text>{game.description}</Card.Text>
+                                    {game.comments && (<p>Comments:</p>)}
+                                    {game.comments.map(comment => {
+                                        return (
+                                            <p>{comment.commenterUsername}:{comment.content}</p>
+                                        )
+                                    })}
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteGame(game._id)}>
                                         Delete this Game!
                                     </Button>
