@@ -34,7 +34,7 @@ function SavedCards(props) {
                                     <Card.Text>{book.description}</Card.Text>
                                     <div className='center-wrap'>
                                         <p className='ratingReviewHeading'>Your Rating</p>
-                                        <p class='rating'>
+                                        <p className='rating'>
                                             {[...Array(book.userRating)].map((star, i) => {
                                                 return (
                                                     <label key={i}>
@@ -45,7 +45,7 @@ function SavedCards(props) {
                                         </p>
                                         <p className='ratingReviewHeading'>Your Review</p>
                                     </div>
-                                    <p>{book.userReview}</p>
+                                    <p>{book.userReview.length ? book.userReview : "What's good...and what's not? Write a review!"}</p>
                                     <RateSaved
                                         username={props.username}
                                         mediaType={'Book'}
@@ -105,7 +105,7 @@ function SavedCards(props) {
                                             controls
                                         />
                                         <p className='ratingReviewHeading'>Your Rating</p>
-                                        <p class='rating'>{[...Array(music.userRating)].map((star, i) => {
+                                        <p className='rating'>{[...Array(music.userRating)].map((star, i) => {
                                             return (
                                                 <label key={i}>
                                                     <FontAwesomeIcon className='read-only-star' icon={faMusic} color='black' size={'lg'} />
@@ -115,7 +115,7 @@ function SavedCards(props) {
                                         </p>
                                         <p className='ratingReviewHeading'>Your Review</p>
                                     </div>
-                                    <p>{music.userReview}</p>
+                                    <p>{music.userReview.length ? music.userReview : "What's good...and what's not? Write a review!"}</p>
                                     <RateSaved
                                         username={props.username}
                                         mediaType={'Music'}
@@ -174,16 +174,14 @@ function SavedCards(props) {
                                         </Card.Title>
                                     </div>
                                     {media.plot === 'N/A' ? null : <Card.Text> {media.plot}</Card.Text>}
-
                                     {media.actors === 'N/A' ? null : <p className='small closer-p'><b>Starring:</b> {media.actors}</p>}
                                     {media.released === 'N/A' ? null : <p className='small closer-p'><b>Released:</b> {media.released}</p>}
                                     {media.genre === 'N/A' ? null : <p className='small closer-p'><b>Genre:</b> {media.genre}</p>}
                                     {media.rated === 'N/A' ? null : <p className='small closer-p'><b>Rated:</b> {media.rated}</p>}
                                     {media.runtime === 'N/A' ? null : <p className='small'><b>Runtime:</b> {media.runtime}</p>}
-
                                     <div className='center-wrap'>
                                         <p className='ratingReviewHeading'>Your Rating</p>
-                                        <p class='rating'>{[...Array(media.userRating)].map((star, i) => {
+                                        <p className='rating'>{[...Array(media.userRating)].map((star, i) => {
                                             return (
                                                 <label key={i}>
                                                     <FontAwesomeIcon className='read-only-star' icon={faVideo} color='black' size={'lg'} />
@@ -193,7 +191,7 @@ function SavedCards(props) {
                                         </p>
                                         <p className='ratingReviewHeading'>Your Review</p>
                                     </div>
-                                    <p>{media.userReview}</p>
+                                    <p>{media.userReview.length ? media.userReview : "What's good...and what's not? Write a review!"}</p>
                                     <RateSaved
                                         username={props.username}
                                         mediaType={'Movie'}
@@ -251,7 +249,7 @@ function SavedCards(props) {
                                     <Card.Text>{game.description}</Card.Text>
                                     <div className='center-wrap'>
                                         <p className='ratingReviewHeading'>Your Rating</p>
-                                        <p class='rating'>
+                                        <p className='rating'>
                                             {[...Array(game.userRating)].map((star, i) => {
                                                 return (
                                                     <label key={i}>
@@ -262,7 +260,7 @@ function SavedCards(props) {
                                         </p>
                                         <p className='ratingReviewHeading'>Your Review</p>
                                     </div>
-                                    <p>{game.userReview}</p>
+                                    <p>{game.userReview.length ? game.userReview : "What's good...and what's not? Write a review!"}</p>
                                     <RateSaved
                                         username={props.username}
                                         mediaType={'Game'}
@@ -310,15 +308,17 @@ function SavedCards(props) {
 
                             <Card key={friend._id} border='dark'>
                                 <div className='center-wrap'>
-                                    {friend.picture ? <Card.Img className='mediaImage' src={friend.picture} alt={friend.username} variant='top' /> : null}
-                                </div>
-                                <Card.Body>
-                                    <Card.Title>{friend.username}</Card.Title>
-                                    <p className='small'>Email: {friend.email}</p>
-                                    <Button className='btn-block btn-danger' onClick={() => props.handleDeleteFriend(friend._id)}>
-                                        Remove Friend
+                                    <Card.Img className='mediaImage' src={friend.picture} alt={friend.username} variant='top' />
+                                    <Card.Body>
+                                        <Card.Title>
+                                            <b>{friend.username.toUpperCase()}</b>
+                                            <p className='by'><b>email:</b> {friend.email}</p>
+                                        </Card.Title>
+                                        <Button className='btn-block btn-danger' onClick={() => props.handleDeleteFriend(friend._id)}>
+                                            Remove Friend
                                     </Button>
-                                </Card.Body>
+                                    </Card.Body>
+                                </div>
                             </Card>
 
                         );
