@@ -1,0 +1,28 @@
+@media screen and (min-width: 991px) {
+     
+    #sub-navbar-menu {
+        
+      display: none !important;
+    }
+  
+}
+
+#sub-navbar-menu {
+    margin-top: 70px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+   
+    border: none;
+   
+}
+
+#table-row {
+    /* background-color: white; */
+    backdrop-filter: blur(100px);
+}
+
+
+
+
+
