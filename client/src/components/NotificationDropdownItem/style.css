@@ -1,4 +1,4 @@
 #notification-button {
-    background-color: rgb(153, 0, 255);
+    background-color: rgb(153, 0, 255) !important;
     color: white !important;
 }

@@ -5,3 +5,41 @@ button {
     border: solid !important;
     border-width: 1px !important;
 }
+
+.center-wrap {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.mediaImage {
+    border-radius: 0px !important;
+    width: 70%;
+    margin-top: 30px;
+}
+
+.ratingReviewHeading {
+    border-bottom: solid 1px rgb(128, 5, 211);
+    font-weight: 500;
+    color: rgb(128, 5, 211);
+}
+
+.rating {
+    margin-bottom: 0;
+}
+
+.audio-player {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.by {
+    font-size: 0.9rem;
+    font-style: italic;
+    font-weight: 400;
+    margin-top: 3px;
+}
+
+.closer-p {
+    margin-bottom: 4px;
+}

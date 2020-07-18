@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardColumns, Card, Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic } from '@fortawesome/free-solid-svg-icons';import ReactAudioPlayer from 'react-audio-player';
+import { faVideo, faBookOpen, faGamepad, faMusic } from '@fortawesome/free-solid-svg-icons'; import ReactAudioPlayer from 'react-audio-player';
 import RateSaved from '../RateSaved';
 import ReviewSaved from '../ReviewSaved';
 import './style.css';
@@ -21,27 +21,31 @@ function SavedCards(props) {
                         return (
 
                             <Card key={book._id} border='dark'>
-                                {book.image ? <Card.Img className='mediaImage' src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+                                <div className='center-wrap'>
+                                    {book.image ? <Card.Img className='mediaImage' src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+                                </div>
                                 <Card.Body>
-                                    <Card.Title>{book.title}</Card.Title>
-                                    <p className='small'>Authors: {book.authors}</p>
+                                    <div className='center-wrap'>
+                                        <Card.Title>
+                                            <b>{book.title.toUpperCase()}</b>
+                                            <p className='by'>{book.authors.length > 1 ? 'Authors' : 'Author'}: {book.authors}</p>
+                                        </Card.Title>
+                                    </div>
                                     <Card.Text>{book.description}</Card.Text>
-                                    <p className='bold'>Your Rating:
-                                    <br></br>
-                                    {[...Array(book.userRating)].map((star, i) => {
-                                        return (
-                                            <label key={i}>
-                                                <FontAwesomeIcon className='read-only-star' icon={faBookOpen} color='black' size={'lg'} />
-                                            </label>
-                                        )
-                                    })}
-                                    </p>
-                                    <p className='bold'>Your Review:
-                                    <br></br>
-                                    {book.userReview}</p>
-
-                                    <br></br>
-
+                                    <div className='center-wrap'>
+                                        <p className='ratingReviewHeading'>Your Rating</p>
+                                        <p class='rating'>
+                                            {[...Array(book.userRating)].map((star, i) => {
+                                                return (
+                                                    <label key={i}>
+                                                        <FontAwesomeIcon className='read-only-star' icon={faBookOpen} color='black' size={'lg'} />
+                                                    </label>
+                                                )
+                                            })}
+                                        </p>
+                                        <p className='ratingReviewHeading'>Your Review</p>
+                                    </div>
+                                    <p>{book.userReview}</p>
                                     <RateSaved
                                         username={props.username}
                                         mediaType={'Book'}
@@ -54,7 +58,6 @@ function SavedCards(props) {
                                         setHover={props.setHover}
                                         hover={props.hover}
                                     />
-
                                     <ReviewSaved
                                         username={props.username}
                                         mediaType={'Book'}
@@ -64,15 +67,11 @@ function SavedCards(props) {
                                         handleReviewFormSubmit={props.handleReviewFormSubmit}
                                         setReviewInput={props.setReviewInput}
                                     />
-
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteBook(book._id)}>
                                         Delete this Book!
                                     </Button>
-
-
                                 </Card.Body>
                             </Card>
-
                         );
                     })}
                 </CardColumns>
@@ -91,30 +90,32 @@ function SavedCards(props) {
                         return (
 
                             <Card key={music._id} border='dark'>
-                                {music.image ? <Card.Img className='mediaImage' src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
+                                <div className='center-wrap'>
+                                    {music.image ? <Card.Img className='mediaImage' src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
+                                </div>
                                 <Card.Body>
-                                    <Card.Title>{music.title}</Card.Title>
-                                    <p className='small'>Artist: {music.artist}</p>
-                                    <ReactAudioPlayer
-                                        src={music.preview}
-                                        controls
-                                    />
-                                    <p className='bold'>Your Rating:
-                                    <br></br>
-                                    {[...Array(music.userRating)].map((star, i) => {
-                                        return (
-                                            <label key={i}>
-                                                <FontAwesomeIcon className='read-only-star' icon={faMusic} color='black' size={'lg'} />
-                                            </label>
-                                        )
-                                    })}
-                                    </p>
-                                    <p className='bold'>Your Review:
-                                    <br></br>
-                                    {music.userReview}</p>
-
-                                    <br></br>
-
+                                    <div className='center-wrap'>
+                                        <Card.Title>
+                                            <b>{music.title.toUpperCase()}</b>
+                                            <p className='by'>Artist: {music.artist}</p>
+                                        </Card.Title>
+                                        <ReactAudioPlayer
+                                            className='audio-player'
+                                            src={music.preview}
+                                            controls
+                                        />
+                                        <p className='ratingReviewHeading'>Your Rating</p>
+                                        <p class='rating'>{[...Array(music.userRating)].map((star, i) => {
+                                            return (
+                                                <label key={i}>
+                                                    <FontAwesomeIcon className='read-only-star' icon={faMusic} color='black' size={'lg'} />
+                                                </label>
+                                            )
+                                        })}
+                                        </p>
+                                        <p className='ratingReviewHeading'>Your Review</p>
+                                    </div>
+                                    <p>{music.userReview}</p>
                                     <RateSaved
                                         username={props.username}
                                         mediaType={'Music'}
@@ -142,7 +143,6 @@ function SavedCards(props) {
                                     </Button>
                                 </Card.Body>
                             </Card>
-
                         );
                     })}
                 </CardColumns>
@@ -163,32 +163,37 @@ function SavedCards(props) {
                     {props.savedArray.map((media) => {
                         return (
                             <Card key={media.mediaId} border='dark'>
-                                {media.image === 'N/A' ? null : <Card.Img className='mediaImage' src={media.image} alt={`The cover for ${media.title}`} variant='top' />}
+                                <div className='center-wrap'>
+                                    {media.image === 'N/A' ? null : <Card.Img className='mediaImage' src={media.image} alt={`The cover for ${media.title}`} variant='top' />}
+                                </div>
                                 <Card.Body>
-                                    <Card.Title>{media.title}</Card.Title>
-                                    {media.released === 'N/A' ? null : <p className='small'>Released: {media.released}</p>}
-                                    {media.actors === 'N/A' ? null : <p className='small'>Actors: {media.actors}</p>}
-                                    {media.director === 'N/A' ? null : <p className='small'>Director: {media.director}</p>}
-                                    {media.genre === 'N/A' ? null : <p className='small'>Genre: {media.genre}</p>}
-                                    {media.plot === 'N/A' ? null : <p className='small'>Plot: {media.plot}</p>}
-                                    {media.rated === 'N/A' ? null : <p className='small'>Rated: {media.rated}</p>}
-                                    {media.runtime === 'N/A' ? null : <p className='small'>Runtime: {media.runtime}</p>}
-                                    <p className='bold'>Your Rating:
-                                    <br></br>
-                                    {[...Array(media.userRating)].map((star, i) => {
-                                        return (
-                                            <label key={i}>
-                                                <FontAwesomeIcon className='read-only-star' icon={faVideo} color='black' size={'lg'} />
-                                            </label>
-                                        )
-                                    })}
-                                    </p>
-                                    <p className='bold'>Your Review:
-                                    <br></br>
-                                    {media.userReview}</p>
+                                    <div className='center-wrap'>
+                                        <Card.Title>
+                                            <b>{media.title.toUpperCase()}</b>
+                                            {media.director === 'N/A' ? null : <p className='by'>Director: {media.director}</p>}
+                                        </Card.Title>
+                                    </div>
+                                    {media.plot === 'N/A' ? null : <Card.Text> {media.plot}</Card.Text>}
 
-                                    <br></br>
+                                    {media.actors === 'N/A' ? null : <p className='small closer-p'><b>Starring:</b> {media.actors}</p>}
+                                    {media.released === 'N/A' ? null : <p className='small closer-p'><b>Released:</b> {media.released}</p>}
+                                    {media.genre === 'N/A' ? null : <p className='small closer-p'><b>Genre:</b> {media.genre}</p>}
+                                    {media.rated === 'N/A' ? null : <p className='small closer-p'><b>Rated:</b> {media.rated}</p>}
+                                    {media.runtime === 'N/A' ? null : <p className='small'><b>Runtime:</b> {media.runtime}</p>}
 
+                                    <div className='center-wrap'>
+                                        <p className='ratingReviewHeading'>Your Rating</p>
+                                        <p class='rating'>{[...Array(media.userRating)].map((star, i) => {
+                                            return (
+                                                <label key={i}>
+                                                    <FontAwesomeIcon className='read-only-star' icon={faVideo} color='black' size={'lg'} />
+                                                </label>
+                                            )
+                                        })}
+                                        </p>
+                                        <p className='ratingReviewHeading'>Your Review</p>
+                                    </div>
+                                    <p>{media.userReview}</p>
                                     <RateSaved
                                         username={props.username}
                                         mediaType={'Movie'}
@@ -201,7 +206,6 @@ function SavedCards(props) {
                                         setHover={props.setHover}
                                         hover={props.hover}
                                     />
-
                                     <ReviewSaved
                                         username={props.username}
                                         mediaType={'Movie'}
@@ -211,7 +215,6 @@ function SavedCards(props) {
                                         handleReviewFormSubmit={props.handleReviewFormSubmit}
                                         setReviewInput={props.setReviewInput}
                                     />
-
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMovie(media._id)}>
                                         Delete this Movie!
                                     </Button>
@@ -235,26 +238,31 @@ function SavedCards(props) {
                         return (
 
                             <Card key={game._id} border='dark'>
-                                {game.image ? <Card.Img className='mediaImage' src={game.image} alt={`The image for ${game.title}`} variant='top' /> : null}
+                                <div className='center-wrap'>
+                                    {game.image ? <Card.Img className='mediaImage' src={game.image} alt={`The image for ${game.title}`} variant='top' /> : null}
+                                </div>
                                 <Card.Body>
-                                    <Card.Title>{game.title}</Card.Title>
-                                    <p className='small'>Developer: {game.developer}</p>
+                                    <div className='center-wrap'>
+                                        <Card.Title>
+                                            <b>{game.title.toUpperCase()}</b>
+                                            <p className='by'>Developer: {game.developer}</p>
+                                        </Card.Title>
+                                    </div>
                                     <Card.Text>{game.description}</Card.Text>
-
-                                    <p className='bold'>Your Rating:
-                                    <br></br>
-                                    {[...Array(game.userRating)].map((star, i) => {
-                                        return (
-                                            <label key={i}>
-                                                <FontAwesomeIcon className='read-only-star' icon={faGamepad} color='black' size={'lg'} />
-                                            </label>
-                                        )
-                                    })}
-                                    </p>
-                                    <p className='bold'>Your Review: {game.userReview}</p>
-
-                                    <br></br>
-
+                                    <div className='center-wrap'>
+                                        <p className='ratingReviewHeading'>Your Rating</p>
+                                        <p class='rating'>
+                                            {[...Array(game.userRating)].map((star, i) => {
+                                                return (
+                                                    <label key={i}>
+                                                        <FontAwesomeIcon className='read-only-star' icon={faGamepad} color='black' size={'lg'} />
+                                                    </label>
+                                                )
+                                            })}
+                                        </p>
+                                        <p className='ratingReviewHeading'>Your Review</p>
+                                    </div>
+                                    <p>{game.userReview}</p>
                                     <RateSaved
                                         username={props.username}
                                         mediaType={'Game'}
@@ -267,7 +275,6 @@ function SavedCards(props) {
                                         setHover={props.setHover}
                                         hover={props.hover}
                                     />
-
                                     <ReviewSaved
                                         username={props.username}
                                         mediaType={'Game'}
@@ -277,13 +284,11 @@ function SavedCards(props) {
                                         handleReviewFormSubmit={props.handleReviewFormSubmit}
                                         setReviewInput={props.setReviewInput}
                                     />
-
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteGame(game._id)}>
                                         Delete this Game!
                                     </Button>
                                 </Card.Body>
                             </Card>
-
                         );
                     })}
                 </CardColumns>
@@ -304,7 +309,9 @@ function SavedCards(props) {
                         return (
 
                             <Card key={friend._id} border='dark'>
-                                {friend.picture ? <Card.Img className='mediaImage' src={friend.picture} alt={friend.username} variant='top' /> : null}
+                                <div className='center-wrap'>
+                                    {friend.picture ? <Card.Img className='mediaImage' src={friend.picture} alt={friend.username} variant='top' /> : null}
+                                </div>
                                 <Card.Body>
                                     <Card.Title>{friend.username}</Card.Title>
                                     <p className='small'>Email: {friend.email}</p>

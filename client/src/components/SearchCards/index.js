@@ -20,8 +20,10 @@ function SearchCards(props) {
                         return (
 
                             <Card key={book.mediaId} border='dark'>
-                                {book.image ? <Card.Img className='mediaImage' src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
-                               <Card.Body>
+                                <div className='center-wrap'>
+                                    {book.image ? <Card.Img className='mediaImage' src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+                                </div>
+                                <Card.Body>
                                     <Card.Title>{book.title}</Card.Title>
                                     <p className='small'>Authors: {book.authors}</p>
                                     <Card.Text>{book.description}</Card.Text>
@@ -55,7 +57,9 @@ function SearchCards(props) {
                         return (
 
                             <Card key={music.mediaId} border='dark'>
-                                {music.image ? <Card.Img className='mediaImage' src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
+                                <div className='center-wrap'>
+                                    {music.image ? <Card.Img className='mediaImage' src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
+                                </div>
                                 <Card.Body>
                                     <Card.Title>{music.title}</Card.Title>
                                     <p className='small'>Artist: {music.artist}</p>
@@ -95,7 +99,9 @@ function SearchCards(props) {
                         return (
 
                             <Card key={media.mediaId} border='dark'>
-                                {media.image === 'N/A' ? null : <Card.Img className='mediaImage' src={media.image} alt={`The cover for ${media.title}`} variant='top' />}
+                                <div className='center-wrap'>
+                                    {media.image === 'N/A' ? null : <Card.Img className='mediaImage' src={media.image} alt={`The cover for ${media.title}`} variant='top' />}
+                                </div>
                                 <Card.Body>
                                     <Card.Title>{media.title}</Card.Title>
                                     {media.released === 'N/A' ? null : <p className='small'>Released: {media.released}</p>}
@@ -137,7 +143,9 @@ function SearchCards(props) {
                         return (
 
                             <Card key={game.mediaId} border='dark'>
-                                {game.image ? <Card.Img className='mediaImage' src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}
+                                <div className='center-wrap'>
+                                    {game.image ? <Card.Img className='mediaImage' src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}
+                                </div>
                                 <Card.Body >
                                     <Card.Title>{game.title}</Card.Title>
                                     <p className='small'>Developer: {game.developer}</p>
@@ -167,7 +175,9 @@ function SearchCards(props) {
                 <CardColumns>
 
                     <Card key={props.searchedUser._id} border='dark'>
-                        <Card.Img className='mediaImage' src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
+                        <div className='center-wrap'>
+                            <Card.Img className='mediaImage' src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
+                        </div>
                         <Card.Body>
                             <Card.Title>{props.searchedUser.username}</Card.Title>
                             <p className='small'>Username: {props.searchedUser.username}</p>
