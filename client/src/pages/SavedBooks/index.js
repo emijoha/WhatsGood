@@ -21,6 +21,7 @@ function SavedBooks() {
 
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
+  console.log("this is the userdata:", userData);
 
   const startReview = (media) => {
     console.log('media: ', media);
@@ -132,6 +133,7 @@ function SavedBooks() {
               reviewInput={reviewInput}
               setReviewInput={setReviewInput}
               handleDeleteBook={handleDeleteBook}
+              comments={userData.savedBooks.comments}
             />
           </Container>
         </> :

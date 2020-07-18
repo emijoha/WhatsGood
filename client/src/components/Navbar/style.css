@@ -1,6 +1,10 @@
 #new-navbar {
     background-color: rgba(255, 255, 255, 0) !important;
-    backdrop-filter: blur(90px)
+    backdrop-filter: blur(90px);
+    /* overflow-x: hidden; */
+    position: fixed;
+    width: 100%;
+    z-index: 3;
    
 }
 
@@ -11,7 +15,7 @@ h5 {
   }
 
   .nav-link-group {
-   margin-top: 3.2%;
+   margin-top: 2%;
    font-size: 20px;
    
   }

@@ -165,3 +165,23 @@ export const deleteNotification = function (notificationId) {
   console.log('notification id', notificationId)
   return axios.delete(`/api/users/notifications/${notificationId}`, notificationId);
 };
+
+export const addComment = function (commentData, token) {
+  console.log("comment data:", commentData, "token:", token);
+
+  if (commentData.mediaType === "book") {
+  return axios.put(`/api/users/books/comments/${commentData.mediaId}`, commentData, { headers: { authorization: `Bearer ${token}` } });
+  }
+
+  if (commentData.mediaType === "movie") {
+  return axios.put(`/api/users/movies/comments/${commentData.mediaId}`, commentData, { headers: { authorization: `Bearer ${token}` } });
+  }
+
+  if (commentData.mediaType === "music") {
+  return axios.put(`/api/users/music/comments/${commentData.mediaId}`, commentData, { headers: { authorization: `Bearer ${token}` } });
+  }
+
+  if (commentData.mediaType === "game") {
+    return axios.put(`/api/users/games/comments/${commentData.mediaId}`, commentData, { headers: { authorization: `Bearer ${token}` } });
+    }
+};

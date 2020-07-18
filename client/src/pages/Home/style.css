@@ -14,3 +14,23 @@
     background-color: rgb(0, 162, 255);
     color: white;
 } */
+
+#main-body-row {
+        
+    width: 100%;
+  }
+
+#media-feed-column {
+    margin-top: 115px;
+}
+
+ @media screen and (max-width: 991px) {
+     
+   
+  
+    #media-feed-column {
+        margin-top: 150px;
+    }
+}
+
+

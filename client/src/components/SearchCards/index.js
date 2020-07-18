@@ -67,7 +67,7 @@ function SearchCards(props) {
                                 <Card.Body>
                                     <div className='center-wrap'>
                                         <Card.Title>
-                                            <b>{music.titletoUpperCase()}</b>
+                                            <b>{music.title.toUpperCase()}</b>
                                             <p className='by'>Artist: {music.artist}</p>
                                         </Card.Title>
                                         <ReactAudioPlayer

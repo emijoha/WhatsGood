@@ -67,6 +67,14 @@ function SavedCards(props) {
                                         handleReviewFormSubmit={props.handleReviewFormSubmit}
                                         setReviewInput={props.setReviewInput}
                                     />
+
+                                    {book.comments && (<p>Comments:</p>)}
+                                    {book.comments.map(comment => {
+                                        return (
+                                            <p>{comment.commenterUsername}:{comment.content}</p>
+                                        )
+                                    })}
+
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteBook(book._id)}>
                                         Delete this Book!
                                     </Button>
@@ -138,6 +146,14 @@ function SavedCards(props) {
                                         handleReviewFormSubmit={props.handleReviewFormSubmit}
                                         setReviewInput={props.setReviewInput}
                                     />
+
+                                    {music.comments && (<p>Comments:</p>)}
+                                    {music.comments.map(comment => {
+                                        return (
+                                            <p>{comment.commenterUsername}:{comment.content}</p>
+                                        )
+                                    })}
+                                    
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMusic(music._id)}>
                                         Delete!
                                     </Button>
@@ -213,6 +229,14 @@ function SavedCards(props) {
                                         handleReviewFormSubmit={props.handleReviewFormSubmit}
                                         setReviewInput={props.setReviewInput}
                                     />
+
+                                    {media.comments && (<p>Comments:</p>)}
+                                    {media.comments.map(comment => {
+                                        return (
+                                            <p>{comment.commenterUsername}:{comment.content}</p>
+                                        )
+                                    })}
+
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMovie(media._id)}>
                                         Delete this Movie!
                                     </Button>
@@ -282,6 +306,14 @@ function SavedCards(props) {
                                         handleReviewFormSubmit={props.handleReviewFormSubmit}
                                         setReviewInput={props.setReviewInput}
                                     />
+
+                                    {game.comments && (<p>Comments:</p>)}
+                                    {game.comments.map(comment => {
+                                        return (
+                                            <p>{comment.commenterUsername}:{comment.content}</p>
+                                        )
+                                    })}
+
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteGame(game._id)}>
                                         Delete this Game!
                                     </Button>
