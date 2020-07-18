@@ -1,9 +1,12 @@
-import React, { useState, useContext } from 'react';
-import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
-import SearchCards from '../../components/SearchCards';
+import React, { useState, useContext, useCallback } from 'react';
+import { Jumbotron, Container, Col, Form, Button } from 'react-bootstrap';
+
+import * as API from '../../utils/API';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
-import { saveMovie, searchOMDB, searchEachMovie } from '../../utils/API';
+// import { saveMovie, searchOMDB, searchEachMovie, } from '../utils/API';
+// import { saveUserRating, saveMovieReview } as API from '../utils/API';
+import SearchCards from '../../components/SearchCards';
 
 function SearchMovies() {
   // create state for holding returned omdb api data
@@ -23,18 +26,18 @@ function SearchMovies() {
 
     let movieDataArr = [];
 
-    searchOMDB(searchInput)
+    API.searchOMDB(searchInput)
       .then(({ data }) => {
         const movieID = data.Search.map(movie => (movie.imdbID));
 
         movieID.forEach(id => {
-          searchEachMovie(id)
+          API.searchEachMovie(id)
             .then((res) => {
               movieDataArr.push(res);
             })
             .then(() => {
               const movieData = movieDataArr.map(movie => ({
-                movieId: movie.data.imdbID,
+                mediaId: movie.data.imdbID,
                 timeStamp: Date.now(),
                 createdAt: Date(),
                 actors: movie.data.Actors,
@@ -45,7 +48,7 @@ function SearchMovies() {
                 released: movie.data.Released,
                 runtime: movie.data.Runtime,
                 title: movie.data.Title,
-                image: movie.data.Poster || ''
+                image: movie.data.Poster || '',
               }));
 
               return setSearchedMovies(movieData);
@@ -57,10 +60,27 @@ function SearchMovies() {
   };
 
   // create function to handle saving a movie to the database
-  const handleSaveMovie = (movieId) => {
+
+  const handleSaveMedia = useCallback((movie, userRating, userReview) => {
     // find the movie in `searchedMovies` state by the matching id
-    const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
-    console.log(movieToSave);
+    const movieToSave = {
+      mediaId: movie.mediaId,
+      timeStamp: Date.now(),
+      createdAt: Date(),
+      actors: movie.actors,
+      director: movie.director,
+      genre: movie.genre,
+      plot: movie.plot,
+      rated: movie.rated,
+      released: movie.released,
+      runtime: movie.runtime,
+      title: movie.title,
+      image: movie.image || '',
+      userRating: userRating,
+      userReview: userReview
+    }
+
+    console.log('movieToSave: ', movieToSave);
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
@@ -69,10 +89,11 @@ function SearchMovies() {
     }
 
     // send the movie data to the api
-    saveMovie(movieToSave, token)
+    API.saveMovie(movieToSave, token)
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
-  };
+  });
+  
 
   return (
     <>
@@ -102,11 +123,11 @@ function SearchMovies() {
       </Jumbotron>
       <Container>
         <SearchCards
-          cardType='searchedMovies'
-          resultArray={searchedMovies}
-          savedArray={userData.savedMovies}
-          username={userData.username}
-          handleBtnClick={handleSaveMovie}
+        cardType='searchedMovies'
+        resultArray={searchedMovies}
+        savedArray={userData.savedMovies}
+        username={userData.username}
+        cb={handleSaveMedia}
         />
       </Container>
     </>

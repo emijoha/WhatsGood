@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+import React, { useContext, useState } from 'react';
+import { Jumbotron, Container } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 
 // import context for global state
@@ -11,8 +11,84 @@ import NotLoggedIn from '../../components/NotLoggedIn';
 import SavedCards from '../../components/SavedCards';
 
 function SavedMedia() {
+  const [reviewInput, setReviewInput] = useState('');
+  const [userRating, setUserRating] = useState(0);
+  const [hover, setHover] = useState(null);
+
+  // set state to activate review form
+  const [selectedMediaReview, setSelectedMediaReview] = useState('');
+  const [selectedMediaRating, setSelectedMediaRating] = useState(0);
+
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
+
+  const startReview = (media) => {
+    console.log('media: ', media);
+
+    setSelectedMediaReview(media);
+  }
+
+  const handleReviewFormSubmit = (event) => {
+    event.preventDefault();
+
+    saveUserReview();
+  }
+
+  const saveUserReview = () => {
+
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    let updateCriteria = {
+      type: selectedMediaReview.mediaType,
+      id: selectedMediaReview._id,
+      review: reviewInput
+    }
+    console.log(updateCriteria);
+
+    API.saveUserReview(updateCriteria, token)
+      .then(() => setReviewInput(''))
+      .then(() => setSelectedMediaReview(''))
+      .then(() => userData.getUserData())
+      .catch((err) => console.log(err));
+  }
+
+  const startRating = (media) => {
+    console.log('movie: ', media);
+
+    setSelectedMediaRating(media);
+  }
+
+  const handleRatingFormSubmit = (event) => {
+    event.preventDefault();
+
+    saveUserRating();
+  }
+
+  const saveUserRating = () => {
+
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    let updateCriteria = {
+      type: selectedMediaRating.mediaType,
+      id: selectedMediaRating._id,
+      userRating: userRating
+    }
+    console.log(updateCriteria);
+
+    API.saveUserRating(updateCriteria, token)
+      .then(() => setUserRating(0))
+      .then(() => setSelectedMediaRating(0))
+      .then(() => userData.getUserData())
+      .catch((err) => console.log(err));
+  }
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = (bookId) => {
@@ -81,21 +157,77 @@ function SavedMedia() {
             <SavedCards
               cardType='savedBooks'
               savedArray={userData.savedBooks}
+              username={userData.username}
+              userData={userData}
+              startRating={startRating}
+              selectedMediaRating={selectedMediaRating}
+              handleRatingFormSubmit={handleRatingFormSubmit}
+              setUserRating={setUserRating}
+              setHover={setHover}
+              hover={hover}
+              userRating={userRating}
+              startReview={startReview}
+              selectedMediaReview={selectedMediaReview}
+              handleReviewFormSubmit={handleReviewFormSubmit}
+              reviewInput={reviewInput}
+              setReviewInput={setReviewInput}
               handleDeleteBook={handleDeleteBook}
             />
             <SavedCards
               cardType='savedMusic'
               savedArray={userData.savedMusic}
+              username={userData.username}
+              userData={userData}
+              startRating={startRating}
+              selectedMediaRating={selectedMediaRating}
+              handleRatingFormSubmit={handleRatingFormSubmit}
+              setUserRating={setUserRating}
+              setHover={setHover}
+              hover={hover}
+              userRating={userRating}
+              startReview={startReview}
+              selectedMediaReview={selectedMediaReview}
+              handleReviewFormSubmit={handleReviewFormSubmit}
+              reviewInput={reviewInput}
+              setReviewInput={setReviewInput}
               handleDeleteMusic={handleDeleteMusic}
             />
             <SavedCards
               cardType='savedMovies'
               savedArray={userData.savedMovies}
+              username={userData.username}
+              userData={userData}
+              startRating={startRating}
+              selectedMediaRating={selectedMediaRating}
+              handleRatingFormSubmit={handleRatingFormSubmit}
+              setUserRating={setUserRating}
+              setHover={setHover}
+              hover={hover}
+              userRating={userRating}
+              startReview={startReview}
+              selectedMediaReview={selectedMediaReview}
+              handleReviewFormSubmit={handleReviewFormSubmit}
+              reviewInput={reviewInput}
+              setReviewInput={setReviewInput}
               handleDeleteMovie={handleDeleteMovie}
             />
             <SavedCards
               cardType='savedGames'
               savedArray={userData.savedGames}
+              username={userData.username}
+              userData={userData}
+              startRating={startRating}
+              selectedMediaRating={selectedMediaRating}
+              handleRatingFormSubmit={handleRatingFormSubmit}
+              setUserRating={setUserRating}
+              setHover={setHover}
+              hover={hover}
+              userRating={userRating}
+              startReview={startReview}
+              selectedMediaReview={selectedMediaReview}
+              handleReviewFormSubmit={handleReviewFormSubmit}
+              reviewInput={reviewInput}
+              setReviewInput={setReviewInput}
               handleDeleteGame={handleDeleteGame}
             />
           </Container>

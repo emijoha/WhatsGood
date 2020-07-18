@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import React, { useState, useContext, useCallback } from 'react';
+import { Jumbotron, Container, Col, Form, Button } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 import SearchCards from '../../components/SearchCards';
 import UserInfoContext from '../../utils/UserInfoContext';
@@ -26,7 +26,7 @@ function SearchMusic() {
       .then(({ data }) => {
         console.log(data.data);
         const musicData = data.data.map((music) => ({
-          musicId: music.id,
+          mediaId: music.id.toString(),
           timeStamp: Date.now(),
           createdAt: Date(),
           title: music.title || ['No title to display'],
@@ -44,9 +44,20 @@ function SearchMusic() {
   };
 
   // create function to handle saving a book to our database
-  const handleSaveMusic = (musicId) => {
+  const handleSaveMedia = useCallback((music, userRating, userReview) => {
     // find the book in `searchedBooks` state by the matching id
-    const musicToSave = searchedMusic.find((music) => music.musicId === musicId);
+    const musicToSave = {
+      mediaId: music.mediaId,
+      timeStamp: Date.now(),
+      createdAt: Date(),
+      title: music.title || ['No title to display'],
+      artist: music.artist || ['No artist to display'],
+      link: music.link,
+      preview: music.preview,
+      image: music.image || '',
+      userRating: userRating,
+      userReview: userReview
+    }
 
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
@@ -63,7 +74,7 @@ function SearchMusic() {
       }
       )
       .catch((err) => console.log(err));
-  };
+  });
 
   return (
     <>
@@ -97,7 +108,7 @@ function SearchMusic() {
           resultArray={searchedMusic}
           savedArray={userData.savedMusic}
           username={userData.username}
-          handleSaveMusic={handleSaveMusic}
+          cb={handleSaveMedia}
         />
       </Container>
     </>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useCallback } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import SearchCards from '../../components/SearchCards';
 import UserInfoContext from '../../utils/UserInfoContext';
@@ -25,7 +25,7 @@ function SearchGames() {
     searchVideoGames(searchTitle, searchPlatform)
       .then(({ data }) => {
         const gameData = [{
-          gameId: `${data.result.title}-${data.result.developer}-${searchPlatform}`,
+          mediaId: `${data.result.title}-${data.result.developer}-${searchPlatform}`,
           timeStamp: Date.now(),
           createdAt: Date(),
           developer: data.result.developer || ['No developer to display'],
@@ -45,7 +45,19 @@ function SearchGames() {
   };
 
   // create function to handle saving a book to our database
-  const handleSaveGame = () => {
+  const handleSaveGame = useCallback((game, userRating, userReview) => {
+    const gameToSave = {
+      mediaId: game.mediaId,
+      timeStamp: Date.now(),
+      createdAt: Date(),
+      developer: game.developer,
+      title: game.title,
+      description: game.description,
+      image: game.image,
+      userRating: userRating,
+      userReview: userReview
+    }
+    
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
@@ -54,10 +66,10 @@ function SearchGames() {
     }
 
     // send the books data to our api
-    saveGame(searchedGame[0], token)
+    saveGame(gameToSave, token)
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
-  };
+  });
 
   return (
     <>
@@ -104,7 +116,7 @@ function SearchGames() {
           resultArray={searchedGame}
           savedArray={userData.savedGames}
           username={userData.username}
-          handleSaveGame={handleSaveGame}
+          cb={handleSaveGame}
         />
       </Container>
     </>

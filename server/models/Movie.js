@@ -2,9 +2,13 @@ const { Schema, model } = require('mongoose');
 
 // This is a subdocument schema, it won't become its own model but we'll use it as the schema for the User's `savedBooks` array in User.js
 const movieSchema = new Schema({
-  movieId: {
+  mediaId: {
     type: String,
     required: true,
+  },
+  mediaType: {
+    type: String,
+    default: 'Movie'
   },
   timeStamp: {
     type: Number,
@@ -54,7 +58,7 @@ const movieSchema = new Schema({
     type: String,
     required: false,
   },
-  movieReview: {
+  userReview: {
     type: String,
     required: false,
     default: ''
