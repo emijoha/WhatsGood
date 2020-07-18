@@ -23,6 +23,12 @@ function SavedCards(props) {
                                     <Card.Title>{book.title}</Card.Title>
                                     <p className='small'>Authors: {book.authors}</p>
                                     <Card.Text>{book.description}</Card.Text>
+                                    {book.comments && (<p>Comments:</p>)}
+                                    {book.comments.map(comment => {
+                                        return (
+                                            <p>{comment.commenterUsername}:{comment.content}</p>
+                                        )
+                                    })}
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteBook(book._id)}>
                                         Delete this Book!
                                     </Button>

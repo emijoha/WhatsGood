@@ -12,6 +12,7 @@ import AuthService from '../../utils/auth';
 function SavedBooks() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
+  console.log("this is the userdata:", userData);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = (book_id) => {
@@ -41,6 +42,7 @@ function SavedBooks() {
               cardType='savedBooks'
               savedArray={userData.savedBooks}
               handleDeleteBook={handleDeleteBook}
+              comments={userData.savedBooks.comments}
             />
           </Container>
         </> :

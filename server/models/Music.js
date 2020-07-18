@@ -27,10 +27,12 @@ const musicSchema = new Schema({
     required: true,
     default: 0
   },
-  comments: {
-    type: Schema.Types.ObjectId,
-    ref: 'Comment'
-  },
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment'
+    }
+  ],
   image: {
     type: String,
   },

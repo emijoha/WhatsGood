@@ -397,7 +397,7 @@ module.exports = {
 
     try {
       const newComment = await Comment.create(
-        { content: body.content }
+        { content: body.content, commenterUsername: body.commenterUsername }
       );
       const updatedMovie = await Movie.findOneAndUpdate(
         { _id: body.mediaId },
@@ -415,7 +415,7 @@ module.exports = {
 
     try {
       const newComment = await Comment.create(
-        { content: body.content }
+        { content: body.content, commenterUsername: body.commenterUsername }
       );
       const updatedBook = await Book.findOneAndUpdate(
         { _id: body.mediaId },
@@ -433,7 +433,7 @@ module.exports = {
 
     try {
       const newComment = await Comment.create(
-        { content: body.content }
+        { content: body.content, commenterUsername: body.commenterUsername }
       );
       const updatedMovie = await Music.findOneAndUpdate(
         { _id: body.mediaId },
@@ -451,7 +451,7 @@ module.exports = {
 
     try {
       const newComment = await Comment.create(
-        { content: body.content }
+        { content: body.content, commenterUsername: body.commenterUsername }
       );
       const updatedGame = await Game.findOneAndUpdate(
         { _id: body.mediaId },

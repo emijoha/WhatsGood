@@ -16,6 +16,7 @@ const CommentComponent = ({ mediaId, mediaType, title, ownerId, commenterUsernam
     const handleSaveComment = () => {
 
         const commentData = {
+            commenterUsername: commenterUsername,
             content: commentInput,
             mediaType: mediaType,
             mediaId: mediaId
@@ -46,7 +47,6 @@ const CommentComponent = ({ mediaId, mediaType, title, ownerId, commenterUsernam
     return (
 
         <div>
-            <Card.Text>rpounceyjr: This is where a comment would go</Card.Text>
             <Form>
                 <Form.Group controlId="comment-input">
                     <Form.Control type="text" placeholder="Leave a comment" value={commentInput} onChange={(e) => {

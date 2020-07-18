@@ -5,7 +5,7 @@ import './style.css'
 
 import UserInfoContext from '../../utils/UserInfoContext'
 
-const NotificationDropdownItem = ({ likerUsername, title, notificationId }) => {
+const NotificationDropdownItem = ({ likerUsername, title, notificationId, type }) => {
 
     const userData = useContext(UserInfoContext)
 
@@ -17,10 +17,15 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId }) => {
             });
 
     };
-
+if(type === "like"){
     return (
         <NavDropdown.Item>{likerUsername} liked your post of {title}<Button id="notification-button" onClick={() => handleDeleteNotification(notificationId)}>Oh, word.</Button></NavDropdown.Item>
     )
+} else {
+    return(
+        <NavDropdown.Item>{likerUsername} commented on your post of {title}<Button id="notification-button" onClick={() => handleDeleteNotification(notificationId)}>Oh, word.</Button></NavDropdown.Item>
+    )
+}
 };
 
 export default NotificationDropdownItem;

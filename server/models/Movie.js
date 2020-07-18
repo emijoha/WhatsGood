@@ -18,10 +18,12 @@ const movieSchema = new Schema({
     required: true,
     default: 0
   },
-  comments: {
-    type: Schema.Types.ObjectId,
-    ref: 'Comment'
-  },
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Comment'
+    }
+  ],
   actors: {
     type: String,
     required: false

@@ -33,7 +33,7 @@ function Home() {
 
       API.getUser(friend.id)
         .then(result => {
-
+          console.log("ALL FRIEND DATA", result);
           if (result.data.savedBooks.length > 0) {
 
             result.data.savedBooks.map(savedBook => {
@@ -50,7 +50,8 @@ function Home() {
                 title: savedBook.title,
                 authors: savedBook.authors,
                 description: savedBook.description,
-                likes: savedBook.likes
+                likes: savedBook.likes,
+                comments: savedBook.comments
               }
 
 
@@ -83,7 +84,8 @@ function Home() {
                 link: savedMusic.link,
                 artist: savedMusic.artist,
                 preview: savedMusic.preview,
-                likes: savedMusic.likes
+                likes: savedMusic.likes,
+                comments: savedMusic.comments.content
               }
 
 
@@ -120,7 +122,8 @@ function Home() {
                 genre: savedMovie.genre,
                 director: savedMovie.director,
                 actors: savedMovie.actors,
-                likes: savedMovie.likes
+                likes: savedMovie.likes,
+                comments: savedMovie.comments.content
               }
 
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData].sort(compareTimeStamp))
@@ -149,7 +152,8 @@ function Home() {
                 title: savedGame.title,
                 developer: savedGame.developer,
                 description: savedGame.description,
-                likes: savedGame.likes
+                likes: savedGame.likes,
+                comments: savedGame.comments.content
               }
 
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedGameData].sort(compareTimeStamp))
@@ -201,12 +205,12 @@ function Home() {
     const notificationData = {
       likerUsername: likerUsername,
       title: title,
-      ownerId: ownerId, 
+      ownerId: ownerId,
       type: "like"
     }
 
     console.log("data for like, ", likeData)
-    
+
     API.saveLike(likeData, token)
       .then(() => {
         console.log("Token: ", token, "likeData: ", likeData);
@@ -225,7 +229,7 @@ function Home() {
       })
       .catch((err) => console.log(err));
     //call to send notification to user  
-    
+
     API.addNotification(notificationData, token)
       .then(() => {
         userData.getUserData();
@@ -233,22 +237,23 @@ function Home() {
       .catch(err => console.log(err));
   });
 
-  
+
 
   return (
 
 
 
     <>
-     
+
 
       <Container >
-       
+
         <Row className="justify-content-center">
           <Col xs={12} md={8} >
 
 
             {allFriendsMediaState.map(media => {
+
 
               if (media.mediaType === "book") {
 
@@ -279,12 +284,15 @@ function Home() {
 
 
                       ></LikeButton>
+                      {media.comments.map(comment =>(
+                        <p>{comment.commenterUsername}:{comment.content}</p>
+                      ))}
                       <CommentComponent
-                      mediaId={media._id}
-                      mediaType={media.mediaType}
-                      title={media.title}
-                      ownerId={media.userId}
-                      commenterUsername={userData.username}/>
+                        mediaId={media._id}
+                        mediaType={media.mediaType}
+                        title={media.title}
+                        ownerId={media.userId}
+                        commenterUsername={userData.username} />
                     </Card.Body>
                   </Card>)
 
@@ -311,19 +319,19 @@ function Home() {
                         controls
                       />
                       <LikeButton mediaLikes={media.likes}
-                      mediaType={media.mediaType}
-                      ownerId={media.userId}
-                      mediaId={media._id}
-                      title={media.title}
-                      cb={handleSaveLike}
-                      userData={userData}
+                        mediaType={media.mediaType}
+                        ownerId={media.userId}
+                        mediaId={media._id}
+                        title={media.title}
+                        cb={handleSaveLike}
+                        userData={userData}
                       ></LikeButton>
                       <CommentComponent
-                      mediaId={media._id}
-                      mediaType={media.mediaType}
-                      title={media.title}
-                      ownerId={media.userId}
-                      commenterUsername={userData.username}/>
+                        mediaId={media._id}
+                        mediaType={media.mediaType}
+                        title={media.title}
+                        ownerId={media.userId}
+                        commenterUsername={userData.username} />
                     </Card.Body>
                   </Card>)
 
@@ -351,19 +359,19 @@ function Home() {
                       <p className='small'>Rated: {media.rated}</p>
                       <p className='small'>Runtime: {media.runtime}</p>
                       <LikeButton mediaLikes={media.likes}
-                      mediaType={media.mediaType}
-                      ownerId={media.userId}
-                      mediaId={media._id}
-                      title={media.title}
-                      cb={handleSaveLike}
-                      userData={userData}
+                        mediaType={media.mediaType}
+                        ownerId={media.userId}
+                        mediaId={media._id}
+                        title={media.title}
+                        cb={handleSaveLike}
+                        userData={userData}
                       ></LikeButton>
                       <CommentComponent
-                      mediaId={media._id}
-                      mediaType={media.mediaType}
-                      title={media.title}
-                      ownerId={media.userId}
-                      commenterUsername={userData.username}/>
+                        mediaId={media._id}
+                        mediaType={media.mediaType}
+                        title={media.title}
+                        ownerId={media.userId}
+                        commenterUsername={userData.username} />
                     </Card.Body>
                   </Card>)
 
@@ -387,20 +395,20 @@ function Home() {
 
 
                       <LikeButton mediaLikes={media.likes}
-                      mediaType={media.mediaType}
-                      ownerId={media.userId}
-                      mediaId={media._id}
-                      title={media.title}
-                      cb={handleSaveLike}
-                      userData={userData}
+                        mediaType={media.mediaType}
+                        ownerId={media.userId}
+                        mediaId={media._id}
+                        title={media.title}
+                        cb={handleSaveLike}
+                        userData={userData}
                       ></LikeButton>
 
                       <CommentComponent
-                      mediaId={media._id}
-                      mediaType={media.mediaType}
-                      title={media.title}
-                      ownerId={media.userId}
-                      commenterUsername={userData.username}/>
+                        mediaId={media._id}
+                        mediaType={media.mediaType}
+                        title={media.title}
+                        ownerId={media.userId}
+                        commenterUsername={userData.username} />
                     </Card.Body>
                   </Card>)
               }

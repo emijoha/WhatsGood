@@ -100,7 +100,8 @@ function AppNavbar() {
                     <NotificationDropdownItem
                     likerUsername={notification.likerUsername}
                     title={notification.title}
-                    notificationId={notification._id}/>
+                    notificationId={notification._id}
+                    type={notification.type}/>
                     
                   )
                 })}
