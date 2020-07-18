@@ -20,12 +20,17 @@ function SearchCards(props) {
                         return (
 
                             <Card key={book.mediaId} border='dark'>
-                                {book.image ? <Card.Img className='mediaImage' src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
-                               <Card.Body>
-                                    <Card.Title>{book.title}</Card.Title>
-                                    <p className='small'>Authors: {book.authors}</p>
+                                <div className='center-wrap'>
+                                    {book.image ? <Card.Img className='mediaImage' src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+                                </div>
+                                <Card.Body>
+                                    <div className='center-wrap'>
+                                        <Card.Title>
+                                            <b>{book.title.toUpperCase()}</b>
+                                            <p className='by'>{book.authors.length > 1 ? 'Authors' : 'Author'}: {book.authors}</p>
+                                        </Card.Title>
+                                    </div>
                                     <Card.Text>{book.description}</Card.Text>
-
                                     <RateReviewForSearched
                                         username={props.username}
                                         savedArray={props.savedArray}
@@ -38,7 +43,6 @@ function SearchCards(props) {
                                     />
                                 </Card.Body>
                             </Card>
-
                         );
                     })}
                 </CardColumns>
@@ -47,24 +51,30 @@ function SearchCards(props) {
     } else if (props.cardType === 'searchedMusic') {
         return (
             <>
-                <h2>{props.resultArray.length
-                    ? `Viewing ${props.resultArray.length} ${props.resultArray.length === 1 ? 'result' : 'results'}:`
-                    : 'Search for music to begin'}</h2>
+                <h2>
+                    {props.resultArray.length
+                        ? `Viewing ${props.resultArray.length} ${props.resultArray.length === 1 ? 'result' : 'results'}:`
+                        : 'Search for music to begin'}
+                </h2>
                 <CardColumns>
                     {props.resultArray.map((music) => {
                         return (
 
                             <Card key={music.mediaId} border='dark'>
-                                {music.image ? <Card.Img className='mediaImage' src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
+                                <div className='center-wrap'>
+                                    {music.image ? <Card.Img className='mediaImage' src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
+                                </div>
                                 <Card.Body>
-                                    <Card.Title>{music.title}</Card.Title>
-                                    <p className='small'>Artist: {music.artist}</p>
-                                    {/* <Card.Text>Link: {music.link}</Card.Text> */}
-                                    <ReactAudioPlayer
-                                        src={music.preview}
-                                        controls
-                                    />
-
+                                    <div className='center-wrap'>
+                                        <Card.Title>
+                                            <b>{music.title.toUpperCase()}</b>
+                                            <p className='by'>Artist: {music.artist}</p>
+                                        </Card.Title>
+                                        <ReactAudioPlayer
+                                            src={music.preview}
+                                            controls
+                                        />
+                                    </div>
                                     <RateReviewForSearched
                                         username={props.username}
                                         savedArray={props.savedArray}
@@ -77,7 +87,6 @@ function SearchCards(props) {
                                     />
                                 </Card.Body>
                             </Card>
-
                         );
                     })}
                 </CardColumns>
@@ -95,17 +104,22 @@ function SearchCards(props) {
                         return (
 
                             <Card key={media.mediaId} border='dark'>
-                                {media.image === 'N/A' ? null : <Card.Img className='mediaImage' src={media.image} alt={`The cover for ${media.title}`} variant='top' />}
+                                <div className='center-wrap'>
+                                    {media.image === 'N/A' ? null : <Card.Img className='mediaImage' src={media.image} alt={`The cover for ${media.title}`} variant='top' />}
+                                </div>
                                 <Card.Body>
-                                    <Card.Title>{media.title}</Card.Title>
-                                    {media.released === 'N/A' ? null : <p className='small'>Released: {media.released}</p>}
-                                    {media.actors === 'N/A' ? null : <p className='small'>Actors: {media.actors}</p>}
-                                    {media.director === 'N/A' ? null : <p className='small'>Director: {media.director}</p>}
-                                    {media.genre === 'N/A' ? null : <p className='small'>Genre: {media.genre}</p>}
-                                    {media.plot === 'N/A' ? null : <p className='small'>Plot: {media.plot}</p>}
-                                    {media.rated === 'N/A' ? null : <p className='small'>Rated: {media.rated}</p>}
-                                    {media.runtime === 'N/A' ? null : <p className='small'>Runtime: {media.runtime}</p>}
-
+                                    <div className='center-wrap'>
+                                        <Card.Title>
+                                            <b>{media.title.toUpperCase()}</b>
+                                            {media.director === 'N/A' ? null : <p className='by'>Director: {media.director}</p>}
+                                        </Card.Title>
+                                    </div>
+                                    {media.plot === 'N/A' ? null : <Card.Text> {media.plot}</Card.Text>}
+                                    {media.actors === 'N/A' ? null : <p className='small closer-p'><b>Starring:</b> {media.actors}</p>}
+                                    {media.released === 'N/A' ? null : <p className='small closer-p'><b>Released:</b> {media.released}</p>}
+                                    {media.genre === 'N/A' ? null : <p className='small closer-p'><b>Genre:</b> {media.genre}</p>}
+                                    {media.rated === 'N/A' ? null : <p className='small closer-p'><b>Rated:</b> {media.rated}</p>}
+                                    {media.runtime === 'N/A' ? null : <p className='small'><b>Runtime:</b> {media.runtime}</p>}
                                     <RateReviewForSearched
                                         username={props.username}
                                         savedArray={props.savedArray}
@@ -116,11 +130,8 @@ function SearchCards(props) {
                                         cb={props.cb}
                                         link={'/saved_movies'}
                                     />
-
-
                                 </Card.Body>
                             </Card>
-
                         );
                     })}
                 </CardColumns>
@@ -137,12 +148,17 @@ function SearchCards(props) {
                         return (
 
                             <Card key={game.mediaId} border='dark'>
-                                {game.image ? <Card.Img className='mediaImage' src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}
+                                <div className='center-wrap'>
+                                    {game.image ? <Card.Img className='mediaImage' src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}
+                                </div>
                                 <Card.Body >
-                                    <Card.Title>{game.title}</Card.Title>
-                                    <p className='small'>Developer: {game.developer}</p>
+                                    <div className='center-wrap'>
+                                        <Card.Title>
+                                            <b>{game.title.toUpperCase()}</b>
+                                            <p className='by'>Developer: {game.developer}</p>
+                                        </Card.Title>
+                                    </div>
                                     <Card.Text>{game.description}</Card.Text>
-
                                     <RateReviewForSearched
                                         username={props.username}
                                         savedArray={props.savedArray}
@@ -155,7 +171,6 @@ function SearchCards(props) {
                                     />
                                 </Card.Body>
                             </Card>
-
                         );
                     })}
                 </CardColumns>
@@ -167,23 +182,26 @@ function SearchCards(props) {
                 <CardColumns>
 
                     <Card key={props.searchedUser._id} border='dark'>
-                        <Card.Img className='mediaImage' src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
-                        <Card.Body>
-                            <Card.Title>{props.searchedUser.username}</Card.Title>
-                            <p className='small'>Username: {props.searchedUser.username}</p>
-                            <Card.Text>{props.searchedUser.username}</Card.Text>
-                            {props.savedArray?.every((friend) => friend._id !== props.searchedUser._id)
-                                ? <Button
-                                    className='btn-block btn-info save-friend'
-                                    onClick={() => props.handleSaveFriend()}>
-                                    Save Friend
+                        <div className='center-wrap'>
+                            <Card.Img className='mediaImage' src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
+                            <Card.Body>
+                                <Card.Title>
+                                    <b>{props.searchedUser.username.toUpperCase()}</b>
+                                    <p className='by'><b>email:</b> {props.searchedUser.email}</p>
+                                </Card.Title>
+                                {props.savedArray?.every((friend) => friend._id !== props.searchedUser._id)
+                                    ? <Button
+                                        className='btn-block btn-info save-friend'
+                                        onClick={() => props.handleSaveFriend()}>
+                                        Save Friend
                                 </Button>
-                                : <Button
-                                    className='btn-block btn-info save-friend'
-                                    onClick={() => props.handleDeleteFriend(props.searchedUser._id)}>
-                                    Remove Friend
+                                    : <Button
+                                        className='btn-block btn-info save-friend'
+                                        onClick={() => props.handleDeleteFriend(props.searchedUser._id)}>
+                                        Remove Friend
                                 </Button>}
-                        </Card.Body>
+                            </Card.Body>
+                        </div>
                     </Card>
 
                 </CardColumns>
