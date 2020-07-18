@@ -55,7 +55,7 @@ function ProfilePage() {
             />
             {userData.username && (
               <>
-                {(userData.bio !== '' || null)
+                {(userData.bio !== '' || null) 
 
                   ?
                   <>
@@ -80,7 +80,7 @@ function ProfilePage() {
                     >
                       Add a Mini-Bio
                     </Button>
-
+                
                     <>
                       {bioUpdate &&
                         <>

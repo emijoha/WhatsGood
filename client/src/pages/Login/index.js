@@ -18,7 +18,7 @@ function Login() {
     <>
      
      <Row className="justify-content-center">
-      <Col xs={12} md={6} >
+      <Col id="login-card-column" xs={12} md={6} >
       <div className="login-card">
       <LoginForm />
       <div className="signup-link"> 
