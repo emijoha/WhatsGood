@@ -36,12 +36,12 @@ function RateReviewForSearched(props) {
                 console.log(icon);
                 break;
             default:
-                icon = faVideo;
+                icon = faVideo; 
                 setFaIcon(icon);
                 console.log(icon);
         }
-
-    });
+        
+    }, []);
 
 
     return (
