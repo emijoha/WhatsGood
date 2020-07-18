@@ -38,10 +38,11 @@ h6 {
   border: solid;
   border-image-slice: 1;
   border-width: 20px;
-  border-image-source: linear-gradient(to top right,  rgb(164, 253, 0), rgb(34, 201, 243));
+  border-image-source: linear-gradient(to top right,  rgb(255, 136, 1), rgb(223, 0, 104));
   margin-bottom: 24px !important;
 }
 
+/* BOOK BORDERS */
 .book-border1 {
   border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
 }
@@ -58,6 +59,7 @@ h6 {
   border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
 }
 
+/* MUSIC BORDERS */
 .music-border1 {
   border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
 }
@@ -74,6 +76,7 @@ h6 {
   border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
 }
 
+/* MOVIE BORDERS */
 .movie-border1 {
   border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
 }
@@ -90,22 +93,24 @@ h6 {
   border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
 }
 
+/* GAME BORDERS */
 .game-border1 {
-  border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
+  border-image-source: linear-gradient(to bottom right, rgb(230, 255, 1), rgb(0, 223, 48));
 }
 
 .game-border2 {
-  border-image-source: linear-gradient(to top right,  rgb(75, 13, 246), rgb(171, 0, 214));
+  border-image-source: linear-gradient(to top right,  rgb(238, 255, 1), rgb(0, 223, 48));
 }
 
 .game-border3 {
-  border-image-source: linear-gradient(to bottom left, rgb(102, 13, 246), rgb(214, 0, 168));
+  border-image-source: linear-gradient(to bottom left, rgb(230, 255, 1), rgb(0, 223, 56));
 }
 
 .game-border4 {
-  border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
+  border-image-source: linear-gradient(to top left, rgb(179, 255, 1), rgb(0, 223, 74));
 }
 
+/* FRIENDS BORDERS? OR MIX OF ABOUT COLORS? */
 .friend-border1 {
   border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
 }
@@ -118,7 +123,8 @@ h6 {
   border-image-source: linear-gradient(to bottom left, rgb(102, 13, 246), rgb(214, 0, 168));
 }
 
-.friend-border4 {
+.friendz-+
+border4 {
   border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
 }
 
