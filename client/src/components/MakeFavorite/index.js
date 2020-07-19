@@ -3,6 +3,8 @@ import { Col, Form, Button } from 'react-bootstrap';
 
 function MakeFavorite(props) {
 
+  console.log(props.media);
+
   return (
     <>
       {props.username && (
