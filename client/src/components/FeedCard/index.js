@@ -22,7 +22,6 @@ function FeedCard(props) {
                         : null}
                     <Card.Title>{media.username} saved this {props.mediaType}
                         <p className='small'>{moment(media.createdAt).calendar()}</p>
-                        <br />
                     </Card.Title>
                     {media.image
                         ? <div id="center-wrap">
@@ -31,8 +30,8 @@ function FeedCard(props) {
                         : null}
                     <div id="center-wrap">
                         <br />
-                        <Card.Title>{media.title}
-                            <p className='small'>{media.authors.length > 1 ? 'Authors' : 'Author'}: {media.authors}</p>
+                        <Card.Title><b>{media.title.toUpperCase()}</b>
+                            <p className='by'>{media.authors.length > 1 ? 'Authors' : 'Author'}: {media.authors}</p>
                         </Card.Title>
                     </div>
                     <LikeButton mediaLikes={media.likes}
@@ -43,13 +42,9 @@ function FeedCard(props) {
                         cb={props.cb}
                         userData={props.userData}
                     />
-                    <h6>Comments</h6>
-                    {media.comments.map(comment => {
-                        return(
-                        <p>{comment.commenterUsername}:{comment.content}</p>
-                        )
-                    })}
                     <CommentComponent
+                        // cb={props.cb2}
+                        comments={media.comments}
                         mediaId={media._id}
                         mediaType={media.mediaType}
                         title={media.title}
@@ -68,7 +63,6 @@ function FeedCard(props) {
                         : null}
                     <Card.Title>{media.username} saved this {props.mediaType}
                         <p className='small'>{moment(media.createdAt).calendar()}</p>
-                        <br />
                     </Card.Title>
                     {media.image
                         ? <div id="center-wrap">
@@ -77,8 +71,8 @@ function FeedCard(props) {
                         : null}
                     <div id="center-wrap">
                         <br />
-                        <Card.Title>{media.title}
-                            <p className='small'>Artist: {media.artist}</p>
+                        <Card.Title><b>{media.title.toUpperCase()}</b>
+                            <p className='by'>Artist: {media.artist}</p>
                         </Card.Title>
                         <ReactAudioPlayer
                             id="music-player"
@@ -94,13 +88,9 @@ function FeedCard(props) {
                         cb={props.cb}
                         userData={props.userData}
                     />
-                    <h6>Comments</h6>
-                    {media.comments.map(comment => {
-                        return(
-                        <p>{comment.commenterUsername}:{comment.content}</p>
-                        )
-                    })}
                     <CommentComponent
+                        // cb={props.cb2}
+                        comments={media.comments}
                         mediaId={media._id}
                         mediaType={media.mediaType}
                         title={media.title}
@@ -119,7 +109,6 @@ function FeedCard(props) {
                         : null}
                     <Card.Title>{media.username} saved this {props.mediaType}
                         <p className='small'>{moment(media.createdAt).calendar()}</p>
-                        <br />
                     </Card.Title>
                     {media.image
                         ? <div id="center-wrap">
@@ -128,8 +117,8 @@ function FeedCard(props) {
                         : null}
                     <div id='center-wrap'>
                         <br />
-                        <Card.Title>{media.title}
-                            <p className='small'>Director: {media.director}</p>
+                        <Card.Title><b>{media.title.toUpperCase()}</b>
+                            <p className='by'>Director: {media.director}</p>
                         </Card.Title>
                     </div>
                     <LikeButton mediaLikes={media.likes}
@@ -140,13 +129,9 @@ function FeedCard(props) {
                         cb={props.cb}
                         userData={props.userData}
                     />
-                    <h6>Comments</h6>
-                    {media.comments.map(comment => {
-                        return(
-                        <p>{comment.commenterUsername}:{comment.content}</p>
-                        )
-                    })}
                     <CommentComponent
+                        // cb={props.cb2}
+                        comments={media.comments}
                         mediaId={media._id}
                         mediaType={media.mediaType}
                         title={media.title}
@@ -165,7 +150,6 @@ function FeedCard(props) {
                         : null}
                     <Card.Title>{media.username} saved this {props.mediaType}
                         <p className='small'>{moment(media.createdAt).calendar()}</p>
-                        <br />
                     </Card.Title>
                     {media.image
                         ? <div id="center-wrap">
@@ -174,8 +158,8 @@ function FeedCard(props) {
                         : null}
                     <div id="center-wrap">
                         <br />
-                        <Card.Title>{media.title}
-                            <p className='small'>Developer: {media.developer}</p>
+                        <Card.Title><b>{media.title.toUpperCase()}</b>
+                            <p className='by'>Developer: {media.developer}</p>
                         </Card.Title>
                     </div>
                     <LikeButton mediaLikes={media.likes}
@@ -186,13 +170,9 @@ function FeedCard(props) {
                         cb={props.cb}
                         userData={props.userData}
                     />
-                    <h6>Comments</h6>
-                    {media.comments.map(comment => {
-                        return(
-                        <p>{comment.commenterUsername}:{comment.content}</p>
-                        )
-                    })}
                     <CommentComponent
+                        // cb={props.cb2}
+                        comments={media.comments}
                         mediaId={media._id}
                         mediaType={media.mediaType}
                         title={media.title}
