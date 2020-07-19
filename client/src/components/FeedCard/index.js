@@ -4,9 +4,11 @@ import ReactAudioPlayer from 'react-audio-player';
 import moment from 'moment';
 import LikeButton from '../LikeButton';
 import CommentComponent from '../../components/CommentComponent'
+// import UserInfoContext from '../../utils/UserInfoContext'
 import './style.css';
 
 function FeedCard(props) {
+
     if (props.mediaType === 'book') {
         const media = props.media;
         return (
@@ -38,18 +40,13 @@ function FeedCard(props) {
                         cb={props.cb}
                         userData={props.userData}
                     />
-                    <h6>Comments</h6>
-                    {media.comments.map(comment => {
-                        return(
-                        <p>{comment.commenterUsername}:{comment.content}</p>
-                        )
-                    })}
                     <CommentComponent
                         mediaId={media._id}
                         mediaType={media.mediaType}
                         title={media.title}
                         ownerId={media.userId}
-                        commenterUsername={props.userData.username} />
+                        commenterUsername={props.userData.username}
+                        mediaComments={media.comments} />
                 </Card.Body>
             </Card>
         )
@@ -91,8 +88,8 @@ function FeedCard(props) {
                     />
                     <h6>Comments</h6>
                     {media.comments.map(comment => {
-                        return(
-                        <p>{comment.commenterUsername}:{comment.content}</p>
+                        return (
+                            <p>{comment.commenterUsername}:{comment.content}</p>
                         )
                     })}
                     <CommentComponent
@@ -100,7 +97,8 @@ function FeedCard(props) {
                         mediaType={media.mediaType}
                         title={media.title}
                         ownerId={media.userId}
-                        commenterUsername={props.userData.username} />
+                        commenterUsername={props.userData.username}
+                        mediaComments={media.comments} />
                 </Card.Body>
             </Card>
         );
@@ -137,8 +135,8 @@ function FeedCard(props) {
                     />
                     <h6>Comments</h6>
                     {media.comments.map(comment => {
-                        return(
-                        <p>{comment.commenterUsername}:{comment.content}</p>
+                        return (
+                            <p>{comment.commenterUsername}:{comment.content}</p>
                         )
                     })}
                     <CommentComponent
@@ -146,7 +144,8 @@ function FeedCard(props) {
                         mediaType={media.mediaType}
                         title={media.title}
                         ownerId={media.userId}
-                        commenterUsername={props.userData.username} />
+                        commenterUsername={props.userData.username}
+                        mediaComments={media.comments} />
                 </Card.Body>
             </Card>
         );
@@ -183,8 +182,8 @@ function FeedCard(props) {
                     />
                     <h6>Comments</h6>
                     {media.comments.map(comment => {
-                        return(
-                        <p>{comment.commenterUsername}:{comment.content}</p>
+                        return (
+                            <p>{comment.commenterUsername}:{comment.content}</p>
                         )
                     })}
                     <CommentComponent
@@ -192,7 +191,8 @@ function FeedCard(props) {
                         mediaType={media.mediaType}
                         title={media.title}
                         ownerId={media.userId}
-                        commenterUsername={props.userData.username} />
+                        commenterUsername={props.userData.username}
+                        mediaComments={media.comments} />
                 </Card.Body>
             </Card>
         );
