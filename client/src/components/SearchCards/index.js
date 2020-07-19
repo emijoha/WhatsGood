@@ -121,7 +121,7 @@ function SearchCards(props) {
                                             {media.director === 'N/A' ? null : <p className='by'>Director: {media.director}</p>}
                                         </Card.Title>
                                     </div>
-                                    {media.plot === 'N/A' ? null : <div className='scroll-box'><Card.Text>{media.plot}</Card.Text></div>}
+                                    {media.plot === 'N/A' ? null : <div className='scroll-box'><Card.Text> {media.plot}</Card.Text></div>}
                                     {media.actors === 'N/A' ? null : <p className='small closer-p'><b>Starring:</b> {media.actors}</p>}
                                     {media.released === 'N/A' ? null : <p className='small closer-p'><b>Released:</b> {media.released}</p>}
                                     {media.genre === 'N/A' ? null : <p className='small closer-p'><b>Genre:</b> {media.genre}</p>}
@@ -144,16 +144,16 @@ function SearchCards(props) {
                 </CardColumns>
             </>
         )
-    } else if (props.cardType === 'searchedGames') {
+    } else if (props.cardType === 'searchedGames') { 
         return (
             <>
                 <h2>{props.resultArray.length
                     ? `Viewing ${props.resultArray.length} results:`
-                    : 'Search for a video game to begin'}</h2>
+                    : 'Search for a video game to begin'}
+                </h2>
                 <CardColumns>
                     {props.resultArray.map((game) => {
                         return (
-
                             <Card className={`game-border${randomNum()}`} key={game.mediaId} border='dark'>
                                 <div className='center-wrap'>
                                     {game.image ? <Card.Img className='mediaImage' src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}

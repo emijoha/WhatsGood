@@ -35,7 +35,9 @@ function SavedCards(props) {
                                             <p className='by'>{book.authors.length > 1 ? 'Authors' : 'Author'}: {book.authors}</p>
                                         </Card.Title>
                                     </div>
-                                    <Card.Text>{book.description}</Card.Text>
+                                    <div className='scroll-box'>
+                                        <Card.Text>{book.description}</Card.Text>
+                                    </div>
                                     <div className='center-wrap'>
                                         <p className='ratingReviewHeading'>Your Rating</p>
                                         <p className='rating'>
@@ -157,7 +159,7 @@ function SavedCards(props) {
                                             <p>{comment.commenterUsername}:{comment.content}</p>
                                         )
                                     })}
-                                    
+
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMusic(music._id)}>
                                         Delete!
                                     </Button>
@@ -193,7 +195,9 @@ function SavedCards(props) {
                                             {media.director === 'N/A' ? null : <p className='by'>Director: {media.director}</p>}
                                         </Card.Title>
                                     </div>
-                                    {media.plot === 'N/A' ? null : <Card.Text> {media.plot}</Card.Text>}
+                                    <div className='scroll-box'>
+                                        {media.plot === 'N/A' ? null : <Card.Text> {media.plot}</Card.Text>}
+                                    </div>
                                     {media.actors === 'N/A' ? null : <p className='small closer-p'><b>Starring:</b> {media.actors}</p>}
                                     {media.released === 'N/A' ? null : <p className='small closer-p'><b>Released:</b> {media.released}</p>}
                                     {media.genre === 'N/A' ? null : <p className='small closer-p'><b>Genre:</b> {media.genre}</p>}
@@ -274,7 +278,9 @@ function SavedCards(props) {
                                             <p className='by'>Developer: {game.developer}</p>
                                         </Card.Title>
                                     </div>
-                                    <Card.Text>{game.description}</Card.Text>
+                                    <div className='scroll-box'>
+                                        <Card.Text>{game.description}</Card.Text>
+                                    </div>
                                     <div className='center-wrap'>
                                         <p className='ratingReviewHeading'>Your Rating</p>
                                         <p className='rating'>

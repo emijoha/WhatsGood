@@ -47,9 +47,9 @@ button {
 .scroll-box {
     width: 100%;
     padding-right: 8px;
-    max-height: 145px;
-    overflow: auto;
-    margin-bottom: 20px;
+    max-height: 135px;
+    overflow: scroll;
+    /* margin-bottom: 10px; */
 }
     
 /* Scrollbar styles */
