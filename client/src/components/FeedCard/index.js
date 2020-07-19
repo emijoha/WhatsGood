@@ -255,6 +255,33 @@ function FeedCard(props) {
         </Card.Body>
       </Card>
     );
+  } else {
+    const media = props.media;
+    console.log('from FeedCard: ', media, props.userData)
+    return (
+      <Card key={props.media.mediaId} border='dark'>
+        <Card.Body>
+          {props.userData.picture
+            ? <Card.Img id="profile-pic" src={props.userData.picture} alt={props.userData.username} variant='top' />
+            : null}
+          <Card.Title>{props.userData.username} saved this {props.mediaType}
+            <p className='small'>{moment(props.media.createdAt).calendar()}</p>
+            <br />
+          </Card.Title>
+          {props.media.image
+            ? <div id="center-wrap">
+              <Card.Img id="media-pic" src={props.media.image} alt={`The image for ${props.media.title}`} variant='top' />
+            </div>
+            : null}
+          <div id="center-wrap">
+            <br />
+            <Card.Title>
+              {props.media.title}
+            </Card.Title>
+          </div>
+        </Card.Body>
+      </Card>
+    );
   }
 }
 

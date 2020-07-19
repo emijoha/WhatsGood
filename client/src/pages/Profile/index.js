@@ -4,7 +4,7 @@ import { Jumbotron, Container, Form, Button, Col, Row, Image } from 'react-boots
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
-// import FeedCard from '../../components/FeedCard';
+import FeedCard from '../../components/FeedCard';
 import ProfileFeedCard from '../../components/ProfileFeedCard';
 import SideBar from '../../components/SideBar';
 import SubNavbar from '../../components/SubNavbar';
@@ -45,6 +45,7 @@ function ProfilePage() {
   const [selectedMediaRating, setSelectedMediaRating] = useState(0);
 
   const [myMediaState, setMyMediaState] = useState([]);
+  const [myFavoriteState, setMyFavoriteState] = useState([]);
 
   function compareTimeStamp(a, b) {
     return b.timeStamp - a.timeStamp;
@@ -55,8 +56,10 @@ function ProfilePage() {
   const likerUsername = userData.username;
 
   useEffect(() => {
+    setMyMediaState([]);
+    setMyFavoriteState([]);
     renderAllMedia();
-  }, [userData.username, userData.savedBooks]);
+  }, [userData.username, userData.savedBooks, userData.savedMovies, userData.savedGames, userData.savedMusic]);
 
   const makeFavorite = (media) => {
     console.log('from SavedMovies: ', media);
@@ -210,6 +213,7 @@ function ProfilePage() {
   };
 
   function renderAllMedia() {
+
     if (userData.savedBooks.length > 0) {
 
       userData.savedBooks.map(savedBook => {
@@ -242,7 +246,7 @@ function ProfilePage() {
     if (userData.savedMusic.length > 0) {
 
       userData.savedMusic.map(savedMusic => {
-        
+
         let savedMusicData = {
           mediaType: savedMusic.mediaType,
           timeStamp: savedMusic.timeStamp,
@@ -333,10 +337,42 @@ function ProfilePage() {
   const handleRenderMediaPage = useCallback((mediaType) => {
 
     setMyMediaState([]);
+    setMyFavoriteState([]);
+
+    let favoritesArr = [];
 
     if (mediaType === "all") {
       renderAllMedia();
     }
+
+    if (mediaType === "favorites") {
+      userData.savedBooks.filter(savedBook => {
+        if (savedBook.userFavorite) {
+          favoritesArr.push(savedBook);
+        }
+      });
+
+      userData.savedMovies.filter(savedMovie => {
+        if (savedMovie.userFavorite) {
+          favoritesArr.push(savedMovie);
+        }
+      });
+
+      userData.savedGames.filter(savedGame => {
+        if (savedGame.userFavorite) {
+          favoritesArr.push(savedGame);
+        }
+      });
+
+      userData.savedMusic.filter(savedMusic => {
+        if (savedMusic.userFavorite) {
+          favoritesArr.push(savedMusic);
+        }
+      })
+
+      setMyFavoriteState(favoritesArr.sort(compareTimeStamp));
+    }
+
     if (mediaType === "music") {
 
       userData.savedMusic.map(savedMusic => {
@@ -543,7 +579,7 @@ function ProfilePage() {
                         onClick={() => setBioUpdate(true)}
                       >
                         Update Your Bio
-                    </Button>
+                      </Button>
                     </div>
                     :
                     <>
@@ -587,7 +623,7 @@ function ProfilePage() {
           <Col md={9}>
             <Row>
               <Col>
-                <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} />
+                <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} page={'profile'} />
               </Col>
             </Row>
             <Container width="100%">
@@ -595,6 +631,7 @@ function ProfilePage() {
                 <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
                   <SideBar
                     cb={handleRenderMediaPage}
+                    page={'profile'}
                   />
                 </Col>
                 <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >
@@ -627,8 +664,7 @@ function ProfilePage() {
                         //   userData={userData}
                         // >
                       );
-                    }
-                    if (media.mediaType === "Music") {
+                    } else if (media.mediaType === "Music") {
                       return (
                         <ProfileFeedCard
                           media={media}
@@ -656,8 +692,7 @@ function ProfilePage() {
                         //   userData={userData}
                         // />
                       );
-                    }
-                    if (media.mediaType === "Movie") {
+                    } else if (media.mediaType === "Movie") {
                       return (
                         <ProfileFeedCard
                           media={media}
@@ -685,9 +720,7 @@ function ProfilePage() {
                         //   userData={userData}
                         // />
                       );
-                    }
-
-                    if (media.mediaType === "Game") {
+                    } else if (media.mediaType === "Game") {
                       return (
                         <ProfileFeedCard
                           media={media}
@@ -715,8 +748,19 @@ function ProfilePage() {
                         //   userData={userData}
                         // />
                       );
-                    }
+                    };
+                    return;
                   })}
+                  {myFavoriteState.map(media => {
+                    return (
+                      <FeedCard
+                        media={media}
+                        userData={userData}
+                      />
+                    )
+                  })
+                  }
+
                 </Col>
                 <Col xs={0} s={0} md={1} lg={3}>
 
