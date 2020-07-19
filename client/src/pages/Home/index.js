@@ -1,15 +1,11 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
-import { Jumbotron, Container, CardColumns, Card, Button, Col, Row } from 'react-bootstrap';
-import ReactAudioPlayer from 'react-audio-player';
-import moment from 'moment'
+import { Container, Col, Row } from 'react-bootstrap';
 import "./style.css";
 
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
-import LikeButton from '../../components/LikeButton';
-import CommentComponent from '../../components/CommentComponent';
 
 import FeedCard from '../../components/FeedCard';
 import SideBar from '../../components/SideBar';
@@ -37,7 +33,6 @@ function Home() {
   
     }, [userData.username]);
 
-
     function renderAllMedia() {
       userData.friends.map(friend => {
         API.getUser(friend.id)
@@ -59,22 +54,20 @@ function Home() {
                   title: savedBook.title,
                   authors: savedBook.authors,
                   description: savedBook.description,
+                  userRating: savedBook.userRating,
+                  userReview: savedBook.userReview,
                   likes: savedBook.likes,
                   comments: savedBook.comments
                 }
-  
   
                 console.log("this is savedBookData: ", savedBookData)
                 console.log("this is savedBook: ", savedBook)
   
                 setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedBookData].sort(compareTimeStamp))
   
-  
               })
   
-  
             }
-  
   
             if (result.data.savedMusic.length > 0) {
   
@@ -93,26 +86,23 @@ function Home() {
                   link: savedMusic.link,
                   artist: savedMusic.artist,
                   preview: savedMusic.preview,
+                  userRating: savedMusic.userRating,
+                  userReview: savedMusic.userReview,
                   likes: savedMusic.likes,
                   comments: savedMusic.comments
                 }
   
-  
                 console.log("this is savedBookData: ", savedMusicData)
-  
   
                 setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMusicData].sort(compareTimeStamp))
   
-  
               })
-  
   
             }
   
             if (result.data.savedMovies.length > 0) {
   
               result.data.savedMovies.map(savedMovie => {
-  
   
                 let savedMovieData = {
                   mediaType: "movie",
@@ -131,23 +121,21 @@ function Home() {
                   genre: savedMovie.genre,
                   director: savedMovie.director,
                   actors: savedMovie.actors,
+                  userRating: savedMovie.userRating,
+                  userReview: savedMovie.userReview,
                   likes: savedMovie.likes,
                   comments: savedMovie.comments
                 }
   
                 setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData].sort(compareTimeStamp))
   
-  
               })
   
-  
             }
-  
   
             if (result.data.savedGames.length > 0) {
   
               result.data.savedGames.map(savedGame => {
-  
   
                 let savedGameData = {
                   mediaType: "game",
@@ -161,17 +149,14 @@ function Home() {
                   title: savedGame.title,
                   developer: savedGame.developer,
                   description: savedGame.description,
+                  userRating: savedGame.userRating,
+                  userReview: savedGame.userReview,
                   likes: savedGame.likes,
                   comments: savedGame.comments
                 }
                 setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedGameData].sort(compareTimeStamp))
               })
             }
-  
-  
-            // }
-  
-            // )
   
           })
   
@@ -180,7 +165,6 @@ function Home() {
 
     const handleRenderMediaPage = useCallback((mediaType) => {
 
-     
       setAllFriendsMediaState([]);
 
       if (mediaType=== "all") {
@@ -191,8 +175,7 @@ function Home() {
       userData.friends.map(friend => {
         API.getUser(friend.id)
           .then(result => {
-  
-  
+
               result.data.savedMusic.map(savedMusic => {
   
                 let savedMusicData = {
@@ -208,6 +191,8 @@ function Home() {
                   link: savedMusic.link,
                   artist: savedMusic.artist,
                   preview: savedMusic.preview,
+                  userRating: savedMusic.userRating,
+                  userReview: savedMusic.userReview,
                   likes: savedMusic.likes,
                   comments: savedMusic.comments
         
@@ -215,7 +200,6 @@ function Home() {
                 
                 setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMusicData].sort(compareTimeStamp))
   
-              
               })
             })
         })
@@ -227,9 +211,7 @@ function Home() {
           API.getUser(friend.id)
             .then(result => {
     
-    
               result.data.savedGames.map(savedGame => {
-
 
                 let savedGameData = {
                   mediaType: "game",
@@ -243,6 +225,8 @@ function Home() {
                   title: savedGame.title,
                   developer: savedGame.developer,
                   description: savedGame.description,
+                  userRating: savedGame.userRating,
+                  userReview: savedGame.userReview,
                   likes: savedGame.likes,
                   comments: savedGame.comments
                 }
@@ -258,9 +242,7 @@ function Home() {
             API.getUser(friend.id)
               .then(result => {
       
-      
                 result.data.savedMovies.map(savedMovie => {
-
 
                   let savedMovieData = {
                     mediaType: "movie",
@@ -279,12 +261,13 @@ function Home() {
                     genre: savedMovie.genre,
                     director: savedMovie.director,
                     actors: savedMovie.actors,
+                    userRating: savedMovie.userRating,
+                    userReview: savedMovie.userReview,  
                     likes: savedMovie.likes,
                     comments: savedMovie.comments
                   }
     
                   setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData].sort(compareTimeStamp))
-    
     
                 })
                 })
@@ -296,7 +279,6 @@ function Home() {
             userData.friends.map(friend => {
               API.getUser(friend.id)
                 .then(result => {
-        
         
                   result.data.savedBooks.map(savedBook => {
 
@@ -312,29 +294,22 @@ function Home() {
                       title: savedBook.title,
                       authors: savedBook.authors,
                       description: savedBook.description,
+                      userRating: savedBook.userRating,
+                      userReview: savedBook.userReview,    
                       likes: savedBook.likes,
                       comments: savedBook.comments
                     }
-      
       
                     console.log("this is savedBookData: ", savedBookData)
                     console.log("this is savedBook: ", savedBook)
       
                     setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedBookData].sort(compareTimeStamp))
-      
-      
+
                   })
                   })
               })
             }
-       
-  
   })
-  
-  
-         
-
-
 
   const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes, ownerId, title) => {
     // find the friend in `searchedUser` state by the matching id
@@ -394,8 +369,6 @@ function Home() {
       .catch(err => console.log(err));
   });
 
-
-
   return (
     <>
       {/* <Jumbotron fluid className='text-light bg-dark'>
@@ -404,15 +377,12 @@ function Home() {
         </Container>
       </Jumbotron> */}
       <Row>
-          <Col>
-        <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} />
+        <Col>
+          <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} />
         </Col>
-        </Row>
+      </Row>
       <Container width="100%">
-        
-       
         <Row id="main-body-row">
-          
           <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
             <SideBar 
               cb={handleRenderMediaPage}

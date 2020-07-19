@@ -55,13 +55,13 @@ function ProfilePage() {
             />
             {userData.username && (
               <>
-                {(userData.bio !== '' || null) 
+                {(userData.bio !== '' || null)
 
                   ?
-                  <>
+                  <div>
                     <h6>
-                      A little about me:
-                    </h6>
+                      A little about me: 
+                    </h6> 
                     <p>
                       {userData.bio}
                     </p>
@@ -71,7 +71,7 @@ function ProfilePage() {
                     >
                       Update Your Bio
                     </Button>
-                  </>
+                  </div>
                   :
                   <>
                     <Button
@@ -80,42 +80,40 @@ function ProfilePage() {
                     >
                       Add a Mini-Bio
                     </Button>
-                
-                    <>
-                      {bioUpdate &&
-                        <>
-                          <Form>
-                            <Col>
-                              <Form.Control
-                                name='bio-text'
-                                value={bioText}
-                                onChange={(e) => setBioText(e.target.value)}
-                                type='text'
-                                size='md'
-                                as='textarea'
-                                rows='6'
-                                placeholder='enter your bio here'
-                              />
-                            </Col>
-                          </Form>
-                          <Button
-                            className='btn btn-succes'
-                            onClick={() => updateBio(bioText)}
-                          >
-                            Save Bio
-                          </Button>
-                        </>
-                      }
-                    </>
                   </>
                 }
-
               </>
             )}
+
+
+            {bioUpdate &&
+              <>
+                <Form>
+                  <Col>
+                    <Form.Control
+                      name='bio-text'
+                      value={bioText}
+                      onChange={(e) => setBioText(e.target.value)}
+                      type='text'
+                      size='md'
+                      as='textarea'
+                      rows='6'
+                      placeholder='enter your bio here'
+                    />
+                  </Col>
+                </Form>
+                <Button
+                  className='btn btn-succes'
+                  onClick={() => updateBio(bioText)}
+                >
+                  Save Bio
+                </Button>
+              </>
+            }
           </Row>
         </Col>
         <Col sm={10} md={9}>
-          
+
 
 
         </Col>
