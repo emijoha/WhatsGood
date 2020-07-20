@@ -7,33 +7,34 @@ import AuthService from '../../utils/auth';
 
 
 
-function SubNavbar({ cb }) {
+function SubNavbar({ cb, page }) {
 
 
-    const userData = useContext(UserInfoContext);
+  const userData = useContext(UserInfoContext);
 
-    useEffect(() => {
-        userData.getUserData();
-    }, []);
-
-
-
-    return (
+  useEffect(() => {
+    userData.getUserData();
+  }, []);
 
 
 
-        <div className="text-center" id="sub-navbar-menu">
-            <Table>  
-                <tr id="table-row">
-                    <td id="sub-navbar-th"><button  id="side-bar-li" onClick={() => cb("all")}>ALL</button></td>
-                    <td id="sub-navbar-th"><button  id="side-bar-li" onClick={() => cb("music")}>MUSIC</button></td>
-                    <td id="sub-navbar-th"><button  id="side-bar-li" onClick={() => cb("movie")}>MOVIES</button></td>
-                    <td id="sub-navbar-th"><button  id="side-bar-li" onClick={() => cb("game")}>GAMES</button></td>
-                    <td id="sub-navbar-th"><button  id="side-bar-li" onClick={() => cb("book")}>BOOKS</button></td>
-                </tr>
-                
-            </Table>
-{/* 
+  return (
+
+
+
+    <div className="text-center" id="sub-navbar-menu">
+      <Table>
+        <tr id="table-row">
+          <td id="sub-navbar-th"><button id="side-bar-li" onClick={() => cb("all")}>ALL</button></td>
+          {page === 'profile' && <td><button id="side-bar-li" onClick={() => cb("favorites")}>FAVORITES</button></td>}
+          <td id="sub-navbar-th"><button id="side-bar-li" onClick={() => cb("music")}>MUSIC</button></td>
+          <td id="sub-navbar-th"><button id="side-bar-li" onClick={() => cb("movie")}>MOVIES</button></td>
+          <td id="sub-navbar-th"><button id="side-bar-li" onClick={() => cb("game")}>GAMES</button></td>
+          <td id="sub-navbar-th"><button id="side-bar-li" onClick={() => cb("book")}>BOOKS</button></td>
+        </tr>
+
+      </Table>
+      {/* 
             <ul>
                 <li id="side-bar-li"><a id="side-bar-a" href="/search-user">ALL</a></li>
                 <li id="side-bar-li"><a id="side-bar-a" href="/search-user">MUSIC</a></li>
@@ -42,7 +43,7 @@ function SubNavbar({ cb }) {
                 <li id="side-bar-li"><a id="side-bar-a" href="/search_movies">BOOKS</a></li>
 
             </ul> */}
-        </div>
+    </div>
 
 
 
@@ -53,7 +54,7 @@ function SubNavbar({ cb }) {
 
 
 
-    );
+  );
 }
 
 export default SubNavbar;

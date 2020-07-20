@@ -8,6 +8,7 @@ const {
   deleteBook,
   deleteGame,
   savePicture,
+  saveUserBio,
   saveFriend,
   saveLike,
   deleteFriend,
@@ -27,7 +28,8 @@ const {
   saveUserReview,
   saveUserRating,
   addNotification,
-  deleteNotification
+  deleteNotification,
+  makeFavorite
 } = require('../../controllers/user-controller');
 
 // import middleware
@@ -61,6 +63,8 @@ router.route('/music').get(getAllUsers).put(authMiddleware, saveMusic);
 
 router.route('/picture').get(getAllUsers).put(authMiddleware, savePicture);
 
+router.route('/user-bio').get(getAllUsers).put(authMiddleware, saveUserBio);
+
 router.route('/movies').get(getAllUsers).put(authMiddleware, saveMovie);
 
 router.route('/user-review').get(getAllUsers).put(authMiddleware, saveUserReview);
@@ -85,6 +89,7 @@ router.route('/music/comments/:id').put(addMusicComment);
 
 router.route('/movies/comments/:id').put(addMovieComment);
 
+router.route('/make-favorite').get(getAllUsers).put(authMiddleware, makeFavorite);
 
 
 

@@ -22,6 +22,36 @@ function SavedMedia() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
 
+  const makeFavorite = (media) => {
+    console.log('from SavedMovies: ', media);
+
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    let isFavorite;
+    
+    if (media.userFavorite === true) {
+      isFavorite = false;
+    } else {
+      isFavorite = true;
+    }
+
+    let updateCriteria = {
+      type: media.mediaType,
+      id: media._id,
+      favorite: isFavorite
+    }
+
+    console.log('updateCriteria: ', updateCriteria);
+
+    API.makeFavorite(updateCriteria, token)
+    .then(() => userData.getUserData())
+    .catch((err) => console.log(err));
+  }
+
   const startReview = (media) => {
     console.log('media: ', media);
 
@@ -171,6 +201,7 @@ function SavedMedia() {
               handleReviewFormSubmit={handleReviewFormSubmit}
               reviewInput={reviewInput}
               setReviewInput={setReviewInput}
+              makeFavorite={makeFavorite}
               handleDeleteBook={handleDeleteBook}
             />
             <SavedCards
@@ -190,6 +221,7 @@ function SavedMedia() {
               handleReviewFormSubmit={handleReviewFormSubmit}
               reviewInput={reviewInput}
               setReviewInput={setReviewInput}
+              makeFavorite={makeFavorite}
               handleDeleteMusic={handleDeleteMusic}
             />
             <SavedCards
@@ -209,6 +241,7 @@ function SavedMedia() {
               handleReviewFormSubmit={handleReviewFormSubmit}
               reviewInput={reviewInput}
               setReviewInput={setReviewInput}
+              makeFavorite={makeFavorite}
               handleDeleteMovie={handleDeleteMovie}
             />
             <SavedCards
@@ -228,6 +261,7 @@ function SavedMedia() {
               handleReviewFormSubmit={handleReviewFormSubmit}
               reviewInput={reviewInput}
               setReviewInput={setReviewInput}
+              makeFavorite={makeFavorite}
               handleDeleteGame={handleDeleteGame}
             />
           </Container>

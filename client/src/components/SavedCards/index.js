@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faBookOpen, faGamepad, faMusic } from '@fortawesome/free-solid-svg-icons'; import ReactAudioPlayer from 'react-audio-player';
 import RateSaved from '../RateSaved';
 import ReviewSaved from '../ReviewSaved';
+import MakeFavorite from '../MakeFavorite';
 import './style.css';
 
 function SavedCards(props) {
@@ -25,6 +26,11 @@ function SavedCards(props) {
                         return (
 
                             <Card className={`book-border${randomNum()}`} key={book._id} border='dark'>
+                                 <MakeFavorite
+                                    username={props.username}
+                                    media={book}
+                                    makeFavorite={props.makeFavorite}
+                                />
                                 <div className='center-wrap'>
                                     {book.image ? <Card.Img className='mediaImage' src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
                                 </div>
@@ -80,14 +86,6 @@ function SavedCards(props) {
                                         handleReviewFormSubmit={props.handleReviewFormSubmit}
                                         setReviewInput={props.setReviewInput}
                                     />
-
-                                    {/* {book.comments && (<p>Comments:</p>)}
-                                    {book.comments.map(comment => {
-                                        return (
-                                            <p>{comment.commenterUsername}:{comment.content}</p>
-                                        )
-                                    })} */}
-
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteBook(book._id)}>
                                         Delete this Book!
                                     </Button>
@@ -111,6 +109,11 @@ function SavedCards(props) {
                         return (
 
                             <Card className={`music-border${randomNum()}`} key={music._id} border='dark'>
+                                 <MakeFavorite
+                                    username={props.username}
+                                    media={music}
+                                    makeFavorite={props.makeFavorite}
+                                />
                                 <div className='center-wrap'>
                                     {music.image ? <Card.Img className='mediaImage' src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
                                 </div>
@@ -165,14 +168,6 @@ function SavedCards(props) {
                                         handleReviewFormSubmit={props.handleReviewFormSubmit}
                                         setReviewInput={props.setReviewInput}
                                     />
-
-                                    {/* {music.comments && (<p>Comments:</p>)}
-                                    {music.comments.map(comment => {
-                                        return (
-                                            <p>{comment.commenterUsername}:{comment.content}</p>
-                                        )
-                                    })} */}
-
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMusic(music._id)}>
                                         Delete!
                                     </Button>
@@ -183,9 +178,6 @@ function SavedCards(props) {
                 </CardColumns>
             </>
         );
-        // simple move card, couldn't figure out movie review. 
-        // savedMovies page does not currently use this component, left it as is for now
-        // ratings/review form shoudl be seperate component with its own state, with just bare necessities of props needed from savedMovies state/functionality
     } else if (props.cardType === 'savedMovies') {
         return (
             <>
@@ -198,6 +190,11 @@ function SavedCards(props) {
                     {props.savedArray.map((media) => {
                         return (
                             <Card className={`movie-border${randomNum()}`} key={media.mediaId} border='dark'>
+                                <MakeFavorite
+                                    username={props.username}
+                                    media={media}
+                                    makeFavorite={props.makeFavorite}
+                                />
                                 <div className='center-wrap'>
                                     {media.image === 'N/A' ? null : <Card.Img className='mediaImage' src={media.image} alt={`The cover for ${media.title}`} variant='top' />}
                                 </div>
@@ -250,14 +247,6 @@ function SavedCards(props) {
                                         handleReviewFormSubmit={props.handleReviewFormSubmit}
                                         setReviewInput={props.setReviewInput}
                                     />
-
-                                    {/* {media.comments && (<p>Comments:</p>)}
-                                    {media.comments.map(comment => {
-                                        return (
-                                            <p>{comment.commenterUsername}:{comment.content}</p>
-                                        )
-                                    })} */}
-
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMovie(media._id)}>
                                         Delete this Movie!
                                     </Button>
@@ -279,8 +268,12 @@ function SavedCards(props) {
                 <CardColumns>
                     {props.savedArray.map((game) => {
                         return (
-
                             <Card className={`game-border${randomNum()}`} key={game._id} border='dark'>
+                                <MakeFavorite
+                                    username={props.username}
+                                    media={game}
+                                    makeFavorite={props.makeFavorite}
+                                />
                                 <div className='center-wrap'>
                                     {game.image ? <Card.Img className='mediaImage' src={game.image} alt={`The image for ${game.title}`} variant='top' /> : null}
                                 </div>
@@ -329,14 +322,6 @@ function SavedCards(props) {
                                         handleReviewFormSubmit={props.handleReviewFormSubmit}
                                         setReviewInput={props.setReviewInput}
                                     />
-
-                                    {/* {game.comments && (<p>Comments:</p>)}
-                                    {game.comments.map(comment => {
-                                        return (
-                                            <p>{comment.commenterUsername}:{comment.content}</p>
-                                        )
-                                    })} */}
-
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteGame(game._id)}>
                                         Delete this Game!
                                     </Button>
