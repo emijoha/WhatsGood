@@ -15,6 +15,7 @@ import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
+import ProfilePage from './pages/Profile';
 
 import * as API from './utils/API';
 import AuthService from './utils/auth';
@@ -27,8 +28,11 @@ function App() {
   const [userInfo, setUserInfo] = useState({
     _id: '',
     username: '',
+    firstName: '',
+    lastName: '',
     email: '',
     picture: '',
+    bio: '',
     savedBooks: [],
     savedMusic: [],
     savedMovies: [],
@@ -50,8 +54,8 @@ function App() {
         return false;
       }
       API.getMe(token)
-        .then(({ data: { _id, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends, notifications } }) =>
-          setUserInfo({ ...userInfo, _id, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends, notifications })
+        .then(({ data: { _id, username, firstName, lastName, email, picture, bio, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends, notifications } }) =>
+          setUserInfo({ ...userInfo, _id, username, firstName, lastName, email, picture, bio, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends, notifications })
         )
         .catch((err) => console.log(err));
     }
@@ -71,6 +75,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Login} />
             <Route exact path='/home' component={Home} />
+            <Route exact path='/profile' component={ProfilePage} />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/search_books' component={SearchBooks} />
             <Route exact path='/saved_books' component={SavedBooks} />

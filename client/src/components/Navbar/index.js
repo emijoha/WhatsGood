@@ -93,6 +93,7 @@ function AppNavbar() {
                   />
                 }>
                 <NavDropdown.Item onClick={() => setShowModal(true)}>UPLOAD PROFILE PIC</NavDropdown.Item>
+                <NavDropdown.Item href="/profile">MY PROFILE</NavDropdown.Item>
                 {userData.notifications.map((notification) => {
                   { console.log("notification in navbar", notification) }
                   return (

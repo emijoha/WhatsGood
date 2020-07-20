@@ -1,15 +1,11 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
-import { Jumbotron, Container, CardColumns, Card, Button, Col, Row } from 'react-bootstrap';
-import ReactAudioPlayer from 'react-audio-player';
-import moment from 'moment'
+import { Container, Col, Row } from 'react-bootstrap';
 import "./style.css";
 
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
-import LikeButton from '../../components/LikeButton';
-import CommentComponent from '../../components/CommentComponent';
 
 import FeedCard from '../../components/FeedCard';
 import SideBar from '../../components/SideBar';
@@ -129,17 +125,21 @@ function Home() {
         })
     })
   }
-
   const handleRenderMediaPage = useCallback((mediaType) => {
+
     setAllFriendsMediaState([]);
+
     if (mediaType === "all") {
       renderAllMedia();
     }
     if (mediaType === "music") {
+
       userData.friends.map(friend => {
         API.getUser(friend.id)
           .then(result => {
+
             result.data.savedMusic.map(savedMusic => {
+
               let savedMusicData = {
                 mediaType: "music",
                 timeStamp: savedMusic.timeStamp,
@@ -153,19 +153,28 @@ function Home() {
                 link: savedMusic.link,
                 artist: savedMusic.artist,
                 preview: savedMusic.preview,
+                userRating: savedMusic.userRating,
+                userReview: savedMusic.userReview,
                 likes: savedMusic.likes,
                 comments: savedMusic.comments
+
               }
+
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMusicData].sort(compareTimeStamp))
+
             })
           })
       })
     }
+
     if (mediaType === "game") {
+
       userData.friends.map(friend => {
         API.getUser(friend.id)
           .then(result => {
+
             result.data.savedGames.map(savedGame => {
+
               let savedGameData = {
                 mediaType: "game",
                 timeStamp: savedGame.timeStamp,
@@ -178,6 +187,8 @@ function Home() {
                 title: savedGame.title,
                 developer: savedGame.developer,
                 description: savedGame.description,
+                userRating: savedGame.userRating,
+                userReview: savedGame.userReview,
                 likes: savedGame.likes,
                 comments: savedGame.comments
               }
@@ -186,11 +197,15 @@ function Home() {
           })
       })
     }
+
     if (mediaType === "movie") {
+
       userData.friends.map(friend => {
         API.getUser(friend.id)
           .then(result => {
+
             result.data.savedMovies.map(savedMovie => {
+
               let savedMovieData = {
                 mediaType: "movie",
                 timeStamp: savedMovie.timeStamp,
@@ -208,19 +223,27 @@ function Home() {
                 genre: savedMovie.genre,
                 director: savedMovie.director,
                 actors: savedMovie.actors,
+                userRating: savedMovie.userRating,
+                userReview: savedMovie.userReview,
                 likes: savedMovie.likes,
                 comments: savedMovie.comments
               }
+
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData].sort(compareTimeStamp))
+
             })
           })
       })
     }
+
     if (mediaType === "book") {
+
       userData.friends.map(friend => {
         API.getUser(friend.id)
           .then(result => {
+
             result.data.savedBooks.map(savedBook => {
+
               let savedBookData = {
                 mediaType: "book",
                 timeStamp: savedBook.timeStamp,
@@ -233,54 +256,22 @@ function Home() {
                 title: savedBook.title,
                 authors: savedBook.authors,
                 description: savedBook.description,
+                userRating: savedBook.userRating,
+                userReview: savedBook.userReview,
                 likes: savedBook.likes,
                 comments: savedBook.comments
               }
+
+              console.log("this is savedBookData: ", savedBookData)
+              console.log("this is savedBook: ", savedBook)
+
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedBookData].sort(compareTimeStamp))
+
             })
           })
       })
     }
   })
-
-  // const handleSaveComment = useCallback((mediaId, mediaType, ownerId, title, commenterUsername, commentInput) => {
-  //   // find the friend in `searchedUser` state by the matching id
-  //   // const userToSave = searchedUser.find((user) => user._id === userId);
-  //   // get token
-  //   const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-  //   if (!token) {
-  //     return false;
-  //   }
-
-  //   const commentData = {
-  //     commenterUsername: commenterUsername,
-  //     content: commentInput,
-  //     mediaType: mediaType,
-  //     mediaId: mediaId
-  //   };
-
-  //   // info for notification
-  //   const notificationData = {
-  //     likerUsername: commenterUsername,
-  //     title: title,
-  //     ownerId: ownerId,
-  //     type: "comment"
-  //   }
-
-  //   API.addComment(commentData, token)
-  //     .then(() => {
-  //       userData.getUserData();
-  //     })
-  //     .catch((err) => console.log(err));
-
-  //   //call to send notification to user  
-  //   API.addNotification(notificationData, token)
-  //     .then(() => {
-  //       console.log("NOTIFICATION ADDED");
-  //       userData.getUserData();
-  //     })
-  //     .catch(err => console.log(err));
-  // });
 
   const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes, ownerId, title) => {
     // find the friend in `searchedUser` state by the matching id
