@@ -129,7 +129,7 @@ function SavedCards(props) {
                                         <p className='rating'>
                                             {
                                                 (music.userRating === 0)
-                                                    ? <><p>Submit a rating!</p></>
+                                                    ? <p>Submit a rating!</p>
                                                     : null
                                             }
                                             {[...Array(music.userRating)].map((star, i) => {
@@ -142,9 +142,8 @@ function SavedCards(props) {
                                         </p>
                                         <p className='ratingReviewHeading'>Your Review</p>
                                     </div>
-                                    <div className='scroll-box'>
-                                        <p>{music.userReview.length ? music.userReview : "What's good...and what's not? Write a review!"}</p>
-                                    </div>
+                                    <div className='scroll-box'></div>
+                                    <p>{music.userReview.length ? music.userReview : "What's good...and what's not? Write a review!"}</p>
                                     <RateSaved
                                         username={props.username}
                                         mediaType={'Music'}
@@ -219,25 +218,17 @@ function SavedCards(props) {
                                     {media.runtime === 'N/A' ? null : <p className='small'><b>Runtime:</b> {media.runtime}</p>}
                                     <div className='center-wrap'>
                                         <p className='ratingReviewHeading'>Your Rating</p>
-                                        <p className='rating'>
-                                            {
-                                                (media.userRating === 0)
-                                                    ? <p>Submit a rating!</p>
-                                                    : null
-                                            }
-                                            {[...Array(media.userRating)].map((star, i) => {
-                                                return (
-                                                    <label key={i}>
-                                                        <FontAwesomeIcon className='read-only-star' icon={faVideo} color='black' size={'lg'} />
-                                                    </label>
-                                                )
-                                            })}
+                                        <p className='rating'>{[...Array(media.userRating)].map((star, i) => {
+                                            return (
+                                                <label key={i}>
+                                                    <FontAwesomeIcon className='read-only-star' icon={faVideo} color='black' size={'lg'} />
+                                                </label>
+                                            )
+                                        })}
                                         </p>
                                         <p className='ratingReviewHeading'>Your Review</p>
                                     </div>
-                                    <div className='scroll-box'>
-                                        <p>{media.userReview.length ? media.userReview : "What's good...and what's not? Write a review!"}</p>
-                                    </div>
+                                    <p>{media.userReview.length ? media.userReview : "What's good...and what's not? Write a review!"}</p>
                                     <RateSaved
                                         username={props.username}
                                         mediaType={'Movie'}
@@ -306,11 +297,6 @@ function SavedCards(props) {
                                     <div className='center-wrap'>
                                         <p className='ratingReviewHeading'>Your Rating</p>
                                         <p className='rating'>
-                                            {
-                                                (game.userRating === 0)
-                                                    ? <p>Submit a rating!</p>
-                                                    : null
-                                            }
                                             {[...Array(game.userRating)].map((star, i) => {
                                                 return (
                                                     <label key={i}>
@@ -321,9 +307,7 @@ function SavedCards(props) {
                                         </p>
                                         <p className='ratingReviewHeading'>Your Review</p>
                                     </div>
-                                    <div className='scroll-box'>
-                                        <p>{game.userReview.length ? game.userReview : "What's good...and what's not? Write a review!"}</p>
-                                    </div>
+                                    <p>{game.userReview.length ? game.userReview : "What's good...and what's not? Write a review!"}</p>
                                     <RateSaved
                                         username={props.username}
                                         mediaType={'Game'}

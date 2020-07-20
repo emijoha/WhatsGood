@@ -243,45 +243,6 @@ function Home() {
     }
   })
 
-  // const handleSaveComment = useCallback((mediaId, mediaType, ownerId, title, commenterUsername, commentInput) => {
-  //   // find the friend in `searchedUser` state by the matching id
-  //   // const userToSave = searchedUser.find((user) => user._id === userId);
-  //   // get token
-  //   const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-  //   if (!token) {
-  //     return false;
-  //   }
-
-  //   const commentData = {
-  //     commenterUsername: commenterUsername,
-  //     content: commentInput,
-  //     mediaType: mediaType,
-  //     mediaId: mediaId
-  //   };
-
-  //   // info for notification
-  //   const notificationData = {
-  //     likerUsername: commenterUsername,
-  //     title: title,
-  //     ownerId: ownerId,
-  //     type: "comment"
-  //   }
-
-  //   API.addComment(commentData, token)
-  //     .then(() => {
-  //       userData.getUserData();
-  //     })
-  //     .catch((err) => console.log(err));
-
-  //   //call to send notification to user  
-  //   API.addNotification(notificationData, token)
-  //     .then(() => {
-  //       console.log("NOTIFICATION ADDED");
-  //       userData.getUserData();
-  //     })
-  //     .catch(err => console.log(err));
-  // });
-
   const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes, ownerId, title) => {
     // find the friend in `searchedUser` state by the matching id
     // const userToSave = searchedUser.find((user) => user._id === userId);
