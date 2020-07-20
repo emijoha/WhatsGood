@@ -144,7 +144,7 @@ export const deleteFriend = function (friend_id, token) {
 };
 
 export const addLike = function (likeData, token) {
-  console.log(likeData, token);
+  console.log('addLike like data', likeData, token);
 
   if (likeData.mediaType === "book") {
   return axios.put(`/api/users/books/${likeData._id}`, likeData, { headers: { authorization: `Bearer ${token}` } });

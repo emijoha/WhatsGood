@@ -641,6 +641,7 @@ function ProfilePage() {
                         <ProfileFeedCard
                           media={media}
                           cb={handleSaveLike}
+                          mediaType={'book'}
                           userData={userData}
                           startRating={startRating}
                           selectedMediaRating={selectedMediaRating}
@@ -669,6 +670,7 @@ function ProfilePage() {
                         <ProfileFeedCard
                           media={media}
                           cb={handleSaveLike}
+                          mediaType={'music'}
                           userData={userData}
                           startRating={startRating}
                           selectedMediaRating={selectedMediaRating}
@@ -697,6 +699,7 @@ function ProfilePage() {
                         <ProfileFeedCard
                           media={media}
                           cb={handleSaveLike}
+                          mediaType={'movie'}
                           userData={userData}
                           startRating={startRating}
                           selectedMediaRating={selectedMediaRating}
@@ -725,6 +728,7 @@ function ProfilePage() {
                         <ProfileFeedCard
                           media={media}
                           cb={handleSaveLike}
+                          mediaType={'game'}
                           userData={userData}
                           startRating={startRating}
                           selectedMediaRating={selectedMediaRating}

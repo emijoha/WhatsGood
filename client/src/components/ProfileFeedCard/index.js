@@ -78,7 +78,7 @@ function ProfileFeedCard(props) {
             makeFavorite={props.makeFavorite}
           />
           <LikeButton mediaLikes={media.likes}
-            mediaType={media.mediaType}
+            mediaType={props.mediaType}
             ownerId={media.userId}
             mediaId={media._id}
             title={media.title}
@@ -88,7 +88,7 @@ function ProfileFeedCard(props) {
           <CommentComponent
             comments={media.comments}
             mediaId={media._id}
-            mediaType={media.mediaType}
+            mediaType={props.mediaType}
             title={media.title}
             ownerId={media.userId}
             commenterUsername={props.userData.username}
@@ -169,7 +169,7 @@ function ProfileFeedCard(props) {
             makeFavorite={props.makeFavorite}
           />
           <LikeButton mediaLikes={media.likes}
-            mediaType={media.mediaType}
+            mediaType={props.mediaType}
             ownerId={media.userId}
             mediaId={media._id}
             title={media.title}
@@ -179,7 +179,7 @@ function ProfileFeedCard(props) {
           <CommentComponent
             comments={media.comments}
             mediaId={media._id}
-            mediaType={media.mediaType}
+            mediaType={props.mediaType}
             title={media.title}
             ownerId={media.userId}
             commenterUsername={props.userData.username}
@@ -254,7 +254,7 @@ function ProfileFeedCard(props) {
             makeFavorite={props.makeFavorite}
           />
           <LikeButton mediaLikes={media.likes}
-            mediaType={media.mediaType}
+            mediaType={props.mediaType}
             ownerId={media.userId}
             mediaId={media._id}
             title={media.title}
@@ -264,7 +264,7 @@ function ProfileFeedCard(props) {
           <CommentComponent
             comments={media.comments}
             mediaId={media._id}
-            mediaType={media.mediaType}
+            mediaType={props.mediaType}
             title={media.title}
             ownerId={media.userId}
             commenterUsername={props.userData.username}
@@ -339,7 +339,7 @@ function ProfileFeedCard(props) {
             makeFavorite={props.makeFavorite}
           />
           <LikeButton mediaLikes={media.likes}
-            mediaType={media.mediaType}
+            mediaType={props.mediaType}
             ownerId={media.userId}
             mediaId={media._id}
             title={media.title}
@@ -349,7 +349,7 @@ function ProfileFeedCard(props) {
           <CommentComponent
             comments={media.comments}
             mediaId={media._id}
-            mediaType={media.mediaType}
+            mediaType={props.mediaType}
             title={media.title}
             ownerId={media.userId}
             commenterUsername={props.userData.username}

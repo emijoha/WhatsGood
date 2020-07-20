@@ -197,7 +197,7 @@ function FeedCard(props) {
           {props.userData.picture
             ? <Card.Img id="profile-pic" src={props.userData.picture} alt={props.userData.username} variant='top' />
             : null}
-          <Card.Title>{props.userData.username} saved this {props.mediaType}
+          <Card.Title>{props.userData.username} saved this {media.mediaType.toLowerCase()}
             <p className='small'>{moment(props.media.createdAt).calendar()}</p>
             <br />
           </Card.Title>
