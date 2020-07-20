@@ -319,11 +319,11 @@ function SavedCards(props) {
                                                 )
                                             })}
                                         </p>
-                                        <div className='scroll-box'>
-                                            <p className='ratingReviewHeading'>Your Review</p>
-                                        </div>
+                                        <p className='ratingReviewHeading'>Your Review</p>
                                     </div>
-                                    <p>{game.userReview.length ? game.userReview : "What's good...and what's not? Write a review!"}</p>
+                                    <div className='scroll-box'>
+                                        <p>{game.userReview.length ? game.userReview : "What's good...and what's not? Write a review!"}</p>
+                                    </div>
                                     <RateSaved
                                         username={props.username}
                                         mediaType={'Game'}
