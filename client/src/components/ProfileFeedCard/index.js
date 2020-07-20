@@ -86,6 +86,7 @@ function ProfileFeedCard(props) {
             userData={props.userData}
           />
           <CommentComponent
+            comments={media.comments}
             mediaId={media._id}
             mediaType={media.mediaType}
             title={media.title}
@@ -176,6 +177,7 @@ function ProfileFeedCard(props) {
             userData={props.userData}
           />
           <CommentComponent
+            comments={media.comments}
             mediaId={media._id}
             mediaType={media.mediaType}
             title={media.title}
@@ -260,13 +262,14 @@ function ProfileFeedCard(props) {
             userData={props.userData}
           />
           <CommentComponent
+            comments={media.comments}
             mediaId={media._id}
             mediaType={media.mediaType}
             title={media.title}
             ownerId={media.userId}
             commenterUsername={props.userData.username}
             mediaComments={media.comments} />
-            <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMovie(media._id)}>
+          <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMovie(media._id)}>
             Delete this Movie!
           </Button>
         </Card.Body>
@@ -344,13 +347,14 @@ function ProfileFeedCard(props) {
             userData={props.userData}
           />
           <CommentComponent
+            comments={media.comments}
             mediaId={media._id}
             mediaType={media.mediaType}
             title={media.title}
             ownerId={media.userId}
             commenterUsername={props.userData.username}
             mediaComments={media.comments} />
-            <Button className='btn-block btn-danger' onClick={() => props.handleDeleteGame(media._id)}>
+          <Button className='btn-block btn-danger' onClick={() => props.handleDeleteGame(media._id)}>
             Delete this Game!
           </Button>
         </Card.Body>

@@ -37,38 +37,47 @@ function RateSaved(props) {
 
   return (
     <>
+
       {props.username && (
         <>
           {(props.media.userRating === 0) ?
             <Button className='btn-block btn-success' onClick={() => props.startRating(props.media)}  >
               Rate this {props.mediaType}!
-            </Button>
-
+                        </Button>
             :
-
             <Button className='btn-block btn-success' onClick={() => props.startRating(props.media)}  >
               Update your Rating?
-            </Button>
+                        </Button>
           }
         </>
       )}
-
       {props.selectedMediaRating._id && (
         <>
           {props.media._id === props.selectedMediaRating._id
             ?
             <Form onSubmit={props.handleRatingFormSubmit}>
-              {[...Array(5)].map((star, i) => {
-                const ratingValue = i + 1;
-                return (
-                  <label key={i}>
-                    <input type='radio' name='rating'
-                      value={i} onClick={() => props.setUserRating(ratingValue)} />
-                    <FontAwesomeIcon key={ratingValue} icon={faIcon} className='star' onMouseEnter={() => props.setHover(ratingValue)}
-                      onMouseLeave={() => props.setHover(null)} color={ratingValue <= (props.hover || props.userRating) ? 'black' : '#e4e5e9'} size={'lg'} />
-                  </label>
-                )
-              })}
+              <p className='rating-submit'>
+                {[...Array(5)].map((star, i) => {
+                  const ratingValue = i + 1;
+                  console.log('faIcon: ', faIcon)
+                  return (
+                    <label key={i}>
+
+                      <input type='radio' name='rating'
+                        value={i} onClick={() => props.setUserRating(ratingValue)} />
+                      <FontAwesomeIcon
+                        key={ratingValue}
+                        icon={faIcon} className='star'
+                        onMouseEnter={() => props.setHover(ratingValue)}
+                        onMouseLeave={() => props.setHover(null)}
+                        color={ratingValue <= (props.hover || props.userRating) ? 'black' : '#e4e5e9'}
+                        size={'lg'} />
+
+                    </label>
+                  )
+                })}
+              </p>
+
 
               <Col>
                 <Button type='submit' variant='success' size='md'>

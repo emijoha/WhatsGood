@@ -134,6 +134,7 @@ export const saveFriend = function (userData, token) {
 };
 
 export const saveLike = function (likeData, token) {
+  console.log('likeData from API: ', likeData, 'userToken: ', token);
   return axios.put('/api/users/likes', likeData, { headers: { authorization: `Bearer ${token}` } });
 };
 // save friend data for a logged in user

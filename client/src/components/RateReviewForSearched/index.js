@@ -43,7 +43,6 @@ function RateReviewForSearched(props) {
         
     }, []);
 
-
     return (
         <>
             {console.log('props: ', props)}
@@ -51,51 +50,49 @@ function RateReviewForSearched(props) {
                 <>
                     {props.savedArray?.some((savedMedia) => savedMedia.mediaId === props.media.mediaId)
                         ?
-
                         <>
                             {console.log('savedArray: ', props.savedArray, 'media: ', props.media.mediaId)}
-                            <h6>You have saved this {props.mediatype} to your media pages! You can see it now in its new home, MyMedia!</h6>
-                            <Link to={props.link}>
-                                <Button className='btn-block btn-success' onClick={() => console.log((props.media))}  >
-                                    Go to My {props.mediaType}
-                                </Button>
-                            </Link>
-
+                            <div className='center-wrap'>
+                                <p className='already-saved'>This {props.mediatype} has already been saved!</p>
+                                <Link to={props.link}>
+                                    <Button className='btn-block btn-success' onClick={() => console.log((props.media))}  >
+                                        Go to My {props.mediaType}
+                                    </Button>
+                                </Link>
+                            </div>
                         </>
-
                         :
                         <>
                             {console.log('savedArray: ', props.savedArray, 'media: ', props.media.mediaId)}
-                            <p className='bold'>Rate:
-                            <br></br>
-                            {[...Array(5)].map((star, i) => {
-                                const ratingValue = i + 1;
-                                return (
-                                    <label key={i}>
-                                        <input type='radio' name={props.media.mediaId}
-                                            value={i} onClick={() => setUserRating(ratingValue)} />
-                                        <FontAwesomeIcon key={ratingValue} icon={faIcon} className='star' onMouseEnter={() => setHover(ratingValue)}
-                                            onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? 'black' : '#e4e5e9'} size={'lg'} />
-                                    </label>
-                                )
-                            })}
-                            </p>
-
-                            <p className='bold'>Review:</p>
-
+                            <div className='center-wrap'>
+                                <p className='ratingReviewHeading'>Rate</p>
+                                <p className='rating'>
+                                    {[...Array(5)].map((star, i) => {
+                                        const ratingValue = i + 1;
+                                        return (
+                                            <label key={i}>
+                                                <input type='radio' name={props.media.mediaId}
+                                                    value={i} onClick={() => setUserRating(ratingValue)} />
+                                                <FontAwesomeIcon key={ratingValue} icon={faIcon} className='star' onMouseEnter={() => setHover(ratingValue)}
+                                                    onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? 'black' : '#e4e5e9'} size={'lg'} />
+                                            </label>
+                                        )
+                                    })}
+                                </p>
+                                <p className='ratingReviewHeading'>Review</p>
+                            </div>
                             <Form>
-                                <Col>
-                                    <Form.Control
-                                        name={props.media.mediaId}
-                                        value={reviewInput}
-                                        onChange={(e) => setReviewInput(e.target.value)}
-                                        type='text'
-                                        size='md'
-                                        as='textarea'
-                                        rows='6'
-                                        placeholder='enter your review here'
-                                    />
-                                </Col>
+                                <Form.Control
+                                    className='review-input'
+                                    name={props.media.mediaId}
+                                    value={reviewInput}
+                                    onChange={(e) => setReviewInput(e.target.value)}
+                                    type='text'
+                                    size='md'
+                                    as='textarea'
+                                    rows='6'
+                                    placeholder='enter your review here'
+                                />
                             </Form>
                             <Button
                                 className='btn-block btn-info'
@@ -106,7 +103,6 @@ function RateReviewForSearched(props) {
                     }
                 </>
             )}
-
         </>
     )
 }
