@@ -3,7 +3,7 @@ import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 
 import SearchCards from '../../components/SearchCards';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
-import { saveFriend, searchFriend, deleteFriend } from '../../utils/API';
+import { saveFriend, searchFriend, deleteFriend, addNotification } from '../../utils/API';
 
 function SearchUser() {
     // create state for holding returned google api data
@@ -11,6 +11,12 @@ function SearchUser() {
     // create state for holding our search field data
     const [searchInput, setSearchInput] = useState('');
     const userData = useContext(UserInfoContext);
+
+    const notificationData = {
+        likerUsername: userData.username,
+        type: "follow",
+        ownerId: searchedUser._id
+    };
 
 
     // create method to search for users and set state on form submit
@@ -50,6 +56,12 @@ function SearchUser() {
                 userData.getUserData();
             })
             .catch((err) => console.log(err));
+
+        addNotification(notificationData)
+            .then(() => {
+                userData.getUserData();
+            })
+            .catch(err => console.log(err));
     };
 
     const handleDeleteFriend = (friend_id) => {

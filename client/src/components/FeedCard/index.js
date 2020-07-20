@@ -86,12 +86,7 @@ function FeedCard(props) {
                         cb={props.cb}
                         userData={props.userData}
                     />
-                    <h6>Comments</h6>
-                    {media.comments.map(comment => {
-                        return (
-                            <p>{comment.commenterUsername}:{comment.content}</p>
-                        )
-                    })}
+                 
                     <CommentComponent
                         mediaId={media._id}
                         mediaType={media.mediaType}
@@ -133,12 +128,7 @@ function FeedCard(props) {
                         cb={props.cb}
                         userData={props.userData}
                     />
-                    <h6>Comments</h6>
-                    {media.comments.map(comment => {
-                        return (
-                            <p>{comment.commenterUsername}:{comment.content}</p>
-                        )
-                    })}
+                  
                     <CommentComponent
                         mediaId={media._id}
                         mediaType={media.mediaType}
@@ -180,12 +170,7 @@ function FeedCard(props) {
                         cb={props.cb}
                         userData={props.userData}
                     />
-                    <h6>Comments</h6>
-                    {media.comments.map(comment => {
-                        return (
-                            <p>{comment.commenterUsername}:{comment.content}</p>
-                        )
-                    })}
+                
                     <CommentComponent
                         mediaId={media._id}
                         mediaType={media.mediaType}

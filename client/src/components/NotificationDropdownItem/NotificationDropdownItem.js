@@ -17,7 +17,7 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type }
             });
 
     };
-if(type === "like"){
+if(type === 'like'){
     return (
         <NavDropdown.Item>
             {likerUsername} liked your post of {title}
@@ -27,9 +27,13 @@ if(type === "like"){
             </Button>
         </NavDropdown.Item>
     )
-} else {
+} else if(type === 'comment') {
     return(
         <NavDropdown.Item>{likerUsername} commented on your post of {title}<Button id="notification-button" onClick={() => handleDeleteNotification(notificationId)}>Oh, word.</Button></NavDropdown.Item>
+    )
+} else {
+    return(
+        <NavDropdown.Item>{likerUsername} started following you<Button id="notification-button" onClick={() => handleDeleteNotification(notificationId)}>Oh, word.</Button></NavDropdown.Item>
     )
 }
 };
