@@ -85,18 +85,13 @@ function ProfileFeedCard(props) {
             cb={props.cb}
             userData={props.userData}
           />
-          <h6>Comments</h6>
-          {media.comments.map(comment => {
-            return (
-              <p>{comment.commenterUsername}:{comment.content}</p>
-            )
-          })}
           <CommentComponent
             mediaId={media._id}
             mediaType={media.mediaType}
             title={media.title}
             ownerId={media.userId}
             commenterUsername={props.userData.username}
+            mediaComments={media.comments}
           />
           <Button className='btn-block btn-danger' onClick={() => props.handleDeleteBook(media._id)}>
             Delete this Book!
@@ -180,18 +175,13 @@ function ProfileFeedCard(props) {
             cb={props.cb}
             userData={props.userData}
           />
-          <h6>Comments</h6>
-          {media.comments.map(comment => {
-            return (
-              <p>{comment.commenterUsername}:{comment.content}</p>
-            )
-          })}
           <CommentComponent
             mediaId={media._id}
             mediaType={media.mediaType}
             title={media.title}
             ownerId={media.userId}
-            commenterUsername={props.userData.username} />
+            commenterUsername={props.userData.username}
+            mediaComments={media.comments} />
           <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMusic(media._id)}>
             Delete this Music!
           </Button>
@@ -269,18 +259,13 @@ function ProfileFeedCard(props) {
             cb={props.cb}
             userData={props.userData}
           />
-          <h6>Comments</h6>
-          {media.comments.map(comment => {
-            return (
-              <p key={comment._id}>{comment.commenterUsername}:{comment.content}</p>
-            )
-          })}
           <CommentComponent
             mediaId={media._id}
             mediaType={media.mediaType}
             title={media.title}
             ownerId={media.userId}
-            commenterUsername={props.userData.username} />
+            commenterUsername={props.userData.username}
+            mediaComments={media.comments} />
             <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMovie(media._id)}>
             Delete this Movie!
           </Button>
@@ -358,18 +343,13 @@ function ProfileFeedCard(props) {
             cb={props.cb}
             userData={props.userData}
           />
-          <h6>Comments</h6>
-          {media.comments.map(comment => {
-            return (
-              <p>{comment.commenterUsername}:{comment.content}</p>
-            )
-          })}
           <CommentComponent
             mediaId={media._id}
             mediaType={media.mediaType}
             title={media.title}
             ownerId={media.userId}
-            commenterUsername={props.userData.username} />
+            commenterUsername={props.userData.username}
+            mediaComments={media.comments} />
             <Button className='btn-block btn-danger' onClick={() => props.handleDeleteGame(media._id)}>
             Delete this Game!
           </Button>

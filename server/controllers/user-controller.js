@@ -486,7 +486,7 @@ module.exports = {
         { $addToSet: { comments: newComment._id } },
         { new: true, runValidators: true }
       );
-      return res.json(updatedMovie);
+      return res.json(newComment);
   
     } catch (err) {
       console.log(err);
@@ -504,7 +504,7 @@ module.exports = {
         { $addToSet: { comments: newComment._id } },
         { new: true, runValidators: true }
       );
-      return res.json(updatedBook);
+      return res.json(newComment);
   
     } catch (err) {
       console.log(err);
@@ -522,7 +522,7 @@ module.exports = {
         { $addToSet: { comments: newComment._id } },
         { new: true, runValidators: true }
       );
-      return res.json(updatedMovie);
+      return res.json(newComment);
   
     } catch (err) {
       console.log(err);
@@ -540,7 +540,7 @@ module.exports = {
         { $addToSet: { comments: newComment._id } },
         { new: true, runValidators: true }
       );
-      return res.json(updatedGame);
+      return res.json(newComment);
   
     } catch (err) {
       console.log(err);
@@ -592,4 +592,3 @@ module.exports = {
     }
   }
 };
-
