@@ -4,6 +4,7 @@ import ReactAudioPlayer from 'react-audio-player';
 import moment from 'moment';
 import LikeButton from '../LikeButton';
 import CommentComponent from '../../components/CommentComponent'
+// import UserInfoContext from '../../utils/UserInfoContext'
 import './style.css';
 
 function FeedCard(props) {
@@ -49,7 +50,8 @@ function FeedCard(props) {
                         mediaType={media.mediaType}
                         title={media.title}
                         ownerId={media.userId}
-                        commenterUsername={props.userData.username} />
+                        commenterUsername={props.userData.username}
+                        mediaComments={media.comments} />
                 </Card.Body>
             </Card>
         )
@@ -95,7 +97,8 @@ function FeedCard(props) {
                         mediaType={media.mediaType}
                         title={media.title}
                         ownerId={media.userId}
-                        commenterUsername={props.userData.username} />
+                        commenterUsername={props.userData.username}
+                        mediaComments={media.comments} />
                 </Card.Body>
             </Card>
         );
@@ -136,7 +139,8 @@ function FeedCard(props) {
                         mediaType={media.mediaType}
                         title={media.title}
                         ownerId={media.userId}
-                        commenterUsername={props.userData.username} />
+                        commenterUsername={props.userData.username}
+                        mediaComments={media.comments} />
                 </Card.Body>
             </Card>
         );
@@ -177,7 +181,8 @@ function FeedCard(props) {
                         mediaType={media.mediaType}
                         title={media.title}
                         ownerId={media.userId}
-                        commenterUsername={props.userData.username} />
+                        commenterUsername={props.userData.username}
+                        mediaComments={media.comments} />
                 </Card.Body>
             </Card>
         );
