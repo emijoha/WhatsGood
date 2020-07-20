@@ -15,5 +15,10 @@ input {
 .btn {
     color: blueviolet;
 }
+
+.rating-submit {
+    margin-top: 3px;
+    margin-bottom: 3px !important;
+}
 /* #ffc107
 #e4e5e9 */

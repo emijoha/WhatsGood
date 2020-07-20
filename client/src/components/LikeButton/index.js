@@ -15,6 +15,7 @@ const LikeButton = ({ mediaLikes, mediaType, ownerId, mediaId, userData, title, 
     setInternalCount(internalCount + 1);
     cb(mediaType, mediaId, mediaLikes, ownerId, title);
   }
+  
   return (
 
     <div>

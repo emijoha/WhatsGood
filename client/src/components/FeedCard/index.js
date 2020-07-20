@@ -9,17 +9,20 @@ import './style.css';
 
 function FeedCard(props) {
 
+    function randomNum() {
+        return Math.floor(Math.random() * 4) + 1;
+    }
+    
     if (props.mediaType === 'book') {
         const media = props.media;
         return (
-            <Card key={media._id} border='dark'>
+            <Card className={`book-border${randomNum()}`} key={media._id} border='dark'>
                 <Card.Body>
                     {media.picture
                         ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
                         : null}
                     <Card.Title>{media.username} saved this {props.mediaType}
                         <p className='small'>{moment(media.createdAt).calendar()}</p>
-                        <br />
                     </Card.Title>
                     {media.image
                         ? <div id="center-wrap">
@@ -28,8 +31,8 @@ function FeedCard(props) {
                         : null}
                     <div id="center-wrap">
                         <br />
-                        <Card.Title>{media.title}
-                            <p className='small'>{media.authors.length > 1 ? 'Authors' : 'Author'}: {media.authors}</p>
+                        <Card.Title><b>{media.title.toUpperCase()}</b>
+                            <p className='by'>{media.authors.length > 1 ? 'Authors' : 'Author'}: {media.authors}</p>
                         </Card.Title>
                     </div>
                     <LikeButton mediaLikes={media.likes}
@@ -41,6 +44,8 @@ function FeedCard(props) {
                         userData={props.userData}
                     />
                     <CommentComponent
+                        // cb={props.cb2}
+                        comments={media.comments}
                         mediaId={media._id}
                         mediaType={media.mediaType}
                         title={media.title}
@@ -53,14 +58,13 @@ function FeedCard(props) {
     } else if (props.mediaType === 'music') {
         const media = props.media;
         return (
-            <Card key={media._id} border='dark'>
+            <Card className={`music-border${randomNum()}`} key={media._id} border='dark'>
                 <Card.Body>
                     {media.picture
                         ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
                         : null}
                     <Card.Title>{media.username} saved this {props.mediaType}
                         <p className='small'>{moment(media.createdAt).calendar()}</p>
-                        <br />
                     </Card.Title>
                     {media.image
                         ? <div id="center-wrap">
@@ -69,8 +73,8 @@ function FeedCard(props) {
                         : null}
                     <div id="center-wrap">
                         <br />
-                        <Card.Title>{media.title}
-                            <p className='small'>Artist: {media.artist}</p>
+                        <Card.Title><b>{media.title.toUpperCase()}</b>
+                            <p className='by'>Artist: {media.artist}</p>
                         </Card.Title>
                         <ReactAudioPlayer
                             id="music-player"
@@ -86,13 +90,9 @@ function FeedCard(props) {
                         cb={props.cb}
                         userData={props.userData}
                     />
-                    <h6>Comments</h6>
-                    {media.comments.map(comment => {
-                        return (
-                            <p>{comment.commenterUsername}:{comment.content}</p>
-                        )
-                    })}
                     <CommentComponent
+                        // cb={props.cb2}
+                        comments={media.comments}
                         mediaId={media._id}
                         mediaType={media.mediaType}
                         title={media.title}
@@ -105,14 +105,13 @@ function FeedCard(props) {
     } else if (props.mediaType === 'movie') {
         const media = props.media;
         return (
-            <Card key={media._id} border='dark'>
+            <Card className={`movie-border${randomNum()}`} key={media._id} border='dark'>
                 <Card.Body>
                     {media.picture
                         ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
                         : null}
                     <Card.Title>{media.username} saved this {props.mediaType}
                         <p className='small'>{moment(media.createdAt).calendar()}</p>
-                        <br />
                     </Card.Title>
                     {media.image
                         ? <div id="center-wrap">
@@ -121,8 +120,8 @@ function FeedCard(props) {
                         : null}
                     <div id='center-wrap'>
                         <br />
-                        <Card.Title>{media.title}
-                            <p className='small'>Director: {media.director}</p>
+                        <Card.Title><b>{media.title.toUpperCase()}</b>
+                            <p className='by'>Director: {media.director}</p>
                         </Card.Title>
                     </div>
                     <LikeButton mediaLikes={media.likes}
@@ -133,13 +132,9 @@ function FeedCard(props) {
                         cb={props.cb}
                         userData={props.userData}
                     />
-                    <h6>Comments</h6>
-                    {media.comments.map(comment => {
-                        return (
-                            <p>{comment.commenterUsername}:{comment.content}</p>
-                        )
-                    })}
                     <CommentComponent
+                        // cb={props.cb2}
+                        comments={media.comments}
                         mediaId={media._id}
                         mediaType={media.mediaType}
                         title={media.title}
@@ -152,14 +147,13 @@ function FeedCard(props) {
     } else if (props.mediaType === 'game') {
         const media = props.media;
         return (
-            <Card key={media._id} border='dark'>
+            <Card className={`game-border${randomNum()}`} key={media._id} border='dark'>
                 <Card.Body>
                     {media.picture
                         ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
                         : null}
                     <Card.Title>{media.username} saved this {props.mediaType}
                         <p className='small'>{moment(media.createdAt).calendar()}</p>
-                        <br />
                     </Card.Title>
                     {media.image
                         ? <div id="center-wrap">
@@ -168,8 +162,8 @@ function FeedCard(props) {
                         : null}
                     <div id="center-wrap">
                         <br />
-                        <Card.Title>{media.title}
-                            <p className='small'>Developer: {media.developer}</p>
+                        <Card.Title><b>{media.title.toUpperCase()}</b>
+                            <p className='by'>Developer: {media.developer}</p>
                         </Card.Title>
                     </div>
                     <LikeButton mediaLikes={media.likes}
@@ -180,13 +174,9 @@ function FeedCard(props) {
                         cb={props.cb}
                         userData={props.userData}
                     />
-                    <h6>Comments</h6>
-                    {media.comments.map(comment => {
-                        return (
-                            <p>{comment.commenterUsername}:{comment.content}</p>
-                        )
-                    })}
                     <CommentComponent
+                        // cb={props.cb2}
+                        comments={media.comments}
                         mediaId={media._id}
                         mediaType={media.mediaType}
                         title={media.title}
