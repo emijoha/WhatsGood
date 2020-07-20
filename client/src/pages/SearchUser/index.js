@@ -27,7 +27,8 @@ function SearchUser() {
             .then(user => setSearchedUser({
                 username: user.data.username,
                 _id: user.data._id,
-                picture: user.data.picture
+                picture: user.data.picture,
+                email: user.data.email
             }),
                 setSearchInput(''));
     }

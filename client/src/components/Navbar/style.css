@@ -1,10 +1,9 @@
 #new-navbar {
-    background-color: rgba(255, 255, 255, 0) !important;
-    backdrop-filter: blur(90px);
-    /* overflow-x: hidden; */
+    background-color: rgb(255, 255, 255) !important;
+    /* backdrop-filter: blur(500px); */
     position: fixed;
     width: 100%;
-    z-index: 3;
+    z-index: 1 !important;
    
 }
 

@@ -34,13 +34,94 @@ button {
   border: solid;
   border-image-slice: 1;
   border-width: 20px;
-  border-image-source: linear-gradient(to bottom right, rgb(97, 0, 253), rgb(190, 8, 223));
+  border-image-source: linear-gradient(to top right,  rgb(255, 123, 0), rgb(255, 3, 108));
   margin-bottom: 24px !important;
 }
 
-.mediaImage {
-  border-radius: 0px !important;
+/* BOOK BORDERS */
+.book-border1 {
+  border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
 }
 
+.book-border2 {
+  border-image-source: linear-gradient(to top right,  rgb(75, 13, 246), rgb(171, 0, 214));
+}
+
+.book-border3 {
+  border-image-source: linear-gradient(to bottom left, rgb(102, 13, 246), rgb(214, 0, 168));
+}
+
+.book-border4 {
+  border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
+}
+
+/* MUSIC BORDERS */
+.music-border1 {
+  border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
+}
+
+.music-border2 {
+  border-image-source: linear-gradient(to top right,  rgb(75, 13, 246), rgb(171, 0, 214));
+}
+
+.music-border3 {
+  border-image-source: linear-gradient(to bottom left, rgb(102, 13, 246), rgb(214, 0, 168));
+}
+
+.music-border4 {
+  border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
+}
+
+/* MOVIE BORDERS */
+.movie-border1 {
+  border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
+}
+
+.movie-border2 {
+  border-image-source: linear-gradient(to top right,  rgb(75, 13, 246), rgb(171, 0, 214));
+}
+
+.movie-border3 {
+  border-image-source: linear-gradient(to bottom left, rgb(102, 13, 246), rgb(214, 0, 168));
+}
+
+.movie-border4 {
+  border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
+}
+
+/* GAME BORDERS */
+.game-border1 {
+  border-image-source: linear-gradient(to bottom right, rgb(230, 255, 1), rgb(0, 223, 48));
+}
+
+.game-border2 {
+  border-image-source: linear-gradient(to top right,  rgb(238, 255, 1), rgb(0, 223, 48));
+}
+
+.game-border3 {
+  border-image-source: linear-gradient(to bottom left, rgb(230, 255, 1), rgb(0, 223, 56));
+}
+
+.game-border4 {
+  border-image-source: linear-gradient(to top left, rgb(179, 255, 1), rgb(0, 223, 74));
+}
+
+/* FRIENDS BORDERS? OR MIX OF ABOUT COLORS? */
+.friend-border1 {
+  border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
+}
+
+.friend-border2 {
+  border-image-source: linear-gradient(to top right,  rgb(75, 13, 246), rgb(171, 0, 214));
+}
+
+.friend-border3 {
+  border-image-source: linear-gradient(to bottom left, rgb(102, 13, 246), rgb(214, 0, 168));
+}
+
+.friendz-+
+border4 {
+  border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
+}
 
 
