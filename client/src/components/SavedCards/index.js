@@ -41,6 +41,11 @@ function SavedCards(props) {
                                     <div className='center-wrap'>
                                         <p className='ratingReviewHeading'>Your Rating</p>
                                         <p className='rating'>
+                                            {
+                                                (book.userRating === 0)
+                                                    ? <p>Submit a rating!</p>
+                                                    : null
+                                            }
                                             {[...Array(book.userRating)].map((star, i) => {
                                                 return (
                                                     <label key={i}>
@@ -51,7 +56,9 @@ function SavedCards(props) {
                                         </p>
                                         <p className='ratingReviewHeading'>Your Review</p>
                                     </div>
-                                    <p>{book.userReview.length ? book.userReview : "What's good...and what's not? Write a review!"}</p>
+                                    <div className='scroll-box'>
+                                        <p>{book.userReview.length ? book.userReview : "What's good...and what's not? Write a review!"}</p>
+                                    </div>
                                     <RateSaved
                                         username={props.username}
                                         mediaType={'Book'}
@@ -74,12 +81,12 @@ function SavedCards(props) {
                                         setReviewInput={props.setReviewInput}
                                     />
 
-                                    {book.comments && (<p>Comments:</p>)}
+                                    {/* {book.comments && (<p>Comments:</p>)}
                                     {book.comments.map(comment => {
                                         return (
                                             <p>{comment.commenterUsername}:{comment.content}</p>
                                         )
-                                    })}
+                                    })} */}
 
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteBook(book._id)}>
                                         Delete this Book!
@@ -119,17 +126,25 @@ function SavedCards(props) {
                                             controls
                                         />
                                         <p className='ratingReviewHeading'>Your Rating</p>
-                                        <p className='rating'>{[...Array(music.userRating)].map((star, i) => {
-                                            return (
-                                                <label key={i}>
-                                                    <FontAwesomeIcon className='read-only-star' icon={faMusic} color='black' size={'lg'} />
-                                                </label>
-                                            )
-                                        })}
+                                        <p className='rating'>
+                                            {
+                                                (music.userRating === 0)
+                                                    ? <p>Submit a rating!</p>
+                                                    : null
+                                            }
+                                            {[...Array(music.userRating)].map((star, i) => {
+                                                return (
+                                                    <label key={i}>
+                                                        <FontAwesomeIcon className='read-only-star' icon={faMusic} color='black' size={'lg'} />
+                                                    </label>
+                                                )
+                                            })}
                                         </p>
                                         <p className='ratingReviewHeading'>Your Review</p>
                                     </div>
-                                    <p>{music.userReview.length ? music.userReview : "What's good...and what's not? Write a review!"}</p>
+                                    <div className='scroll-box'>
+                                        <p>{music.userReview.length ? music.userReview : "What's good...and what's not? Write a review!"}</p>
+                                    </div>
                                     <RateSaved
                                         username={props.username}
                                         mediaType={'Music'}
@@ -142,7 +157,6 @@ function SavedCards(props) {
                                         setHover={props.setHover}
                                         hover={props.hover}
                                     />
-
                                     <ReviewSaved
                                         username={props.username}
                                         mediaType={'Music'}
@@ -153,12 +167,12 @@ function SavedCards(props) {
                                         setReviewInput={props.setReviewInput}
                                     />
 
-                                    {music.comments && (<p>Comments:</p>)}
+                                    {/* {music.comments && (<p>Comments:</p>)}
                                     {music.comments.map(comment => {
                                         return (
                                             <p>{comment.commenterUsername}:{comment.content}</p>
                                         )
-                                    })}
+                                    })} */}
 
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMusic(music._id)}>
                                         Delete!
@@ -205,17 +219,25 @@ function SavedCards(props) {
                                     {media.runtime === 'N/A' ? null : <p className='small'><b>Runtime:</b> {media.runtime}</p>}
                                     <div className='center-wrap'>
                                         <p className='ratingReviewHeading'>Your Rating</p>
-                                        <p className='rating'>{[...Array(media.userRating)].map((star, i) => {
-                                            return (
-                                                <label key={i}>
-                                                    <FontAwesomeIcon className='read-only-star' icon={faVideo} color='black' size={'lg'} />
-                                                </label>
-                                            )
-                                        })}
+                                        <p className='rating'>
+                                            {
+                                                (media.userRating === 0)
+                                                    ? <p>Submit a rating!</p>
+                                                    : null
+                                            }
+                                            {[...Array(media.userRating)].map((star, i) => {
+                                                return (
+                                                    <label key={i}>
+                                                        <FontAwesomeIcon className='read-only-star' icon={faVideo} color='black' size={'lg'} />
+                                                    </label>
+                                                )
+                                            })}
                                         </p>
                                         <p className='ratingReviewHeading'>Your Review</p>
                                     </div>
-                                    <p>{media.userReview.length ? media.userReview : "What's good...and what's not? Write a review!"}</p>
+                                    <div className='scroll-box'>
+                                        <p>{media.userReview.length ? media.userReview : "What's good...and what's not? Write a review!"}</p>
+                                    </div>
                                     <RateSaved
                                         username={props.username}
                                         mediaType={'Movie'}
@@ -238,12 +260,12 @@ function SavedCards(props) {
                                         setReviewInput={props.setReviewInput}
                                     />
 
-                                    {media.comments && (<p>Comments:</p>)}
+                                    {/* {media.comments && (<p>Comments:</p>)}
                                     {media.comments.map(comment => {
                                         return (
                                             <p>{comment.commenterUsername}:{comment.content}</p>
                                         )
-                                    })}
+                                    })} */}
 
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMovie(media._id)}>
                                         Delete this Movie!
@@ -284,6 +306,11 @@ function SavedCards(props) {
                                     <div className='center-wrap'>
                                         <p className='ratingReviewHeading'>Your Rating</p>
                                         <p className='rating'>
+                                            {
+                                                (game.userRating === 0)
+                                                    ? <p>Submit a rating!</p>
+                                                    : null
+                                            }
                                             {[...Array(game.userRating)].map((star, i) => {
                                                 return (
                                                     <label key={i}>
@@ -292,7 +319,9 @@ function SavedCards(props) {
                                                 )
                                             })}
                                         </p>
-                                        <p className='ratingReviewHeading'>Your Review</p>
+                                        <div className='scroll-box'>
+                                            <p className='ratingReviewHeading'>Your Review</p>
+                                        </div>
                                     </div>
                                     <p>{game.userReview.length ? game.userReview : "What's good...and what's not? Write a review!"}</p>
                                     <RateSaved
@@ -317,12 +346,12 @@ function SavedCards(props) {
                                         setReviewInput={props.setReviewInput}
                                     />
 
-                                    {game.comments && (<p>Comments:</p>)}
+                                    {/* {game.comments && (<p>Comments:</p>)}
                                     {game.comments.map(comment => {
                                         return (
                                             <p>{comment.commenterUsername}:{comment.content}</p>
                                         )
-                                    })}
+                                    })} */}
 
                                     <Button className='btn-block btn-danger' onClick={() => props.handleDeleteGame(game._id)}>
                                         Delete this Game!
