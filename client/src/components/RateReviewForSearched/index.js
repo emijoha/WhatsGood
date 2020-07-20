@@ -95,7 +95,7 @@ function RateReviewForSearched(props) {
                                 />
                             </Form>
                             <Button
-                                className='btn-block btn-info'
+                                className='btn-block'
                                 onClick={() => props.cb(props.media, userRating, reviewInput)}>
                                 Save this {props.mediaTypeSg}
                             </Button>

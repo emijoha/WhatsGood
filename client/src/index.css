@@ -16,12 +16,12 @@ body {
  
 }
 
-textarea,
+/* textarea,
 select,
 input,
 button {
   outline: none;
-}
+} */
 
 .small {
   font-weight: 400;
@@ -119,8 +119,7 @@ button {
   border-image-source: linear-gradient(to bottom left, rgb(102, 13, 246), rgb(214, 0, 168));
 }
 
-.friendz-+
-border4 {
+.friend-border4 {
   border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
 }
 

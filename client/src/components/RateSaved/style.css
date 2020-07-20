@@ -12,13 +12,49 @@ input {
     padding-left: 0.5rem;
 }
 
-.btn {
-    color: blueviolet;
+.rating-select {
+    margin-top: 15px;
+    margin-bottom: 0px !important;
 }
 
-.rating-submit {
-    margin-top: 3px;
-    margin-bottom: 3px !important;
+.center-wrap-rate {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  border: solid 1px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  
+}
+
+#rate-btn {
+  border: none !important;
+  padding: 0px !important;
+  margin-bottom: 0px !important;
+  color: rgb(155, 155, 155) !important;
+  font-size: 0.925rem;
+  height: 25px;
+  font-style: italic;
+}
+
+#rate-btn:hover, #rate-btn:focus {
+  font-size: 1rem;
+  color: black !important;
+}
+
+#rating-submit-btn {
+  width: 100%;
+  border: none !important;
+  padding: 0px !important;
+  margin-bottom: 2px !important;
+  margin-top: 0px !important;
+  font-size: 0.95rem;
+  font-weight: 600;
+  height: 25px;
+}
+
+#rating-submit-btn:hover {
+  color: black !important;
 }
 /* #ffc107
 #e4e5e9 */

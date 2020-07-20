@@ -9,26 +9,24 @@ function ReviewSaved(props) {
       {props.username && (
         <>
           {(props.media.userReview === '') ?
-            <Button className='btn-block btn-success' onClick={() => props.startReview(props.media)}  >
+            <Button className='btn-block' id='review-btn' onClick={() => props.startReview(props.media)}  >
               Review this {props.mediaType}!
             </Button>
-
             :
-
-            <Button className='btn-block btn-success' onClick={() => props.startReview(props.media)}  >
+            <Button className='btn-block' id='review-btn' onClick={() => props.startReview(props.media)}  >
               Update your Review?
             </Button>
           }
         </>
       )}
-
       {props.selectedMediaReview._id && (
         <>
           {props.media._id === props.selectedMediaReview._id
             ?
-            <Form onSubmit={props.handleReviewFormSubmit}>
-              <Col>
+            <div className='center-wrap-review'>
+              <Form onSubmit={props.handleReviewFormSubmit}>
                 <Form.Control
+                  className='review-text'
                   name='reviewInput'
                   value={props.reviewInput}
                   onChange={(e) => props.setReviewInput(e.target.value)}
@@ -36,16 +34,13 @@ function ReviewSaved(props) {
                   size='md'
                   as='textarea'
                   rows='6'
-                  placeholder='Review this movie'
+                  placeholder='Write a review'
                 />
-              </Col>
-              <Col>
-                <Button type='submit' variant='success' size='md'>
-                  Submit Review
+                <Button id='review-submit-btn' type='submit' variant='success' size='md'>
+                    SUBMIT
                 </Button>
-              </Col>
-            </Form>
-
+              </Form>
+            </div>
             : null
           }
         </>
