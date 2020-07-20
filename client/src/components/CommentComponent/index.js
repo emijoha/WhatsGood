@@ -38,7 +38,7 @@ const CommentComponent = ({ mediaId, mediaType, title, ownerId, commenterUsernam
         addComment(commentData)
             .then((result) => {
                 userData.getUserData();
-                setCommentsOnMedia([...commentsOnMedia, result.data])
+                setCommentsOnMedia([...commentsOnMedia, result.data]);
             })
             .catch(err => console.log(err));
 
