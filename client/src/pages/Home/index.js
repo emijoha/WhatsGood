@@ -37,7 +37,6 @@ function Home() {
   
     }, [userData.username]);
 
-
     function renderAllMedia() {
       userData.friends.map(friend => {
         API.getUser(friend.id)
