@@ -129,7 +129,7 @@ function SavedCards(props) {
                                         <p className='rating'>
                                             {
                                                 (music.userRating === 0)
-                                                    ? <p>Submit a rating!</p>
+                                                    ? <><p>Submit a rating!</p></>
                                                     : null
                                             }
                                             {[...Array(music.userRating)].map((star, i) => {
