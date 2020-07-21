@@ -192,7 +192,16 @@ export const addComment = function (commentData, token) {
     }
 };
 
-export const makeFavorite = function (favorite, token) {
-  console.log(favorite);
-  return axios.put('/api/users/make-favorite', favorite, { headers: { authorization: `Bearer ${token}` } });
+
+export const saveChat = function (chatData, token) {
+  return axios.put('/api/users/chats', chatData, { headers: { authorization: `Bearer ${token}` } });
 };
+
+export const saveMessage = function (messageData, token) {
+  return axios.put('/api/users/messages', messageData, { headers: { authorization: `Bearer ${token}` } });
+};
+
+  export const makeFavorite = function (favorite, token) {
+    console.log(favorite);
+    return axios.put('/api/users/make-favorite', favorite, { headers: { authorization: `Bearer ${token}` } });
+  };

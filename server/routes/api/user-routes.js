@@ -29,6 +29,8 @@ const {
   saveUserRating,
   addNotification,
   deleteNotification,
+  saveChat,
+  saveMessage,
   makeFavorite
 } = require('../../controllers/user-controller');
 
@@ -89,9 +91,11 @@ router.route('/music/comments/:id').put(addMusicComment);
 
 router.route('/movies/comments/:id').put(addMovieComment);
 
+router.route('/chats').get(getAllUsers).put(saveChat);
+
 router.route('/make-favorite').get(getAllUsers).put(authMiddleware, makeFavorite);
 
-
+router.route('/messages').get(getAllUsers).put(saveMessage);
 
 
 module.exports = router;

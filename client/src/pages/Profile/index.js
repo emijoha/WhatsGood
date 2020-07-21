@@ -565,9 +565,12 @@ function ProfilePage() {
               {userData.username && (
                 <>
                   {(userData.bio !== '' || null)
+                  
 
                     ?
                     <div>
+
+                      {console.log("userData.bio", userData.bio)}
                       <h6>
                         A little about me:
                       </h6>

@@ -4,6 +4,7 @@ import SearchCards from '../../components/SearchCards';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { saveBook, searchGoogleBooks } from '../../utils/API';
+import './style.css'
 
 function SearchBooks() {
   // create state for holding returned google api data
@@ -69,14 +70,17 @@ function SearchBooks() {
   });
 
   return (
-    <>
-      <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
-          <h1>Search for Books!</h1>
+    <div id="container">
+      <div id="inner-container">
+        
+        <Container >
+        <h5 id="search-header">SEARCH BOOKS</h5>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
-              <Col xs={12} md={8}>
+            
+              <Col xs={12} s={12} md={8}>
                 <Form.Control
+                  id="form-input"
                   name='searchInput'
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
@@ -84,16 +88,16 @@ function SearchBooks() {
                   size='lg'
                   placeholder='Search for a book'
                 />
+                
               </Col>
-              <Col xs={12} md={4}>
-                <Button type='submit' variant='success' size='lg'>
-                  Submit Search
+              
+              <Button id="form-button" type='submit' variant='success' size='lg'>
+                  SEARCH
                 </Button>
-              </Col>
             </Form.Row>
           </Form>
         </Container>
-      </Jumbotron>
+      </div>
       <Container>
       <SearchCards 
         cardType='searchedBooks'
@@ -103,7 +107,7 @@ function SearchBooks() {
         cb={handleSaveMedia}
       />
       </Container>
-    </>
+    </div>
   );
 }
 
