@@ -17,12 +17,12 @@ function MakeFavorite(props) {
               {props.media.userFavorite
                 ? <FontAwesomeIcon
                   id='faved-icon'
+                  className={`${type}-color`}
                   icon={icon}
                 />
                 :
                 <FontAwesomeIcon
                   id='fave-icon'
-                  className={`${type}-color`}
                   icon={icon}
                 />
               }
