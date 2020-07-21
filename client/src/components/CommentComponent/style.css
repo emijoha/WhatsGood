@@ -14,7 +14,7 @@
     width: 100%;
     padding-right: 8px;
     max-height: 200px;
-    overflow: auto;
+    overflow: scroll;
 }
 
 .comment-label {

@@ -14,7 +14,7 @@ function MakeFavorite(props) {
             ?
             <div id='center-wrap'>
               <Button
-                className='btn btn-success'
+                className='btn'
                 onClick={() => props.makeFavorite(props.media)} >
                 UNFAVE
             </Button>
@@ -22,7 +22,7 @@ function MakeFavorite(props) {
             :
             <div id='center-wrap'>
               <Button
-                className='btn btn-success'
+                className='btn'
                 onClick={() => props.makeFavorite(props.media)} >
                 MAKE FAVE
             </Button>

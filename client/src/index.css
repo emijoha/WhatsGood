@@ -40,19 +40,19 @@ button {
 /* BOOK COLORS */
 .book-border {
   border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom right, rgb(0, 225, 255), rgb(72, 0, 206));
+  border-image-source: linear-gradient(to bottom right, rgb(72, 0, 206), rgb(0, 225, 255));
 }
 
 .book-color {
-color: rgb(9, 79, 211);
+color: rgb(3, 124, 236);
 }
 
 .book-back {
-background-color: rgb(9, 79, 211);
+background-color: rgb(3, 124, 236);
 }
 
 .book-hover:hover {
-  color: rgb(9, 79, 211);
+  color: rgb(3, 124, 236);
 }
 
 /* MUSIC COLORs */
@@ -61,15 +61,15 @@ background-color: rgb(9, 79, 211);
   border-image-source: linear-gradient(to bottom right,  rgb(246, 0, 115), rgb(251, 255, 1));
 }
 .music-color {
-  color: rgb(251, 8, 8);
+  color: rgb(241, 118, 2);
 }
 
 .music-back {
- background-color: rgb(251, 8, 8);
+ background-color: rgb(241, 118, 2);
 }
 
 .music-hover:hover {
-  color: rgb(251, 8, 8);
+  color: rgb(241, 118, 2);
 }
 
 /* MOVIE COLORS */
@@ -78,32 +78,32 @@ background-color: rgb(9, 79, 211);
   border-image-source: linear-gradient(to bottom right, rgb(72, 0, 206), rgb(225, 2, 255));
 }
 .movie-color {
-  color: rgb(96, 0, 206);
+  color: rgb(134, 0, 223);
 }
 
 .movie-back {
-  background-color: rgb(96, 0, 206);
+  background-color: rgb(134, 0, 223);
 }
 
 .movie-hover:hover {
-  color: rgb(96, 0, 206);
+  color: rgb(134, 0, 223);
 }
 
 /* GAME COLORS */
 .game-border {
   border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom right, rgb(251, 255, 1), rgb(0, 180, 90) );
+  border-image-source: linear-gradient(to bottom right, rgb(0, 180, 90), rgb(251, 255, 1) );
 }
 .game-color {
-  color: rgb(0, 190, 0);
+  color: rgb(118, 211, 11);
 }
 
 .game-back {
-  background-color: rgb(0, 190, 0);
+  background-color: rgb(118, 211, 11);
 }
 
 .game-hover:hover {
-  color: rgbrgb(0, 190, 0);
+  color: rgb(118, 211, 11);
 }
 
 
@@ -115,7 +115,7 @@ background-color: rgb(9, 79, 211);
 
 .friend-border2 {
   border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom right, rgb(251, 255, 1), rgb(0, 180, 90) );
+  border-image-source: linear-gradient(to bottom right, rgb(0, 180, 90), rgb(251, 255, 1) );
 }
 
 .friend-border3 {
@@ -125,7 +125,7 @@ background-color: rgb(9, 79, 211);
 
 .friend-border4 {
   border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom right, rgb(0, 225, 255), rgb(72, 0, 206));
+  border-image-source: linear-gradient(to bottom left, rgb(72, 0, 206), rgb(0, 225, 255));
 }
 
 

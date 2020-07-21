@@ -36,10 +36,12 @@ const LikeButton = ({ mediaLikes, mediaType, ownerId, mediaId, userData, title, 
             {userData.savedLikes?.some((savedLike) => savedLike.mediaId === mediaId)
               ? <FontAwesomeIcon
                 id='liked-icon'
+                className={`${mediaType.toLowerCase()}-color`}
                 icon={likeIcon}
               />
               : <FontAwesomeIcon
                 id='like-icon'
+                className={`${mediaType.toLowerCase()}-color`}
                 icon={likeIcon}
               />
             }

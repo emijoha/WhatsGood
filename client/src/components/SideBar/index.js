@@ -61,9 +61,9 @@ function SideBar({ cb, page }) {
     <div id="side-bar-menu">
       <ul>
 
-        <li id="side-header-li"><h5>WHAT'S</h5></li>
-        <li id="side-header-li"><h5>GOOD</h5></li>
-        <li id="side-header-li"><h5>{userData.username.toUpperCase()}?</h5></li>
+        <li id="side-header-li"><p className='logo-text'>WHAT'S</p></li>
+        <li id="side-header-li"><p className='logo-text'>GOOD</p></li>
+        <li id="side-header-li"><p className='logo-text'>{userData.username.toUpperCase()}?</p></li>
       </ul>
       <ul>
         <li><button id="side-bar-li" onClick={() => cb("all")}>ALL</button></li>

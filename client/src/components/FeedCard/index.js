@@ -11,9 +11,6 @@ import './style.css';
 
 
 function FeedCard(props) {
-  function randomNum() {
-    return Math.floor(Math.random() * 4) + 1;
-  }
 
   if (props.mediaType === 'book') {
     const media = props.media;
@@ -38,7 +35,7 @@ function FeedCard(props) {
             </Card.Title>
           </div>
           <div id="center-wrap">
-            <p className='ratingReviewHeading'>{media.username}'s Rating</p>
+            <p className='ratingReviewHeading book-border'>{media.username}'s Rating</p>
             <p className='rating'>
               {
                 (media.userRating === 0)
@@ -53,7 +50,7 @@ function FeedCard(props) {
                 )
               })}
             </p>
-            <p className='ratingReviewHeading'>{media.username}'s Review</p>
+            <p className='ratingReviewHeading book-border'>{media.username}'s Review</p>
           </div>
           <div className='scroll-box'>
             {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
@@ -106,7 +103,7 @@ function FeedCard(props) {
             />
           </div>
           <div id="center-wrap">
-            <p className='ratingReviewHeading'>{media.username}'s Rating</p>
+            <p className='ratingReviewHeading music-border'>{media.username}'s Rating</p>
             <p className='rating'>
               {
                 (media.userRating === 0)
@@ -121,7 +118,7 @@ function FeedCard(props) {
                 )
               })}
             </p>
-            <p className='ratingReviewHeading'>{media.username}'s Review</p>
+            <p className='ratingReviewHeading music-border'>{media.username}'s Review</p>
           </div>
           <div className='scroll-box'>
             {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
@@ -169,7 +166,7 @@ function FeedCard(props) {
             </Card.Title>
           </div>
           <div id="center-wrap">
-            <p className='ratingReviewHeading'>{media.username}'s Rating</p>
+            <p className='ratingReviewHeading movie-border'>{media.username}'s Rating</p>
             <p className='rating'>
               {
                 (media.userRating === 0)
@@ -184,7 +181,7 @@ function FeedCard(props) {
                 )
               })}
             </p>
-            <p className='ratingReviewHeading'>{media.username}'s Review</p>
+            <p className='ratingReviewHeading movie-border'>{media.username}'s Review</p>
           </div>
           <div className='scroll-box'>
             {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
@@ -232,7 +229,7 @@ function FeedCard(props) {
             </Card.Title>
           </div>
           <div id="center-wrap">
-            <p className='ratingReviewHeading'>{media.username}'s Rating</p>
+            <p className='ratingReviewHeading game-border'>{media.username}'s Rating</p>
             <p className='rating'>
               {
                 (media.userRating === 0)
@@ -247,7 +244,7 @@ function FeedCard(props) {
                 )
               })}
             </p>
-            <p className='ratingReviewHeading'>{media.username}'s Review</p>
+            <p className='ratingReviewHeading game-border'>{media.username}'s Review</p>
           </div>
           <div className='scroll-box'>
             {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
@@ -274,9 +271,10 @@ function FeedCard(props) {
     );
   } else {
     const media = props.media;
+    const border = `${media.mediaType.toLowerCase()}-border`;
     console.log('from FeedCard: ', media, props.userData)
     return (
-      <Card className={`${media.mediaType.toLowerCase()}-border`} key={props.media.mediaId} border='dark'>
+      <Card className={border} key={props.media.mediaId} border='dark'>
         <Card.Body>
           {props.userData.picture
             ? <Card.Img id="profile-pic" src={props.userData.picture} alt={props.userData.username} variant='top' />

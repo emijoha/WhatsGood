@@ -7,31 +7,38 @@ import UserInfoContext from '../../utils/UserInfoContext'
 
 const NotificationDropdownItem = ({ likerUsername, title, notificationId, type }) => {
 
-    const userData = useContext(UserInfoContext)
+  const userData = useContext(UserInfoContext)
 
-    const handleDeleteNotification = (notificationId) => {
-        console.log("notification Id", notificationId);
-        deleteNotification(notificationId)
-            .then(() => {
-                userData.getUserData();
-            });
-
-    };
-if(type === "like"){
+  const handleDeleteNotification = (notificationId) => {
+    console.log("notification Id", notificationId);
+    deleteNotification(notificationId)
+      .then(() => {
+        userData.getUserData();
+      });
+  };
+  if (type === "like") {
     return (
-        <NavDropdown.Item>
-            {likerUsername} liked your post of {title}
-            <Button id="notification-button" 
-                onClick={() => handleDeleteNotification(notificationId)}
-            >Oh, word.
-            </Button>
-        </NavDropdown.Item>
+      <NavDropdown.Item className='notification-item'>
+        {likerUsername} liked your post of {title}
+        <Button
+          id="notification-button"
+          onClick={() => handleDeleteNotification(notificationId)}>
+          Oh, word
+        </Button>
+      </NavDropdown.Item>
     )
-} else {
-    return(
-        <NavDropdown.Item>{likerUsername} commented on your post of {title}<Button id="notification-button" onClick={() => handleDeleteNotification(notificationId)}>Oh, word.</Button></NavDropdown.Item>
+  } else {
+    return (
+      <NavDropdown.Item className='notification-item'>
+        {likerUsername} commented on your post of {title}
+        <Button
+          id="notification-button"
+          onClick={() => handleDeleteNotification(notificationId)}>
+          Oh, word
+          </Button>
+      </NavDropdown.Item>
     )
-}
+  }
 };
 
 export default NotificationDropdownItem;

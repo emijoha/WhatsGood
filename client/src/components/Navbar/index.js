@@ -28,13 +28,15 @@ function AppNavbar() {
     <>
       <Navbar sticky="top" expand='lg' id="new-navbar">
         <Container fluid>
-          {userData.username ? <Navbar.Brand id="navbar-brand" as={Link} to='/home'>
-            <h5>WHAT'S GOOD</h5>
-          </Navbar.Brand> :
+          {userData.username
+            ? <Navbar.Brand id="navbar-brand" as={Link} to='/home'>
+              <p className='logo-text-main'>WHAT'S GOOD</p>
+            </Navbar.Brand>
+            :
             <Navbar.Brand id="navbar-brand" as={Link} to='/'>
-              <h5>WHAT'S GOOD</h5>
-            </Navbar.Brand>}
-
+              <p className='logo-text-main'>WHAT'S GOOD</p>
+            </Navbar.Brand>
+          }
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar-group'>
             <Nav className='ml-auto'>
@@ -85,29 +87,31 @@ function AppNavbar() {
 
               {userData.notifications.length > 0 && (<h4>{userData.notifications.length}</h4>)}
 
-              {userData.username && 
+              {userData.username &&
                 <NavDropdown alignRight title={
                   <ProfilePic
                     picture={userData.picture}
                     username={userData.username}
                   />
                 }>
-                <NavDropdown.Item onClick={() => setShowModal(true)}>UPLOAD PROFILE PIC</NavDropdown.Item>
-                <NavDropdown.Item href="/profile">MY PROFILE</NavDropdown.Item>
-                {userData.notifications.map((notification) => {
-                  { console.log("notification in navbar", notification) }
-                  return (
-                    <NotificationDropdownItem
-                    likerUsername={notification.likerUsername}
-                    title={notification.title}
-                    notificationId={notification._id}
-                    type={notification.type}/>
-                    
-                  )
-                })}
+                  <NavDropdown.Item onClick={() => setShowModal(true)}>UPLOAD PROFILE PIC</NavDropdown.Item>
+                  <NavDropdown.Item href="/profile">MY PROFILE</NavDropdown.Item>
+                  <div className='notification-scroll'>
+                    {userData.notifications.map((notification) => {
+                      { console.log("notification in navbar", notification) }
+                      return (
+                        <NotificationDropdownItem
+                          likerUsername={notification.likerUsername}
+                          title={notification.title}
+                          notificationId={notification._id}
+                          type={notification.type} />
 
-                <NavDropdown.Item onClick={AuthService.logout}>LOGOUT</NavDropdown.Item>
-              </NavDropdown>}
+                      )
+                    })}
+                  </div>
+
+                  <NavDropdown.Item onClick={AuthService.logout}>LOGOUT</NavDropdown.Item>
+                </NavDropdown>}
             </Nav>
           </Navbar.Collapse>
         </Container>
