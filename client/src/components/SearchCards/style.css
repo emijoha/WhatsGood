@@ -1,9 +1,5 @@
 button {
-    color: darkmagenta !important;
-    background-color: white !important;
-    border-color: darkmagenta !important;
-    border: solid !important;
-    border-width: 1px !important;
+    border-width: 1px;
 }
 
 .center-wrap {
@@ -19,7 +15,7 @@ button {
 }
 
 .ratingReviewHeading {
-    border-bottom: solid 1px black;
+    border-bottom: solid 3px;
     font-weight: 500;
     color: black;
 }

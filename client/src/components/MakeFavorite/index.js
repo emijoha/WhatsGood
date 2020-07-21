@@ -4,8 +4,7 @@ import './style.css';
 
 function MakeFavorite(props) {
 
-  console.log(props.media);
-
+  let type = props.media.mediaType.toLowerCase();
   return (
     <>
       {props.username && (
@@ -14,7 +13,7 @@ function MakeFavorite(props) {
             ?
             <div id='center-wrap'>
               <Button
-                className='btn'
+                className={`${type}-color`}
                 onClick={() => props.makeFavorite(props.media)} >
                 UNFAVE
             </Button>
@@ -22,7 +21,7 @@ function MakeFavorite(props) {
             :
             <div id='center-wrap'>
               <Button
-                className='btn'
+                className={`${type}-color`}
                 onClick={() => props.makeFavorite(props.media)} >
                 MAKE FAVE
             </Button>

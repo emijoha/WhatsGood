@@ -34,7 +34,7 @@
     margin-top: 3px;
 }
 .ratingReviewHeading {
-  border-bottom: solid 3px !important;
+  border-bottom: solid 3px;
   font-weight: 500;
   color: black;
 }

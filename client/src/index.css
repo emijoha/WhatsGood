@@ -34,7 +34,7 @@ button {
   border: solid;
   border-width: 20px;
   /* border-image-source: linear-gradient(to top right,  rgb(0, 255, 255), rgb(3, 7, 255)); */
-  margin-bottom: 24px !important;
+  margin-bottom: 24px ;
 }
 
 /* BOOK COLORS */
@@ -44,11 +44,11 @@ button {
 }
 
 .book-color {
-color: rgb(3, 124, 236);
+color: rgb(3, 124, 236) ;
 }
 
 .book-back {
-background-color: rgb(3, 124, 236);
+background-color: rgb(3, 124, 236) !important;
 }
 
 .book-hover:hover {
@@ -57,75 +57,78 @@ background-color: rgb(3, 124, 236);
 
 /* MUSIC COLORs */
 .music-border {
-  border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom right,  rgb(246, 0, 115), rgb(251, 255, 1));
+  border-image-slice: 1 ;
+  border-image-source: linear-gradient(to bottom right,  rgb(246, 0, 115), rgb(251, 255, 1)) ;
 }
 .music-color {
-  color: rgb(241, 118, 2);
+  color: rgb(241, 118, 2) ;
 }
 
 .music-back {
- background-color: rgb(241, 118, 2);
+ background-color: rgb(241, 118, 2) !important;
 }
 
 .music-hover:hover {
-  color: rgb(241, 118, 2);
+  color: rgb(241, 118, 2) ;
 }
 
 /* MOVIE COLORS */
 .movie-border {
-  border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom right, rgb(72, 0, 206), rgb(225, 2, 255));
+  border-image-slice: 1 ;
+  border-image-source: linear-gradient(to bottom right, rgb(72, 0, 206), rgb(225, 2, 255)) ;
 }
 .movie-color {
-  color: rgb(134, 0, 223);
+  color: rgb(134, 0, 223)  ;
 }
 
 .movie-back {
-  background-color: rgb(134, 0, 223);
+  background-color: rgb(134, 0, 223) !important;
 }
 
 .movie-hover:hover {
-  color: rgb(134, 0, 223);
+  color: rgb(134, 0, 223) ;
 }
 
 /* GAME COLORS */
 .game-border {
-  border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom right, rgb(0, 180, 90), rgb(251, 255, 1) );
+  border-image-slice: 1 ;
+  border-image-source: linear-gradient(to bottom right, rgb(0, 180, 90), rgb(251, 255, 1) ) ;
 }
 .game-color {
-  color: rgb(118, 211, 11);
+  color: rgb(118, 211, 11) ;
 }
 
 .game-back {
-  background-color: rgb(118, 211, 11);
+  background-color: rgb(118, 211, 11) !important;
 }
 
 .game-hover:hover {
-  color: rgb(118, 211, 11);
+  color: rgb(118, 211, 11) ;
 }
 
 
 /* FRIENDS BORDERS? OR MIX OF ALL COLORS? */
 .friend-border1 {
   border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom right, rgb(72, 0, 206), rgb(225, 2, 255));
+  border-image-source: linear-gradient(to bottom left, rgb(72, 0, 206), rgb(0, 225, 255));
 }
 
 .friend-border2 {
   border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom right, rgb(0, 180, 90), rgb(251, 255, 1) );
+  border-image-source: linear-gradient(to bottom right,  rgb(246, 0, 115), rgb(251, 255, 1));
 }
 
 .friend-border3 {
   border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom right,  rgb(246, 0, 115), rgb(251, 255, 1));
+  border-image-source: linear-gradient(to bottom right, rgb(72, 0, 206), rgb(225, 2, 255));
 }
 
 .friend-border4 {
   border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom left, rgb(72, 0, 206), rgb(0, 225, 255));
+  border-image-source: linear-gradient(to bottom right, rgb(0, 180, 90), rgb(251, 255, 1) );
 }
+
+
+
 
 

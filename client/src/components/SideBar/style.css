@@ -26,7 +26,7 @@ ul {
 
 #side-header-li{
     margin-top: -8px;
-    color: rgb(121, 38, 255) !important;
+    color: rgb(106, 0, 206) !important;
     text-decoration: none; 
     background-color: rgba(0, 0, 0, 0) !important;
 }
@@ -35,8 +35,8 @@ ul {
     text-decoration: none; 
 }
 
-#side-bar-li:focus {
-    color: rgb(121, 38, 255) !important;
+button#side-bar-li:focus {
+    color: rgb(106, 0, 206) !important;
     outline: none !important;
 }
 

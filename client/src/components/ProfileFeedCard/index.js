@@ -41,7 +41,7 @@ function ProfileFeedCard(props) {
             </Card.Title>
           </div>
           <div id="center-wrap-tall">
-            <p className='ratingReviewHeading'>{media.username}'s Rating</p>
+            <p className='ratingReviewHeading book-border'>{media.username}'s Rating</p>
             <p className='rating'>
               {
                 (media.userRating === 0)
@@ -56,7 +56,7 @@ function ProfileFeedCard(props) {
                 )
               })}
             </p>
-            <p className='ratingReviewHeading'>{media.username}'s Review</p>
+            <p className='ratingReviewHeading book-border'>{media.username}'s Review</p>
           </div>
           <div className='scroll-box'>
             {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
@@ -138,7 +138,7 @@ function ProfileFeedCard(props) {
             controls
           />
           <div id="center-wrap">
-            <p className='ratingReviewHeading'>{media.username}'s Rating</p>
+            <p className='ratingReviewHeading music-border'>{media.username}'s Rating</p>
             <p className='rating'>
               {
                 (media.userRating === 0)
@@ -153,7 +153,7 @@ function ProfileFeedCard(props) {
                 )
               })}
             </p>
-            <p className='ratingReviewHeading'>{media.username}'s Review</p>
+            <p className='ratingReviewHeading music-border'>{media.username}'s Review</p>
           </div>
           <div className='scroll-box'>
             <p>{media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}</p>
@@ -229,7 +229,7 @@ function ProfileFeedCard(props) {
             </Card.Title>
           </div>
           <div id="center-wrap-tall">
-            <p className='ratingReviewHeading'>{media.username}'s Rating</p>
+            <p className='ratingReviewHeading movie-border'>{media.username}'s Rating</p>
             <p className='rating'>
               {
                 (media.userRating === 0)
@@ -244,7 +244,7 @@ function ProfileFeedCard(props) {
                 )
               })}
             </p>
-            <p className='ratingReviewHeading'>{media.username}'s Review</p>
+            <p className='ratingReviewHeading movie-border'>{media.username}'s Review</p>
           </div>
           <div className='scroll-box'>
             {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
@@ -320,7 +320,7 @@ function ProfileFeedCard(props) {
             </Card.Title>
           </div>
           <div id="center-wrap-tall">
-            <p className='ratingReviewHeading'>{media.username}'s Rating</p>
+            <p className='ratingReviewHeading game-border'>{media.username}'s Rating</p>
             <p className='rating'>
               {
                 (media.userRating === 0)
@@ -335,7 +335,7 @@ function ProfileFeedCard(props) {
                 )
               })}
             </p>
-            <p className='ratingReviewHeading'>{media.username}'s Review</p>
+            <p className='ratingReviewHeading game-border'>{media.username}'s Review</p>
           </div>
           <div className='scroll-box'>
             {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}

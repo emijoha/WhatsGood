@@ -45,7 +45,7 @@ function SavedCards(props) {
                     <Card.Text>{book.description}</Card.Text>
                   </div>
                   <div className='center-wrap'>
-                    <p className='ratingReviewHeading'>Your Rating</p>
+                    <p className='ratingReviewHeading book-border'>Your Rating</p>
                     <p className='rating'>
                       {
                         (book.userRating === 0)
@@ -60,7 +60,7 @@ function SavedCards(props) {
                         )
                       })}
                     </p>
-                    <p className='ratingReviewHeading'>Your Review</p>
+                    <p className='ratingReviewHeading book-border'>Your Review</p>
                   </div>
                   <div className='scroll-box'>
                     {book.userReview.length ? book.userReview : "What's good... and what's not? No idea, there's no review yet!"}
@@ -86,7 +86,7 @@ function SavedCards(props) {
                     handleReviewFormSubmit={props.handleReviewFormSubmit}
                     setReviewInput={props.setReviewInput}
                   />
-                  <Button className='btn-block btn-danger' onClick={() => props.handleDeleteBook(book._id)}>
+                  <Button className='btn-block book-back' onClick={() => props.handleDeleteBook(book._id)}>
                     Delete this Book!
                   </Button>
                 </Card.Body>
@@ -128,7 +128,7 @@ function SavedCards(props) {
                       src={music.preview}
                       controls
                     />
-                    <p className='ratingReviewHeading'>Your Rating</p>
+                    <p className='ratingReviewHeading music-border'>Your Rating</p>
                     <p className='rating'>
                       {
                         (music.userRating === 0)
@@ -143,7 +143,7 @@ function SavedCards(props) {
                         )
                       })}
                     </p>
-                    <p className='ratingReviewHeading'>Your Review</p>
+                    <p className='ratingReviewHeading music-border'>Your Review</p>
                   </div>
                   <div className='scroll-box'>
                     {music.userReview.length ? music.userReview : "What's good... and what's not? No idea, there's no review yet!"}
@@ -169,7 +169,7 @@ function SavedCards(props) {
                     handleReviewFormSubmit={props.handleReviewFormSubmit}
                     setReviewInput={props.setReviewInput}
                   />
-                  <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMusic(music._id)}>
+                  <Button className='btn-block music-back' onClick={() => props.handleDeleteMusic(music._id)}>
                     Delete!
                   </Button>
                 </Card.Body>
@@ -215,7 +215,7 @@ function SavedCards(props) {
                   {media.rated === 'N/A' ? null : <p className='small closer-p'><b>Rated:</b> {media.rated}</p>}
                   {media.runtime === 'N/A' ? null : <p className='small'><b>Runtime:</b> {media.runtime}</p>}
                   <div className='center-wrap'>
-                    <p className='ratingReviewHeading'>Your Rating</p>
+                    <p className='ratingReviewHeading movie-border'>Your Rating</p>
                     <p className='rating'>
                       {
                         (media.userRating === 0)
@@ -230,7 +230,7 @@ function SavedCards(props) {
                         )
                       })}
                     </p>
-                    <p className='ratingReviewHeading'>Your Review</p>
+                    <p className='ratingReviewHeading movie-border'>Your Review</p>
                   </div>
                   <div className='scroll-box'>
                     {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
@@ -256,7 +256,7 @@ function SavedCards(props) {
                     handleReviewFormSubmit={props.handleReviewFormSubmit}
                     setReviewInput={props.setReviewInput}
                   />
-                  <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMovie(media._id)}>
+                  <Button className='btn-block movie-back' onClick={() => props.handleDeleteMovie(media._id)}>
                     Delete this Movie!
                   </Button>
                 </Card.Body>
@@ -297,7 +297,7 @@ function SavedCards(props) {
                     <Card.Text>{game.description}</Card.Text>
                   </div>
                   <div className='center-wrap'>
-                    <p className='ratingReviewHeading'>Your Rating</p>
+                    <p className='ratingReviewHeading game-border'>Your Rating</p>
                     <p className='rating'>
                       {
                         (game.userRating === 0)
@@ -312,7 +312,7 @@ function SavedCards(props) {
                         )
                       })}
                     </p>
-                    <p className='ratingReviewHeading'>Your Review</p>
+                    <p className='ratingReviewHeading game-border'>Your Review</p>
                   </div>
                   <div className='scroll-box'>
                     {game.userReview.length ? game.userReview : "What's good... and what's not? No idea, there's no review yet!"}
@@ -338,7 +338,7 @@ function SavedCards(props) {
                     handleReviewFormSubmit={props.handleReviewFormSubmit}
                     setReviewInput={props.setReviewInput}
                   />
-                  <Button className='btn-block btn-danger' onClick={() => props.handleDeleteGame(game._id)}>
+                  <Button className='btn-block game-back' onClick={() => props.handleDeleteGame(game._id)}>
                     Delete this Game!
                   </Button>
                 </Card.Body>
@@ -349,6 +349,8 @@ function SavedCards(props) {
       </>
     );
   } else if (props.cardType === 'savedFriends') {
+      let number = randomNum();
+      let background = ['book-back', 'music-back', 'movie-back', 'game-back'];
     return (
       <>
         <h2>
@@ -362,7 +364,7 @@ function SavedCards(props) {
             console.log("this is my friend, ", friend)
             return (
 
-              <Card className={`friend-border${randomNum()}`} key={friend._id} border='dark'>
+              <Card className={`friend-border${number}`} key={friend._id} border='dark'>
                 <div className='center-wrap'>
                   <Card.Img className='mediaImage' src={friend.picture} alt={friend.username} variant='top' />
                   <Card.Body>
@@ -370,7 +372,7 @@ function SavedCards(props) {
                       <b>{friend.username.toUpperCase()}</b>
                       <p className='by'><b>email:</b> {friend.email}</p>
                     </Card.Title>
-                    <Button className='btn-block btn-danger' onClick={() => props.handleDeleteFriend(friend._id)}>
+                    <Button className={`btn-block ${background[number - 1]}`} onClick={() => props.handleDeleteFriend(friend._id)}>
                       Remove Friend
                     </Button>
                   </Card.Body>

@@ -96,20 +96,23 @@ function AppNavbar() {
                 }>
                   <NavDropdown.Item onClick={() => setShowModal(true)}>UPLOAD PROFILE PIC</NavDropdown.Item>
                   <NavDropdown.Item href="/profile">MY PROFILE</NavDropdown.Item>
-                  <div className='notification-scroll'>
-                    {userData.notifications.map((notification) => {
-                      { console.log("notification in navbar", notification) }
-                      return (
-                        <NotificationDropdownItem
-                          likerUsername={notification.likerUsername}
-                          title={notification.title}
-                          notificationId={notification._id}
-                          type={notification.type} />
-
-                      )
-                    })}
-                  </div>
-
+                  {
+                    userData.notifications.length
+                      ? <div className='notification-scroll'>
+                        {userData.notifications.map((notification) => {
+                          { console.log("notification in navbar", notification) }
+                          return (
+                            <NotificationDropdownItem
+                              likerUsername={notification.likerUsername}
+                              title={notification.title}
+                              notificationId={notification._id}
+                              type={notification.type} 
+                            />
+                          )
+                        })}
+                      </div>
+                      : null
+                  }
                   <NavDropdown.Item onClick={AuthService.logout}>LOGOUT</NavDropdown.Item>
                 </NavDropdown>}
             </Nav>

@@ -29,11 +29,11 @@
 }
 
 .form-button {
-    color: rgb(96, 0, 206);
+    color: rgb(106, 0, 206);
     font-weight: bold;
     background-color: rgba(255, 255, 255, 0);
     border-radius: 40px;
-    border: 1px solid rgb(96, 0, 206);
+    border: 1px solid rgb(106, 0, 206);
     font-weight: bold;
     margin-top: 20px;
 }
@@ -42,5 +42,5 @@
     color: rgb(183, 2, 255);
     background-color: rgba(255, 255, 255, 0);
     border-radius: 40px;
-    border: 1px solid (183, 2, 255);
+    border: 1px solid rgb(183, 2, 255);
 }
