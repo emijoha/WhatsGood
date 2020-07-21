@@ -358,7 +358,6 @@ function Home() {
                     mediaType='book'
                     media={media}
                     cb={handleSaveLike}
-                    // cb2={handleSaveComment}
                     userData={userData}
                   />
                 );
@@ -369,7 +368,6 @@ function Home() {
                     mediaType='music'
                     media={media}
                     cb={handleSaveLike}
-                    // cb2={handleSaveComment}
                     userData={userData}
                   />
                 );
@@ -380,7 +378,6 @@ function Home() {
                     mediaType='movie'
                     media={media}
                     cb={handleSaveLike}
-                    // cb2={handleSaveComment}
                     userData={userData}
                   />
                 );
@@ -391,7 +388,6 @@ function Home() {
                     mediaType='game'
                     media={media}
                     cb={handleSaveLike}
-                    // cb2={handleSaveComment}
                     userData={userData}
                   />
                 );

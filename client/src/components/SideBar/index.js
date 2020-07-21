@@ -56,15 +56,7 @@ function SideBar({ cb, page }) {
 
   return (
 
-
-    // <div id="side-bar" className="text-right">
     <div id="side-bar-menu">
-      <ul>
-
-        <li id="side-header-li"><p className='logo-text'>WHAT'S</p></li>
-        <li id="side-header-li"><p className='logo-text'>GOOD</p></li>
-        <li id="side-header-li"><p className='logo-text'>{userData.username.toUpperCase()}?</p></li>
-      </ul>
       <ul>
         <li><button id="side-bar-li" onClick={() => cb("all")}>ALL</button></li>
         {page === 'profile' && <li><button id="side-bar-li" onClick={() => cb("favorites")}>FAVORITES</button></li>}
@@ -75,7 +67,6 @@ function SideBar({ cb, page }) {
 
       </ul>
     </div>
-    // </div >
 
 
 

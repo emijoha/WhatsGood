@@ -20,12 +20,12 @@
 }
 
 #media-feed-column {
-  margin-top: 115px;
+  margin-top: 0px;
 }
 
  @media screen and (max-width: 991px) {
    #media-feed-column {
-   margin-top: 150px;
+   margin-top: 0px;
   }
 }
 

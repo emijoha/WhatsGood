@@ -3,7 +3,7 @@
     /* backdrop-filter: blur(500px); */
     position: fixed;
     width: 100%;
-    z-index: 1 !important;
+    z-index: 2 !important;
     padding: 2.5px;
    
 }
@@ -19,7 +19,7 @@
   .logo-text-main {
     font-family: 'Montserrat', sans-serif;
     font-weight: bolder;
-    font-size: 1.7rem;
+    font-size: 1.65rem;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -35,29 +35,30 @@
   align-items: center;
 }
 
+.shorten {
+  margin-right: 0;
+}
+
   a {
       color: black;
       background-color: transparent;
   }
 
- a:active {
+ /* a:active {
     color: rgb(106, 0, 206) !important;
-
- }
+ } */
 
 
  a:hover {
-    color: rgb(106, 0, 206) !important;
+  /* color: rgb(106, 0, 206) !important; */
+    text-decoration: none;
  }
 
   .btn {
       content: none;
       background: none;
-      border: none;
-      
+      border: none;   
   }
-
-  
 
   .btn:hover {
     content: none;
