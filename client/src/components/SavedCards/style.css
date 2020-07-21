@@ -1,10 +1,10 @@
-button {
+/* button {
     color: darkmagenta !important;
     background-color: rgba(255, 255, 255, 0) !important;
     border-color: darkmagenta !important;
     border: solid !important;
     border-width: 1px !important;
-}
+} */
 
 .center-wrap {
     position: relative;
@@ -45,11 +45,11 @@ button {
 }
 
 .scroll-box {
-    width: 100%;
-    padding-right: 8px;
-    max-height: 135px;
-    overflow: scroll;
-    /* margin-bottom: 10px; */
+  width: 100%;
+  padding-right: 8px;
+  padding-left: 12px;
+  max-height: 135px;
+  overflow: scroll;
 }
     
 /* Scrollbar styles */
@@ -59,7 +59,7 @@ height: 12px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgb(220, 220, 220);  
+    background: rgb(225, 225, 225);  
     border-radius: 10px;
 }
 

@@ -22,7 +22,7 @@ function SearchCards(props) {
                 <CardColumns>
                     {props.resultArray.map((book) => {
                         return (
-
+                          
                             <Card className={`book-border${randomNum()}`} key={book.mediaId} border='dark'>
                                 <div className='center-wrap'>
                                     {book.image ? <Card.Img className='mediaImage' src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}

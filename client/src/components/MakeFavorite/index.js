@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Col, Form, Button } from 'react-bootstrap';
+import './style.css';
 
 function MakeFavorite(props) {
 
@@ -11,17 +12,21 @@ function MakeFavorite(props) {
         <>
           {props.media.userFavorite
             ?
-            <Button
-              className='btn btn-success'
-              onClick={() => props.makeFavorite(props.media)} >
-              UNFAVE
+            <div id='center-wrap'>
+              <Button
+                className='btn btn-success'
+                onClick={() => props.makeFavorite(props.media)} >
+                UNFAVE
             </Button>
+            </div>
             :
-            <Button
-              className='btn btn-success'
-              onClick={() => props.makeFavorite(props.media)} >
-              MAKE FAVE
+            <div id='center-wrap'>
+              <Button
+                className='btn btn-success'
+                onClick={() => props.makeFavorite(props.media)} >
+                MAKE FAVE
             </Button>
+            </div>
           }
         </>
       )}

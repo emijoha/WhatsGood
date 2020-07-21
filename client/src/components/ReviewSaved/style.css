@@ -54,6 +54,7 @@ input {
 
 #review-submit-btn:hover {
   color: black !important;
+  font-weight: 700;
 }
 /* #ffc107
 #e4e5e9 */

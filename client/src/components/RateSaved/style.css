@@ -21,7 +21,7 @@ input {
   position: relative;
   width: 100%;
   text-align: center;
-  border: solid 1px;
+  border: solid 1px rgb(216, 216, 216);
   border-radius: 4px;
   margin-bottom: 20px;
   
@@ -55,6 +55,7 @@ input {
 
 #rating-submit-btn:hover {
   color: black !important;
+  font-weight: 700;
 }
 /* #ffc107
 #e4e5e9 */

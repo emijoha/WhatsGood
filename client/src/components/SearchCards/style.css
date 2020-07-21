@@ -45,11 +45,11 @@ button {
 }
 
 .scroll-box {
-    width: 100%;
-    padding-right: 8px;
-    max-height: 135px;
-    overflow: scroll;
-    /* margin-bottom: 10px; */
+  width: 100%;
+  padding-right: 8px;
+  padding-left: 12px;
+  max-height: 135px;
+  overflow: scroll;
 }
     
 /* Scrollbar styles */
@@ -59,10 +59,10 @@ height: 12px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgb(220, 220, 220);  
-    border-radius: 10px;
+  background: rgb(225, 225, 225);  
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(200, 200, 200);  
+  background: rgb(200, 200, 200);  
 }

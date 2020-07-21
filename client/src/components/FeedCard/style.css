@@ -11,9 +11,9 @@
 }
 
 #media-pic {
-    width: 50%;
-    border-radius: 0px !important;
-    margin-top: 10px;
+  border-radius: 0px !important;
+  width: 70%;
+  margin-top: 15px;
 }
 
 #center-wrap {
