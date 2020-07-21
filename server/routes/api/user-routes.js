@@ -27,7 +27,9 @@ const {
   saveUserReview,
   saveUserRating,
   addNotification,
-  deleteNotification
+  deleteNotification,
+  saveChat,
+  saveMessage
 } = require('../../controllers/user-controller');
 
 // import middleware
@@ -85,8 +87,9 @@ router.route('/music/comments/:id').put(addMusicComment);
 
 router.route('/movies/comments/:id').put(addMovieComment);
 
+router.route('/chats').get(getAllUsers).put(saveChat);
 
-
+router.route('/messages').get(getAllUsers).put(saveMessage);
 
 
 module.exports = router;

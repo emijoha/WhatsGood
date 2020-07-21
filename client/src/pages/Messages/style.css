@@ -1,0 +1,54 @@
+#messages-container {
+    margin-top: 150px;
+    border: 1px solid black;
+    padding: 20px;
+    height: 650px;
+    background: linear-gradient(412.9deg, rgb(243, 243, 243) 0%, rgb(253, 253, 253) 82.68%, rgba(235,235,235,1) 100%);
+}
+
+#chat-box-header {
+  margin-top: -30px;
+  color: rgb(121, 38, 255) !important;
+}
+
+#chat-box-header-active {
+  margin-top: -30px;
+  color: #9df100 !important;
+}
+
+
+
+
+@media screen and (max-width: 991px) {
+     
+    #lg-screen-search {
+        
+      display: none !important;
+    }
+
+    #messages-container {
+
+      height: 880px;
+  }
+
+  #chat-box-header {
+    margin-top: 0px;
+   
+  }
+  
+  #chat-box-header-active {
+    margin-top: 0px;
+  }
+}
+
+@media screen and (min-width: 991px) {
+     
+    #sm-screen-search {
+        
+      display: none !important;
+      
+     
+    }
+
+  
+}

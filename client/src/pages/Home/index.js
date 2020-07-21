@@ -25,7 +25,7 @@ function Home() {
   }
 
   const userData = useContext(UserInfoContext);
-  console.log("userDATA", userData);
+  console.log("userDATA:  ", userData);
 
   // to pass into notifications so user knows who liked something
   // const likerId = userData._id;

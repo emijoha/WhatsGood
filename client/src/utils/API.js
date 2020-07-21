@@ -185,3 +185,12 @@ export const addComment = function (commentData, token) {
     return axios.put(`/api/users/games/comments/${commentData.mediaId}`, commentData, { headers: { authorization: `Bearer ${token}` } });
     }
 };
+
+
+export const saveChat = function (chatData, token) {
+  return axios.put('/api/users/chats', chatData, { headers: { authorization: `Bearer ${token}` } });
+};
+
+export const saveMessage = function (messageData, token) {
+  return axios.put('/api/users/messages', messageData, { headers: { authorization: `Bearer ${token}` } });
+};

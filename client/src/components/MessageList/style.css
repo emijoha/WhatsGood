@@ -1,0 +1,33 @@
+#message-list-div {
+   
+    height: 366px;
+    width: 100%; 
+    overflow: scroll;
+ }
+
+#all-messages-button {
+    border: none !important;
+    padding: 10px;
+    color: rgb(75, 0, 196) !important;
+  }
+
+  #all-messages-button:active, #all-messages-button:focus {
+    color: rgb(183, 0, 255) !important;
+    background-color: rgba(255, 255, 255, 0) !important;
+    outline: none !important;
+
+ }
+
+
+ #all-messages-button:hover {
+    color: rgb(183, 0, 255) !important;
+    background-color: rgba(255, 255, 255, 0) !important;
+ }
+
+ @media screen and (max-width: 991px) {
+
+    #message-list-div {
+      height: 448px;
+  }
+  
+}
