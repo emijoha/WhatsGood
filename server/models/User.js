@@ -81,6 +81,13 @@ const userSchema = new Schema(
         ref: "Notification"
       }
     ]
+    ,
+    chats: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Chat"
+      }
+    ]
   },
   // set this to use virtual below
   {

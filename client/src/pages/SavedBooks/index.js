@@ -136,14 +136,20 @@ function SavedBooks() {
   };
 
   return (
-    <>
+    <div id="container">
       {userData.username ?
-        <>
-          <Jumbotron fluid className='text-light bg-dark'>
-            <Container>
-              <h1>Viewing saved books!</h1>
-            </Container>
-          </Jumbotron>
+        <div>
+       <div id="header-div">
+           
+           {userData.savedBooks.length === 0
+                         ?  <div id="no-media-div">
+                         <p><h5 className="text-center" id="header">LOOKS EMPTY IN HERE.</h5></p>
+                         <p><h5 className="text-center" id="highlight-header">GO TO SEARCH AND ADD SOME BOOKS!</h5></p>
+                         </div>
+                         : <h5 className="text-center" id="header">MY BOOKS</h5>}
+               
+          
+           </div>
           <Container>
             <SavedCards
               cardType='savedBooks'
@@ -167,9 +173,9 @@ function SavedBooks() {
               comments={userData.savedBooks.comments}
             />
           </Container>
-        </> :
+        </div> :
         <NotLoggedIn />}
-    </>
+    </div>
   );
 }
 

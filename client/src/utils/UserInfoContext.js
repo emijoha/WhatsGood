@@ -19,6 +19,7 @@ const UserInfoContext = React.createContext({
   gameCount: 0,
   friends: [],
   notifications: [],
+  chats: [],
   getUserData: () => undefined,
 });
 

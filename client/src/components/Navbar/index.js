@@ -105,7 +105,7 @@ function AppNavbar() {
                     
                   )
                 })}
-
+                <NavDropdown.Item href="/messages">MESSAGES</NavDropdown.Item>
                 <NavDropdown.Item onClick={AuthService.logout}>LOGOUT</NavDropdown.Item>
               </NavDropdown>}
             </Nav>

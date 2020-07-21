@@ -1,0 +1,34 @@
+#search-icon-button {
+    color: rgb(75, 0, 196) !important;
+    background-color: rgba(255, 255, 255, 0) !important;
+    border: none !important;
+    margin: 10px;
+    margin-left: -5px;
+  
+}
+
+#search-icon-button:hover {
+    color: rgb(183, 0, 255) !important;
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+
+#form-input {
+   
+    border-radius: 40px;
+    background: transparent;
+    color: black;
+    border: none;
+    border: 1px solid black;
+    box-shadow: none;
+    background: transparent !important;
+    outline: none !important;
+    margin: 10px;
+    font-size: 15px;
+    margin-right: none; 
+}
+
+#form-input:active, .form-input:focus {
+    background: transparent !important;
+    outline: none !important;
+}
+

@@ -34,7 +34,7 @@ function FriendProfile() {
     setFriendMediaState([]);
     setFriendFavoritesState([]);
     renderAllMedia();
-  }, []);
+  }, [userData.username]);
 
   const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes, ownerId, title) => {
     // find the friend in `searchedUser` state by the matching id

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Jumbotron, Container } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
+import './style.css';
 
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
@@ -175,14 +176,23 @@ function SavedMedia() {
   };
 
   return (
-    <>
+    <div id="container">
       {userData.username ?
-        <>
-          <Jumbotron fluid className='text-light bg-dark'>
-            <Container>
-              <h1>Viewing All Saved Media!</h1>
-            </Container>
-          </Jumbotron>
+        <div id="sub-container" >
+          <div id="header-div">
+           
+          {userData.savedMusic.length === 0 && userData.savedMovies.length === 0 && userData.savedBooks.length === 0 && userData.savedGames.length === 0
+                        ?  <div id="no-media-div">
+                        <p><h5 className="text-center" id="header">LOOKS EMPTY IN HERE.</h5></p>
+                        <p><h5 className="text-center" id="highlight-header">GO TO SEARCH AND ADD SOME MEDIA!</h5></p>
+                        </div>
+                        : <h5 className="text-center" id="header">MY MEDIA</h5>}
+              
+         
+          </div>
+
+
+         
           <Container>
             <SavedCards
               cardType='savedBooks'
@@ -204,6 +214,8 @@ function SavedMedia() {
               makeFavorite={makeFavorite}
               handleDeleteBook={handleDeleteBook}
             />
+
+          
             <SavedCards
               cardType='savedMusic'
               savedArray={userData.savedMusic}
@@ -265,9 +277,9 @@ function SavedMedia() {
               handleDeleteGame={handleDeleteGame}
             />
           </Container>
-        </> :
+        </div> :
         <NotLoggedIn />}
-    </>
+    </div>
   );
 }
 

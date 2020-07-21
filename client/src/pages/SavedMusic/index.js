@@ -3,6 +3,7 @@ import { Jumbotron, Container } from 'react-bootstrap';
 // import ReactAudioPlayer from 'react-audio-player';
 import SavedCards from '../../components/SavedCards';
 import NotLoggedIn from '../../components/NotLoggedIn';
+import './style.css';
 
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
@@ -139,14 +140,20 @@ function SavedMusic() {
   };
 
   return (
-    <>
+    <div id="container">
       {userData.username ?
-        <>
-          <Jumbotron fluid className='text-light bg-dark'>
-            <Container>
-              <h1>Viewing saved music!</h1>
-            </Container>
-          </Jumbotron>
+        <div>
+            <div id="header-div">
+           
+           {userData.savedMusic.length === 0
+                         ?  <div id="no-media-div">
+                         <p><h5 className="text-center" id="header">LOOKS EMPTY IN HERE.</h5></p>
+                         <p><h5 className="text-center" id="highlight-header">GO TO SEARCH AND ADD SOME MUSIC!</h5></p>
+                         </div>
+                         : <h5 className="text-center" id="header">MY MUSIC</h5>}
+               
+          
+           </div>
           <Container>
             <SavedCards
               cardType='savedMusic'
@@ -169,9 +176,9 @@ function SavedMusic() {
               handleDeleteMusic={handleDeleteMusic}
             />
           </Container>
-        </> :
+        </div> :
         <NotLoggedIn />}
-    </>
+    </div>
   );
 }
 
