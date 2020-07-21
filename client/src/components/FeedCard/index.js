@@ -18,7 +18,7 @@ function FeedCard(props) {
   if (props.mediaType === 'book') {
     const media = props.media;
     return (
-      <Card className={`book-border${randomNum()}`} key={media._id} border='dark'>
+      <Card className='book-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -81,7 +81,7 @@ function FeedCard(props) {
   } else if (props.mediaType === 'music') {
     const media = props.media;
     return (
-      <Card className={`music-border${randomNum()}`} key={media._id} border='dark'>
+      <Card className='music-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -149,7 +149,7 @@ function FeedCard(props) {
   } else if (props.mediaType === 'movie') {
     const media = props.media;
     return (
-      <Card className={`movie-border${randomNum()}`} key={media._id} border='dark'>
+      <Card className='movie-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -212,7 +212,7 @@ function FeedCard(props) {
   } else if (props.mediaType === 'game') {
     const media = props.media;
     return (
-      <Card className={`game-border${randomNum()}`} key={media._id} border='dark'>
+      <Card className='game-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -276,7 +276,7 @@ function FeedCard(props) {
     const media = props.media;
     console.log('from FeedCard: ', media, props.userData)
     return (
-      <Card key={props.media.mediaId} border='dark'>
+      <Card className={`${media.mediaType.toLowerCase()}-border`} key={props.media.mediaId} border='dark'>
         <Card.Body>
           {props.userData.picture
             ? <Card.Img id="profile-pic" src={props.userData.picture} alt={props.userData.username} variant='top' />

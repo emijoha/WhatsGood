@@ -25,7 +25,7 @@ function SavedCards(props) {
           {props.savedArray.map((book) => {
             return (
 
-              <Card className={`book-border${randomNum()}`} key={book._id} border='dark'>
+              <Card className='book-border' key={book._id} border='dark'>
                 <MakeFavorite
                   username={props.username}
                   media={book}
@@ -108,7 +108,7 @@ function SavedCards(props) {
           {props.savedArray.map((music) => {
             return (
 
-              <Card className={`music-border${randomNum()}`} key={music._id} border='dark'>
+              <Card className='music-border' key={music._id} border='dark'>
                 <MakeFavorite
                   username={props.username}
                   media={music}
@@ -171,7 +171,7 @@ function SavedCards(props) {
                   />
                   <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMusic(music._id)}>
                     Delete!
-                                    </Button>
+                  </Button>
                 </Card.Body>
               </Card>
             );
@@ -190,7 +190,7 @@ function SavedCards(props) {
         <CardColumns>
           {props.savedArray.map((media) => {
             return (
-              <Card className={`movie-border${randomNum()}`} key={media.mediaId} border='dark'>
+              <Card className='movie-border' key={media.mediaId} border='dark'>
                 <MakeFavorite
                   username={props.username}
                   media={media}
@@ -277,7 +277,7 @@ function SavedCards(props) {
         <CardColumns>
           {props.savedArray.map((game) => {
             return (
-              <Card className={`game-border${randomNum()}`} key={game._id} border='dark'>
+              <Card className='game-border' key={game._id} border='dark'>
                 <MakeFavorite
                   username={props.username}
                   media={game}
@@ -362,7 +362,7 @@ function SavedCards(props) {
             console.log("this is my friend, ", friend)
             return (
 
-              <Card key={friend._id} border='dark'>
+              <Card className={`friend-border${randomNum()}`} key={friend._id} border='dark'>
                 <div className='center-wrap'>
                   <Card.Img className='mediaImage' src={friend.picture} alt={friend.username} variant='top' />
                   <Card.Body>

@@ -13,14 +13,10 @@ import './style.css';
 
 
 function ProfileFeedCard(props) {
-  function randomNum() {
-    return Math.floor(Math.random() * 4) + 1;
-  }
-
   if (props.media.mediaType === 'Book') {
     const media = props.media;
     return (
-      <Card className={`book-border${randomNum()}`} key={media._id} border='dark'>
+      <Card className='book-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -112,7 +108,7 @@ function ProfileFeedCard(props) {
   } else if (props.media.mediaType === 'Music') {
     const media = props.media;
     return (
-      <Card className={`music-border${randomNum()}`} key={media._id} border='dark'>
+      <Card className='music-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -208,7 +204,7 @@ function ProfileFeedCard(props) {
   } else if (props.media.mediaType === 'Movie') {
     const media = props.media;
     return (
-      <Card className={`movie-border${randomNum()}`} key={media._id} border='dark'>
+      <Card className='movie-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -299,7 +295,7 @@ function ProfileFeedCard(props) {
   } else if (props.media.mediaType === 'Game') {
     const media = props.media;
     return (
-      <Card className={`game-border${randomNum()}`} key={media._id} border='dark'>
+      <Card className='game-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
