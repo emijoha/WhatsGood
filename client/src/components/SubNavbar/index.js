@@ -10,11 +10,11 @@ import AuthService from '../../utils/auth';
 function SubNavbar({ cb, page }) {
 
 
-  const userData = useContext(UserInfoContext);
+  // const userData = useContext(UserInfoContext);
 
-  useEffect(() => {
-    userData.getUserData();
-  }, []);
+  // useEffect(() => {
+  //   userData.getUserData();
+  // }, []);
 
 
 

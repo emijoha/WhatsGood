@@ -332,7 +332,7 @@ function Home() {
       </Jumbotron> */}
       <Row>
         <Col>
-          <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} />
+          <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} username={userData.username} />
         </Col>
       </Row>
       <Container width="100%">
@@ -340,6 +340,7 @@ function Home() {
           <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
             <SideBar
               cb={handleRenderMediaPage}
+              username={userData.username}
             />
           </Col>
           <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >

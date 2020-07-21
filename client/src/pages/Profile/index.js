@@ -161,6 +161,58 @@ function ProfilePage() {
       .catch((err) => console.log(err));
   }
 
+  const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes, ownerId, title) => {
+    // find the friend in `searchedUser` state by the matching id
+    // const userToSave = searchedUser.find((user) => user._id === userId);
+
+    // get token
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+    if (!token) {
+      return false;
+    }
+
+    let likeData = {
+      mediaType: likeMediaType,
+      mediaId: like_id,
+    }
+
+    let addLikeData = {
+      mediaType: likeMediaType,
+      _id: like_id,
+      likes: mediaLikes
+    }
+
+    // info for notification
+    const notificationData = {
+      likerUsername: likerUsername,
+      title: title,
+      ownerId: ownerId,
+      type: "like"
+    }
+
+    API.saveLike(likeData, token)
+      .then(() => {
+        userData.getUserData();
+
+      })
+      .catch((err) => console.log(err));
+
+    API.addLike(addLikeData, token)
+      .then(() => {
+
+        userData.getUserData();
+
+      })
+      .catch((err) => console.log(err));
+    //call to send notification to user  
+
+    API.addNotification(notificationData, token)
+      .then(() => {
+        userData.getUserData();
+      })
+      .catch(err => console.log(err));
+  });
+
   const getSavedBookData = () => {
     userData.savedBooks.map(savedBook => {
 
@@ -293,6 +345,7 @@ function ProfilePage() {
     setMyFavoriteState([]);
 
     let favoritesArr = [];
+    let savedMediaArr = [];
 
     switch (mediaType) {
       case "all":
@@ -312,28 +365,14 @@ function ProfilePage() {
         break;
       default:
         if (mediaType === "favorites") {
-          userData.savedBooks.filter(savedBook => {
-            if (savedBook.userFavorite) {
-              favoritesArr.push(savedBook);
-            }
-          });
+          savedMediaArr = [...savedMediaArr, userData.savedBooks, userData.savedGames, userData.savedMovies, userData.savedMusic];
 
-          userData.savedMovies.filter(savedMovie => {
-            if (savedMovie.userFavorite) {
-              favoritesArr.push(savedMovie);
-            }
-          });
-
-          userData.savedGames.filter(savedGame => {
-            if (savedGame.userFavorite) {
-              favoritesArr.push(savedGame);
-            }
-          });
-
-          userData.savedMusic.filter(savedMusic => {
-            if (savedMusic.userFavorite) {
-              favoritesArr.push(savedMusic);
-            }
+          savedMediaArr.map(savedMedia => {
+            savedMedia.filter(media => {
+              if (media.userFavorite) {
+                favoritesArr.push(media);
+              }
+            })
           })
 
           setMyFavoriteState(favoritesArr.sort(compareTimeStamp));
@@ -341,58 +380,6 @@ function ProfilePage() {
         return;
     }
   })
-
-  const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes, ownerId, title) => {
-    // find the friend in `searchedUser` state by the matching id
-    // const userToSave = searchedUser.find((user) => user._id === userId);
-
-    // get token
-    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-    if (!token) {
-      return false;
-    }
-
-    let likeData = {
-      mediaType: likeMediaType,
-      mediaId: like_id,
-    }
-
-    let addLikeData = {
-      mediaType: likeMediaType,
-      _id: like_id,
-      likes: mediaLikes
-    }
-
-    // info for notification
-    const notificationData = {
-      likerUsername: likerUsername,
-      title: title,
-      ownerId: ownerId,
-      type: "like"
-    }
-
-    API.saveLike(likeData, token)
-      .then(() => {
-        userData.getUserData();
-
-      })
-      .catch((err) => console.log(err));
-
-    API.addLike(addLikeData, token)
-      .then(() => {
-
-        userData.getUserData();
-
-      })
-      .catch((err) => console.log(err));
-    //call to send notification to user  
-
-    API.addNotification(notificationData, token)
-      .then(() => {
-        userData.getUserData();
-      })
-      .catch(err => console.log(err));
-  });
 
   return (
     <>
@@ -466,7 +453,7 @@ function ProfilePage() {
           <Col md={9}>
             <Row>
               <Col>
-                <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} page={'profile'} />
+                <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} page={'profile'} username={userData.username} />
               </Col>
             </Row>
             <Container width="100%">
@@ -475,6 +462,7 @@ function ProfilePage() {
                   <SideBar
                     cb={handleRenderMediaPage}
                     page={'profile'}
+                    username={userData.username}
                   />
                 </Col>
                 <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >
@@ -483,7 +471,7 @@ function ProfilePage() {
                         <ProfileFeedCard
                           media={media}
                           cb={handleSaveLike}
-                          mediaType={'book'}
+                          mediaType={media.mediaType.toLowerCase()}
                           userData={userData}
                           startRating={startRating}
                           selectedMediaRating={selectedMediaRating}
@@ -518,7 +506,6 @@ function ProfilePage() {
                     )
                   })
                   }
-
                 </Col>
                 <Col xs={0} s={0} md={1} lg={3}>
 

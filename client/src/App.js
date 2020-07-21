@@ -16,6 +16,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
 import ProfilePage from './pages/Profile';
+import FriendProfile from './pages/FriendProfile';
 
 import * as API from './utils/API';
 import AuthService from './utils/auth';
@@ -76,6 +77,7 @@ function App() {
             <Route exact path='/' component={Login} />
             <Route exact path='/home' component={Home} />
             <Route exact path='/profile' component={ProfilePage} />
+            <Route exact path='/friend_profile' component={FriendProfile} />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/search_books' component={SearchBooks} />
             <Route exact path='/saved_books' component={SavedBooks} />

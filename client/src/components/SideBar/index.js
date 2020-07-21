@@ -9,7 +9,7 @@ import * as API from '../../utils/API';
 
 
 
-function SideBar({ cb, page }) {
+function SideBar({ cb, page, username }) {
 
   //   const [allFriendsMediaState, setAllFriendsMediaState] = useState([]);
 
@@ -19,11 +19,11 @@ function SideBar({ cb, page }) {
   //     return b.timeStamp - a.timeStamp;
   //   }
 
-  const userData = useContext(UserInfoContext);
+  // const userData = useContext(UserInfoContext);
 
-  useEffect(() => {
-    userData.getUserData();
-  }, []);
+  // useEffect(() => {
+  //   userData.getUserData();
+  // }, []);
 
   //   const setNewMediaState = () => {
 
@@ -63,7 +63,10 @@ function SideBar({ cb, page }) {
 
         <li id="side-header-li"><h5>WHAT'S</h5></li>
         <li id="side-header-li"><h5>GOOD</h5></li>
-        <li id="side-header-li"><h5>{userData.username.toUpperCase()}?</h5></li>
+
+        {/*.toUpperCase() cannot read numbers; maybe leave this as just username?*/}
+        <li id="side-header-li"><h5>{username}?</h5></li>
+        {/* <li id="side-header-li"><h5>{username.toUpperCase()}?</h5></li> */}
       </ul>
       <ul>
         <li><button id="side-bar-li" onClick={() => cb("all")}>ALL</button></li>
