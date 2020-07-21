@@ -7,87 +7,91 @@ import './style.css';
 
 function RateSaved(props) {
 
-    const [faIcon, setFaIcon] = useState('');
+  const [faIcon, setFaIcon] = useState('');
 
-    useEffect(() => {
+  useEffect(() => {
 
-        let icon;
+    let icon;
 
-        console.log(props.mediaType);
+    console.log('RateSaved props: ', props);
 
-        switch (props.mediaType) {
-            case 'Book':
-                icon = faBookOpen;
-                setFaIcon(icon);
-                console.log(faIcon);
-                break;
-            case 'Music':
-                icon = faMusic;
-                setFaIcon(icon);
-                console.log(faIcon);
-                break;
-            case 'Game':
-                icon = faGamepad;
-                setFaIcon(icon);
-                console.log(faIcon);
-                break;
-            default:
-                icon = faVideo;
-                setFaIcon(icon);
-                console.log(faIcon);
-        }
+    switch (props.media.mediaType) {
+      case 'Book':
+        icon = faBookOpen;
+        setFaIcon(icon);
+        break;
+      case 'Music':
+        icon = faMusic;
+        setFaIcon(icon);
+        break;
+      case 'Game':
+        icon = faGamepad;
+        setFaIcon(icon);
+        break;
+      default:
+        icon = faVideo;
+        setFaIcon(icon);
+    }
 
-    });
+  }, []);
 
-    return (
+  return (
+    <>
+
+      {props.username && (
         <>
-            {props.username && (
-                <>
-                    {(props.media.userRating === 0) ?
-                        <Button className='btn-block btn-success' onClick={() => props.startRating(props.media)}  >
-                            Rate this {props.mediaType}!
+          {(props.media.userRating === 0) ?
+            <Button className='btn-block btn-success' onClick={() => props.startRating(props.media)}  >
+              Rate this {props.mediaType}!
                         </Button>
-
-                        :
-
-                        <Button className='btn-block btn-success' onClick={() => props.startRating(props.media)}  >
-                            Update your Rating?
+            :
+            <Button className='btn-block btn-success' onClick={() => props.startRating(props.media)}  >
+              Update your Rating?
                         </Button>
-                    }
-                </>
-            )}
-
-            {props.selectedMediaRating._id && (
-                <>
-                    {props.media._id === props.selectedMediaRating._id
-                        ?
-                        <Form onSubmit={props.handleRatingFormSubmit}>
-                            {[...Array(5)].map((star, i) => {
-                                const ratingValue = i + 1;
-                                console.log('faIcon: ', faIcon)
-                                return (
-                                    <label key={i}>
-                                        <input type='radio' name='rating'
-                                            value={i} onClick={() => props.setUserRating(ratingValue)} />
-                                        <FontAwesomeIcon key={ratingValue} icon={faIcon} className='star' onMouseEnter={() => props.setHover(ratingValue)}
-                                            onMouseLeave={() => props.setHover(null)} color={ratingValue <= (props.hover || props.userRating) ? 'black' : '#e4e5e9'} size={'lg'} />
-                                    </label>
-                                )
-                            })}
-
-                            <Col>
-                                <Button type='submit' variant='success' size='md'>
-                                    Submit Rating
-                                </Button>
-                            </Col>
-                        </Form>
-                        : null
-                    }
-                </>
-
-            )}
+          }
         </>
-    )
+      )}
+      {props.selectedMediaRating._id && (
+        <>
+          {props.media._id === props.selectedMediaRating._id
+            ?
+            <Form onSubmit={props.handleRatingFormSubmit}>
+              <p className='rating-submit'>
+                {[...Array(5)].map((star, i) => {
+                  const ratingValue = i + 1;
+                  console.log('faIcon: ', faIcon)
+                  return (
+                    <label key={i}>
+
+                      <input type='radio' name='rating'
+                        value={i} onClick={() => props.setUserRating(ratingValue)} />
+                      <FontAwesomeIcon
+                        key={ratingValue}
+                        icon={faIcon} className='star'
+                        onMouseEnter={() => props.setHover(ratingValue)}
+                        onMouseLeave={() => props.setHover(null)}
+                        color={ratingValue <= (props.hover || props.userRating) ? 'black' : '#e4e5e9'}
+                        size={'lg'} />
+
+                    </label>
+                  )
+                })}
+              </p>
+
+
+              <Col>
+                <Button type='submit' variant='success' size='md'>
+                  Submit Rating
+                </Button>
+              </Col>
+            </Form>
+            : null
+          }
+        </>
+
+      )}
+    </>
+  )
 }
 
 export default RateSaved;

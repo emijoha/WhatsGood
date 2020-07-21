@@ -19,9 +19,9 @@ button {
 }
 
 .ratingReviewHeading {
-    border-bottom: solid 1px rgb(128, 5, 211);
+    border-bottom: solid 1px black;
     font-weight: 500;
-    color: rgb(128, 5, 211);
+    color: black;
 }
 
 .rating {
@@ -42,4 +42,27 @@ button {
 
 .closer-p {
     margin-bottom: 4px;
+}
+
+.scroll-box {
+    width: 100%;
+    padding-right: 8px;
+    max-height: 135px;
+    overflow: scroll;
+    /* margin-bottom: 10px; */
+}
+    
+/* Scrollbar styles */
+::-webkit-scrollbar {
+width: 12px;
+height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(220, 220, 220);  
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(200, 200, 200);  
 }

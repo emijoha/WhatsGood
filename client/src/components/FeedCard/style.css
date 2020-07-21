@@ -13,12 +13,20 @@
 #media-pic {
     width: 50%;
     border-radius: 0px !important;
+    margin-top: 10px;
 }
 
 #center-wrap {
     position: relative;
     width: 100%;
     text-align: center;
+}
+
+.by {
+    font-size: 0.9rem;
+    font-style: italic;
+    font-weight: 400;
+    margin-top: 3px;
 }
 
 
