@@ -39,10 +39,12 @@ input {
 #review-btn:hover, #review-btn:focus {
   font-size: 1rem;
   color: black !important; 
+  background-color: transparent;
 }
 
 #review-submit-btn {
   width: 100%;
+  color: black;
   border: none !important;
   padding: 2.5px 0px 0px 0px !important;
   margin-bottom: 2.5px !important;
@@ -52,9 +54,10 @@ input {
   height: 25px;
 }
 
-#review-submit-btn:hover {
+#review-submit-btn:hover, #review-submit-btn:focus {
   color: black !important;
   font-weight: 700;
+  background-color: transparent;
 }
 /* #ffc107
 #e4e5e9 */

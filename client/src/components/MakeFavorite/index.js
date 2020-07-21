@@ -13,7 +13,7 @@ function MakeFavorite(props) {
             ?
             <div id='center-wrap'>
               <Button
-                className={`${type}-color`}
+                className={`${type}-color ${type}-hover`}
                 onClick={() => props.makeFavorite(props.media)} >
                 UNFAVE
             </Button>
@@ -21,7 +21,7 @@ function MakeFavorite(props) {
             :
             <div id='center-wrap'>
               <Button
-                className={`${type}-color`}
+                className={`${type}-color ${type}-hover`}
                 onClick={() => props.makeFavorite(props.media)} >
                 MAKE FAVE
             </Button>

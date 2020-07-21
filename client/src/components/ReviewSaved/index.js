@@ -36,7 +36,7 @@ function ReviewSaved(props) {
                   rows='6'
                   placeholder='Write a review'
                 />
-                <Button id='review-submit-btn' type='submit' variant='success' size='md'>
+                <Button id='review-submit-btn' type='submit' size='md'>
                     SUBMIT
                 </Button>
               </Form>

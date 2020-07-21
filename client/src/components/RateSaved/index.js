@@ -32,6 +32,7 @@ function RateSaved(props) {
     }
   }, []);
 
+
   return (
     <>
       {props.username && (
@@ -73,7 +74,7 @@ function RateSaved(props) {
                     )
                   })}
                 </div>
-                  <Button id='rating-submit-btn' type='submit' variant='success' size='md'>
+                  <Button id='rating-submit-btn' type='submit' size='md'>
                     SUBMIT
                 </Button>
               </Form>

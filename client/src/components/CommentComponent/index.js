@@ -59,14 +59,18 @@ const CommentComponent = ({ mediaId, mediaType, title, ownerId, commenterUsernam
         handleSaveComment();
       }}>
         <p className='comment-label'>Comments:</p>
-        <div className='comment-box'>
-          {commentsOnMedia.map(comment => {
-            console.log("comment.content", comment.content)
-            return (
-              <p className='comments'><span className='commenter'>{comment.commenterUsername}:</span> {comment.content}</p>
-            )
-          })}
-        </div>
+        {
+          commentsOnMedia.length 
+            ? <div className='comment-box'>
+              {commentsOnMedia.map(comment => {
+                console.log("comment.content", comment.content)
+                return (
+                  <p className='comments'><span className='commenter'>{comment.commenterUsername}:</span> {comment.content}</p>
+                )
+              })}
+            </div>
+            : null
+        }
         <Form.Group id='comment-grouping' controlId="comment-input">
           <Form.Control className='comment-input' type="text" placeholder="Leave a comment" value={commentInput} onChange={(e) => {
             setCommentInput(e.target.value);

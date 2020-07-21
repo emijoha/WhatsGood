@@ -44,15 +44,15 @@ button {
 }
 
 .book-color {
-color: rgb(3, 124, 236) ;
+color: rgb(23, 156, 245) ;
 }
 
 .book-back {
-background-color: rgb(3, 124, 236) !important;
+background-color: rgb(23, 156, 245) !important;
 }
 
 .book-hover:hover {
-  color: rgb(3, 124, 236);
+  color: rgb(23, 156, 245);
 }
 
 /* MUSIC COLORs */
