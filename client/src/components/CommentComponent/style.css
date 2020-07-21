@@ -2,6 +2,8 @@
     background-color: rgb(240, 240, 240);
     padding: 4px 7px 2px 7px;
     border-radius: 3px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .commenter {
@@ -13,6 +15,12 @@
     padding-right: 8px;
     max-height: 200px;
     overflow: auto;
+}
+
+.comment-label {
+ margin-bottom: 0px;
+ margin-top: 10px;
+ border-bottom: solid 1px black;
 }
 
 #comment-grouping {

@@ -58,7 +58,7 @@ const CommentComponent = ({ mediaId, mediaType, title, ownerId, commenterUsernam
         setCommentInput(event.target.value);
         handleSaveComment();
       }}>
-        <p className='comment-label'>Comments</p>
+        <p className='comment-label'>Comments:</p>
         <div className='comment-box'>
           {commentsOnMedia.map(comment => {
             console.log("comment.content", comment.content)
