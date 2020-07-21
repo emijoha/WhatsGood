@@ -290,9 +290,9 @@ function ProfileFeedCard(props) {
             ownerId={media.userId}
             commenterUsername={props.userData.username}
             mediaComments={media.comments} />
-          <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMovie(media._id)}>
+          {/* <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMovie(media._id)}>
             Delete this Movie!
-          </Button>
+          </Button> */}
         </Card.Body>
       </Card>
     );
@@ -381,9 +381,9 @@ function ProfileFeedCard(props) {
             ownerId={media.userId}
             commenterUsername={props.userData.username}
             mediaComments={media.comments} />
-          <Button className='btn-block btn-danger' onClick={() => props.handleDeleteGame(media._id)}>
+          {/* <Button className='btn-block btn-danger' onClick={() => props.handleDeleteGame(media._id)}>
             Delete this Game!
-          </Button>
+          </Button> */}
         </Card.Body>
       </Card>
     );

@@ -63,7 +63,8 @@ function RateSaved(props) {
                           value={i} onClick={() => props.setUserRating(ratingValue)} />
                         <FontAwesomeIcon
                           key={ratingValue}
-                          icon={faIcon} className='star'
+                          icon={faIcon} 
+                          className='star'
                           onMouseEnter={() => props.setHover(ratingValue)}
                           onMouseLeave={() => props.setHover(null)}
                           color={ratingValue <= (props.hover || props.userRating) ? 'black' : '#e4e5e9'}
