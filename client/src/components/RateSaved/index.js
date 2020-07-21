@@ -13,8 +13,6 @@ function RateSaved(props) {
 
     let icon;
 
-    console.log('RateSaved props: ', props);
-
     switch (props.media.mediaType) {
       case 'Book':
         icon = faBookOpen;
@@ -40,14 +38,15 @@ function RateSaved(props) {
 
       {props.username && (
         <>
-          {(props.media.userRating === 0) ?
+          {(props.media.userRating === 0)
+            ?
             <Button className='btn-block btn-success' onClick={() => props.startRating(props.media)}  >
               Rate this {props.mediaType}!
-                        </Button>
+            </Button>
             :
             <Button className='btn-block btn-success' onClick={() => props.startRating(props.media)}  >
               Update your Rating?
-                        </Button>
+            </Button>
           }
         </>
       )}

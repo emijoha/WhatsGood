@@ -8,13 +8,12 @@ function ReviewSaved(props) {
     <>
       {props.username && (
         <>
-          {(props.media.userReview === '') ?
+          {(props.media.userReview === '')
+            ?
             <Button className='btn-block btn-success' onClick={() => props.startReview(props.media)}  >
               Review this {props.mediaType}!
             </Button>
-
             :
-
             <Button className='btn-block btn-success' onClick={() => props.startReview(props.media)}  >
               Update your Review?
             </Button>
@@ -45,7 +44,6 @@ function ReviewSaved(props) {
                 </Button>
               </Col>
             </Form>
-
             : null
           }
         </>
