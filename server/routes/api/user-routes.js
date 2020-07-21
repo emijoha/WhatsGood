@@ -31,6 +31,10 @@ const {
   deleteNotification,
   makeFavorite,
   deleteMedia,
+  getBook,
+  getGame,
+  getMovie,
+  getMusic,
   saveChat,
   saveMessage
 } = require('../../controllers/user-controller');
@@ -52,15 +56,15 @@ router.route('/:id').get(getSingleUser);
 
 router.route('/find/:username').get(getSingleUser);
 
-router.route('/books/:id').delete(authMiddleware, deleteBook).put(addBookLike).put();
+router.route('/books/:id').delete(authMiddleware, deleteBook).put(addBookLike).get(getBook);
 
 router.route('/games').get(getAllUsers).post(createUser).put(authMiddleware, saveGame);
 
-router.route('/games/:id').delete(authMiddleware, deleteGame).put(addGameLike);;
+router.route('/games/:id').delete(authMiddleware, deleteGame).put(addGameLike).get(getGame);
 
-router.route('/music/:id').delete(authMiddleware, deleteMusic).put(addMusicLike);;
+router.route('/music/:id').delete(authMiddleware, deleteMusic).put(addMusicLike).get(getMusic);
 
-router.route('/movies/:id').delete(authMiddleware, deleteMovie).put(addMovieLike);;
+router.route('/movies/:id').delete(authMiddleware, deleteMovie).put(addMovieLike).get(getMovie);
 
 router.route('/media/:type/:id').delete(authMiddleware, deleteMedia);
 

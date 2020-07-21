@@ -101,7 +101,11 @@ function AppNavbar() {
                     likerUsername={notification.likerUsername}
                     title={notification.title}
                     notificationId={notification._id}
-                    type={notification.type}/>
+                    type={notification.type}
+                    mediaType={notification.mediaType}
+                    mediaId={notification.mediaId}
+                    followerId={notification.followerId}
+                    comment={notification.comment}/>
                     
                   )
                 })}
