@@ -37,6 +37,27 @@ function FeedCard(props) {
               <p className='by'>{media.authors.length > 1 ? 'Authors' : 'Author'}: {media.authors}</p>
             </Card.Title>
           </div>
+          <div id="center-wrap">
+            <p className='ratingReviewHeading'>{media.username}'s Rating</p>
+            <p className='rating'>
+              {
+                (media.userRating === 0)
+                  ? <p>No rating yet.</p>
+                  : null
+              }
+              {[...Array(media.userRating)].map((star, i) => {
+                return (
+                  <label key={i}>
+                    <FontAwesomeIcon className='read-only-star' icon={faBookOpen} color='black' size={'lg'} />
+                  </label>
+                )
+              })}
+            </p>
+            <p className='ratingReviewHeading'>{media.username}'s Review</p>
+          </div>
+          <div className='scroll-box'>
+            {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
+          </div>
           <LikeButton mediaLikes={media.likes}
             mediaType={media.mediaType}
             ownerId={media.userId}
@@ -79,10 +100,31 @@ function FeedCard(props) {
               <p className='by'>Artist: {media.artist}</p>
             </Card.Title>
             <ReactAudioPlayer
-              id="music-player"
+              className='audio-player'
               src={media.preview}
               controls
             />
+          </div>
+          <div id="center-wrap">
+            <p className='ratingReviewHeading'>{media.username}'s Rating</p>
+            <p className='rating'>
+              {
+                (media.userRating === 0)
+                  ? <p>No rating yet.</p>
+                  : null
+              }
+              {[...Array(media.userRating)].map((star, i) => {
+                return (
+                  <label key={i}>
+                    <FontAwesomeIcon className='read-only-star' icon={faBookOpen} color='black' size={'lg'} />
+                  </label>
+                )
+              })}
+            </p>
+            <p className='ratingReviewHeading'>{media.username}'s Review</p>
+          </div>
+          <div className='scroll-box'>
+            {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
           </div>
           <LikeButton mediaLikes={media.likes}
             mediaType={media.mediaType}
@@ -126,6 +168,27 @@ function FeedCard(props) {
               <p className='by'>Director: {media.director}</p>
             </Card.Title>
           </div>
+          <div id="center-wrap">
+            <p className='ratingReviewHeading'>{media.username}'s Rating</p>
+            <p className='rating'>
+              {
+                (media.userRating === 0)
+                  ? <p>No rating yet.</p>
+                  : null
+              }
+              {[...Array(media.userRating)].map((star, i) => {
+                return (
+                  <label key={i}>
+                    <FontAwesomeIcon className='read-only-star' icon={faBookOpen} color='black' size={'lg'} />
+                  </label>
+                )
+              })}
+            </p>
+            <p className='ratingReviewHeading'>{media.username}'s Review</p>
+          </div>
+          <div className='scroll-box'>
+            {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
+          </div>
           <LikeButton mediaLikes={media.likes}
             mediaType={media.mediaType}
             ownerId={media.userId}
@@ -167,6 +230,27 @@ function FeedCard(props) {
             <Card.Title><b>{media.title.toUpperCase()}</b>
               <p className='by'>Developer: {media.developer}</p>
             </Card.Title>
+          </div>
+          <div id="center-wrap">
+            <p className='ratingReviewHeading'>{media.username}'s Rating</p>
+            <p className='rating'>
+              {
+                (media.userRating === 0)
+                  ? <p>No rating yet.</p>
+                  : null
+              }
+              {[...Array(media.userRating)].map((star, i) => {
+                return (
+                  <label key={i}>
+                    <FontAwesomeIcon className='read-only-star' icon={faBookOpen} color='black' size={'lg'} />
+                  </label>
+                )
+              })}
+            </p>
+            <p className='ratingReviewHeading'>{media.username}'s Review</p>
+          </div>
+          <div className='scroll-box'>
+            {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
           </div>
           <LikeButton mediaLikes={media.likes}
             mediaType={media.mediaType}

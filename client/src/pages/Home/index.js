@@ -49,6 +49,8 @@ function Home() {
                 title: savedBook.title,
                 authors: savedBook.authors,
                 description: savedBook.description,
+                userRating: savedBook.userRating,
+                userReview: savedBook.userReview,
                 likes: savedBook.likes,
                 comments: savedBook.comments
               }
@@ -70,6 +72,8 @@ function Home() {
                 link: savedMusic.link,
                 artist: savedMusic.artist,
                 preview: savedMusic.preview,
+                userRating: savedMusic.userRating,
+                userReview: savedMusic.userReview,
                 likes: savedMusic.likes,
                 comments: savedMusic.comments
               }
@@ -96,6 +100,8 @@ function Home() {
                 genre: savedMovie.genre,
                 director: savedMovie.director,
                 actors: savedMovie.actors,
+                userRating: savedMovie.userRating,
+                userReview: savedMovie.userReview,
                 likes: savedMovie.likes,
                 comments: savedMovie.comments
               }
@@ -116,6 +122,8 @@ function Home() {
                 title: savedGame.title,
                 developer: savedGame.developer,
                 description: savedGame.description,
+                userRating: savedGame.userRating,
+                userReview: savedGame.userReview,
                 likes: savedGame.likes,
                 comments: savedGame.comments
               }

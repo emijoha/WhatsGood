@@ -137,11 +137,11 @@ function ProfileFeedCard(props) {
             </Card.Title>
           </div>
           <ReactAudioPlayer
-            id="music-player"
+            className='audio-player'
             src={media.preview}
             controls
           />
-          <div id="center-wrap-tall">
+          <div id="center-wrap">
             <p className='ratingReviewHeading'>{media.username}'s Rating</p>
             <p className='rating'>
               {
