@@ -1,5 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import SearchCards from '../../components/SearchCards';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
@@ -12,10 +13,30 @@ function SearchUser() {
     const [searchInput, setSearchInput] = useState('');
     const userData = useContext(UserInfoContext);
 
+    const [queryStringUsername, setQueryStringUsername] = useState()
+
+    const history = useHistory();
+
+    useEffect(() => {
+        // if (window.location.search) {
+            setQueryStringUsername(window.location.search.split('=')[1])
+            searchFriend(window.location.search.split('=')[1])
+                .then(user => setSearchedUser({
+                    username: user.data.username,
+                    _id: user.data._id,
+                    picture: user.data.picture,
+                    email: user.data.email
+                }))
+        // }
+    }, [queryStringUsername !== window.location.search.split('=')[1]]);
+    
+
+    console.log('userData', userData)
     const notificationData = {
         likerUsername: userData.username,
         type: "follow",
-        ownerId: searchedUser._id
+        ownerId: searchedUser._id,
+        followerId: userData._id
     };
 
 
@@ -27,7 +48,6 @@ function SearchUser() {
         if (!searchInput) {
             return false;
         }
-
         // NEED TO PASS SEARCHINPUT AS PARAMS.USERNAME
         searchFriend(searchInput)
             .then(user => setSearchedUser({
@@ -36,7 +56,10 @@ function SearchUser() {
                 picture: user.data.picture,
                 email: user.data.email
             }),
-                setSearchInput(''));
+                setSearchInput(''),
+                history.push('/search-user')
+                // window.location.reload()
+            );
     }
 
     // function to handle saving a friend to database

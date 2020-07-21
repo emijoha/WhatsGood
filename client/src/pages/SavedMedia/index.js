@@ -22,6 +22,38 @@ function SavedMedia() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
 
+  const queryStringMediaType = window.location.search.split('=')[0];
+  console.log(queryStringMediaType);
+
+  const queryStringId = window.location.search.split('=')[1];
+
+  if (queryStringMediaType === '?bookid') {
+          API.getBook(queryStringId)
+            .then(result => console.log(result));
+        }
+  // useEffect(() => {
+
+  //   if (queryStringId) {
+  //     if (queryStringMediaType === '?bookid') {
+  //       API.getBook(queryStringId)
+  //         .then(result => setAllFriendsMediaState(result.data));
+  //     }
+  //     else if (queryStringMediaType === '?movieid') {
+  //       API.getMovie(queryStringId)
+  //         .then(result => setAllFriendsMediaState(result.data));
+  //     }
+  //     else if (queryStringMediaType === '?gameid') {
+  //       API.getGame(queryStringId)
+  //         .then(result => setAllFriendsMediaState(result.data));
+  //     }
+  //     else if (queryStringMediaType === '?musicid') {
+  //       API.getMusic(queryStringId)
+  //         .then(result => setAllFriendsMediaState(result.data));
+  //     }
+  //   }
+  // })
+
+
   const startReview = (media) => {
     console.log('media: ', media);
 

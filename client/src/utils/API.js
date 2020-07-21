@@ -36,6 +36,9 @@ export const deleteBook = function (book_id, token) {
   return axios.delete(`/api/users/books/${book_id}`, { headers: { authorization: `Bearer ${token}` } });
 };
 
+export const getBook = function (book_id) {
+  return axios.get(`/api/users/books/${book_id}`);
+};
 // make a search to google books api
 // https://www.googleapis.com/books/v1/volumes?q=harry+potter
 export const searchGoogleBooks = function (query) {
@@ -66,6 +69,11 @@ export const saveGame = function (gameData, token) {
 export const deleteGame = function (game_id, token) {
   return axios.delete(`/api/users/games/${game_id}`, { headers: { authorization: `Bearer ${token}` } });
 };
+
+export const getGame = function (game_id) {
+  return axios.get(`/api/users/games/${game_id}`);
+};
+
 export const searchMusic = function(query) {
     return axios({
       "method":"GET",
@@ -95,6 +103,10 @@ export const deleteMusic = function (music_id, token) {
   return axios.delete(`/api/users/music/${music_id}`, { headers: { authorization: `Bearer ${token}` } });
 };
 
+export const getMusic = function (music_id) {
+  return axios.get(`/api/users/music/${music_id}`);
+};
+
 export const searchOMDB = function (query) {
   console.log(query);
   return axios.get(`http://www.omdbapi.com/?apikey=671512a8&s=${query}`, { params: { q: query } });
@@ -121,6 +133,10 @@ export const saveUserRating = function (userRating, token) {
 
 export const deleteMovie = function (movie_id, token) {
   return axios.delete(`/api/users/movies/${movie_id}`, { headers: { authorization: `Bearer ${token}` } });
+};
+
+export const getMovie = function (movie_id) {
+  return axios.get(`/api/users/movies/${movie_id}`);
 };
 
 // save friend data for a logged in user

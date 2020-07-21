@@ -29,10 +29,12 @@ const CommentComponent = ({ mediaId, mediaType, title, ownerId, commenterUsernam
 
         // info for notification
         const notificationData = {
+            mediaId: mediaId,
             likerUsername: commenterUsername,
             title: title,
             ownerId: ownerId,
-            type: "comment"
+            type: "comment",
+            mediaType: mediaType
         };
 
         addComment(commentData)
