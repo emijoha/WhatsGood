@@ -77,14 +77,15 @@ function SearchMusic() {
   });
 
   return (
-    <>
-      <Jumbotron fluid className='text-light bg-dark'>
+    <div id="container">
+      <div id="inner-container">
         <Container>
-          <h1>Search for Music!</h1>
+        <h5 id="search-header">SEARCH MUSIC</h5>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
                 <Form.Control
+                  id="form-input"
                   name='searchInput'
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
@@ -94,14 +95,14 @@ function SearchMusic() {
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button type='submit' variant='success' size='lg'>
-                  Submit Search
+                <Button id="form-button" type='submit' variant='success' size='lg'>
+                  SEARCH
                 </Button>
               </Col>
             </Form.Row>
           </Form>
         </Container>
-      </Jumbotron>
+      </div>
       <Container>
         <SearchCards
           cardType='searchedMusic'
@@ -111,7 +112,7 @@ function SearchMusic() {
           cb={handleSaveMedia}
         />
       </Container>
-    </>
+    </div>
   );
 }
 

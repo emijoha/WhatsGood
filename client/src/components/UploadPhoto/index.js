@@ -11,89 +11,96 @@ var CLOUDINARY_UPLOAD_PRESET = "fzl0siot";
 
 
 function UploadPhoto({ handleModalClose }) {
+ 
+    const [loading, setLoading] = useState(false)
+    const [image, setImage] = useState("")
 
-  const [loading, setLoading] = useState(false)
-  const [image, setImage] = useState("")
+    const userData = useContext(UserInfoContext);
 
-  const userData = useContext(UserInfoContext);
+    const uploadImage = async e => {
+        const files = e.target.files
+        const data = new FormData()
+        data.append('file', files[0])
+        data.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+        setLoading(true)
 
-  const uploadImage = async e => {
-    const files = e.target.files
-    const data = new FormData()
-    data.append('file', files[0])
-    data.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-    setLoading(true)
+        const res = await fetch(CLOUDINARY_URL,
+            {
+                method:'POST',
+                body: data
+            })
 
-    const res = await fetch(CLOUDINARY_URL,
-      {
-        method: 'POST',
-        body: data
-      })
+            const file = await res.json()
 
-    const file = await res.json()
+            console.log(file)
 
-    console.log(file)
-
-    setImage(file.secure_url)
-    setLoading(false)
-  }
-
-  const handleSavePicture = (image) => {
-
-    if (!image) {
-      return false;
+            setImage(file.secure_url)
+            setLoading(false)
     }
 
-    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+    const handleSavePicture = (image) => {
+        
+        if (!image) {
+            return false;
+          }
 
-    if (!token) {
-      return false;
-    }
+        const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+    
+        if (!token) {
+          return false;
+        }
 
+      
+        // send the books data to our api
+        savePicture({image}, token)
+          .then(() => {       
+            userData.getUserData()
+            handleModalClose();
+          })
+          .catch((err) => console.log(err));
 
-    // send the books data to our api
-    savePicture({ image }, token)
-      .then(() => {
-        userData.getUserData()
-        handleModalClose();
-      })
-      .catch((err) => console.log(err));
-  };
+         
+      };
+
+      
 
   return (
     <div>
 
 
 
-      <Form>
-        <Form.File
-          id="custom-file"
-          label="CHOOSE PROFILE PIC"
-          onChange={uploadImage}
-          custom
-        />
+<Form>
+  <Form.File 
+    id="custom-file"
+    label="CHOOSE PROFILE PIC"
+    onChange={uploadImage}
+    custom
+  />
 
-
-
-
-
+        {/* <input className="custom-file-input" type="file" name="file" placeholder="Upload a photo"
+        /> */}
+       
+     
+        
 
         {
-          loading ? (
-            <h3>Loading ...</h3>
-          ) : (
-              <img src={image} style={{ width: '300px' }} />
+            loading? (
+                <h3>Loading ...</h3>
+            ): (
+                <img src={image} style={{width: '300px'}} />
             )
         }
         <Button
-
-          className='btn-block btn-info'
-          onClick={() => handleSavePicture(image)}>Save Picture
+       
+       className='btn-block btn-info'
+       onClick={() => handleSavePicture(image)}>Save Picture
      </Button>
 
-      </Form>
+     </Form>
     </div>
 
+   
+      
   )
 }
 

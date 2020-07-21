@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Jumbotron, Container } from 'react-bootstrap';
 import NotLoggedIn from '../../components/NotLoggedIn';
 import SavedCards from '../../components/SavedCards';
+import './style.css';
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
 
@@ -20,6 +21,36 @@ function SavedGames() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
   console.log("USER DATA", userData);
+
+  const makeFavorite = (media) => {
+    console.log('from SavedMovies: ', media);
+
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    let isFavorite;
+    
+    if (media.userFavorite === true) {
+      isFavorite = false;
+    } else {
+      isFavorite = true;
+    }
+
+    let updateCriteria = {
+      type: media.mediaType,
+      id: media._id,
+      favorite: isFavorite
+    }
+
+    console.log('updateCriteria: ', updateCriteria);
+
+    API.makeFavorite(updateCriteria, token)
+    .then(() => userData.getUserData())
+    .catch((err) => console.log(err));
+  }
 
   const startReview = (media) => {
     console.log('media: ', media);
@@ -105,14 +136,20 @@ function SavedGames() {
   };
 
   return (
-    <>
+    <div id="container">
       {userData.username ?
-        <>
-          <Jumbotron fluid className='text-light bg-dark'>
-            <Container>
-              <h1>Viewing saved video games!</h1>
-            </Container>
-          </Jumbotron>
+        <div>
+        <div id="header-div">
+           
+           {userData.savedGames.length === 0
+                         ?  <div id="no-media-div">
+                         <p><h5 className="text-center" id="header">LOOKS EMPTY IN HERE.</h5></p>
+                         <p><h5 className="text-center" id="highlight-header">GO TO SEARCH AND ADD SOME GAMES!</h5></p>
+                         </div>
+                         : <h5 className="text-center" id="header">MY GAMES</h5>}
+               
+          
+           </div>
           <Container>
             <SavedCards
               cardType='savedGames'
@@ -131,12 +168,13 @@ function SavedGames() {
               handleReviewFormSubmit={handleReviewFormSubmit}
               reviewInput={reviewInput}
               setReviewInput={setReviewInput}
+              makeFavorite={makeFavorite}
               handleDeleteGame={handleDeleteGame}
             />
           </Container>
-        </> :
+        </div> :
         <NotLoggedIn />}
-    </>
+    </div>
   );
 }
 

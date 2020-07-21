@@ -3,16 +3,17 @@ body {
 }
 
 
-html,
-#root,
+/* html,
+#root, */
 body {
   font-family: 'Montserrat', sans-serif;
   
   background: linear-gradient(412.9deg, rgba(255,255,255,1) 0%, rgb(253, 253, 253) 82.68%, rgba(235,235,235,1) 100%);
-  height: 100 auto;
+  height: 100vh;
   width: 100% auto;
-  padding: 0;
+  padding-top: 70px;
   margin: 0;
+  background-repeat:no-repeat;
  
 }
 
@@ -34,42 +35,42 @@ button {
   border: solid;
   border-image-slice: 1;
   border-width: 20px;
-  border-image-source: linear-gradient(to top right,  rgb(255, 123, 0), rgb(255, 3, 108));
+  /* border-image-source: linear-gradient(to top right,  rgb(0, 255, 255), rgb(3, 7, 255)); */
   margin-bottom: 24px !important;
 }
 
 /* BOOK BORDERS */
 .book-border1 {
-  border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
+  border-image-source: linear-gradient(to bottom right, rgb(0, 255, 234), rgb(3, 41, 255));
 }
 
 .book-border2 {
-  border-image-source: linear-gradient(to top right,  rgb(75, 13, 246), rgb(171, 0, 214));
+  border-image-source: linear-gradient(to top right,  rgb(0, 204, 255), rgb(20, 3, 255));
 }
 
 .book-border3 {
-  border-image-source: linear-gradient(to bottom left, rgb(102, 13, 246), rgb(214, 0, 168));
+  border-image-source: linear-gradient(to bottom left, rgb(0, 255, 234), rgb(3, 28, 255));
 }
 
 .book-border4 {
-  border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
+  border-image-source: linear-gradient(to top left, rgb(0, 217, 255), rgb(49, 3, 255));
 }
 
 /* MUSIC BORDERS */
 .music-border1 {
-  border-image-source: linear-gradient(to bottom right, rgb(83, 13, 246), rgb(214, 0, 214));
+  border-image-source: linear-gradient(to bottom right, rgb(255, 196, 0), rgb(255, 3, 66));
 }
 
 .music-border2 {
-  border-image-source: linear-gradient(to top right,  rgb(75, 13, 246), rgb(171, 0, 214));
+  border-image-source: linear-gradient(to top right,  rgb(255, 145, 0), rgb(255, 3, 158));
 }
 
 .music-border3 {
-  border-image-source: linear-gradient(to bottom left, rgb(102, 13, 246), rgb(214, 0, 168));
+  border-image-source: linear-gradient(to bottom left, rgb(255, 166, 0), rgb(255, 3, 108));
 }
 
 .music-border4 {
-  border-image-source: linear-gradient(to top left, rgb(74, 12, 245), rgb(171, 0, 214));
+  border-image-source: linear-gradient(to top left, rgb(255, 208, 0), rgb(255, 3, 58));
 }
 
 /* MOVIE BORDERS */

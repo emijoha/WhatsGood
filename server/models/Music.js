@@ -56,6 +56,10 @@ const musicSchema = new Schema({
     type: Number,
     required: false,
     default: 0
+  },
+  userFavorite: {
+    type: Boolean,
+    default: false
   }
 });
 

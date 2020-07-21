@@ -1,5 +1,5 @@
 // import user model
-const { User, Book, Music, Movie, Game, Like, Notification, Comment } = require('../models');
+const { User, Book, Music, Movie, Game, Like, Notification, Comment, Chat, Message } = require('../models');
 
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
@@ -16,7 +16,7 @@ module.exports = {
     console.log("params", params);
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends').populate('savedLikes').populate('notifications').populate({ path: 'savedBooks', populate: { path: 'comments' } }).populate({ path: 'savedMovies', populate: { path: 'comments' } }).populate({ path: 'savedMusic', populate: { path: 'comments' } }).populate({ path: 'savedGames', populate: { path: 'comments' } });
+    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends').populate('savedLikes').populate('notifications').populate({ path: 'savedBooks', populate: { path: 'comments' } }).populate({ path: 'savedMovies', populate: { path: 'comments' } }).populate({ path: 'savedMusic', populate: { path: 'comments' } }).populate({ path: 'savedGames', populate: { path: 'comments' } }).populate('chats').populate({ path: 'chats', populate: { path: 'users' } }).populate({ path: 'chats', populate: { path: 'messages' } });
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
@@ -302,6 +302,21 @@ module.exports = {
     }
   },
 
+  async saveUserBio({ user, body }, res) {
+    try {
+      console.log('user: ', user, 'body: ', body);
+      const updatedBio = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $set: { bio: body.bioText } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedBio);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
   // ADD function to save and delete video games
   async saveGame({ user, body }, res) {
     console.log("THE USER:", user);
@@ -528,6 +543,149 @@ module.exports = {
       );
       return res.json(newComment);
 
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+  async saveMessage({ body }, res) {
+
+    try {
+      const newMessage = await Message.create(
+        {
+          senderId: body.senderId,
+          senderName: body.senderName,
+          senderPicture: body.senderPicture,
+          timeStamp: body.timeStamp,
+          createdAt: body.createdAt,
+          messageText: body.messageText
+        }
+      );
+
+      // , $set: { lastTimeStamp: body.timeStamp }
+      const updatedChat = await Chat.findOneAndUpdate(
+        { _id: body.chatId },
+        { $addToSet: { messages: newMessage._id } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedChat);
+
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+  //   async saveChat({ body }, res) {
+
+  //     try {
+
+  //       const newChat = await Chat.create(
+  //         { 
+  //           users: body.users  
+  //         }
+  //       );
+
+  //       const updatedUsers = await User.updateMany(
+  //         { _id: { $in: [body.users[0], body.users[1]] } },
+  //         { $addToSet: { chats: newChat._id }}
+  //       );
+
+  //       return res.json(updatedUsers);
+
+  //     } catch (err) {
+  //       console.log(err);
+  //       return res.status(400).json(err);
+  //     }
+  //   }
+  // };
+
+  // senderId: newMessageObject.senderId, 
+  // senderName: newMessageObject.senderName,
+  // senderPicture: newMessageObject.senderPicture,
+  // timeStamp: newMessageObject.timeStamp,
+  // createdAt: newMessageObject.createdAt,
+  // messageText: newMessageObject.messageText,  
+  // users: [newChatState.receiverId, newMessageObject.senderId]
+
+
+
+  async saveChat({ body }, res) {
+
+    try {
+
+      const newMessage = await Message.create(
+        {
+          senderId: body.senderId,
+          senderName: body.senderName,
+          senderPicture: body.senderPicture,
+          timeStamp: body.timeStamp,
+          createdAt: body.createdAt,
+          messageText: body.messageText
+        }
+      );
+
+      const newChat = await Chat.create(
+
+        {
+          _id: body._id,
+          users: body.users,
+          lastTimeStamp: newMessage.timeStamp,
+          messages: [newMessage._id]
+        }
+      );
+
+      const updatedUsers = await User.updateMany(
+        { _id: { $in: [body.users[0], body.users[1]] } },
+        { $addToSet: { chats: newChat._id } }
+      );
+
+      return res.json(updatedUsers);
+
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
+
+  async makeFavorite({ body }, res) {
+    console.log('body: ', body);
+    try {
+      const model = body.type;
+      switch (model) {
+        case 'Movie':
+          const newMovieFavorite = await Movie.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userFavorite: body.favorite, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newMovieFavorite: ', newMovieFavorite);
+          return res.json(newMovieFavorite);
+        case 'Book':
+          const newBookFavorite = await Book.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userFavorite: body.favorite, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newBookFavorite: ', newBookFavorite);
+          return res.json(newBookFavorite);
+        case 'Music':
+          const newMusicFavorite = await Music.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userFavorite: body.favorite, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newMusicFavorite: ', newMusicFavorite);
+          return res.json(newMusicFavorite);
+        default:
+          const newGameFavorite = await Game.findOneAndUpdate(
+            { _id: body.id },
+            { $set: { userFavorite: body.favorite, } },
+            { new: true, runValidators: true }
+          );
+          console.log('newGameFavorite: ', newGameFavorite);
+          return res.json(newGameFavorite);
+      }
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);

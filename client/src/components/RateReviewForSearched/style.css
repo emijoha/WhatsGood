@@ -15,5 +15,29 @@ input {
 .btn {
     background-color: blueviolet;
 }
-/* #ffc107
-#e4e5e9 */
+
+.center-wrap {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.ratingReviewHeading {
+    border-bottom: solid 1px black;
+    font-weight: 500;
+    color: black;
+}
+
+.rating {
+    margin-bottom: 0px;
+}
+
+.review-input {
+    width: 100%;
+}
+
+.already-saved {
+    margin-bottom: 0 !important;
+    font-size: 0.85rem;
+    font-style: italic;
+}

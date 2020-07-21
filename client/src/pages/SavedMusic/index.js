@@ -3,6 +3,7 @@ import { Jumbotron, Container } from 'react-bootstrap';
 // import ReactAudioPlayer from 'react-audio-player';
 import SavedCards from '../../components/SavedCards';
 import NotLoggedIn from '../../components/NotLoggedIn';
+import './style.css';
 
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
@@ -26,6 +27,35 @@ function SavedMusic() {
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
 
+  const makeFavorite = (media) => {
+    console.log('from SavedMovies: ', media);
+
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    let isFavorite;
+    
+    if (media.userFavorite === true) {
+      isFavorite = false;
+    } else {
+      isFavorite = true;
+    }
+
+    let updateCriteria = {
+      type: media.mediaType,
+      id: media._id,
+      favorite: isFavorite
+    }
+
+    console.log('updateCriteria: ', updateCriteria);
+
+    API.makeFavorite(updateCriteria, token)
+    .then(() => userData.getUserData())
+    .catch((err) => console.log(err));
+  }
 
   const startReview = (media) => {
     console.log('media: ', media);
@@ -110,14 +140,20 @@ function SavedMusic() {
   };
 
   return (
-    <>
+    <div id="container">
       {userData.username ?
-        <>
-          <Jumbotron fluid className='text-light bg-dark'>
-            <Container>
-              <h1>Viewing saved music!</h1>
-            </Container>
-          </Jumbotron>
+        <div>
+            <div id="header-div">
+           
+           {userData.savedMusic.length === 0
+                         ?  <div id="no-media-div">
+                         <p><h5 className="text-center" id="header">LOOKS EMPTY IN HERE.</h5></p>
+                         <p><h5 className="text-center" id="highlight-header">GO TO SEARCH AND ADD SOME MUSIC!</h5></p>
+                         </div>
+                         : <h5 className="text-center" id="header">MY MUSIC</h5>}
+               
+          
+           </div>
           <Container>
             <SavedCards
               cardType='savedMusic'
@@ -136,12 +172,13 @@ function SavedMusic() {
               handleReviewFormSubmit={handleReviewFormSubmit}
               reviewInput={reviewInput}
               setReviewInput={setReviewInput}
+              makeFavorite={makeFavorite}
               handleDeleteMusic={handleDeleteMusic}
             />
           </Container>
-        </> :
+        </div> :
         <NotLoggedIn />}
-    </>
+    </div>
   );
 }
 

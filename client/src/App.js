@@ -15,6 +15,8 @@ import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
+import Messages from './pages/Messages';
+import ProfilePage from './pages/Profile';
 
 import * as API from './utils/API';
 import AuthService from './utils/auth';
@@ -27,8 +29,11 @@ function App() {
   const [userInfo, setUserInfo] = useState({
     _id: '',
     username: '',
+    firstName: '',
+    lastName: '',
     email: '',
     picture: '',
+    bio: '',
     savedBooks: [],
     savedMusic: [],
     savedMovies: [],
@@ -40,6 +45,7 @@ function App() {
     gameCount: 0,
     friends: [],
     notifications: [],
+    chats: [],
 
     // method to get user data after logging in
     getUserData: () => {
@@ -50,8 +56,10 @@ function App() {
         return false;
       }
       API.getMe(token)
-        .then(({ data: { _id, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends, notifications } }) =>
-          setUserInfo({ ...userInfo, _id, username, email, picture, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends, notifications })
+   
+
+        .then(({ data: { _id, username, firstName, lastName, email, picture, bio, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends, notifications, chats  } }) =>
+          setUserInfo({ ...userInfo, _id, username, firstName, lastName, email, picture, bio, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends, notifications, chats  })
         )
         .catch((err) => console.log(err));
     }
@@ -71,6 +79,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Login} />
             <Route exact path='/home' component={Home} />
+            <Route exact path='/profile' component={ProfilePage} />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/search_books' component={SearchBooks} />
             <Route exact path='/saved_books' component={SavedBooks} />
@@ -83,6 +92,7 @@ function App() {
             <Route exact path='/saved-friends' component={SavedFriends} />
             <Route exact path='/search_games' component={SearchGames} />
             <Route exact path='/saved_games' component={SavedGames} />
+            <Route exact path='/messages' component={Messages} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </UserInfoContext.Provider>

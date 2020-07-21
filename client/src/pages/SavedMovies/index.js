@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import NotLoggedIn from '../../components/NotLoggedIn';
 import { Jumbotron, Container } from 'react-bootstrap';
 import SavedCards from '../../components/SavedCards';
+import './style.css';
 // savedMovies page does not currently use this component, left it as is for now
 // ratings/review form shoudl be seperate component with its own state, with just bare necessities of props needed from savedMovies state/functionality
 
@@ -30,6 +31,36 @@ function SavedMovies() {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
+  const makeFavorite = (media) => {
+    console.log('from SavedMovies: ', media);
+
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    let isFavorite;
+    
+    if (media.userFavorite === true) {
+      isFavorite = false;
+    } else {
+      isFavorite = true;
+    }
+
+    let updateCriteria = {
+      type: media.mediaType,
+      id: media._id,
+      favorite: isFavorite
+    }
+
+    console.log('updateCriteria: ', updateCriteria);
+
+    API.makeFavorite(updateCriteria, token)
+    .then(() => userData.getUserData())
+    .catch((err) => console.log(err));
+  }
 
   const startReview = (media) => {
     console.log('media: ', media);
@@ -114,14 +145,20 @@ function SavedMovies() {
   };
 
   return (
-    <>
+    <div id="container">
       {userData.username ?
-        <>
-          <Jumbotron fluid className='text-light bg-dark'>
-            <Container>
-              <h1>Viewing saved movies!</h1>
-            </Container>
-          </Jumbotron>
+        <div>
+            <div id="header-div">
+           
+           {userData.savedMovies.length === 0
+                         ?  <div id="no-media-div">
+                         <p><h5 className="text-center" id="header">LOOKS EMPTY IN HERE.</h5></p>
+                         <p><h5 className="text-center" id="highlight-header">GO TO SEARCH AND ADD SOME MOVIES!</h5></p>
+                         </div>
+                         : <h5 className="text-center" id="header">MY MOVIES</h5>}
+               
+          
+           </div>
           <Container>
             <SavedCards
               cardType='savedMovies'
@@ -140,13 +177,14 @@ function SavedMovies() {
               handleReviewFormSubmit={handleReviewFormSubmit}
               reviewInput={reviewInput}
               setReviewInput={setReviewInput}
+              makeFavorite={makeFavorite}
               handleDeleteMovie={handleDeleteMovie}
             />
           </Container>
-        </> :
+        </div> :
         <NotLoggedIn />
       }
-    </>
+    </div>
   );
 }
 

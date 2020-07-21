@@ -1,15 +1,11 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
-import { Jumbotron, Container, CardColumns, Card, Button, Col, Row } from 'react-bootstrap';
-import ReactAudioPlayer from 'react-audio-player';
-import moment from 'moment'
+import { Container, Col, Row } from 'react-bootstrap';
 import "./style.css";
 
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
-import LikeButton from '../../components/LikeButton';
-import CommentComponent from '../../components/CommentComponent';
 
 import FeedCard from '../../components/FeedCard';
 import SideBar from '../../components/SideBar';
@@ -25,27 +21,22 @@ function Home() {
   }
 
   const userData = useContext(UserInfoContext);
-  console.log("userDATA", userData);
+  console.log("userDATA:  ", userData);
 
   // to pass into notifications so user knows who liked something
   // const likerId = userData._id;
   const likerUsername = userData.username;
 
   useEffect(() => {
-
     renderAllMedia();
-
   }, [userData.username]);
 
   function renderAllMedia() {
     userData.friends.map(friend => {
       API.getUser(friend.id)
         .then(result => {
-
           if (result.data.savedBooks.length > 0) {
-
             result.data.savedBooks.map(savedBook => {
-
               let savedBookData = {
                 mediaType: "book",
                 timeStamp: savedBook.timeStamp,
@@ -61,24 +52,11 @@ function Home() {
                 likes: savedBook.likes,
                 comments: savedBook.comments
               }
-
-
-              console.log("this is savedBookData: ", savedBookData)
-              console.log("this is savedBook: ", savedBook)
-
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedBookData].sort(compareTimeStamp))
-
-
             })
-
-
           }
-
-
           if (result.data.savedMusic.length > 0) {
-
             result.data.savedMusic.map(savedMusic => {
-
               let savedMusicData = {
                 mediaType: "music",
                 timeStamp: savedMusic.timeStamp,
@@ -95,24 +73,12 @@ function Home() {
                 likes: savedMusic.likes,
                 comments: savedMusic.comments
               }
-
-
               console.log("this is savedBookData: ", savedMusicData)
-
-
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMusicData].sort(compareTimeStamp))
-
-
             })
-
-
           }
-
           if (result.data.savedMovies.length > 0) {
-
             result.data.savedMovies.map(savedMovie => {
-
-
               let savedMovieData = {
                 mediaType: "movie",
                 timeStamp: savedMovie.timeStamp,
@@ -133,21 +99,11 @@ function Home() {
                 likes: savedMovie.likes,
                 comments: savedMovie.comments
               }
-
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData].sort(compareTimeStamp))
-
-
             })
-
-
           }
-
-
           if (result.data.savedGames.length > 0) {
-
             result.data.savedGames.map(savedGame => {
-
-
               let savedGameData = {
                 mediaType: "game",
                 timeStamp: savedGame.timeStamp,
@@ -166,19 +122,10 @@ function Home() {
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedGameData].sort(compareTimeStamp))
             })
           }
-
-
-          // }
-
-          // )
-
         })
-
     })
   }
-
   const handleRenderMediaPage = useCallback((mediaType) => {
-
 
     setAllFriendsMediaState([]);
 
@@ -190,7 +137,6 @@ function Home() {
       userData.friends.map(friend => {
         API.getUser(friend.id)
           .then(result => {
-
 
             result.data.savedMusic.map(savedMusic => {
 
@@ -207,13 +153,14 @@ function Home() {
                 link: savedMusic.link,
                 artist: savedMusic.artist,
                 preview: savedMusic.preview,
+                userRating: savedMusic.userRating,
+                userReview: savedMusic.userReview,
                 likes: savedMusic.likes,
                 comments: savedMusic.comments
 
               }
 
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMusicData].sort(compareTimeStamp))
-
 
             })
           })
@@ -226,9 +173,7 @@ function Home() {
         API.getUser(friend.id)
           .then(result => {
 
-
             result.data.savedGames.map(savedGame => {
-
 
               let savedGameData = {
                 mediaType: "game",
@@ -242,6 +187,8 @@ function Home() {
                 title: savedGame.title,
                 developer: savedGame.developer,
                 description: savedGame.description,
+                userRating: savedGame.userRating,
+                userReview: savedGame.userReview,
                 likes: savedGame.likes,
                 comments: savedGame.comments
               }
@@ -257,9 +204,7 @@ function Home() {
         API.getUser(friend.id)
           .then(result => {
 
-
             result.data.savedMovies.map(savedMovie => {
-
 
               let savedMovieData = {
                 mediaType: "movie",
@@ -278,12 +223,13 @@ function Home() {
                 genre: savedMovie.genre,
                 director: savedMovie.director,
                 actors: savedMovie.actors,
+                userRating: savedMovie.userRating,
+                userReview: savedMovie.userReview,
                 likes: savedMovie.likes,
                 comments: savedMovie.comments
               }
 
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData].sort(compareTimeStamp))
-
 
             })
           })
@@ -295,7 +241,6 @@ function Home() {
       userData.friends.map(friend => {
         API.getUser(friend.id)
           .then(result => {
-
 
             result.data.savedBooks.map(savedBook => {
 
@@ -311,34 +256,26 @@ function Home() {
                 title: savedBook.title,
                 authors: savedBook.authors,
                 description: savedBook.description,
+                userRating: savedBook.userRating,
+                userReview: savedBook.userReview,
                 likes: savedBook.likes,
                 comments: savedBook.comments
               }
-
 
               console.log("this is savedBookData: ", savedBookData)
               console.log("this is savedBook: ", savedBook)
 
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedBookData].sort(compareTimeStamp))
 
-
             })
           })
       })
     }
-
-
   })
-
-
-
-
-
 
   const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes, ownerId, title) => {
     // find the friend in `searchedUser` state by the matching id
     // const userToSave = searchedUser.find((user) => user._id === userId);
-
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
     if (!token) {
@@ -366,27 +303,20 @@ function Home() {
       mediaType: likeMediaType
     }
 
-    console.log("data for like, ", likeData)
-
     API.saveLike(likeData, token)
       .then(() => {
         console.log("Token: ", token, "likeData: ", likeData);
         userData.getUserData();
-
-
       })
       .catch((err) => console.log(err));
 
     API.addLike(addLikeData, token)
       .then(() => {
-
         userData.getUserData();
-
-
       })
       .catch((err) => console.log(err));
-    //call to send notification to user  
 
+    //call to send notification to user  
     API.addNotification(notificationData, token)
       .then(() => {
         console.log("NOTIFICATION ADDED");
@@ -394,8 +324,6 @@ function Home() {
       })
       .catch(err => console.log(err));
   });
-
-
 
   return (
     <>
@@ -410,10 +338,7 @@ function Home() {
         </Col>
       </Row>
       <Container width="100%">
-
-
         <Row id="main-body-row">
-
           <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
             <SideBar
               cb={handleRenderMediaPage}
@@ -428,9 +353,9 @@ function Home() {
                     mediaType='book'
                     media={media}
                     cb={handleSaveLike}
+                    // cb2={handleSaveComment}
                     userData={userData}
-                  >
-                  </FeedCard>
+                  />
                 );
               }
               if (media.mediaType === "music") {
@@ -439,6 +364,7 @@ function Home() {
                     mediaType='music'
                     media={media}
                     cb={handleSaveLike}
+                    // cb2={handleSaveComment}
                     userData={userData}
                   />
                 );
@@ -449,25 +375,23 @@ function Home() {
                     mediaType='movie'
                     media={media}
                     cb={handleSaveLike}
+                    // cb2={handleSaveComment}
                     userData={userData}
                   />
                 );
               }
-
               if (media.mediaType === "game") {
                 return (
                   <FeedCard
                     mediaType='game'
                     media={media}
                     cb={handleSaveLike}
+                    // cb2={handleSaveComment}
                     userData={userData}
                   />
                 );
               }
             })}
-          </Col>
-          <Col xs={0} s={0} md={1} lg={3}>
-
           </Col>
         </Row>
       </Container>

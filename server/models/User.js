@@ -8,6 +8,14 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
+    firstName: {
+      type: String,
+      required: false
+    },
+    lastName: {
+      type: String,
+      required: false
+    },
     email: {
       type: String,
       required: true,
@@ -21,6 +29,11 @@ const userSchema = new Schema(
     picture: {
       type: String,
       default: "https://res.cloudinary.com/dxrhczeo9/image/upload/v1594230701/l84rsrhhdsfcps2h2hsa.svg"
+    },
+    bio: {
+      type: String,
+      required: false,
+      default: ''
     },
     // set savedBooks to be an array of data that adheres to the bookSchema
     savedBooks: [
@@ -66,6 +79,13 @@ const userSchema = new Schema(
       {
         type: Schema.Types.ObjectId,
         ref: "Notification"
+      }
+    ]
+    ,
+    chats: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Chat"
       }
     ]
   },

@@ -35,6 +35,36 @@ function SavedBooks() {
     saveUserReview();
   }
 
+  const makeFavorite = (media) => {
+    console.log('from SavedMovies: ', media);
+
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    let isFavorite;
+    
+    if (media.userFavorite === true) {
+      isFavorite = false;
+    } else {
+      isFavorite = true;
+    }
+
+    let updateCriteria = {
+      type: media.mediaType,
+      id: media._id,
+      favorite: isFavorite
+    }
+
+    console.log('updateCriteria: ', updateCriteria);
+
+    API.makeFavorite(updateCriteria, token)
+    .then(() => userData.getUserData())
+    .catch((err) => console.log(err));
+  }
+
   const saveUserReview = () => {
 
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
@@ -106,14 +136,20 @@ function SavedBooks() {
   };
 
   return (
-    <>
+    <div id="container">
       {userData.username ?
-        <>
-          <Jumbotron fluid className='text-light bg-dark'>
-            <Container>
-              <h1>Viewing saved books!</h1>
-            </Container>
-          </Jumbotron>
+        <div>
+       <div id="header-div">
+           
+           {userData.savedBooks.length === 0
+                         ?  <div id="no-media-div">
+                         <p><h5 className="text-center" id="header">LOOKS EMPTY IN HERE.</h5></p>
+                         <p><h5 className="text-center" id="highlight-header">GO TO SEARCH AND ADD SOME BOOKS!</h5></p>
+                         </div>
+                         : <h5 className="text-center" id="header">MY BOOKS</h5>}
+               
+          
+           </div>
           <Container>
             <SavedCards
               cardType='savedBooks'
@@ -133,12 +169,13 @@ function SavedBooks() {
               reviewInput={reviewInput}
               setReviewInput={setReviewInput}
               handleDeleteBook={handleDeleteBook}
+              makeFavorite={makeFavorite}
               comments={userData.savedBooks.comments}
             />
           </Container>
-        </> :
+        </div> :
         <NotLoggedIn />}
-    </>
+    </div>
   );
 }
 

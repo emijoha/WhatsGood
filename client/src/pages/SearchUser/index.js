@@ -103,14 +103,15 @@ function SearchUser() {
     };
 
     return (
-        <>
-            <Jumbotron fluid className='text-light bg-dark'>
+        <div id="container">
+            <div id="inner-container">
                 <Container>
-                    <h1>Search for a Friend!</h1>
+                <h5 id="search-header">SEARCH FRIENDS</h5>
                     <Form onSubmit={handleFormSubmit}>
                         <Form.Row>
                             <Col xs={12} md={8}>
                                 <Form.Control
+                                    id="form-input"
                                     name='searchInput'
                                     value={searchInput}
                                     onChange={(e) => setSearchInput(e.target.value)}
@@ -120,14 +121,14 @@ function SearchUser() {
                                 />
                             </Col>
                             <Col xs={12} md={4}>
-                                <Button type='submit' variant='success' size='lg'>
+                                <Button id="form-button" type='submit' variant='success' size='lg'>
                                     Submit Search
                                 </Button>
                             </Col>
                         </Form.Row>
                     </Form>
                 </Container>
-            </Jumbotron>
+            </div>
             {searchedUser._id &&
                 <Container>
                     <SearchCards
@@ -139,7 +140,7 @@ function SearchUser() {
                     />
                 </Container>
             }
-        </>
+        </div>
     );
 }
 
