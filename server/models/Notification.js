@@ -25,6 +25,10 @@ const notificationSchema = new Schema({
     followerId: {
         type: String,
         required: false
+    },
+    comment: {
+        type: String,
+        required: false
     }
 });
 

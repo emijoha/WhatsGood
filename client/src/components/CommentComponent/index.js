@@ -34,7 +34,8 @@ const CommentComponent = ({ mediaId, mediaType, title, ownerId, commenterUsernam
             title: title,
             ownerId: ownerId,
             type: "comment",
-            mediaType: mediaType
+            mediaType: mediaType,
+            comment: commentInput
         };
 
         addComment(commentData)

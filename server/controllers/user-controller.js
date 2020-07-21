@@ -434,7 +434,7 @@ module.exports = {
     console.log("notification body", body);
     try {
       const notification = await Notification.create(
-        { likerUsername: body.likerUsername, title: body.title, type: body.type, mediaId: body.mediaId, mediaType: body.mediaType, followerId: body.followerId });
+        { likerUsername: body.likerUsername, title: body.title, type: body.type, mediaId: body.mediaId, mediaType: body.mediaType, followerId: body.followerId, comment: body.comment });
       const updatedUser = await User.findOneAndUpdate(
         { _id: body.ownerId },
         { $addToSet: { notifications: notification._id } },

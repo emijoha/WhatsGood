@@ -103,7 +103,8 @@ function AppNavbar() {
                     type={notification.type}
                     mediaType={notification.mediaType}
                     mediaId={notification.mediaId}
-                    followerId={notification.followerId}/>
+                    followerId={notification.followerId}
+                    comment={notification.comment}/>
                     
                   )
                 })}
