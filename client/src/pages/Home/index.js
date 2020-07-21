@@ -298,7 +298,9 @@ function Home() {
       likerUsername: likerUsername,
       title: title,
       ownerId: ownerId,
-      type: "like"
+      type: "like",
+      mediaId: like_id,
+      mediaType: likeMediaType
     }
 
     API.saveLike(likeData, token)
@@ -343,6 +345,7 @@ function Home() {
             />
           </Col>
           <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >
+          {console.log("allfriendsmediaState in the return", allFriendsMediaState)}
             {allFriendsMediaState.map(media => {
               if (media.mediaType === "book") {
                 return (
