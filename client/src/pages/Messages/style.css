@@ -1,9 +1,12 @@
 #messages-container {
-    margin-top: 150px;
-    border: 1px solid black;
+    margin-top: 50px;
     padding: 20px;
-    height: 650px;
-    background: linear-gradient(412.9deg, rgb(243, 243, 243) 0%, rgb(253, 253, 253) 82.68%, rgba(235,235,235,1) 100%);
+    height: 730px;
+    border: solid;
+    border-image-slice: 1;
+    border-width: 20px;
+    border-image-source: linear-gradient(to top left, rgb(179, 255, 1), rgb(0, 223, 74));
+
 }
 
 #chat-box-header {

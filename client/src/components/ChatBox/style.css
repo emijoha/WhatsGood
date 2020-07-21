@@ -22,12 +22,13 @@
     float: right;
     color: white;
     padding: 8px;
-    background: linear-gradient(to bottom, rgb(152, 87, 255) 0%, rgb(121, 38, 255) 100%);
+    background: linear-gradient(to bottom, rgb(87, 202, 255) 0%, rgb(133, 58, 255) 100%);
     background-attachment: fixed;
     border-radius: 15px;
     border-bottom-right-radius: 2px;
     margin: 10px;
     margin-right: -20px;
+    margin-bottom: 15px;
 }
 
 #this-user-pic {
@@ -38,6 +39,7 @@
 
     border-radius: 100px;
     margin: 10px;
+    margin-top: 5px;
     margin-right: -20px;
 }
 
@@ -55,11 +57,12 @@
     float: left;
     color: black;
     padding: 8px;
-    background: linear-gradient(to bottom, #d0ff00 0%, #88d100 100%);
+    background: linear-gradient(to bottom, #e5ff00 0%, #a0f700 100%);
     background-attachment: fixed;
     border-radius: 15px;
     border-bottom-left-radius: 2px;
     margin: 10px;
+    margin-bottom: 15px;
 }
 
 #that-user-pic {
@@ -71,6 +74,7 @@
     margin-bottom: -5px; 
     border-radius: 100px;
     margin: 10px;
+    margin-top: 5px;
 }
 
 #that-user-time {

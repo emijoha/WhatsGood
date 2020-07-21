@@ -16,11 +16,11 @@ function SavedCards(props) {
     if (props.cardType === 'savedBooks') {
         return (
             <>
-                <h2>
+                {/* <h2>
                     {props.savedArray.length
                         ? `Viewing ${props.savedArray.length} saved ${props.savedArray.length === 1 ? 'book' : 'books'}:`
                         : 'You have no saved books!'}
-                </h2>
+                </h2> */}
                 <CardColumns>
                     {props.savedArray.map((book) => {
                         return (
@@ -99,11 +99,11 @@ function SavedCards(props) {
     } else if (props.cardType === 'savedMusic') {
         return (
             <>
-                <h2>
+                {/* <h2>
                     {props.savedArray.length
                         ? `Viewing ${props.savedArray.length} saved in music:`
                         : 'You have no saved music!'}
-                </h2>
+                </h2> */}
                 <CardColumns>
                     {props.savedArray.map((music) => {
                         return (
@@ -182,11 +182,11 @@ function SavedCards(props) {
     } else if (props.cardType === 'savedMovies') {
         return (
             <>
-                <h2>
+                {/* <h2>
                     {props.savedArray.length
                         ? `Viewing ${props.savedArray.length} saved ${props.savedArray.length === 1 ? 'movie' : 'movies'}:`
                         : 'You have no saved movies!'}
-                </h2>
+                </h2> */}
                 <CardColumns>
                     {props.savedArray.map((media) => {
                         return (
@@ -269,11 +269,11 @@ function SavedCards(props) {
     } else if (props.cardType === 'savedGames') {
         return (
             <>
-                <h2>
+                {/* <h2>
                     {props.savedArray.length
                         ? `Viewing ${props.savedArray.length} saved ${props.savedArray.length === 1 ? 'video game' : 'video games'}:`
                         : 'You have no saved video games!'}
-                </h2>
+                </h2> */}
                 <CardColumns>
                     {props.savedArray.map((game) => {
                         return (
@@ -351,12 +351,12 @@ function SavedCards(props) {
     } else if (props.cardType === 'savedFriends') {
         return (
             <>
-                <h2>
+                {/* <h2>
                     {props.savedArray.length
                         ? `Viewing ${props.savedArray.length} saved ${props.savedArray.length === 1 ? 'friend' : 'friends'}:`
                         : 'You have no friends!'}
                     {console.log("hey there im in the header", props.savedArray)}
-                </h2>
+                </h2> */}
                 <CardColumns>
                     {props.savedArray.map(friend => {
                         console.log("this is my friend, ", friend)
