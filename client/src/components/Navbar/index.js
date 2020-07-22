@@ -48,7 +48,7 @@ function AppNavbar() {
 
               {userData.username ?
 
-                <NavDropdown className="nav-link-group" title="SEARCH" id="basic-nav-dropdown" >
+                <NavDropdown className="nav-link-group" title="SEARCH" id="basic-nav-dropdown">
                   <NavDropdown.Item href="/search-user">SEARCH FOR FRIENDS</NavDropdown.Item>
                   <NavDropdown.Item href="/search_books">SEARCH BOOKS</NavDropdown.Item>
                   <NavDropdown.Item href="/search_music">SEARCH MUSIC</NavDropdown.Item>

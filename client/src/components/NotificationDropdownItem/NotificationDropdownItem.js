@@ -12,6 +12,7 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type, 
 
     const handleDeleteNotification = (notificationId) => {
         console.log("notification Id", notificationId);
+
         deleteNotification(notificationId)
             .then(() => {
                 userData.getUserData();
@@ -20,7 +21,7 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type, 
     };
 if(type === 'like'){
     return (
-        <NavDropdown.Item  as={Link} to={`/saved_media?${mediaType}id=${mediaId}`}>
+        <NavDropdown.Item  as={Link} to={'/profile'}>
             {likerUsername} liked your post of {title}
             <Button id="notification-button" 
                 onClick={() => handleDeleteNotification(notificationId)}
@@ -30,12 +31,16 @@ if(type === 'like'){
     )
 } else if(type === 'comment') {
     return(
-        <NavDropdown.Item as={Link} to={`/saved_media?${mediaType}id=${mediaId}`}>{likerUsername} commented on your post of {title}:'{comment}'<Button id="notification-button" onClick={() => handleDeleteNotification(notificationId)}>Oh, word.</Button></NavDropdown.Item>
+        <NavDropdown.Item as={Link} to={'/profile'}>{likerUsername} commented on your post of {title}:'{comment}'<Button id="notification-button" onClick={() => handleDeleteNotification(notificationId)}>Oh, word.</Button></NavDropdown.Item>
     )
-} else {
+} else if(type === 'follow') {
     return(
         <NavDropdown.Item  as={Link} to={`/search-user?username=${likerUsername}`}>{likerUsername} started following you<Button id="notification-button" onClick={() => handleDeleteNotification(notificationId)}>Oh, word.</Button></NavDropdown.Item>
     )
+} else {
+  return(
+    <NavDropdown.Item  as={Link} to={'/messages'}>{likerUsername} sent you a new message<Button id="notification-button" onClick={(event) => handleDeleteNotification(notificationId)}>Oh, word.</Button></NavDropdown.Item>
+)
 }
 };
 
