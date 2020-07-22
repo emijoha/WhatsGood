@@ -1,5 +1,5 @@
 // import user model
-const { User, Book, Music, Movie, Game, Like, Notification, Comment } = require('../models');
+const { User, Book, Music, Movie, Game, Like, Notification, Comment, Chat, Message } = require('../models');
 
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
@@ -12,11 +12,11 @@ module.exports = {
   },
   // get a single user by either their id or their username
   async getSingleUser({ user = null, params }, res) {
-    // console.log("made it to get single user")
-    // console.log("params", params);
+    console.log("made it to get single user")
+    console.log("params", params);
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends').populate('savedLikes').populate('notifications').populate({path: 'savedBooks', populate: {path: 'comments'}}).populate({path: 'savedMovies', populate: {path: 'comments'}}).populate({path: 'savedMusic', populate: {path: 'comments'}}).populate({path: 'savedGames', populate: {path: 'comments'}});
+    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends').populate('savedLikes').populate('notifications').populate({ path: 'savedBooks', populate: { path: 'comments' } }).populate({ path: 'savedMovies', populate: { path: 'comments' } }).populate({ path: 'savedMusic', populate: { path: 'comments' } }).populate({ path: 'savedGames', populate: { path: 'comments' } }).populate('chats').populate({ path: 'chats', populate: { path: 'users' } }).populate({ path: 'chats', populate: { path: 'messages' } });
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
@@ -448,7 +448,8 @@ module.exports = {
   async addNotification({ body }, res) {
     console.log("notification body", body);
     try {
-      const notification = await Notification.create(body);
+      const notification = await Notification.create(
+        { likerUsername: body.likerUsername, title: body.title, type: body.type, mediaId: body.mediaId, mediaType: body.mediaType, followerId: body.followerId, comment: body.comment });
       const updatedUser = await User.findOneAndUpdate(
         { _id: body.ownerId },
         { $addToSet: { notifications: notification._id } },
@@ -487,7 +488,7 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(newComment);
-  
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
@@ -505,7 +506,7 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(newComment);
-  
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
@@ -523,7 +524,7 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(newComment);
-  
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
@@ -541,12 +542,111 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(newComment);
-  
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
     }
   },
+  async saveMessage({ body }, res) {
+
+    try {
+      const newMessage = await Message.create(
+        {
+          senderId: body.senderId,
+          senderName: body.senderName,
+          senderPicture: body.senderPicture,
+          timeStamp: body.timeStamp,
+          createdAt: body.createdAt,
+          messageText: body.messageText
+        }
+      );
+
+      // , $set: { lastTimeStamp: body.timeStamp }
+      const updatedChat = await Chat.findOneAndUpdate(
+        { _id: body.chatId },
+        { $addToSet: { messages: newMessage._id } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedChat);
+
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+  //   async saveChat({ body }, res) {
+
+  //     try {
+
+  //       const newChat = await Chat.create(
+  //         { 
+  //           users: body.users  
+  //         }
+  //       );
+
+  //       const updatedUsers = await User.updateMany(
+  //         { _id: { $in: [body.users[0], body.users[1]] } },
+  //         { $addToSet: { chats: newChat._id }}
+  //       );
+
+  //       return res.json(updatedUsers);
+
+  //     } catch (err) {
+  //       console.log(err);
+  //       return res.status(400).json(err);
+  //     }
+  //   }
+  // };
+
+  // senderId: newMessageObject.senderId, 
+  // senderName: newMessageObject.senderName,
+  // senderPicture: newMessageObject.senderPicture,
+  // timeStamp: newMessageObject.timeStamp,
+  // createdAt: newMessageObject.createdAt,
+  // messageText: newMessageObject.messageText,  
+  // users: [newChatState.receiverId, newMessageObject.senderId]
+
+
+
+  async saveChat({ body }, res) {
+
+    try {
+
+      const newMessage = await Message.create(
+        {
+          senderId: body.senderId,
+          senderName: body.senderName,
+          senderPicture: body.senderPicture,
+          timeStamp: body.timeStamp,
+          createdAt: body.createdAt,
+          messageText: body.messageText
+        }
+      );
+
+      const newChat = await Chat.create(
+
+        {
+          _id: body._id,
+          users: body.users,
+          lastTimeStamp: newMessage.timeStamp,
+          messages: [newMessage._id]
+        }
+      );
+
+      const updatedUsers = await User.updateMany(
+        { _id: { $in: [body.users[0], body.users[1]] } },
+        { $addToSet: { chats: newChat._id } }
+      );
+
+      return res.json(updatedUsers);
+
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
 
   async makeFavorite({ body }, res) {
     console.log('body: ', body);
@@ -590,5 +690,53 @@ module.exports = {
       console.log(err);
       return res.status(400).json(err);
     }
+  },
+  async getGame({params}, res) {
+    // console.log("made it to get single user")
+    // console.log("params", params);
+    const foundGame = await Game.findOne(
+      {_id: params.id}).populate('comments');
+
+    if (!foundGame) {
+      return res.status(400).json({ message: 'Cannot find a game with this id!' });
+    }
+
+    res.json(foundGame);
+  },
+  async getBook({params}, res) {
+    // console.log("made it to get single user")
+    // console.log("params", params);
+    const foundBook = await Book.findOne(
+      {_id: params.id}).populate('comments');
+
+    if (!foundBook) {
+      return res.status(400).json({ message: 'Cannot find a book with this id!' });
+    }
+
+    res.json(foundBook);
+  },
+  async getMusic({params}, res) {
+    // console.log("made it to get single user")
+    // console.log("params", params);
+    const foundMusic = await Music.findOne(
+      {_id: params.id}).populate('comments');
+
+    if (!foundMusic) {
+      return res.status(400).json({ message: 'Cannot find any music with this id!' });
+    }
+
+    res.json(foundMusic);
+  },
+  async getMovie({params}, res) {
+    // console.log("made it to get single user")
+    // console.log("params", params);
+    const foundMovie = await Movie.findOne(
+      {_id: params.id}).populate('comments');
+
+    if (!foundMovie) {
+      return res.status(400).json({ message: 'Cannot find a movie with this id!' });
+    }
+
+    res.json(foundMovie);
   }
 };

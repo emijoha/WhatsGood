@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Card, Button, Text, NavDropdown } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { deleteNotification } from '../../utils/API'
 import './style.css';
 
 import UserInfoContext from '../../utils/UserInfoContext'
 
-const NotificationDropdownItem = ({ likerUsername, title, notificationId, type }) => {
+const NotificationDropdownItem = ({ likerUsername, title, notificationId, type, mediaType, mediaId, comment }) => {
 
   const userData = useContext(UserInfoContext)
 
@@ -18,7 +19,7 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type }
   };
   if (type === "like") {
     return (
-      <NavDropdown.Item className='notification-item'>
+      <NavDropdown.Item className='notification-item' as={Link} to={`/saved_media?${mediaType}id=${mediaId}`}>
         {likerUsername} liked your post of {title}
         <Button
           id="notification-button"
@@ -27,16 +28,28 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type }
         </Button>
       </NavDropdown.Item>
     )
-  } else {
+  } else if (type === 'comment') {
     return (
-      <NavDropdown.Item className='notification-item'>
-        {likerUsername} commented on your post of {title}
+      <NavDropdown.Item className='notification-item' as={Link} to={`/saved_media?${mediaType}id=${mediaId}`}>
+        {likerUsername} commented on your post of {title}:'{comment}'
         <Button
           id="notification-button"
           onClick={() => handleDeleteNotification(notificationId)}>
           Oh, word
           </Button>
       </NavDropdown.Item>
+    )
+  } else {
+    return(
+        <NavDropdown.Item className='notification-item' as={Link} to={`/search-user?username=${likerUsername}`}>
+          {likerUsername} started following you
+          <Button 
+            id="notification-button" 
+            onClick={() => handleDeleteNotification(notificationId)}
+          >
+              Oh, word.
+          </Button>
+        </NavDropdown.Item>
     )
   }
 };

@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
 import NotLoggedIn from '../../components/NotLoggedIn';
+import './style.css'
 
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
@@ -58,14 +59,20 @@ function SavedFriends() {
     };
 
     return (
-        <>
+        <div id="container">
             {userData.username ?
-                <>
-                    <Jumbotron fluid className='text-light bg-dark'>
-                        <Container>
-                            <h1>Viewing friends!</h1>
-                        </Container>
-                    </Jumbotron>
+                <div>
+                     <div id="header-div">
+           
+           {userData.friends.length === 0
+                         ?  <div id="no-media-div">
+                         <p><h5 className="text-center" id="header">LOOKS EMPTY IN HERE.</h5></p>
+                         <p><h5 className="text-center" id="highlight-header">GO TO SEARCH AND ADD SOME FRIENDS!</h5></p>
+                         </div>
+                         : <h5 className="text-center" id="header">MY FRIENDS</h5>}
+               
+          
+           </div>
                     <Container>
                         <SavedCards
                             cardType='savedFriends'
@@ -73,9 +80,9 @@ function SavedFriends() {
                             handleDeleteFriend={handleDeleteFriend}
                         />
                     </Container>
-                </> :
+                </div> :
                 <NotLoggedIn />}
-        </>
+        </div>
     );
 }
 

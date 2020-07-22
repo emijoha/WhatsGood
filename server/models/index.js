@@ -6,5 +6,7 @@ module.exports = {
     Game: require('./Game'),
     Like: require('./Like'),
     Comment: require('./Comment'),
-    Notification: require('./Notification')
+    Notification: require('./Notification'),
+    Chat: require('./Chat'),
+    Message: require('./Message')
 };

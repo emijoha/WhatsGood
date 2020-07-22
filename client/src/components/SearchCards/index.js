@@ -14,10 +14,10 @@ function SearchCards(props) {
     if (props.cardType === 'searchedBooks') {
         return (
             <>
-                <h2>{props.resultArray.length
+                {/* <h2>{props.resultArray.length
                     ? `Viewing ${props.resultArray.length} ${props.resultArray.length === 1 ? 'result' : 'results'}:`
                     : 'Search for a book to begin'}
-                </h2>
+                </h2> */}
                 <CardColumns>
                     {props.resultArray.map((book) => {
                         return (
@@ -56,11 +56,11 @@ function SearchCards(props) {
     } else if (props.cardType === 'searchedMusic') {
         return (
             <>
-                <h2>
+                {/* <h2>
                     {props.resultArray.length
                         ? `Viewing ${props.resultArray.length} ${props.resultArray.length === 1 ? 'result' : 'results'}:`
                         : 'Search for music to begin'}
-                </h2>
+                </h2> */}
                 <CardColumns>
                     {props.resultArray.map((music) => {
                         return (
@@ -101,10 +101,10 @@ function SearchCards(props) {
     } else if (props.cardType === 'searchedMovies') {
         return (
             <>
-                <h2>{props.resultArray.length
+                {/* <h2>{props.resultArray.length
                     ? `Viewing ${props.resultArray.length} ${props.resultArray.length === 1 ? 'result' : 'results'}:`
                     : 'Search for a movie to begin'}
-                </h2>
+                </h2> */}
                 <CardColumns>
                     {props.resultArray.map((media) => {
                         return (
@@ -146,10 +146,10 @@ function SearchCards(props) {
     } else if (props.cardType === 'searchedGames') { 
         return (
             <>
-                <h2>{props.resultArray.length
+                {/* <h2>{props.resultArray.length
                     ? `Viewing ${props.resultArray.length} results:`
                     : 'Search for a video game to begin'}
-                </h2>
+                </h2> */}
                 <CardColumns>
                     {props.resultArray.map((game) => {
                         return (

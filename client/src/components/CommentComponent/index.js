@@ -29,10 +29,13 @@ const CommentComponent = ({ mediaId, mediaType, title, ownerId, commenterUsernam
 
     // info for notification
     const notificationData = {
+      mediaId: mediaId,
       likerUsername: commenterUsername,
       title: title,
       ownerId: ownerId,
-      type: "comment"
+      type: "comment",
+      mediaType: mediaType,
+      comment: commentInput
     };
 
     addComment(commentData)
@@ -60,7 +63,7 @@ const CommentComponent = ({ mediaId, mediaType, title, ownerId, commenterUsernam
       }}>
         <p className='comment-label'>Comments:</p>
         {
-          commentsOnMedia.length 
+          commentsOnMedia.length
             ? <div className='comment-box'>
               {commentsOnMedia.map(comment => {
                 console.log("comment.content", comment.content)

@@ -1,0 +1,19 @@
+#chat-input {
+   
+    border-radius: 40px;
+    background: transparent;
+    color: black;
+    border: none;
+    border: 1px solid black;
+    box-shadow: none;
+    background: transparent !important;
+    outline: none !important;
+    margin: 10px;
+    font-size: 15px;
+    margin-right: none; 
+}
+
+#chat-input:active, #chat-input:focus {
+    background: transparent !important;
+    outline: none !important;
+}
