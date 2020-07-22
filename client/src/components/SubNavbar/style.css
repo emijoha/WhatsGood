@@ -1,11 +1,7 @@
-@media screen and (min-width: 991px) {
-     
+@media screen and (min-width: 991px) {  
     #sub-navbar-menu {
-        
       display: none !important;
-     
     }
-  
 }
 
 #sub-navbar-menu {
@@ -13,14 +9,45 @@
     position: fixed;
     width: 100%;
     z-index: 1;
-   
 }
 
 #table-row {
-   
-    background-color: rgb(255, 255, 255) !important;
+  background-color: rgb(255, 255, 255) !important;
 }
 
+@media screen and (max-width: 991px) {
+
+  #new-navbar {
+    border: none !important;
+  }
+  
+  #side-bar-menu {
+    display: none !important;
+  }
+  
+  .table {
+    margin: 0px;
+    border-bottom: solid 0.25px rgb(226, 226, 226) !important;
+  }
+
+  #sub-navbar-menu {
+    margin: 0px !important;
+  }
+
+  body {
+    padding-top: 50px !important;
+  }
+
+  #sub-navbar-th {
+    padding: 0px !important;
+  } 
+
+  #side-bar-li {
+    margin: 0px !important;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
 
 
 
