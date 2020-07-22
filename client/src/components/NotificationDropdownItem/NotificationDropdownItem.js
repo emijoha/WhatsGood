@@ -19,7 +19,7 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type, 
   };
   if (type === "like") {
     return (
-      <NavDropdown.Item className='notification-item' as={Link} to={`/saved_media?${mediaType}id=${mediaId}`}>
+      <NavDropdown.Item className='notification-item' as={Link} to={'/profile'}>
         {likerUsername} liked your post of {title}
         <Button
           id="notification-button"
@@ -30,7 +30,7 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type, 
     )
   } else if (type === 'comment') {
     return (
-      <NavDropdown.Item className='notification-item' as={Link} to={`/saved_media?${mediaType}id=${mediaId}`}>
+      <NavDropdown.Item className='notification-item' as={Link} to={'/profile'}>
         {likerUsername} commented on your post of {title}:'{comment}'
         <Button
           id="notification-button"
@@ -39,7 +39,7 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type, 
           </Button>
       </NavDropdown.Item>
     )
-  } else {
+  } else if (type === 'follow') {
     return(
         <NavDropdown.Item className='notification-item' as={Link} to={`/search-user?username=${likerUsername}`}>
           {likerUsername} started following you
@@ -47,11 +47,15 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type, 
             id="notification-button" 
             onClick={() => handleDeleteNotification(notificationId)}
           >
-              Oh, word.
+              Oh, word
           </Button>
         </NavDropdown.Item>
     )
-  }
+} else {
+  return(
+    <NavDropdown.Item className='notification-item' as={Link} to={'/messages'}>{likerUsername} sent you a new message<Button id="notification-button" onClick={() => handleDeleteNotification(notificationId)}>Oh, word</Button></NavDropdown.Item>
+)
+}
 };
 
 export default NotificationDropdownItem;
