@@ -45,8 +45,7 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type, 
           {likerUsername} started following you
           <Button 
             id="notification-button" 
-            onClick={() => handleDeleteNotification(notificationId)}
-          >
+            onClick={() => handleDeleteNotification(notificationId)}>
               Oh, word.
           </Button>
         </NavDropdown.Item>
