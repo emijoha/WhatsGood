@@ -1,6 +1,7 @@
 
 #side-bar-menu {
-  position: fixed;
+  position: sticky;
+  top: 75px;
 }
 
 ul {
@@ -16,9 +17,6 @@ ul {
     background-color: rgba(0, 0, 0, 0) !important;
 } */
 
-#side-bar-a {
-    text-decoration: none; 
-}
 
 button#side-bar-li:focus {
     color: rgb(106, 0, 206) !important;
@@ -68,10 +66,5 @@ button#side-bar-li {
     padding-top: 5px;
     padding-bottom: 5px;
   }
-}
-
-@media screen and (max-width: 1199px) {
-     
-  
 }
 

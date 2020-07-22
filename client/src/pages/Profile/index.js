@@ -553,204 +553,202 @@ function ProfilePage() {
         </Container>
       </Jumbotron> */}
       <Row>
-        {/* <Col md={3} className="justify-content-center">
-            <div>
-              <Image
-                src={userData.picture}
-                alt={`${userData.username}'s face, probably`}
-                roundedCircle
-                className='img-fluid'
-              />
-              {userData.username && (
-                <>
-                  {(userData.bio !== '' || null)
-                  
-
-                    ?
-                    <div>
-
-                      {console.log("userData.bio", userData.bio)}
-                      <h6>
-                        A little about me:
-                      </h6>
-                      <p>
-                        {userData.bio}
-                      </p>
-                      <Button
-                        className='btn btn-success'
-                        onClick={() => setBioUpdate(true)}
-                      >
-                        Update Your Bio
-                      </Button>
-                    </div>
-                    :
-                    <>
-                      <Button
-                        className='btn btn-success'
-                        onClick={() => setBioUpdate(true)}
-                      >
-                        Add a Mini-Bio
-                    </Button>
-                    </>
-                  }
-                </>
-              )}
-
-              {bioUpdate &&
-                <>
-                  <Form>
-                    <Col>
-                      <Form.Control
-                        name='bio-text'
-                        value={bioText}
-                        onChange={(e) => setBioText(e.target.value)}
-                        type='text'
-                        size='md'
-                        as='textarea'
-                        rows='6'
-                        placeholder='enter your bio here'
-                      />
-                    </Col>
-                  </Form>
-                  <Button
-                    className='btn btn-succes'
-                    onClick={() => updateBio(bioText)}
-                  >
-                    Save Bio
-                </Button>
-                </>
-              }
-            </div>
-          </Col> */}
         <Col>
-          <Row>
-            <Col>
-              <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} page={'profile'} />
-            </Col>
-          </Row>
-          <Container width="100%">
-            <Row id="main-body-row">
-              <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
-                <SideBar
-                  cb={handleRenderMediaPage}
-                  page={'profile'}
-                />
-              </Col>
-              <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >
-                {myMediaState.map(media => {
-                  if (media.mediaType === 'Book') {
-                    return (
-                      <ProfileFeedCard
-                        media={media}
-                        cb={handleSaveLike}
-                        mediaType={'book'}
-                        userData={userData}
-                        startRating={startRating}
-                        selectedMediaRating={selectedMediaRating}
-                        handleRatingFormSubmit={handleRatingFormSubmit}
-                        setUserRating={setUserRating}
-                        setHover={setHover}
-                        hover={hover}
-                        userRating={userRating}
-                        startReview={startReview}
-                        selectedMediaReview={selectedMediaReview}
-                        handleReviewFormSubmit={handleReviewFormSubmit}
-                        reviewInput={reviewInput}
-                        setReviewInput={setReviewInput}
-                        handleDeleteBook={handleDeleteBook}
-                        makeFavorite={makeFavorite}
-                      />
-                    );
-                  } else if (media.mediaType === "Music") {
-                    return (
-                      <ProfileFeedCard
-                        media={media}
-                        cb={handleSaveLike}
-                        mediaType={'music'}
-                        userData={userData}
-                        startRating={startRating}
-                        selectedMediaRating={selectedMediaRating}
-                        handleRatingFormSubmit={handleRatingFormSubmit}
-                        setUserRating={setUserRating}
-                        setHover={setHover}
-                        hover={hover}
-                        userRating={userRating}
-                        startReview={startReview}
-                        selectedMediaReview={selectedMediaReview}
-                        handleReviewFormSubmit={handleReviewFormSubmit}
-                        reviewInput={reviewInput}
-                        setReviewInput={setReviewInput}
-                        handleDeleteMusic={handleDeleteMusic}
-                        makeFavorite={makeFavorite}
-                      />
-                    );
-                  } else if (media.mediaType === "Movie") {
-                    return (
-                      <ProfileFeedCard
-                        media={media}
-                        cb={handleSaveLike}
-                        mediaType={'movie'}
-                        userData={userData}
-                        startRating={startRating}
-                        selectedMediaRating={selectedMediaRating}
-                        handleRatingFormSubmit={handleRatingFormSubmit}
-                        setUserRating={setUserRating}
-                        setHover={setHover}
-                        hover={hover}
-                        userRating={userRating}
-                        startReview={startReview}
-                        selectedMediaReview={selectedMediaReview}
-                        handleReviewFormSubmit={handleReviewFormSubmit}
-                        reviewInput={reviewInput}
-                        setReviewInput={setReviewInput}
-                        handleDeleteMovie={handleDeleteMovie}
-                        makeFavorite={makeFavorite}
-                      />
-                    );
-                  } else if (media.mediaType === "Game") {
-                    return (
-                      <ProfileFeedCard
-                        media={media}
-                        cb={handleSaveLike}
-                        mediaType={'game'}
-                        userData={userData}
-                        startRating={startRating}
-                        selectedMediaRating={selectedMediaRating}
-                        handleRatingFormSubmit={handleRatingFormSubmit}
-                        setUserRating={setUserRating}
-                        setHover={setHover}
-                        hover={hover}
-                        userRating={userRating}
-                        startReview={startReview}
-                        selectedMediaReview={selectedMediaReview}
-                        handleReviewFormSubmit={handleReviewFormSubmit}
-                        reviewInput={reviewInput}
-                        setReviewInput={setReviewInput}
-                        handleDeleteGame={handleDeleteGame}
-                        makeFavorite={makeFavorite}
-                      />
-                    );
-                  };
-                  return;
-                })}
-                {myFavoriteState.map(media => {
-                  return (
-                    <FeedCard
-                      media={media}
-                      userData={userData}
-                    />
-                  )
-                })
-                }
-
-              </Col>
-              <Col xs={0} s={0} md={1} lg={3}>
-
-              </Col>
-            </Row>
-          </Container>
+          <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} page={'profile'} />
         </Col>
       </Row>
+      <Row id='center-wrap'>
+        <Col>
+          <div id='my-profile-pic'>
+            <Image
+              src={userData.picture}
+              alt={`${userData.username}'s face, probably`}
+              roundedCircle
+              className='img-fluid'
+            />
+            {userData.username && (
+              <>
+                {(userData.bio !== '' || null)
+                  ?
+                  <div>
+                    {console.log("userData.bio", userData.bio)}
+                    <h6>
+                      A little about me:
+                      </h6>
+                    <p>
+                      {userData.bio}
+                    </p>
+                    <Button
+                      className='btn btn-success'
+                      onClick={() => setBioUpdate(true)}
+                    >
+                      Update Your Bio
+                      </Button>
+                  </div>
+                  :
+                  <>
+                    <Button
+                      className='btn btn-success'
+                      onClick={() => setBioUpdate(true)}
+                    >
+                      Add a Mini-Bio
+                    </Button>
+                  </>
+                }
+              </>
+            )}
+            {bioUpdate &&
+              <>
+                <Form>
+                  <Col>
+                    <Form.Control
+                      name='bio-text'
+                      value={bioText}
+                      onChange={(e) => setBioText(e.target.value)}
+                      type='text'
+                      size='md'
+                      as='textarea'
+                      rows='6'
+                      placeholder='enter your bio here'
+                    />
+                  </Col>
+                </Form>
+                <Button
+                  className='btn btn-succes'
+                  onClick={() => updateBio(bioText)}
+                >
+                  Save Bio
+                </Button>
+              </>
+            }
+          </div>
+        </Col>
+      </Row>
+      {/* <Row>
+        <Col> */}
+      <Container width="100%">
+        <Row id="main-body-row">
+          <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
+            <SideBar
+              cb={handleRenderMediaPage}
+              page='profile'
+            />
+          </Col>
+          <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >
+            {myMediaState.map(media => {
+              if (media.mediaType === 'Book') {
+                return (
+                  <ProfileFeedCard
+                    media={media}
+                    cb={handleSaveLike}
+                    mediaType={'book'}
+                    userData={userData}
+                    startRating={startRating}
+                    selectedMediaRating={selectedMediaRating}
+                    handleRatingFormSubmit={handleRatingFormSubmit}
+                    setUserRating={setUserRating}
+                    setHover={setHover}
+                    hover={hover}
+                    userRating={userRating}
+                    startReview={startReview}
+                    selectedMediaReview={selectedMediaReview}
+                    handleReviewFormSubmit={handleReviewFormSubmit}
+                    reviewInput={reviewInput}
+                    setReviewInput={setReviewInput}
+                    handleDeleteBook={handleDeleteBook}
+                    makeFavorite={makeFavorite}
+                  />
+                );
+              } else if (media.mediaType === "Music") {
+                return (
+                  <ProfileFeedCard
+                    media={media}
+                    cb={handleSaveLike}
+                    mediaType={'music'}
+                    userData={userData}
+                    startRating={startRating}
+                    selectedMediaRating={selectedMediaRating}
+                    handleRatingFormSubmit={handleRatingFormSubmit}
+                    setUserRating={setUserRating}
+                    setHover={setHover}
+                    hover={hover}
+                    userRating={userRating}
+                    startReview={startReview}
+                    selectedMediaReview={selectedMediaReview}
+                    handleReviewFormSubmit={handleReviewFormSubmit}
+                    reviewInput={reviewInput}
+                    setReviewInput={setReviewInput}
+                    handleDeleteMusic={handleDeleteMusic}
+                    makeFavorite={makeFavorite}
+                  />
+                );
+              } else if (media.mediaType === "Movie") {
+                return (
+                  <ProfileFeedCard
+                    media={media}
+                    cb={handleSaveLike}
+                    mediaType={'movie'}
+                    userData={userData}
+                    startRating={startRating}
+                    selectedMediaRating={selectedMediaRating}
+                    handleRatingFormSubmit={handleRatingFormSubmit}
+                    setUserRating={setUserRating}
+                    setHover={setHover}
+                    hover={hover}
+                    userRating={userRating}
+                    startReview={startReview}
+                    selectedMediaReview={selectedMediaReview}
+                    handleReviewFormSubmit={handleReviewFormSubmit}
+                    reviewInput={reviewInput}
+                    setReviewInput={setReviewInput}
+                    handleDeleteMovie={handleDeleteMovie}
+                    makeFavorite={makeFavorite}
+                  />
+                );
+              } else if (media.mediaType === "Game") {
+                return (
+                  <ProfileFeedCard
+                    media={media}
+                    cb={handleSaveLike}
+                    mediaType={'game'}
+                    userData={userData}
+                    startRating={startRating}
+                    selectedMediaRating={selectedMediaRating}
+                    handleRatingFormSubmit={handleRatingFormSubmit}
+                    setUserRating={setUserRating}
+                    setHover={setHover}
+                    hover={hover}
+                    userRating={userRating}
+                    startReview={startReview}
+                    selectedMediaReview={selectedMediaReview}
+                    handleReviewFormSubmit={handleReviewFormSubmit}
+                    reviewInput={reviewInput}
+                    setReviewInput={setReviewInput}
+                    handleDeleteGame={handleDeleteGame}
+                    makeFavorite={makeFavorite}
+                  />
+                );
+              };
+              return;
+            })}
+            {myFavoriteState.map(media => {
+              return (
+                <FeedCard
+                  media={media}
+                  userData={userData}
+                />
+              )
+            })
+            }
+
+          </Col>
+          <Col xs={0} s={0} md={1} lg={3}>
+
+          </Col>
+        </Row>
+      </Container>
+      {/* </Col>
+      </Row> */}
     </>
   )
 }

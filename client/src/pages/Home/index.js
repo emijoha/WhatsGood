@@ -340,9 +340,9 @@ function Home() {
           <h1>Viewing friends Media!</h1>
         </Container>
       </Jumbotron> */}
-      <Row>
+     <Row>
         <Col>
-          <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} />
+          <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} page='home'/>
         </Col>
       </Row>
       <Container width="100%">
