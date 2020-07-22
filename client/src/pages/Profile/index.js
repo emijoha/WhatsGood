@@ -390,145 +390,144 @@ function ProfilePage() {
       </Row>
       <Container width="100%">
         <Row>
-          <Col xs={0} s={0} md={1} lg={1}></Col>
-          <Col xs={12} s={12} md={10} lg={10} >
-            <Card id='profile-card' className='movie-border' key={userData.username} border='dark'>
-              <Card.Body>
-                <Card.Img
-                  src={userData.picture}
-                  alt={`${userData.username}'s face, probably`}
-                  roundedCircle
-                  className='img-fluid'
-                  id='my-profile-pic'
-                ></Card.Img>
+          <Col xs={0} s={0} md={0} lg={2}></Col>
+          <Col xs={12} s={12} md={12} lg={8} >
+            <Card id='profile-card' key={userData.username}>
+              <Card.Body id='profile-card-body'>
+                <div id='profile-image'>
+                  <Card.Img
+                    src={userData.picture}
+                    alt={`${userData.username}'s face, probably`}
+                    roundedCircle
+                    className='img-fluid'
+                    id='my-profile-pic'
+                  ></Card.Img>
+                </div>
+                <div id='profile-info'>
+                  <Card.Title id='user-title'>
+                    <b>{userData.username}</b>
+                  </Card.Title>
+                  {userData.username && (
+                    <>
+                      {(userData.bio !== '' || null)
+                        ?
+                        <div>
+                          {console.log("userData.bio", userData.bio)}
+                          <p className='about-me' id='purple'>
+                            ABOUT ME <a
+                            className='btn bio-btn'
+                            onClick={() => setBioUpdate(true)}
+                          >Update Bio</a>
+                          </p>
+                          <div id='bio-scroll'>
+                            {userData.bio}
+                          </div>
+                          
+                        </div>
+                        :
+                        <>
+                          <a
+                            className='btn bio-btn'
+                            onClick={() => setBioUpdate(true)}
+                          >Add Bio</a>
+                          <br></br>
+                        </>
+                      }
+                    </>
+                  )}
+                  {bioUpdate &&
+                    <>
+                      <br></br>
+                      <Form>
+                        <Form.Control
+                          name='bio-text'
+                          value={bioText}
+                          onChange={(e) => setBioText(e.target.value)}
+                          type='text'
+                          size='md'
+                          as='textarea'
+                          rows='6'
+                          placeholder='enter your bio here'
+                        />
+                      </Form>
+                      <div className='text-center'>
+                        <a
+                          className='btn'
+                          id='purple-hover'
+                          onClick={() => updateBio(bioText)}
+                        ><b>SUBMIT</b></a>
+                      </div>
+                    </>
+                  }
+                  <Button
+                    className='btn'
+                    id='purple-back'
+                    href='/messages'
+                  >MESSAGES</Button>
+                  {/* <Card.Title id='user-states'>
+                  <p>
+                  <span>{userData.bookCount}</span> Books 
+                  <span>, {userData.musicCount}</span> Music 
+                  <span>{userData.movieCount}</span> Movies 
+                  <span>, {userData.gameCount}</span> Games 
+                  </p>
+                </Card.Title> */}
+                </div>
               </Card.Body>
             </Card>
           </Col>
-          <Col xs={0} s={0} md={1} lg={1}></Col>
+          <Col xs={0} s={0} md={0} lg={2}></Col>
         </Row>
       </Container>
-      {/* <Col className='text-center'>
-          <div>
-            <Image
-              src={userData.picture}
-              alt={`${userData.username}'s face, probably`}
-              roundedCircle
-              className='img-fluid'
-              id='my-profile-pic'
+      <hr></hr>
+      <Container width="100%">
+        <Row id="main-body-row">
+          <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
+            <SideBar
+              cb={handleRenderMediaPage}
+              page='profile'
+              username={userData.username}
             />
+          </Col>
+          <Col id="media-feed-column2" xs={12} s={12} md={10} lg={6} >
 
-            {userData.username && (
-              <>
-                {(userData.bio !== '' || null)
-                  ?
-                  <div>
-                    {console.log("userData.bio", userData.bio)}
-                    <h6>
-                      About Me
-                  </h6>
-                    <p>
-                      {userData.bio}
-                    </p>
-                    <Button
-                      className='btn'
-                      onClick={() => setBioUpdate(true)}
-                      id='purple-back'
-                    >
-                      Update Your Bio
-                      </Button>
-                  </div>
-                  :
-                  <>
-                    <Button
-                      className='btn'
-                      onClick={() => setBioUpdate(true)}
-                      id='purple-back'
-                    >
-                      Add a Mini-Bio
-                    </Button>
-                  </>
-                }
-              </>
-            )}
-          </div>
-          {bioUpdate &&
-            <>
-              <Form>
-                <Col>
-                  <Form.Control
-                    name='bio-text'
-                    value={bioText}
-                    onChange={(e) => setBioText(e.target.value)}
-                    type='text'
-                    size='md'
-                    as='textarea'
-                    rows='6'
-                    placeholder='enter your bio here'
-                  />
-                </Col>
-              </Form>
-              <Button
-                className='btn'
-                id='purple'
-                onClick={() => updateBio(bioText)}
-              >
-                Save Bio
-                </Button>
-            </>
-          }
-        </Col> */}
-        {/* <Row>
-        <Col> */}
-  <Container width="100%">
-    <Row id="main-body-row">
-      <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
-        <SideBar
-          cb={handleRenderMediaPage}
-          page='profile'
-          username={userData.username}
-        />
-      </Col>
-      <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >
-
-        {myMediaState.map(media => {
-          return (
-            <ProfileFeedCard
-              media={media}
-              cb={handleSaveLike}
-              mediaType={media.mediaType.toLowerCase()}
-              userData={userData}
-              startRating={startRating}
-              selectedMediaRating={selectedMediaRating}
-              handleRatingFormSubmit={handleRatingFormSubmit}
-              setUserRating={setUserRating}
-              setHover={setHover}
-              hover={hover}
-              userRating={userRating}
-              startReview={startReview}
-              selectedMediaReview={selectedMediaReview}
-              handleReviewFormSubmit={handleReviewFormSubmit}
-              reviewInput={reviewInput}
-              setReviewInput={setReviewInput}
-              handleDeleteMedia={handleDeleteMedia}
-              makeFavorite={makeFavorite}
-            />
-          );
-        })}
-        {myFavoriteState.map(media => {
-          return (
-            <FeedCard
-              media={media}
-              userData={userData}
-            />
-          )
-        })}
-      </Col>
-      {/* <Col xs={0} s={0} md={1} lg={3}>
+            {myMediaState.map(media => {
+              return (
+                <ProfileFeedCard
+                  media={media}
+                  cb={handleSaveLike}
+                  mediaType={media.mediaType.toLowerCase()}
+                  userData={userData}
+                  startRating={startRating}
+                  selectedMediaRating={selectedMediaRating}
+                  handleRatingFormSubmit={handleRatingFormSubmit}
+                  setUserRating={setUserRating}
+                  setHover={setHover}
+                  hover={hover}
+                  userRating={userRating}
+                  startReview={startReview}
+                  selectedMediaReview={selectedMediaReview}
+                  handleReviewFormSubmit={handleReviewFormSubmit}
+                  reviewInput={reviewInput}
+                  setReviewInput={setReviewInput}
+                  handleDeleteMedia={handleDeleteMedia}
+                  makeFavorite={makeFavorite}
+                />
+              );
+            })}
+            {myFavoriteState.map(media => {
+              return (
+                <FeedCard
+                  media={media}
+                  userData={userData}
+                />
+              )
+            })}
+          </Col>
+          {/* <Col xs={0} s={0} md={1} lg={3}>
           </Col> */}
-    </Row>
-  </Container>
-  {/* </Col>
-      </Row> */}
+        </Row>
+      </Container>
     </>
   )
 }

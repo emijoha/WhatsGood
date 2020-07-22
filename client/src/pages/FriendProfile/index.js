@@ -297,7 +297,7 @@ function FriendProfile() {
               username={friend.username}
             />
           </Col>
-          <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >
+          <Col id="media-feed-column2" xs={12} s={12} md={10} lg={6} >
             {friendMediaState.map(media => {
               return (
                 <FriendProfileFeedCard

@@ -31,16 +31,11 @@
   margin: 0px !important;
 }
 
-#media-feed-column {
+#media-feed-column2 {
   margin-top: 15px;
   padding: 0px !important;
 }
 
-@media screen and (max-width: 991px) {
-  #media-feed-column {
-      margin-top: 65px;
-  }
-}
 
 #side-bar-column {
   display: flex;
