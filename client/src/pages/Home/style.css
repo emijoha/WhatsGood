@@ -33,9 +33,9 @@
 
 #side-bar-column {
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  padding: 0px;
-  padding-right: 15px;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 20px;
+  padding-top: 0px;
 }
 

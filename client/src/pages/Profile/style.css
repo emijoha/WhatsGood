@@ -54,10 +54,10 @@
 
 #side-bar-column {
   display: flex;
-  justify-content: space-around;
   justify-content: flex-end;
-  padding: 0px;
-  padding-right: 15px;
+  align-items: flex-end;
+  padding: 20px;
+  padding-top: 0px;
 }
 
 

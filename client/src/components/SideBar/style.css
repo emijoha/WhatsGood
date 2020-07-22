@@ -1,5 +1,6 @@
 
 #side-bar-menu {
+  align-self: end;
   position: sticky;
   top: 75px;
 }
