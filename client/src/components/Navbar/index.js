@@ -27,7 +27,7 @@ function AppNavbar() {
   return (
     <>
       <Navbar sticky="top" expand='lg' id="new-navbar">
-        <Container fluid>
+        <Container fluid id='nav-container'>
           {userData.username
             ? <span>
               <Navbar.Brand className='shorten' id='purple-hover' as={Link} to='/home'>

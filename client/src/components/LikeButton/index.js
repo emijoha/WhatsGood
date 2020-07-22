@@ -45,14 +45,7 @@ const LikeButton = ({ mediaLikes, mediaType, ownerId, mediaId, userData, title, 
             </a>
           }
         </p>
-
       </Card.Text>
-      {/* <Button id="like-button" className='btn-block btn-primary' disabled={userData.savedLikes?.some((savedLike) => savedLike.mediaId === mediaId)}
-        onClick={() => handleSave()}>
-        {userData.savedLikes?.some((savedLike) => savedLike.mediaId === mediaId)
-          ? 'Liked!'
-          : 'Like'}
-      </Button> */}
     </div>
 
   )

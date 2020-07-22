@@ -17,16 +17,26 @@
 
 #main-body-row {
   width: 100%;
+  margin: 0px !important;
 }
 
 #media-feed-column {
   margin-top: 0px;
+  padding: 0px !important;
 }
 
  @media screen and (max-width: 991px) {
    #media-feed-column {
    margin-top: 0px;
   }
+}
+
+#side-bar-column {
+  display: flex;
+  /* align-items: center; */
+  justify-content: flex-end;
+  padding: 0px;
+  padding-right: 15px;
 }
 
 
