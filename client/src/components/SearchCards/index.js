@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 import { FaVideo } from 'react-icons/fa';
 import RateReviewForSearched from '../RateReviewForSearched';
 import './style.css';
+import UserInfoContext from '../../utils/UserInfoContext';
 
 function SearchCards(props) {
-  function randomNum() {
-    return Math.floor(Math.random() * 4) + 1;
-  }
+  
+  const userData = useContext(UserInfoContext)
+
+    function randomNum() {
+        return Math.floor(Math.random() * 4) + 1;
+    }
 
     if (props.cardType === 'searchedBooks') {
         return (
@@ -199,6 +203,7 @@ function SearchCards(props) {
                                 </Card.Title>
                                 {props.savedArray?.every((friend) => friend._id !== props.searchedUser._id)
                                     ? <Button
+                                        disabled={userData._id === props.searchedUser._id}
                                         className='btn-block btn-info save-friend'
                                         onClick={() => props.handleSaveFriend()}>
                                         Save Friend
