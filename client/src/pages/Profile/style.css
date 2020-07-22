@@ -18,14 +18,14 @@
     color: white;
 } */
 
-#profile-container {
+.page-container {
   margin-top: 91px;
 }
 
-#profile-row {
+/* #profile-row {
   margin-left: 0;
   margin-right: 0;
-}
+} */
 
 #main-body-row {
         
@@ -33,20 +33,17 @@
 }
 
 #media-feed-column {
-  margin-top: 0;
+  margin-top: 0px;
 }
 
 @media screen and (max-width: 991px) {
-   
- 
-
   #media-feed-column {
-      margin-top: 150px;
+      margin-top: 0px;
   }
 }
 
 
-#side-bar-menu {
+/* #side-bar-menu {
   margin-top: 0;
   margin-left: 0;
-}
+} */

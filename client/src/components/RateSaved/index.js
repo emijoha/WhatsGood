@@ -30,21 +30,19 @@ function RateSaved(props) {
         icon = faVideo;
         setFaIcon(icon);
     }
-
   }, []);
+
 
   return (
     <>
-
       {props.username && (
         <>
-          {(props.media.userRating === 0)
-            ?
-            <Button className='btn-block btn-success' onClick={() => props.startRating(props.media)}  >
+          {(props.media.userRating === 0) ?
+            <Button className='btn-block' id='rate-btn' onClick={() => props.startRating(props.media)}  >
               Rate this {props.mediaType}!
             </Button>
             :
-            <Button className='btn-block btn-success' onClick={() => props.startRating(props.media)}  >
+            <Button className='btn-block' id='rate-btn' onClick={() => props.startRating(props.media)}  >
               Update your Rating?
             </Button>
           }
@@ -54,40 +52,36 @@ function RateSaved(props) {
         <>
           {props.media._id === props.selectedMediaRating._id
             ?
-            <Form onSubmit={props.handleRatingFormSubmit}>
-              <p className='rating-submit'>
-                {[...Array(5)].map((star, i) => {
-                  const ratingValue = i + 1;
-                  console.log('faIcon: ', faIcon)
-                  return (
-                    <label key={i}>
-
-                      <input type='radio' name='rating'
-                        value={i} onClick={() => props.setUserRating(ratingValue)} />
-                      <FontAwesomeIcon
-                        key={ratingValue}
-                        icon={faIcon} className='star'
-                        onMouseEnter={() => props.setHover(ratingValue)}
-                        onMouseLeave={() => props.setHover(null)}
-                        color={ratingValue <= (props.hover || props.userRating) ? 'black' : '#e4e5e9'}
-                        size={'lg'} />
-
-                    </label>
-                  )
-                })}
-              </p>
-
-
-              <Col>
-                <Button type='submit' variant='success' size='md'>
-                  Submit Rating
+            <div className='center-wrap-rate'>
+              <Form onSubmit={props.handleRatingFormSubmit}>
+                <div className='rating-select'>
+                  {[...Array(5)].map((star, i) => {
+                    const ratingValue = i + 1;
+                    console.log('faIcon: ', faIcon)
+                    return (
+                      <label key={i}>
+                        <input type='radio' name='rating'
+                          value={i} onClick={() => props.setUserRating(ratingValue)} />
+                        <FontAwesomeIcon
+                          key={ratingValue}
+                          icon={faIcon} 
+                          className='star'
+                          onMouseEnter={() => props.setHover(ratingValue)}
+                          onMouseLeave={() => props.setHover(null)}
+                          color={ratingValue <= (props.hover || props.userRating) ? 'black' : '#e4e5e9'}
+                          size={'lg'} />
+                      </label>
+                    )
+                  })}
+                </div>
+                  <Button id='rating-submit-btn' type='submit' size='md'>
+                    SUBMIT
                 </Button>
-              </Col>
-            </Form>
+              </Form>
+            </div>
             : null
           }
         </>
-
       )}
     </>
   )
