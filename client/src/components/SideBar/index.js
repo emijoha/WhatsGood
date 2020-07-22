@@ -9,7 +9,7 @@ import * as API from '../../utils/API';
 
 
 
-function SideBar({ cb, page }) {
+function SideBar({ cb, page, username }) {
 
   //   const [allFriendsMediaState, setAllFriendsMediaState] = useState([]);
 
@@ -19,11 +19,11 @@ function SideBar({ cb, page }) {
   //     return b.timeStamp - a.timeStamp;
   //   }
 
-  const userData = useContext(UserInfoContext);
+  // const userData = useContext(UserInfoContext);
 
-  useEffect(() => {
-    userData.getUserData();
-  }, []);
+  // useEffect(() => {
+  //   userData.getUserData();
+  // }, []);
 
   //   const setNewMediaState = () => {
 
