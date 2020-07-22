@@ -2,10 +2,15 @@
   margin-bottom: 1rem;
 }
 
+#profile-card {
+ margin: 0 auto;
+}
+
+
 #my-profile-pic {
-  /* width: 50px;
-  height: 50px; */
+  width: 200px;
   border-radius: 100%;
+  float: left;
 }
 
 /* #media-pic {
@@ -32,18 +37,24 @@
 }
 
 #media-feed-column {
-  margin-top: 22px;
+  margin-top: 15px;
   padding: 0px !important;
 }
 
 @media screen and (max-width: 991px) {
   #media-feed-column {
-    margin-top: 75px;
+    margin-top: 25px;
   }
+
+  #profile-card {
+    margin-top: 50px;
+  }
+
 }
 
 #side-bar-column {
   display: flex;
+  justify-content: space-around;
   justify-content: flex-end;
   padding: 0px;
   padding-right: 15px;

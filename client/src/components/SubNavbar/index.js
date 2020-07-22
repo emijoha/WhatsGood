@@ -9,9 +9,9 @@ function SubNavbar({ cb, page }) {
 
   const userData = useContext(UserInfoContext);
 
-  useEffect(() => {
-    userData.getUserData();
-  }, []);
+  // useEffect(() => {
+  //   userData.getUserData();
+  // }, []);
 
   
   return (

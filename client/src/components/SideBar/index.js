@@ -7,12 +7,23 @@ import AuthService from '../../utils/auth';
 import { CardBody } from 'react-bootstrap/Card';
 import * as API from '../../utils/API';
 
-function SideBar({ cb, page }) {
-  const userData = useContext(UserInfoContext);
 
-  useEffect(() => {
-    userData.getUserData();
-  }, []);
+
+function SideBar({ cb, page, username }) {
+
+  //   const [allFriendsMediaState, setAllFriendsMediaState] = useState([]);
+
+  // const allFriendsMediaState = [];
+
+  //   function compareTimeStamp(a, b) {
+  //     return b.timeStamp - a.timeStamp;
+  //   }
+
+  // const userData = useContext(UserInfoContext);
+
+  // useEffect(() => {
+  //   userData.getUserData();
+  // }, []);
 
   return (
     <div id="side-bar-menu">

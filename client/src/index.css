@@ -120,12 +120,20 @@ background-color: rgb(23, 156, 245) !important;
   border-image-source: linear-gradient(to bottom right, rgb(0, 180, 90), rgb(251, 255, 1) );
 }
 
-#purple-hover:hover {
+#purple, #purple-hover:hover {
   color: rgb(106, 0, 206) !important;
 }
 
-#neon-hover:hover {
+#purple-back {
+  background-color: rgb(106, 0, 206) !important;
+}
+
+#neon, #neon-hover:hover {
   color: rgb(172, 230, 12) !important;
+}
+
+#neon-back {
+  background-color: rgb(172, 230, 12) !important;
 }
 
 

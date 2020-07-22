@@ -16,7 +16,20 @@ module.exports = {
     console.log("params", params);
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends').populate('savedLikes').populate('notifications').populate({ path: 'savedBooks', populate: { path: 'comments' } }).populate({ path: 'savedMovies', populate: { path: 'comments' } }).populate({ path: 'savedMusic', populate: { path: 'comments' } }).populate({ path: 'savedGames', populate: { path: 'comments' } }).populate('chats').populate({ path: 'chats', populate: { path: 'users' } }).populate({ path: 'chats', populate: { path: 'messages' } });
+    })
+    .populate('savedGames')
+    .populate('savedBooks')
+    .populate('savedMusic')
+    .populate('savedMovies')
+    .populate('friends')
+    .populate('savedLikes')
+    .populate('notifications')
+    .populate({ path: 'savedBooks', populate: { path: 'comments' } })
+    .populate({ path: 'savedMovies', populate: { path: 'comments' } })
+    .populate({ path: 'savedMusic', populate: { path: 'comments' } })
+    .populate({ path: 'savedGames', populate: { path: 'comments' } })
+    .populate('chats').populate({ path: 'chats', populate: { path: 'users' } })
+    .populate({ path: 'chats', populate: { path: 'messages' } });
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
@@ -265,6 +278,60 @@ module.exports = {
     }
     console.log("updatedUser", updatedUser)
     return res.json(updatedUser);
+  },
+
+  async deleteMedia({ user, params }, res) {
+    console.log(user);
+    console.log(params);
+
+    try {
+      const model = params.type;
+      switch (model) {
+        case 'Movie':
+          const deletedMovie = await User.findOneAndUpdate(
+            { _id: user._id },
+            { $pull: { savedMovies: params.id } },
+            { new: true }
+          );
+          if (!deletedMovie) {
+            return res.status(404).json({ message: "Couldn't find user with this id!" });
+          }
+          return res.json(deletedMovie);
+        case 'Book':
+          const deletedBook = await User.findOneAndUpdate(
+            { _id: user._id },
+            { $pull: { savedBooks: params.id } },
+            { new: true }
+          );
+          if (!deletedBook) {
+            return res.status(404).json({ message: "Couldn't find user with this id!" });
+          }
+          return res.json(deletedBook);
+        case 'Music':
+          const deletedMusic = await User.findOneAndUpdate(
+            { _id: user._id },
+            { $pull: { savedMusic: params.id } },
+            { new: true }
+          );
+          if (!deletedMusic) {
+            return res.status(404).json({ message: "Couldn't find user with this id!" });
+          }
+          return res.json(deletedMusic);
+        case 'Game':
+          const deletedGame = await User.findOneAndUpdate(
+            { _id: user._id },
+            { $pull: { savedGames: params.id } },
+            { new: true }
+          );
+          if (!deletedGame) {
+            return res.status(404).json({ message: "Couldn't find user with this id!" });
+          }
+          return res.json(deletedGame);
+      }
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
   },
 
   async deleteMovie({ user, params }, res) {
@@ -542,7 +609,6 @@ module.exports = {
         { new: true, runValidators: true }
       );
       return res.json(newComment);
-
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);

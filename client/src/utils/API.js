@@ -136,6 +136,10 @@ export const saveUserRating = function (userRating, token) {
   return axios.put('/api/users/user-rating', userRating, { headers: { authorization: `Bearer ${token}` } });
 };
 
+export const deleteMedia = function (media_id, media_mediaType, token) {
+  return axios.delete(`/api/users/media/${media_mediaType}/${media_id}`, { headers: { authorization: `Bearer ${token}` } });
+}
+
 export const deleteMovie = function (movie_id, token) {
   return axios.delete(`/api/users/movies/${movie_id}`, { headers: { authorization: `Bearer ${token}` } });
 };
