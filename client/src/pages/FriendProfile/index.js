@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
-import { Container, Form, Button, Col, Row, Image } from 'react-bootstrap';
+import { Card, Container, Form, Button, Col, Row, Image } from 'react-bootstrap';
 
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
@@ -33,7 +33,7 @@ function FriendProfile() {
   }, [userData.username]);
 
   useEffect(() => {
-    API.getUser('5f11d4549ad6b11dcf7693ac')
+    API.getUser('5f120a454794944654a9018c')
       .then((res) => {
         setFriend(res.data);
       })
@@ -266,28 +266,70 @@ function FriendProfile() {
           <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} page={'profile'} username={friend.username} />
         </Col>
       </Row>
-      <Row id="center-wrap">
-        <Col>
-          <div id='my-profile-pic'>
-            <Image
-              src={friend.picture}
-              alt={`${friend.username}'s face, probably`}
-              roundedCircle
-              className='img-fluid'
-            />
-          </div>
-          {friend.bio &&
-            <div>
-              <h6>
-                A little about me:
-              </h6>
-              <p>
-                {friend.bio}
-              </p>
-            </div>
-          }
-        </Col>
-      </Row>
+      <Container width="100%">
+        <Row>
+          <Col xs={0} s={0} md={0} lg={2}></Col>
+          <Col xs={12} s={12} md={12} lg={8} >
+            <Card id='profile-card' key={userData.username}>
+              <Card.Body id='profile-card-body'>
+                <div id='profile-image'>
+                  <Card.Img
+                    src={friend.picture}
+                    alt={`${friend.username}'s face, probably`}
+                    roundedCircle
+                    className='img-fluid'
+                    id='my-profile-pic'
+                  ></Card.Img>
+                </div>
+                <div id='profile-info'>
+                  <Card.Title id='user-title'>
+                    <b>{friend.username}</b>
+                  </Card.Title>
+                  {userData.username && (
+                    <>
+                      {(friend.bio !== '' || null)
+                        ?
+                        <div>
+                          <p className='about-me' id='purple'>
+                            ABOUT ME 
+                          </p>
+                          <div id='bio-scroll'>
+                            {friend.bio}
+                          </div>
+                        </div>
+                        :
+                        <>
+                        <p className='about-me' id='purple'>
+                            ABOUT ME 
+                          </p>
+                          <div id='bio-scroll'>
+                            What's good? Not this bio! This user has not submitted a bio yet.
+                          </div>
+                        </>
+                      }
+                    </>
+                  )}
+                  <Button
+                    className='btn'
+                    id='purple-back'
+                    href='/messages'
+                  >MESSAGES</Button>
+                  {/* <Card.Title id='user-states'>
+                  <p>
+                  <span>{userData.bookCount}</span> Books 
+                  <span>, {userData.musicCount}</span> Music 
+                  <span>{userData.movieCount}</span> Movies 
+                  <span>, {userData.gameCount}</span> Games 
+                  </p>
+                </Card.Title> */}
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xs={0} s={0} md={0} lg={2}></Col>
+        </Row>
+      </Container>
+      <hr></hr>
       <Container width="100%">
         <Row id="main-body-row">
           <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
