@@ -28,19 +28,19 @@
   outline: none !important;
 }
 
-.form-button {
-    color: rgb(75, 0, 196) !important;
+#form-button {
+    color: rgb(75, 0, 196);
     font-weight: bold;
-    background-color: rgba(255, 255, 255, 0) !important;
+    background-color: rgba(255, 255, 255, 0);
     border-radius: 40px;
-    border: 1px solid rgb(75, 0, 196) !important;
+    border: 1px solid rgb(75, 0, 196);
     font-weight: bold;
     margin-top: 20px;
 }
 
-.form-button:hover {
-    color: rgb(183, 0, 255) !important;
-    background-color: rgba(255, 255, 255, 0) !important;
+#form-button:hover {
+    color: rgb(183, 0, 255);
+    background-color: rgba(255, 255, 255, 0);
     border-radius: 40px;
-    border: 1px solid rgb(183, 0, 255) !important;
+    border: 1px solid rgb(183, 0, 255);
 }

@@ -1,9 +1,5 @@
 button {
-    color: darkmagenta !important;
-    background-color: white !important;
-    border-color: darkmagenta !important;
-    border: solid !important;
-    border-width: 1px !important;
+    border-width: 1px;
 }
 
 .center-wrap {
@@ -15,11 +11,11 @@ button {
 .mediaImage {
     border-radius: 0px !important;
     width: 70%;
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .ratingReviewHeading {
-    border-bottom: solid 1px black;
+    border-bottom: solid 3px;
     font-weight: 500;
     color: black;
 }
@@ -45,11 +41,11 @@ button {
 }
 
 .scroll-box {
-    width: 100%;
-    padding-right: 8px;
-    max-height: 135px;
-    overflow: scroll;
-    /* margin-bottom: 10px; */
+  width: 100%;
+  padding-right: 8px;
+  padding-left: 12px;
+  max-height: 135px;
+  overflow: scroll;
 }
     
 /* Scrollbar styles */
@@ -59,10 +55,10 @@ height: 12px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgb(220, 220, 220);  
-    border-radius: 10px;
+  background: rgb(225, 225, 225);  
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(200, 200, 200);  
+  background: rgb(200, 200, 200);  
 }

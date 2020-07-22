@@ -1,4 +1,29 @@
-#like-button {
-    background-color: rgb(153, 0, 255);
-    color: white;
+/* #like-button {
+
+} */
+.like-group {
+  margin-bottom: 0px;
+  margin-top: 7px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.like-label {
+  font-weight: 500;
+  font-size: 1rem;
+  padding-right: 5px;
+  padding-top: 3px;
+}
+
+#like-icon {
+  font-size: 1.65rem !important;
+  cursor: pointer;
+  padding-bottom: 3px;
+}
+
+#liked-icon {
+  font-size: 1.65rem !important;
+  color: black;
+  padding-bottom: 3px;
 }
