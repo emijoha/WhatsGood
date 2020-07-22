@@ -18,11 +18,7 @@ function FriendProfile() {
   const [friendFavoritesState, setFriendFavoritesState] = useState([]);
   const [friend, setFriend] = useState([]);
 
-  API.getUser('5f11d4549ad6b11dcf7693ac')
-    .then((res) => {
-      setFriend(res.data);
-    })
-    .catch((err) => console.log(err));
+  
 
   function compareTimeStamp(a, b) {
     return b.timeStamp - a.timeStamp;
@@ -35,6 +31,14 @@ function FriendProfile() {
     setFriendFavoritesState([]);
     renderAllMedia();
   }, [userData.username]);
+
+  useEffect(() => {
+    API.getUser('5f11d4549ad6b11dcf7693ac')
+    .then((res) => {
+      setFriend(res.data);
+    })
+    .catch((err) => console.log(err));
+  }, []);
 
   const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes, ownerId, title) => {
     // find the friend in `searchedUser` state by the matching id
