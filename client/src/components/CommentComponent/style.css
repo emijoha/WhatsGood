@@ -1,0 +1,49 @@
+.comments {
+  background-color: rgb(240, 240, 240);
+  padding: 4px 7px 2px 7px;
+  border-radius: 3px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.commenter {
+  font-weight: 600;
+}
+
+.comment-box {
+  width: 100%;
+  padding-right: 8px;
+  max-height: 200px;
+  overflow: scroll;
+}
+
+.comment-label {
+ margin-bottom: 0px;
+ margin-top: 0px;
+ border-bottom: solid 1px black;
+ font-weight: 500;
+ font-size: 1rem;
+}
+
+#comment-grouping {
+  margin-bottom: 0px !important;
+}
+    
+/* Scrollbar styles */
+::-webkit-scrollbar {
+width: 12px;
+height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+background: rgb(225, 225, 225);  
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: rgb(200, 200, 200);  
+}
+
+.comment-input {
+    border: solid 1px rgb(215, 215, 215) !important;
+}

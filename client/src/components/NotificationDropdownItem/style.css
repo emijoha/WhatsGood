@@ -1,0 +1,20 @@
+#notification-button {
+  background-color: rgb(106, 0, 206) !important;
+  padding: 2px 6px 0.5px 6px;
+  color: white !important;
+  margin-left: 6px;
+}
+
+.notification-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.notification-scroll {
+  width: 100%;
+  padding-right: 8px;
+  max-height: 158px;
+  overflow: scroll;
+  
+}

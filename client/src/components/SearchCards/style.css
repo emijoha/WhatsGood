@@ -1,0 +1,64 @@
+button {
+    border-width: 1px;
+}
+
+.center-wrap {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.mediaImage {
+    border-radius: 0px !important;
+    width: 70%;
+    margin-top: 25px;
+}
+
+.ratingReviewHeading {
+    border-bottom: solid 3px;
+    font-weight: 500;
+    color: black;
+}
+
+.rating {
+    margin-bottom: 0;
+}
+
+.audio-player {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.by {
+    font-size: 0.9rem;
+    font-style: italic;
+    font-weight: 400;
+    margin-top: 3px;
+}
+
+.closer-p {
+    margin-bottom: 4px;
+}
+
+.scroll-box {
+  width: 100%;
+  padding-right: 8px;
+  padding-left: 12px;
+  max-height: 135px;
+  overflow: scroll;
+}
+    
+/* Scrollbar styles */
+::-webkit-scrollbar {
+width: 12px;
+height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(225, 225, 225);  
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(200, 200, 200);  
+}

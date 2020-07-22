@@ -1,0 +1,40 @@
+input {
+    display: none;
+}
+
+.star {
+    cursor: pointer;
+    transition: color 200ms;
+    padding-left: 0.5rem;
+}
+
+.read-only-star {
+    padding-left: 0.5rem;
+}
+
+.center-wrap {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.ratingReviewHeading {
+    border-bottom: solid 3px;
+    font-weight: 500;
+    color: black;
+}
+
+.rating {
+    margin-bottom: 0px;
+}
+
+.review-input {
+    width: 100%;
+}
+
+.already-saved {
+    margin-bottom: 0 !important;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+

@@ -1,0 +1,46 @@
+.form-outer-div {
+    padding: 50px;
+    background-color: rgba(0, 128, 0, 0);
+}
+
+.form-label {
+    margin-top: 20px;
+}
+
+.form-input {
+   
+    border-radius: 40px;
+    background: transparent;
+    color: black;
+    border: none;
+    border: 1px solid black;
+    box-shadow: none;
+    
+}
+
+.form-input:active, .form-input:focus {
+    background: transparent !important;
+    outline: none !important;
+}
+
+.form-input {
+    background: transparent !important;
+  outline: none !important;
+}
+
+.form-button {
+    color: rgb(106, 0, 206);
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 40px;
+    border: 1px solid rgb(106, 0, 206);
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.form-button:hover {
+    color: rgb(183, 2, 255);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 40px;
+    border: 1px solid rgb(183, 2, 255);
+}
