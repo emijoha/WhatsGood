@@ -4,6 +4,7 @@ import SearchCards from '../../components/SearchCards';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { saveGame, searchVideoGames } from '../../utils/API';
+import './style.css';
 
 function SearchGames() {
   // create state for holding returned api data
@@ -39,7 +40,6 @@ function SearchGames() {
       })
       .then(() => {
         setSearchTitle('');
-        setSearchPlatform('pc');
       })
       .catch((err) => console.log(err));
   };
@@ -57,7 +57,7 @@ function SearchGames() {
       userRating: userRating,
       userReview: userReview
     }
-    
+
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
@@ -75,7 +75,7 @@ function SearchGames() {
     <div id="container">
       <div id="inner-container">
         <Container>
-        <h5 id="search-header">SEARCH VIDEO GAMES</h5>
+          <h5 id="search-header">SEARCH VIDEO GAMES</h5>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -88,20 +88,15 @@ function SearchGames() {
                   size='lg'
                   placeholder='Game title'
                 />
-                <Form.Control
-                  id="form-input"
-                  type='text'
-                  size='lg'
-                  name='searchPlatform'
-                  onChange={(e) => setSearchPlatform(e.target.value)}
-                  as='select'
-                >
+                <select id='platform-select'>
+                  <option value='pc'>Game platform</option>
                   <option value='pc'>PC</option>
+                  <option value='switch'>Nintendo Switch</option>
                   <option value='xbox-one'>Xbox One</option>
                   <option value='xbox-360'>Xbox 360</option>
                   <option value='playstation-3'>PlayStation 3</option>
                   <option value='playstation-4'>PlayStation 4</option>
-                </Form.Control>
+                </select>
               </Col>
               <Col xs={12} md={4}>
                 <Button id="form-button" type='submit' variant='success' size='lg'>

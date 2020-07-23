@@ -498,20 +498,20 @@ function ProfilePage() {
                   cb={handleSaveLike}
                   mediaType={media.mediaType.toLowerCase()}
                   userData={userData}
-                  startRating={startRating}
+                  // startRating={startRating}
                   selectedMediaRating={selectedMediaRating}
-                  handleRatingFormSubmit={handleRatingFormSubmit}
-                  setUserRating={setUserRating}
-                  setHover={setHover}
-                  hover={hover}
-                  userRating={userRating}
-                  startReview={startReview}
+                  // handleRatingFormSubmit={handleRatingFormSubmit}
+                  // setUserRating={setUserRating}
+                  // setHover={setHover}
+                  // // hover={hover}
+                  // userRating={userRating}
+                  // startReview={startReview}
                   selectedMediaReview={selectedMediaReview}
-                  handleReviewFormSubmit={handleReviewFormSubmit}
-                  reviewInput={reviewInput}
-                  setReviewInput={setReviewInput}
-                  handleDeleteMedia={handleDeleteMedia}
-                  makeFavorite={makeFavorite}
+                  // handleReviewFormSubmit={handleReviewFormSubmit}
+                  // reviewInput={reviewInput}
+                  // setReviewInput={setReviewInput}
+                  // handleDeleteMedia={handleDeleteMedia}
+                  // makeFavorite={makeFavorite}
                 />
               );
             })}
@@ -520,6 +520,7 @@ function ProfilePage() {
                 <FeedCard
                   media={media}
                   userData={userData}
+                  cb={handleSaveLike}
                 />
               )
             })}

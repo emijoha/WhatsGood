@@ -5,7 +5,7 @@ import moment from 'moment';
 import LikeButton from '../LikeButton';
 import CommentComponent from '../../components/CommentComponent'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faStar } from '@fortawesome/free-solid-svg-icons';
 // import UserInfoContext from '../../utils/UserInfoContext'
 import './style.css';
 
@@ -269,28 +269,61 @@ function FeedCard(props) {
     );
   } else {
     const media = props.media;
-    const border = `${media.mediaType.toLowerCase()}-border`;
+    const mediatype = media.mediaType.toLowerCase();
+    const border = `${mediatype}-border`;
     console.log('from FeedCard: ', media, props.userData)
     return (
-      <Card className={border} key={props.media.mediaId} border='dark'>
+      <Card className={border} key={media.mediaId} border='dark'>
         <Card.Body>
-          {props.userData.picture
-            ? <Card.Img id="profile-pic" src={props.userData.picture} alt={props.userData.username} variant='top' />
-            : null}
-          <Card.Title>{props.userData.username} saved this {media.mediaType.toLowerCase()}
-            <p className='small'>{moment(props.media.createdAt).calendar()}</p>
-            <br />
+          <FontAwesomeIcon
+            id='profile-pic'
+            className={`${mediatype}-color star-icon`}
+            icon={faStar}
+          />
+          <Card.Title id='fav-title'>
+            {props.userData.username} favorited this {media.mediaType.toLowerCase()}!
+            <p className='small'>Saved {moment(media.createdAt).calendar()}</p>
           </Card.Title>
           {props.media.image
             ? <div id="center-wrap">
-              <Card.Img id="media-pic" src={props.media.image} alt={`The image for ${props.media.title}`} variant='top' />
+              <Card.Img id="media-pic" src={media.image} alt={`The image for ${media.title}`} variant='top' />
             </div>
             : null}
           <div id="center-wrap">
             <br />
             <Card.Title>
-              {props.media.title}
+              <b>{media.title.toUpperCase()}</b>
+              <p className='by'>{media.director}{media.authors}{media.artist}{media.developer}</p>
             </Card.Title>
+            {media.preview
+              ? <ReactAudioPlayer
+                className='audio-player'
+                src={media.preview}
+                controls
+              />
+              : null
+            }
+          </div>
+          <div id="center-wrap">
+            <p className={`ratingReviewHeading ${border}`}>{props.userData.username}'s Rating</p>
+            <p className='rating'>
+              {
+                (media.userRating === 0)
+                  ? <p>No rating yet.</p>
+                  : null
+              }
+              {[...Array(media.userRating)].map((star, i) => {
+                return (
+                  <label key={i}>
+                    <FontAwesomeIcon className='read-only-star' icon={faBookOpen} color='black' size={'lg'} />
+                  </label>
+                )
+              })}
+            </p>
+            <p className={`ratingReviewHeading ${border}`}>{props.userData.username}'s Review</p>
+          </div>
+          <div className='scroll-box'>
+            {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
           </div>
         </Card.Body>
       </Card>
