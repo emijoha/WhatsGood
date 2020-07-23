@@ -17,7 +17,7 @@ function FriendProfileFeedCard(props) {
     const media = props.media;
     console.log(media.authors)
     return (
-      <Card key={media._id} border='dark'>
+      <Card className='book-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -33,13 +33,18 @@ function FriendProfileFeedCard(props) {
             : null}
           <div id="center-wrap">
             <br />
-            <Card.Title>{media.title}
-              <p className='small'>{media.authors.length > 1 ? 'Authors' : 'Author'}: {media.authors}</p>
+            <Card.Title>{media.title.toUpperCase()}
+              <p className='by'>{media.authors.length > 1 ? 'Authors' : 'Author'}: {media.authors}</p>
             </Card.Title>
           </div>
           <div className='center-wrap'>
-            <p className='ratingReviewHeading'>{media.username}'s' Rating</p>
+            <p className='ratingReviewHeading book-border'>{media.username}'s Rating</p>
             <p className='rating'>
+              {
+                (media.userRating === 0)
+                  ? <p>No rating yet.</p>
+                  : null
+              }
               {[...Array(media.userRating)].map((star, i) => {
                 return (
                   <label key={i}>
@@ -48,8 +53,11 @@ function FriendProfileFeedCard(props) {
                 )
               })}
             </p>
-            <p className='ratingReviewHeading'>{media.username}'s Review</p>
+            <p className='ratingReviewHeading book-border'>{media.username}'s Review</p>
             <p>{media.userReview.length ? media.userReview : null}</p>
+          </div>
+          <div className='scroll-box'>
+            {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
           </div>
           <LikeButton mediaLikes={media.likes}
             mediaType={props.mediaType}
@@ -74,7 +82,7 @@ function FriendProfileFeedCard(props) {
   } else if (props.media.mediaType === 'Music') {
     const media = props.media;
     return (
-      <Card key={media._id} border='dark'>
+      <Card className='music-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -90,28 +98,35 @@ function FriendProfileFeedCard(props) {
             : null}
           <div id="center-wrap">
             <br />
-            <Card.Title>{media.title}
-              <p className='small'>Artist: {media.artist}</p>
+            <Card.Title>{media.title.toUpperCase()}
+              <p className='by'>Artist: {media.artist}</p>
             </Card.Title>
-            <div className='center-wrap'>
-              <p className='ratingReviewHeading'>{media.username}'s' Rating</p>
-              <p className='rating'>
-                {[...Array(media.userRating)].map((star, i) => {
-                  return (
-                    <label key={i}>
-                      <FontAwesomeIcon className='read-only-star' icon={faMusic} color='black' size={'lg'} />
-                    </label>
-                  )
-                })}
-              </p>
-              <p className='ratingReviewHeading'>{media.username}'s Review</p>
-              <p>{media.userReview.length ? media.userReview : null}</p>
-            </div>
             <ReactAudioPlayer
               id="music-player"
               src={media.preview}
               controls
             />
+          </div>
+          <div className='center-wrap'>
+            <p className='ratingReviewHeading music-border'>{media.username}'s Rating</p>
+            <p className='rating'>
+              {
+                (media.userRating === 0)
+                  ? <p>No rating yet.</p>
+                  : null
+              }
+              {[...Array(media.userRating)].map((star, i) => {
+                return (
+                  <label key={i}>
+                    <FontAwesomeIcon className='read-only-star' icon={faMusic} color='black' size={'lg'} />
+                  </label>
+                )
+              })}
+            </p>
+            <p className='ratingReviewHeading music-border'>{media.username}'s Review</p>
+          </div>
+          <div className='scroll-box'>
+            {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
           </div>
           <LikeButton mediaLikes={media.likes}
             mediaType={props.mediaType}
@@ -135,7 +150,7 @@ function FriendProfileFeedCard(props) {
   } else if (props.media.mediaType === 'Movie') {
     const media = props.media;
     return (
-      <Card key={media._id} border='dark'>
+      <Card className='movie-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -151,13 +166,18 @@ function FriendProfileFeedCard(props) {
             : null}
           <div id='center-wrap'>
             <br />
-            <Card.Title>{media.title}
-              <p className='small'>Director: {media.director}</p>
+            <Card.Title>{media.title.toUpperCase()}
+              <p className='by'>Director: {media.director}</p>
             </Card.Title>
           </div>
           <div className='center-wrap'>
-            <p className='ratingReviewHeading'>{media.username}'s' Rating</p>
+            <p className='ratingReviewHeading movie-border'>{media.username}'s Rating</p>
             <p className='rating'>
+              {
+                (media.userRating === 0)
+                  ? <p>No rating yet.</p>
+                  : null
+              }
               {[...Array(media.userRating)].map((star, i) => {
                 return (
                   <label key={i}>
@@ -166,8 +186,10 @@ function FriendProfileFeedCard(props) {
                 )
               })}
             </p>
-            <p className='ratingReviewHeading'>{media.username}'s Review</p>
-            <p>{media.userReview.length ? media.userReview : null}</p>
+            <p className='ratingReviewHeading movie-border'>{media.username}'s Review</p>
+          </div>
+          <div className='scroll-box'>
+            {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
           </div>
           <LikeButton mediaLikes={media.likes}
             mediaType={props.mediaType}
@@ -191,7 +213,7 @@ function FriendProfileFeedCard(props) {
   } else if (props.media.mediaType === 'Game') {
     const media = props.media;
     return (
-      <Card key={media._id} border='dark'>
+      <Card className='game-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -207,13 +229,18 @@ function FriendProfileFeedCard(props) {
             : null}
           <div id="center-wrap">
             <br />
-            <Card.Title>{media.title}
-              <p className='small'>Developer: {media.developer}</p>
+            <Card.Title>{media.title.toUpperCase()}
+              <p className='by'>Developer: {media.developer}</p>
             </Card.Title>
           </div>
           <div className='center-wrap'>
-            <p className='ratingReviewHeading'>{media.username}'s' Rating</p>
+            <p className='ratingReviewHeading game-border'>{media.username}'s Rating</p>
             <p className='rating'>
+              {
+                (media.userRating === 0)
+                  ? <p>No rating yet.</p>
+                  : null
+              }
               {[...Array(media.userRating)].map((star, i) => {
                 return (
                   <label key={i}>
@@ -222,8 +249,10 @@ function FriendProfileFeedCard(props) {
                 )
               })}
             </p>
-            <p className='ratingReviewHeading'>{media.username}'s Review</p>
-            <p>{media.userReview.length ? media.userReview : null}</p>
+            <p className='ratingReviewHeading game-border'>{media.username}'s Review</p>
+          </div>
+          <div className='scroll-box'>
+            {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
           </div>
           <LikeButton mediaLikes={media.likes}
             mediaType={props.mediaType}

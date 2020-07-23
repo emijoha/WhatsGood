@@ -64,7 +64,6 @@ function FeedCard(props) {
             userData={props.userData}
           />
           <CommentComponent
-            // cb={props.cb2}
             comments={media.comments}
             mediaId={media._id}
             mediaType={media.mediaType}
@@ -132,7 +131,6 @@ function FeedCard(props) {
             userData={props.userData}
           />
           <CommentComponent
-            // cb={props.cb2}
             comments={media.comments}
             mediaId={media._id}
             mediaType={media.mediaType}
