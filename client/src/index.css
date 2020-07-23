@@ -36,7 +36,7 @@ button {
 }
 
 .book-color {
-color: rgb(23, 156, 245) !important;
+color: rgb(23, 156, 245);
 }
 
 .book-back {
@@ -44,8 +44,13 @@ background-color: rgb(23, 156, 245) !important;
 }
 
 .book-hover:hover {
-  color: rgb(23, 156, 245);
+  color: rgb(23, 156, 245) !important;
 }
+
+.book-hover-fill:hover {
+  background-color: rgb(23, 156, 245) !important;
+}
+
 
 /* MUSIC COLORs */
 .music-border {
@@ -53,7 +58,7 @@ background-color: rgb(23, 156, 245) !important;
   border-image-source: linear-gradient(to bottom right,  rgb(255, 2, 234), rgb(251, 255, 1)) ;
 }
 .music-color {
-  color: rgb(241, 118, 2) !important;
+  color: rgb(241, 118, 2);
 }
 
 .music-back {
@@ -61,16 +66,20 @@ background-color: rgb(23, 156, 245) !important;
 }
 
 .music-hover:hover {
-  color: rgb(241, 118, 2) ;
+  color: rgb(241, 118, 2) !important;
+}
+
+.music-hover-fill:hover {
+  background-color: rgb(241, 118, 2) !important;
 }
 
 /* MOVIE COLORS */
 .movie-border {
   border-image-slice: 1 ;
-  border-image-source: linear-gradient(to bottom right, rgb(94, 9, 251), rgb(0, 255, 242)) ;
+  border-image-source: linear-gradient(to bottom right, rgb(94, 9, 251), rgb(255, 2, 234)) ;
 }
 .movie-color {
-  color: rgb(134, 0, 223) !important ;
+  color: rgb(134, 0, 223)  ;
 }
 
 .movie-back {
@@ -78,7 +87,11 @@ background-color: rgb(23, 156, 245) !important;
 }
 
 .movie-hover:hover {
-  color: rgb(134, 0, 223) ;
+  color: rgb(134, 0, 223) !important;
+}
+
+.movie-hover-fill:hover {
+  background-color: rgb(134, 0, 223) !important;
 }
 
 /* GAME COLORS */
@@ -87,7 +100,7 @@ background-color: rgb(23, 156, 245) !important;
   border-image-source: linear-gradient(to bottom right, rgb(0, 255, 242), rgb(251, 255, 1) ) ;
 }
 .game-color {
-  color: rgb(118, 211, 11) !important;
+  color: rgb(118, 211, 11) ;
 }
 
 .game-back {
@@ -95,7 +108,10 @@ background-color: rgb(23, 156, 245) !important;
 }
 
 .game-hover:hover {
-  color: rgb(118, 211, 11) ;
+  color: rgb(118, 211, 11) !important ;
+}
+.game-hover-fill:hover {
+  background-color: rgb(118, 211, 11) !important ;
 }
 
 

@@ -17,7 +17,7 @@ function Signup() {
       <Row className="justify-content-center">
         <Col id="signup-card-column" xs={12} md={6} >
           <Container>
-            <div className="signup-card">
+            <div className="signup-card movie-border">
               <SignupForm />
               <div className="login-link">
                 <Link id='neon-hover' className='login-link' as={Link} to='/'>
