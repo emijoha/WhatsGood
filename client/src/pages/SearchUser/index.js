@@ -5,6 +5,7 @@ import SearchCards from '../../components/SearchCards';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { saveFriend, searchFriend, deleteFriend, addNotification } from '../../utils/API';
+import './style.css';
 
 function SearchUser() {
     // create state for holding returned google api data

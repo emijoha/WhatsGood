@@ -7,6 +7,7 @@ import AuthService from '../../utils/auth';
 // import { saveMovie, searchOMDB, searchEachMovie, } from '../utils/API';
 // import { saveUserRating, saveMovieReview } as API from '../utils/API';
 import SearchCards from '../../components/SearchCards';
+import './style.css';
 
 function SearchMovies() {
   // create state for holding returned omdb api data

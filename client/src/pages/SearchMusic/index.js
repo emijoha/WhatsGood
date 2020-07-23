@@ -5,6 +5,7 @@ import SearchCards from '../../components/SearchCards';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { saveMusic, searchMusic } from '../../utils/API';
+import './style.css';
 
 function SearchMusic() {
   // create state for holding returned google api data

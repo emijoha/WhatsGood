@@ -32,7 +32,7 @@ button {
 /* BOOK COLORS */
 .book-border {
   border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom right,  rgb(72, 0, 206), rgb(0, 255, 242));
+  border-image-source: linear-gradient(to bottom right,  rgb(94, 9, 251), rgb(0, 255, 242));
 }
 
 .book-color {
@@ -67,7 +67,7 @@ background-color: rgb(23, 156, 245) !important;
 /* MOVIE COLORS */
 .movie-border {
   border-image-slice: 1 ;
-  border-image-source: linear-gradient(to bottom right, rgb(72, 0, 206), rgb(255, 2, 234)) ;
+  border-image-source: linear-gradient(to bottom right, rgb(94, 9, 251), rgb(255, 2, 234)) ;
 }
 .movie-color {
   color: rgb(134, 0, 223) !important ;
@@ -102,7 +102,7 @@ background-color: rgb(23, 156, 245) !important;
 /* FRIENDS BORDERS? OR MIX OF ALL COLORS? */
 .friend-border1 {
   border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom left, rgb(72, 0, 206), rgb(0, 255, 242));
+  border-image-source: linear-gradient(to bottom left, rgb(94, 9, 251), rgb(0, 255, 242));
 }
 
 .friend-border2 {
@@ -112,7 +112,7 @@ background-color: rgb(23, 156, 245) !important;
 
 .friend-border3 {
   border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom right, rgb(72, 0, 206), rgb(255, 2, 234));
+  border-image-source: linear-gradient(to bottom right, rgb(94, 9, 251), rgb(255, 2, 234));
 }
 
 .friend-border4 {
