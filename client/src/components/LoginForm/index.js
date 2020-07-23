@@ -81,7 +81,7 @@ function LoginForm() {
         </Form.Group>
         <div className="text-right">
         <Button className="form-button-login" 
-        // disabled={!(userFormData.username && userFormData.password)} 
+        disabled={!(userFormData.username && userFormData.password)} 
         type='submit' >
           SUBMIT
         </Button>

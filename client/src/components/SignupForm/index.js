@@ -104,7 +104,7 @@ function SignupForm() {
         <div className="text-right">
         <Button
           id="form-button-signup"
-          // disabled={!(userFormData.username && userFormData.email && userFormData.password)}
+          disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
           >
           SUBMIT

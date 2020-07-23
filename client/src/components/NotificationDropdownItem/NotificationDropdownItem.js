@@ -24,20 +24,24 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type, 
   if (type === "like") {
     return (
       <NavDropdown.Item className='notification-item' as={Link} to={'/profile'}>
+        <div className='notification-text'>
         {likerUsername} liked your post of {title}
+        </div>
         <div onClick={(event) => event.stopPropagation()}>
-        <Button
-          id="notification-button"
-          onClick={(event) => handleDeleteNotification(notificationId, event)}>
-          Oh, word
-        </Button>
+          <Button
+            id="notification-button"
+            onClick={(event) => handleDeleteNotification(notificationId, event)}>
+            Oh, word
+          </Button>
         </div>
       </NavDropdown.Item>
     )
   } else if (type === 'comment') {
     return (
       <NavDropdown.Item className='notification-item' as={Link} to={'/profile'}>
+        <div className='notification-text'>
         {likerUsername} commented on your post of {title}:'{comment}'
+        </div>
         <div onClick={(event) => event.stopPropagation()}>
         <Button
           id="notification-button"
