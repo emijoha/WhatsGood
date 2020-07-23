@@ -4,6 +4,8 @@ import SearchCards from '../../components/SearchCards';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { saveBook, searchGoogleBooks } from '../../utils/API';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVideo, faBookOpen, faGamepad, faMusic, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import './style.css'
 
 function SearchBooks() {
@@ -88,10 +90,33 @@ function SearchBooks() {
                     size='lg'
                     placeholder='Search for a book'
                   />
+                  <p className='search-icon-group'>
+                    <FontAwesomeIcon
+                      id='search-icon'
+                      icon={faMusic}
+                    />
+                    <FontAwesomeIcon
+                      id='search-icon'
+                      icon={faVideo}
+                    />
+                    <FontAwesomeIcon
+                      id='search-icon'
+                      icon={faGamepad}
+                    />
+                    <FontAwesomeIcon
+                      id='search-icon'
+                      icon={faBookOpen}
+                    />
+                    <FontAwesomeIcon
+                      id='search-icon'
+                      icon={faUserCircle}
+                    />
+                  </p>
                   <Button id="form-search-btn" type='submit' size='lg'>
                     SEARCH
                 </Button>
                 </Form>
+
               </div>
             </Col>
             <Col xs={0} s={0} md={1} lg={2}></Col>

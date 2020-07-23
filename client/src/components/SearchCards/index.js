@@ -197,7 +197,7 @@ function SearchCards(props) {
 
                     <Card className={`friend-border${number}`} key={props.searchedUser._id} border='dark'>
                         <div className='center-wrap'>
-                            <Card.Img className='mediaImage' src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
+                            <Card.Img className='friendImage' src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
                             <Card.Body>
                                 <Card.Title>
                                     <b>{props.searchedUser.username.toUpperCase()}</b>

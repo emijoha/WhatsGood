@@ -2,7 +2,8 @@ import React from 'react';
 import { CardColumns, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic } from '@fortawesome/free-solid-svg-icons'; import ReactAudioPlayer from 'react-audio-player';
+import { faVideo, faBookOpen, faGamepad, faMusic } from '@fortawesome/free-solid-svg-icons'; 
+import ReactAudioPlayer from 'react-audio-player';
 import RateSaved from '../RateSaved';
 import ReviewSaved from '../ReviewSaved';
 import MakeFavorite from '../MakeFavorite';
@@ -362,7 +363,7 @@ function SavedCards(props) {
               <Card className={`friend-border${number}`} key={friend._id} border='dark'>
                 <div className='center-wrap'>
                   <Link to={`/friend_profile?id=${friend._id}`}>
-                    <Card.Img className='mediaImage' src={friend.picture} alt={friend.username} variant='top' />
+                    <Card.Img className='friendImage' src={friend.picture} alt={friend.username} variant='top' />
                   </Link>
                   <Card.Body>
                     <Card.Title>

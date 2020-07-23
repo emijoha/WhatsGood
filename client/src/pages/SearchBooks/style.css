@@ -56,5 +56,20 @@
   padding-left: 30px;
 }
 
+.search-icon-group {
+  display: flex;
+  justify-content: start;
+  float: left;
+  margin-top: 4px;
+  margin-bottom: 0px;
+}
+
+#search-icon {
+  font-size: 2.2rem !important;
+  padding: 6px;
+  cursor: pointer;
+  /* padding-bottom: 3px; */
+}
+
 
 

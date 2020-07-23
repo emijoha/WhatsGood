@@ -8,10 +8,15 @@ button {
     text-align: center;
 }
 
-.mediaImage {
+.friendImage {
     border-radius: 50%;
     width: 70%;
     margin-top: 25px;
+}
+
+.mediaImage {
+  width: 70%;
+  margin-top: 25px;
 }
 
 .ratingReviewHeading {
