@@ -16,6 +16,7 @@ function SavedMedia() {
   const [reviewInput, setReviewInput] = useState('');
   const [userRating, setUserRating] = useState(0);
   const [hover, setHover] = useState(null);
+ 
 
   // set state to activate review form
   const [selectedMediaReview, setSelectedMediaReview] = useState('');

@@ -80,7 +80,7 @@ function LoginForm() {
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
         <div className="text-right">
-        <Button className="form-button" disabled={!(userFormData.username && userFormData.password)} type='submit' variant='success'>
+        <Button id="form-button" disabled={!(userFormData.username && userFormData.password)} type='submit' variant='success'>
           SUBMIT
         </Button>
         </div>

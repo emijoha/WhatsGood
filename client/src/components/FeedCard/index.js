@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import ReactAudioPlayer from 'react-audio-player';
@@ -7,16 +7,22 @@ import LikeButton from '../LikeButton';
 import CommentComponent from '../../components/CommentComponent'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faBookOpen, faGamepad, faMusic, faStar } from '@fortawesome/free-solid-svg-icons';
+import 'aos/dist/aos.css';
+import Aos from 'aos';
 // import UserInfoContext from '../../utils/UserInfoContext'
 import './style.css';
 
 
 function FeedCard(props) {
 
+  useEffect(()=> {
+    Aos.init({ duration: 800 })
+  }, []);
+
   if (props.mediaType === 'book') {
     const media = props.media;
     return (
-      <Card className='book-border' key={media._id} border='dark'>
+      <Card data-aos="fade-up" className='book-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? 
@@ -30,7 +36,7 @@ function FeedCard(props) {
           </Card.Title>
           {media.image
             ? <div id="center-wrap">
-              <Card.Img id="media-pic" src={media.image} alt={`The cover for ${media.title}`} variant='top' />
+              <Card.Img data-aos="fade-up" id="media-pic" src={media.image} alt={`The cover for ${media.title}`} variant='top' />
             </div>
             : null}
           <div id="center-wrap">
@@ -82,7 +88,7 @@ function FeedCard(props) {
   } else if (props.mediaType === 'music') {
     const media = props.media;
     return (
-      <Card className='music-border' key={media._id} border='dark'>
+      <Card data-aos="fade-up" className='music-border' key={media._id} border='dark'>
         <Card.Body>
         {media.picture
             ? 
@@ -96,7 +102,7 @@ function FeedCard(props) {
           </Card.Title>
           {media.image
             ? <div id="center-wrap">
-              <Card.Img id="media-pic" src={media.image} alt={media.artist} variant='top' />
+              <Card.Img data-aos="fade-up" id="media-pic" src={media.image} alt={media.artist} variant='top' />
             </div>
             : null}
           <div id="center-wrap">
@@ -153,7 +159,7 @@ function FeedCard(props) {
   } else if (props.mediaType === 'movie') {
     const media = props.media;
     return (
-      <Card className='movie-border' key={media._id} border='dark'>
+      <Card data-aos="fade-up" className='movie-border' key={media._id} border='dark'>
         <Card.Body>
         {media.picture
             ? 
@@ -167,7 +173,7 @@ function FeedCard(props) {
           </Card.Title>
           {media.image
             ? <div id="center-wrap">
-              <Card.Img id="media-pic" src={media.image} alt={`The cover for ${media.title}`} variant='top' />
+              <Card.Img data-aos="fade-up" id="media-pic" src={media.image} alt={`The cover for ${media.title}`} variant='top' />
             </div>
             : null}
           <div id='center-wrap'>
@@ -220,7 +226,7 @@ function FeedCard(props) {
   } else if (props.mediaType === 'game') {
     const media = props.media;
     return (
-      <Card className='game-border' key={media._id} border='dark'>
+      <Card data-aos="fade-up" className='game-border' key={media._id} border='dark'>
         <Card.Body>
         {media.picture
             ? 
@@ -234,7 +240,7 @@ function FeedCard(props) {
           </Card.Title>
           {media.image
             ? <div id="center-wrap">
-              <Card.Img id="media-pic" src={media.image} alt={`The image for ${media.title}`} variant='top' />
+              <Card.Img data-aos="fade-up" id="media-pic" src={media.image} alt={`The image for ${media.title}`} variant='top' />
             </div>
             : null}
           <div id="center-wrap">
@@ -290,7 +296,7 @@ function FeedCard(props) {
     const border = `${mediatype}-border`;
     console.log('from FeedCard: ', media, props.userData)
     return (
-      <Card className={border} key={media.mediaId} border='dark'>
+      <Card data-aos="fade-up" className={border} key={media.mediaId} border='dark'>
         <Card.Body>
           <FontAwesomeIcon
             id='profile-pic'
@@ -303,7 +309,7 @@ function FeedCard(props) {
           </Card.Title>
           {props.media.image
             ? <div id="center-wrap">
-              <Card.Img id="media-pic" src={media.image} alt={`The image for ${media.title}`} variant='top' />
+              <Card.Img data-aos="fade-up" id="media-pic" src={media.image} alt={`The image for ${media.title}`} variant='top' />
             </div>
             : null}
           <div id="center-wrap">
