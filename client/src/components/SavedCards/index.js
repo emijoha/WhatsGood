@@ -353,12 +353,6 @@ function SavedCards(props) {
       let background = ['book-back', 'music-back', 'movie-back', 'game-back'];
     return (
       <>
-        <h2>
-          {props.savedArray.length
-            ? `Viewing ${props.savedArray.length} saved ${props.savedArray.length === 1 ? 'friend' : 'friends'}:`
-            : 'You have no friends!'}
-          {console.log("hey there im in the header", props.savedArray)}
-        </h2>
         <CardColumns>
           {props.savedArray.map(friend => {
             console.log("this is my friend, ", friend)

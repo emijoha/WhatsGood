@@ -189,11 +189,13 @@ function SearchCards(props) {
             </>
         );
     } else if (props.cardType === 'searchedUsers') {
+      let number = randomNum();
+      let background = ['book-back', 'music-back', 'movie-back', 'game-back'];
         return (
             <>
                 <CardColumns>
 
-                    <Card className={`friend-border${randomNum()}`} key={props.searchedUser._id} border='dark'>
+                    <Card className={`friend-border${number}`} key={props.searchedUser._id} border='dark'>
                         <div className='center-wrap'>
                             <Card.Img className='mediaImage' src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
                             <Card.Body>
@@ -204,12 +206,12 @@ function SearchCards(props) {
                                 {props.savedArray?.every((friend) => friend._id !== props.searchedUser._id)
                                     ? <Button
                                         disabled={userData._id === props.searchedUser._id}
-                                        className='btn-block btn-info save-friend'
+                                        className={`btn-block ${background[number - 1]}`}
                                         onClick={() => props.handleSaveFriend()}>
                                         Save Friend
                                 </Button>
                                     : <Button
-                                        className='btn-block btn-info save-friend'
+                                        className={`btn-block ${background[number - 1]}`}
                                         onClick={() => props.handleDeleteFriend(props.searchedUser._id)}>
                                         Remove Friend
                                 </Button>}
