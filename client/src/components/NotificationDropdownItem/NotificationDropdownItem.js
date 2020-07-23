@@ -10,50 +10,60 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type, 
 
   const userData = useContext(UserInfoContext)
 
-  const handleDeleteNotification = (notificationId) => {
-    console.log("notification Id", notificationId);
+  const handleDeleteNotification = (notificationId, event) => {
+  
+    event.preventDefault()
+
+    console.log("EVENT", event.type);
     deleteNotification(notificationId)
       .then(() => {
         userData.getUserData();
       });
   };
+
   if (type === "like") {
     return (
       <NavDropdown.Item className='notification-item' as={Link} to={'/profile'}>
         {likerUsername} liked your post of {title}
+        <div onClick={(event) => event.stopPropagation()}>
         <Button
           id="notification-button"
-          onClick={() => handleDeleteNotification(notificationId)}>
+          onClick={(event) => handleDeleteNotification(notificationId, event)}>
           Oh, word
         </Button>
+        </div>
       </NavDropdown.Item>
     )
   } else if (type === 'comment') {
     return (
       <NavDropdown.Item className='notification-item' as={Link} to={'/profile'}>
         {likerUsername} commented on your post of {title}:'{comment}'
+        <div onClick={(event) => event.stopPropagation()}>
         <Button
           id="notification-button"
-          onClick={() => handleDeleteNotification(notificationId)}>
+          onClick={(event) => handleDeleteNotification(notificationId, event)}>
           Oh, word
           </Button>
+          </div>
       </NavDropdown.Item>
     )
   } else if (type === 'follow') {
     return(
-        <NavDropdown.Item className='notification-item' as={Link} to={`/search-user?username=${likerUsername}`}>
+        <NavDropdown.Item className='notification-item' as={Link} to={`/search_user?username=${likerUsername}`}>
           {likerUsername} started following you
+          <div onClick={(event) => event.stopPropagation()}>
           <Button 
             id="notification-button" 
-            onClick={() => handleDeleteNotification(notificationId)}
+            onClick={(event) => handleDeleteNotification(notificationId, event)}
           >
               Oh, word
           </Button>
+          </div>
         </NavDropdown.Item>
     )
 } else {
   return(
-    <NavDropdown.Item className='notification-item' as={Link} to={'/messages'}>{likerUsername} sent you a new message<Button id="notification-button" onClick={() => handleDeleteNotification(notificationId)}>Oh, word</Button></NavDropdown.Item>
+    <NavDropdown.Item className='notification-item' as={Link} to={'/messages'}>{likerUsername} sent you a new message <div onClick={(event) => {event.stopPropagation()}}><Button id="notification-button" onClick={(event) => handleDeleteNotification(notificationId, event)}>Oh, word</Button></div></NavDropdown.Item>
 )
 }
 };
