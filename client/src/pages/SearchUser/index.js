@@ -60,7 +60,7 @@ function SearchUser() {
         email: user.data.email
       }),
         setSearchInput(''),
-        history.push('/search-user')
+        history.push('/search_user')
         // window.location.reload()
       );
   }
