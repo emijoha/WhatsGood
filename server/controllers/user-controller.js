@@ -16,7 +16,20 @@ module.exports = {
     console.log("params", params);
     const foundUser = await User.findOne({
       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    }).populate('savedGames').populate('savedBooks').populate('savedMusic').populate('savedMovies').populate('friends').populate('savedLikes').populate('notifications').populate({ path: 'savedBooks', populate: { path: 'comments' } }).populate({ path: 'savedMovies', populate: { path: 'comments' } }).populate({ path: 'savedMusic', populate: { path: 'comments' } }).populate({ path: 'savedGames', populate: { path: 'comments' } }).populate('chats').populate({ path: 'chats', populate: { path: 'users' } }).populate({ path: 'chats', populate: { path: 'messages' } });
+    })
+    .populate('savedGames')
+    .populate('savedBooks')
+    .populate('savedMusic')
+    .populate('savedMovies')
+    .populate('friends')
+    .populate('savedLikes')
+    .populate('notifications')
+    .populate({ path: 'savedBooks', populate: { path: 'comments' } })
+    .populate({ path: 'savedMovies', populate: { path: 'comments' } })
+    .populate({ path: 'savedMusic', populate: { path: 'comments' } })
+    .populate({ path: 'savedGames', populate: { path: 'comments' } })
+    .populate('chats').populate({ path: 'chats', populate: { path: 'users' } })
+    .populate({ path: 'chats', populate: { path: 'messages' } });
 
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });

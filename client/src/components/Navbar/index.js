@@ -27,7 +27,7 @@ function AppNavbar() {
   return (
     <>
       <Navbar sticky="top" expand='lg' id="new-navbar">
-        <Container fluid>
+        <Container fluid id='nav-container'>
           {userData.username
             ? <span>
               <Navbar.Brand className='shorten' id='purple-hover' as={Link} to='/home'>
@@ -45,26 +45,31 @@ function AppNavbar() {
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar-group'>
             <Nav className='ml-auto'>
-              {/* <Nav.Link className="nav-link-group" as={Link} to='/search-user'>
-                Search For Friends
-              </Nav.Link> */}
-              {userData.username
+              <Nav.Link className="nav-link-group" as={Link} to='/search_music'>
+                SEARCH
+              </Nav.Link>
+              {/* {userData.username
                 ? <NavDropdown className="nav-link-group" title="SEARCH" id="basic-nav-dropdown" >
+                  <NavDropdown.Item href="/search_user">SEARCH FOR FRIENDS</NavDropdown.Item>
+                  <NavDropdown.Item href="/search_books">SEARCH BOOKS</NavDropdown.Item>
+                  <NavDropdown.Item href="/search_music">SEARCH MUSIC</NavDropdown.Item>
+                  <NavDropdown.Item href="/search_movies">SEARCH MOVIES</NavDropdown.Item>
+                  <NavDropdown.Item href="/search_games">SEARCH GAMES</NavDropdown.Item>
+                </NavDropdown>
+                : <NavDropdown className="nav-link-group" title="SEARCH" id="basic-nav-dropdown">
                   <NavDropdown.Item href="/search-user">SEARCH FOR FRIENDS</NavDropdown.Item>
                   <NavDropdown.Item href="/search_books">SEARCH BOOKS</NavDropdown.Item>
                   <NavDropdown.Item href="/search_music">SEARCH MUSIC</NavDropdown.Item>
                   <NavDropdown.Item href="/search_movies">SEARCH MOVIES</NavDropdown.Item>
                   <NavDropdown.Item href="/search_games">SEARCH GAMES</NavDropdown.Item>
                 </NavDropdown>
-                : <NavDropdown className="nav-link-group" title="SEARCH" id="basic-nav-dropdown" alignRight>
-                  <NavDropdown.Item href="/search-user">SEARCH FOR FRIENDS</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_books">SEARCH BOOKS</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_music">SEARCH MUSIC</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_movies">SEARCH MOVIES</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_games">SEARCH GAMES</NavDropdown.Item>
-                </NavDropdown>
-              }
+              } */}
               {userData.username &&
+                <Nav.Link className="nav-link-group" as={Link} to='/saved_media'>
+                  MY MEDIA
+              </Nav.Link>
+              }
+              {/* {userData.username &&
                 <NavDropdown className="nav-link-group" title="MY MEDIA" id="basic-nav-dropdown">
                   <NavDropdown.Item href='/saved_media'>ALL MY MEDIA</NavDropdown.Item>
                   <NavDropdown.Item href='/saved_books'>MY BOOKS</NavDropdown.Item>
@@ -72,9 +77,9 @@ function AppNavbar() {
                   <NavDropdown.Item href="/saved_movies">MY MOVIES</NavDropdown.Item>
                   <NavDropdown.Item href="/saved_games">MY GAMES</NavDropdown.Item>
                 </NavDropdown>
-              }
+              } */}
               {userData.username &&
-                <Nav.Link className="nav-link-group" as={Link} to='/saved-friends'>
+                <Nav.Link className="nav-link-group" as={Link} to='/saved_friends'>
                   MY FRIENDS
               </Nav.Link>
               }
@@ -94,14 +99,14 @@ function AppNavbar() {
                         { console.log("notification in navbar", notification) }
                         return (
                           <NotificationDropdownItem
-                          likerUsername={notification.likerUsername}
-                          title={notification.title}
-                          notificationId={notification._id}
-                          type={notification.type}
-                          mediaType={notification.mediaType}
-                          mediaId={notification.mediaId}
-                          followerId={notification.followerId}
-                          comment={notification.comment}/>
+                            likerUsername={notification.likerUsername}
+                            title={notification.title}
+                            notificationId={notification._id}
+                            type={notification.type}
+                            mediaType={notification.mediaType}
+                            mediaId={notification.mediaId}
+                            followerId={notification.followerId}
+                            comment={notification.comment} />
                         )
                       })}
                     </div>

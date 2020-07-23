@@ -5,10 +5,10 @@
 }
 
 #sub-navbar-menu {
-    margin-top: 70px;
-    position: fixed;
-    width: 100%;
-    z-index: 1;
+  width: 100%;
+  margin: 0px !important;
+  position: fixed;
+  z-index: 1;
 }
 
 #table-row {
@@ -30,10 +30,6 @@
     border-bottom: solid 0.25px rgb(226, 226, 226) !important;
   }
 
-  #sub-navbar-menu {
-    margin: 0px !important;
-  }
-
   body {
     padding-top: 50px !important;
   }
@@ -46,6 +42,12 @@
     margin: 0px !important;
     padding-top: 5px;
     padding-bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 439px) {
+  #side-bar-li {
+    font-size: 0.75rem;
   }
 }
 

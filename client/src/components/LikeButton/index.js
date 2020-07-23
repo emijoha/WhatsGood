@@ -5,7 +5,7 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import "./style.css";
 
 
-const LikeButton = ({ mediaLikes, mediaType, ownerId, mediaId, userData, title, cb }) => {
+const LikeButton = ({ mediaLikes, mediaType, ownerId, mediaId, userData, title, cb, page }) => {
 
   const [internalCount, setInternalCount] = useState(0);
 
@@ -20,45 +20,53 @@ const LikeButton = ({ mediaLikes, mediaType, ownerId, mediaId, userData, title, 
     cb(mediaType, mediaId, mediaLikes, ownerId, title);
   }
 
-  return (
-
-    <div>
-      <Card.Text>
-
-        <p className='like-group'>
-          <span className='like-label'>
-            Likes: {internalCount}
-          </span>
-          <a
-            onClick={() => handleSave()}
-            disabled={userData.savedLikes?.some((savedLike) => savedLike.mediaId === mediaId)}
-          >
-            {userData.savedLikes?.some((savedLike) => savedLike.mediaId === mediaId)
-              ? <FontAwesomeIcon
+  if (page === 'profile') {
+    return (
+      <div>
+        <Card.Text>
+          <p className='like-group'>
+            <span className='like-label'>
+              Likes: {internalCount}
+            </span>
+            <a>
+              <FontAwesomeIcon
                 id='liked-icon'
                 className={`${mediaType.toLowerCase()}-color`}
                 icon={likeIcon}
               />
-              : <FontAwesomeIcon
-                id='like-icon'
-                className={`${mediaType.toLowerCase()}-color`}
-                icon={likeIcon}
-              />
+            </a>
+          </p>
+        </Card.Text>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <Card.Text>
+          <p className='like-group'>
+            <span className='like-label'>
+              Likes: {internalCount}
+            </span>
+            {userData.savedLikes?.some((savedLike) => savedLike.mediaId === mediaId)
+              ? <a>
+                <FontAwesomeIcon
+                  id='liked-icon'
+                  className={`${mediaType.toLowerCase()}-color`}
+                  icon={likeIcon}
+                />
+              </a>
+              : <a onClick={() => handleSave()}>
+                <FontAwesomeIcon
+                  id='like-icon'
+                  icon={likeIcon}
+                />
+              </a>
             }
-          </a>
-        </p>
-
-      </Card.Text>
-      {/* <Button id="like-button" className='btn-block btn-primary' disabled={userData.savedLikes?.some((savedLike) => savedLike.mediaId === mediaId)}
-        onClick={() => handleSave()}>
-        {userData.savedLikes?.some((savedLike) => savedLike.mediaId === mediaId)
-          ? 'Liked!'
-          : 'Like'}
-      </Button> */}
-    </div>
-
-  )
-
+          </p>
+        </Card.Text>
+      </div>
+    );
+  }
 }
 
 export default LikeButton;

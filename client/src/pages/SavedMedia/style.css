@@ -1,19 +1,25 @@
 #container {
   background-color: rgba(255, 255, 255, 0);
   height: 100vh;
-
 }
 
 #sub-container {
   height: 100%;
 }
-#header-div {
-  padding: 30px;
 
+#header-div {
+  padding: 30px 30px 5px 30px !important;
 }
 
-#highlight-header {
- 
-  color: rgb(121, 38, 255) !important;
+.saved-icon-group {
+  margin-top: 4px;
+  margin-bottom: 0px;
+}
+
+#media-header {
+  color: rgb(94, 9, 251) !important;
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin-bottom: 15px;
 }
 
