@@ -65,6 +65,11 @@ function AppNavbar() {
                 </NavDropdown>
               } */}
               {userData.username &&
+                <Nav.Link className="nav-link-group" as={Link} to='/saved_media'>
+                  MY MEDIA
+              </Nav.Link>
+              }
+              {/* {userData.username &&
                 <NavDropdown className="nav-link-group" title="MY MEDIA" id="basic-nav-dropdown">
                   <NavDropdown.Item href='/saved_media'>ALL MY MEDIA</NavDropdown.Item>
                   <NavDropdown.Item href='/saved_books'>MY BOOKS</NavDropdown.Item>
@@ -72,7 +77,7 @@ function AppNavbar() {
                   <NavDropdown.Item href="/saved_movies">MY MOVIES</NavDropdown.Item>
                   <NavDropdown.Item href="/saved_games">MY GAMES</NavDropdown.Item>
                 </NavDropdown>
-              }
+              } */}
               {userData.username &&
                 <Nav.Link className="nav-link-group" as={Link} to='/saved_friends'>
                   MY FRIENDS
