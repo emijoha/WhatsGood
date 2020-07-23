@@ -24,7 +24,6 @@ function FriendProfileFeedCard(props) {
             : null}
           <Card.Title>{media.username} saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
-            <br />
           </Card.Title>
           {media.image
             ? <div id="center-wrap">
@@ -89,7 +88,6 @@ function FriendProfileFeedCard(props) {
             : null}
           <Card.Title>{media.username} saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
-            <br />
           </Card.Title>
           {media.image
             ? <div id="center-wrap">
@@ -157,7 +155,6 @@ function FriendProfileFeedCard(props) {
             : null}
           <Card.Title>{media.username} saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
-            <br />
           </Card.Title>
           {media.image
             ? <div id="center-wrap">
@@ -220,7 +217,6 @@ function FriendProfileFeedCard(props) {
             : null}
           <Card.Title>{media.username} saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
-            <br />
           </Card.Title>
           {media.image
             ? <div id="center-wrap">

@@ -12,7 +12,6 @@
 }
 
 .comment-box {
-  margin-top: 10px;
   margin-bottom: 10px;
   width: 100%;
   padding-right: 8px;
@@ -23,7 +22,7 @@
 
 .comment-label {
 padding-bottom: 4px;
- margin-bottom: 0px;
+ margin-bottom: 11px;
  margin-top: 0px;
  border-bottom: solid 1px rgb(228, 228, 228);
  font-weight: 500;
