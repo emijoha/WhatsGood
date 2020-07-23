@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
 import ReactAudioPlayer from 'react-audio-player';
 import moment from 'moment';
 import LikeButton from '../LikeButton';
@@ -18,9 +19,13 @@ function FeedCard(props) {
       <Card className='book-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
-            ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+            ? 
+            <Link to={`/friend_profile?id=${media.userId}`}>
+            <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+            </Link>
             : null}
-          <Card.Title>{media.username} saved this {props.mediaType}
+          <Card.Title>
+            <Link to={`/friend_profile?id=${media.userId}`}>{media.username}</Link> saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
           </Card.Title>
           {media.image
@@ -79,10 +84,14 @@ function FeedCard(props) {
     return (
       <Card className='music-border' key={media._id} border='dark'>
         <Card.Body>
-          {media.picture
-            ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+        {media.picture
+            ? 
+            <Link to={`/friend_profile?id=${media.userId}`}>
+            <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+            </Link>
             : null}
-          <Card.Title>{media.username} saved this {props.mediaType}
+          <Card.Title>
+            <Link to={`/friend_profile?id=${media.userId}`}>{media.username}</Link> saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
           </Card.Title>
           {media.image
@@ -112,7 +121,7 @@ function FeedCard(props) {
               {[...Array(media.userRating)].map((star, i) => {
                 return (
                   <label key={i}>
-                    <FontAwesomeIcon className='read-only-star' icon={faBookOpen} color='black' size={'lg'} />
+                    <FontAwesomeIcon className='read-only-star' icon={faMusic} color='black' size={'lg'} />
                   </label>
                 )
               })}
@@ -146,10 +155,14 @@ function FeedCard(props) {
     return (
       <Card className='movie-border' key={media._id} border='dark'>
         <Card.Body>
-          {media.picture
-            ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+        {media.picture
+            ? 
+            <Link to={`/friend_profile?id=${media.userId}`}>
+            <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+            </Link>
             : null}
-          <Card.Title>{media.username} saved this {props.mediaType}
+          <Card.Title>
+            <Link to={`/friend_profile?id=${media.userId}`}>{media.username}</Link> saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
           </Card.Title>
           {media.image
@@ -174,7 +187,7 @@ function FeedCard(props) {
               {[...Array(media.userRating)].map((star, i) => {
                 return (
                   <label key={i}>
-                    <FontAwesomeIcon className='read-only-star' icon={faBookOpen} color='black' size={'lg'} />
+                    <FontAwesomeIcon className='read-only-star' icon={faVideo} color='black' size={'lg'} />
                   </label>
                 )
               })}
@@ -209,10 +222,14 @@ function FeedCard(props) {
     return (
       <Card className='game-border' key={media._id} border='dark'>
         <Card.Body>
-          {media.picture
-            ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+        {media.picture
+            ? 
+            <Link to={`/friend_profile?id=${media.userId}`}>
+            <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+            </Link>
             : null}
-          <Card.Title>{media.username} saved this {props.mediaType}
+          <Card.Title>
+            <Link to={`/friend_profile?id=${media.userId}`}>{media.username}</Link> saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
           </Card.Title>
           {media.image
@@ -237,7 +254,7 @@ function FeedCard(props) {
               {[...Array(media.userRating)].map((star, i) => {
                 return (
                   <label key={i}>
-                    <FontAwesomeIcon className='read-only-star' icon={faBookOpen} color='black' size={'lg'} />
+                    <FontAwesomeIcon className='read-only-star' icon={faGamepad} color='black' size={'lg'} />
                   </label>
                 )
               })}
