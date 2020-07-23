@@ -24,11 +24,6 @@ function ProfileFeedCard(props) {
           <Card.Title>{media.username} saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
           </Card.Title>
-          {/* <MakeFavorite
-            username={media.username}
-            media={media}
-            makeFavorite={props.makeFavorite}
-          /> */}
           {media.image
             ? <div id="center-wrap">
               <Card.Img id="media-pic" src={media.image} alt={`The cover for ${media.title}`} variant='top' />
@@ -61,27 +56,6 @@ function ProfileFeedCard(props) {
           <div className='scroll-box'>
             {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
           </div>
-          {/* <RateSaved
-            username={media.username}
-            // mediaType={'Book'}
-            media={media}
-            startRating={props.startRating}
-            selectedMediaRating={props.selectedMediaRating}
-            handleRatingFormSubmit={props.handleRatingFormSubmit}
-            setUserRating={props.setUserRating}
-            userRating={props.userRating}
-            setHover={props.setHover}
-            hover={props.hover}
-          />
-          <ReviewSaved
-            username={media.username}
-            // mediaType={'Book'}
-            media={media}
-            startReview={props.startReview}
-            selectedMediaReview={props.selectedMediaReview}
-            handleReviewFormSubmit={props.handleReviewFormSubmit}
-            setReviewInput={props.setReviewInput}
-          /> */}
           <LikeButton mediaLikes={media.likes}
             mediaType={props.mediaType}
             ownerId={media.userId}
@@ -99,10 +73,6 @@ function ProfileFeedCard(props) {
             commenterUsername={props.userData.username}
             mediaComments={media.comments}
           />
-          {/* <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMedia(media._id, media.mediaType)}> */}
-          {/* <Button className='btn-block btn-danger' onClick={() => props.handleDeleteBook(media._id)}>
-            Delete this Book!
-          </Button> */}
         </Card.Body>
       </Card>
     )
@@ -117,11 +87,6 @@ function ProfileFeedCard(props) {
           <Card.Title>{media.username} saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
           </Card.Title>
-          {/* <MakeFavorite
-            username={media.username}
-            media={media}
-            makeFavorite={props.makeFavorite}
-          /> */}
           {media.image
             ? <div id="center-wrap">
               <Card.Img id="media-pic" src={media.image} alt={media.artist} variant='top' />
@@ -159,27 +124,6 @@ function ProfileFeedCard(props) {
           <div className='scroll-box'>
             <p>{media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}</p>
           </div>
-          {/* <RateSaved
-            username={media.username}
-            // mediaType={'Book'}
-            media={media}
-            startRating={props.startRating}
-            selectedMediaRating={props.selectedMediaRating}
-            handleRatingFormSubmit={props.handleRatingFormSubmit}
-            setUserRating={props.setUserRating}
-            userRating={props.userRating}
-            setHover={props.setHover}
-            hover={props.hover}
-          />
-          <ReviewSaved
-            username={media.username}
-            // mediaType={'Book'}
-            media={media}
-            startReview={props.startReview}
-            selectedMediaReview={props.selectedMediaReview}
-            handleReviewFormSubmit={props.handleReviewFormSubmit}
-            setReviewInput={props.setReviewInput}
-          /> */}
           <LikeButton mediaLikes={media.likes}
             mediaType={props.mediaType}
             ownerId={media.userId}
@@ -196,10 +140,6 @@ function ProfileFeedCard(props) {
             ownerId={media.userId}
             commenterUsername={props.userData.username}
             mediaComments={media.comments} />
-          {/* <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMedia(media._id, media.mediaType)}> */}
-          {/* <Button className='btn-block' onClick={() => props.handleDeleteMusic(media._id)}>
-            Delete this Music!
-          </Button> */}
         </Card.Body>
       </Card>
     );
@@ -214,11 +154,6 @@ function ProfileFeedCard(props) {
           <Card.Title>{media.username} saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
           </Card.Title>
-          {/* <MakeFavorite
-            username={media.username}
-            media={media}
-            makeFavorite={props.makeFavorite}
-          /> */}
           {media.image
             ? <div id="center-wrap">
               <Card.Img id="media-pic" src={media.image} alt={`The cover for ${media.title}`} variant='top' />
@@ -251,27 +186,6 @@ function ProfileFeedCard(props) {
           <div className='scroll-box'>
             {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
           </div>
-          {/* <RateSaved
-            username={media.username}
-            // mediaType={'Book'}
-            media={media}
-            startRating={props.startRating}
-            selectedMediaRating={props.selectedMediaRating}
-            handleRatingFormSubmit={props.handleRatingFormSubmit}
-            setUserRating={props.setUserRating}
-            userRating={props.userRating}
-            setHover={props.setHover}
-            hover={props.hover}
-          />
-          <ReviewSaved
-            username={media.username}
-            // mediaType={'Book'}
-            media={media}
-            startReview={props.startReview}
-            selectedMediaReview={props.selectedMediaReview}
-            handleReviewFormSubmit={props.handleReviewFormSubmit}
-            setReviewInput={props.setReviewInput}
-          /> */}
           <LikeButton mediaLikes={media.likes}
             mediaType={props.mediaType}
             ownerId={media.userId}
@@ -288,10 +202,6 @@ function ProfileFeedCard(props) {
             ownerId={media.userId}
             commenterUsername={props.userData.username}
             mediaComments={media.comments} />
-          {/* <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMedia(media._id, media.mediaType)}> */}
-          {/* <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMovie(media._id)}>
-            Delete this Movie!
-          </Button> */}
         </Card.Body>
       </Card>
     );
@@ -306,11 +216,6 @@ function ProfileFeedCard(props) {
           <Card.Title>{media.username} saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
           </Card.Title>
-          {/* <MakeFavorite
-            username={media.username}
-            media={media}
-            makeFavorite={props.makeFavorite}
-          /> */}
           {media.image
             ? <div id="center-wrap">
               <Card.Img id="media-pic" src={media.image} alt={`The image for ${media.title}`} variant='top' />
@@ -343,27 +248,6 @@ function ProfileFeedCard(props) {
           <div className='scroll-box'>
             {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
           </div>
-          {/* <RateSaved
-            username={media.username}
-            // mediaType={'Book'}
-            media={media}
-            startRating={props.startRating}
-            selectedMediaRating={props.selectedMediaRating}
-            handleRatingFormSubmit={props.handleRatingFormSubmit}
-            setUserRating={props.setUserRating}
-            userRating={props.userRating}
-            setHover={props.setHover}
-            hover={props.hover}
-          />
-          <ReviewSaved
-            username={media.username}
-            // mediaType={'Book'}
-            media={media}
-            startReview={props.startReview}
-            selectedMediaReview={props.selectedMediaReview}
-            handleReviewFormSubmit={props.handleReviewFormSubmit}
-            setReviewInput={props.setReviewInput}
-          /> */}
           <LikeButton mediaLikes={media.likes}
             mediaType={props.mediaType}
             ownerId={media.userId}
@@ -380,10 +264,6 @@ function ProfileFeedCard(props) {
             ownerId={media.userId}
             commenterUsername={props.userData.username}
             mediaComments={media.comments} />
-          {/* <Button className='btn-block btn-danger' onClick={() => props.handleDeleteMedia(media._id, media.mediaType)}> */}
-          {/* <Button className='btn-block btn-danger' onClick={() => props.handleDeleteGame(media._id)}>
-            Delete this Game!
-          </Button> */}
         </Card.Body>
       </Card>
     );
