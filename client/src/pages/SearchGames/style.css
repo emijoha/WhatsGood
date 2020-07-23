@@ -11,16 +11,21 @@
 }
 
 #form-input {
-   
   border-radius: 40px;
   background: transparent;
-  color: black;
-  border: none;
+  color: black !important;
+  /* border: none; */
   border: 1px solid black;
   box-shadow: none;
   padding: 22px;
   font-size: 20px;
-  
+}
+
+#platform-select {
+  border-radius: 40px;
+  border: 1px solid black;
+  width: 100%;
+  padding: 12px;
 }
 
 #form-input:active, #form-input:focus {
