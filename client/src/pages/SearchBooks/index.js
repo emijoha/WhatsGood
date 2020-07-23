@@ -27,7 +27,7 @@ function SearchBooks() {
         const bookData = data.items.map((book) => ({
           mediaId: book.id,
           timeStamp: Date.now(),
-          createdAt: Date(), 
+          createdAt: Date(),
           authors: book.volumeInfo.authors || ['No author to display'],
           title: book.volumeInfo.title,
           description: book.volumeInfo.description,
@@ -47,7 +47,7 @@ function SearchBooks() {
     const bookToSave = {
       mediaId: book.mediaId,
       timeStamp: Date.now(),
-      createdAt: Date(), 
+      createdAt: Date(),
       authors: book.authors || ['No author to display'],
       title: book.title,
       description: book.description,
@@ -71,16 +71,16 @@ function SearchBooks() {
 
   return (
     <div id="container">
-      <div id="inner-container">
-        
-        <Container >
-        <h5 id="search-header">SEARCH BOOKS</h5>
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Row>
-            
-              <Col xs={12} s={12} md={8}>
+      <Row>
+        <Container id='search-wrap'>
+          <Row>
+            <Col xs={0} s={0} md={1} lg={2}></Col>
+            <Col xs={12} s={12} md={10} lg={8}>
+            <h5 id="search-heading">SEARCH BOOKS</h5>
+              <div id='form-hugger'>
+              <Form onSubmit={handleFormSubmit}>
                 <Form.Control
-                  id="form-input"
+                  id="api-search-input"
                   name='searchInput'
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
@@ -88,24 +88,25 @@ function SearchBooks() {
                   size='lg'
                   placeholder='Search for a book'
                 />
-                
-              </Col>
-              
-              <Button id="form-button" type='submit' variant='success' size='lg'>
+                <Button id="form-search-btn" type='submit' size='lg'>
                   SEARCH
                 </Button>
-            </Form.Row>
-          </Form>
+              </Form>
+              </div>
+            </Col>
+            <Col xs={0} s={0} md={2} lg={2}></Col>
+          </Row>
+          <hr></hr>
         </Container>
-      </div>
+      </Row>
       <Container>
-      <SearchCards 
-        cardType='searchedBooks'
-        resultArray={searchedBooks}
-        savedArray={userData.savedBooks}
-        username={userData.username}
-        cb={handleSaveMedia}
-      />
+        <SearchCards
+          cardType='searchedBooks'
+          resultArray={searchedBooks}
+          savedArray={userData.savedBooks}
+          username={userData.username}
+          cb={handleSaveMedia}
+        />
       </Container>
     </div>
   );

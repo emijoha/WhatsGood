@@ -332,8 +332,9 @@ function FriendProfile() {
           </Col>
           <Col xs={0} s={0} md={0} lg={2}></Col>
         </Row>
+        <hr></hr>
       </Container>
-      <hr></hr>
+     
       <Container width="100%">
         <Row id="main-body-row">
           <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
