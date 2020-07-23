@@ -83,7 +83,10 @@ function SavedCards(props) {
                     handleReviewFormSubmit={props.handleReviewFormSubmit}
                     setReviewInput={props.setReviewInput}
                   />
-                  <Button className='btn-block book-back' onClick={() => props.handleDeleteBook(book._id)}>
+                  <Button 
+                    className='btn-block delete-btn book-color book-border book-hover-fill' 
+                    onClick={() => props.handleDeleteBook(book._id)}
+                  >
                     Delete this Book!
                   </Button>
                 </Card.Body>
@@ -161,7 +164,7 @@ function SavedCards(props) {
                     handleReviewFormSubmit={props.handleReviewFormSubmit}
                     setReviewInput={props.setReviewInput}
                   />
-                  <Button className='btn-block music-back' onClick={() => props.handleDeleteMusic(music._id)}>
+                  <Button className='btn-block delete-btn music-color music-border music-hover-fill' onClick={() => props.handleDeleteMusic(music._id)}>
                     Delete!
                   </Button>
                 </Card.Body>
@@ -243,7 +246,9 @@ function SavedCards(props) {
                     handleReviewFormSubmit={props.handleReviewFormSubmit}
                     setReviewInput={props.setReviewInput}
                   />
-                  <Button className='btn-block movie-back' onClick={() => props.handleDeleteMovie(media._id)}>
+                  <Button 
+                    className='btn-block delete-btn movie-color movie-border movie-hover-fill' 
+                    onClick={() => props.handleDeleteMovie(media._id)}>
                     Delete this Movie!
                   </Button>
                 </Card.Body>
@@ -320,7 +325,9 @@ function SavedCards(props) {
                     handleReviewFormSubmit={props.handleReviewFormSubmit}
                     setReviewInput={props.setReviewInput}
                   />
-                  <Button className='btn-block game-back' onClick={() => props.handleDeleteGame(game._id)}>
+                  <Button 
+                    className='btn-block delete-btn game-color game-border game-hover-fill' 
+                    onClick={() => props.handleDeleteGame(game._id)}>
                     Delete this Game!
                   </Button>
                 </Card.Body>
@@ -332,7 +339,7 @@ function SavedCards(props) {
     );
   } else if (props.cardType === 'savedFriends') {
     let number = randomNum();
-    let background = ['book-back', 'music-back', 'movie-back', 'game-back'];
+    let media = ['book', 'music', 'movie', 'game'];
     return (
       <>
         <CardColumns>
@@ -352,7 +359,8 @@ function SavedCards(props) {
                       </Link>
                       <p className='by'><b>email:</b> {friend.email}</p>
                     </Card.Title>
-                    <Button className={`btn-block ${background[number - 1]}`} onClick={() => props.handleDeleteFriend(friend._id)}>
+                    <Button className={`btn-block delete-btn ${media[number]}-color ${media[number]}-border ${media[number]}-hover-fill`} 
+                      onClick={() => props.handleDeleteFriend(friend._id)}>
                       Remove Friend
                     </Button>
                   </Card.Body>
