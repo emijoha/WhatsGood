@@ -5,7 +5,7 @@ import moment from 'moment';
 import LikeButton from '../LikeButton';
 import CommentComponent from '../../components/CommentComponent'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faStar } from '@fortawesome/free-solid-svg-icons';
 // import UserInfoContext from '../../utils/UserInfoContext'
 import './style.css';
 
@@ -269,16 +269,18 @@ function FeedCard(props) {
     );
   } else {
     const media = props.media;
-    const mediatype= media.mediaType.toLowerCase();
+    const mediatype = media.mediaType.toLowerCase();
     const border = `${mediatype}-border`;
     console.log('from FeedCard: ', media, props.userData)
     return (
       <Card className={border} key={media.mediaId} border='dark'>
         <Card.Body>
-          {props.userData.picture
-            ? <Card.Img id="profile-pic" src={props.userData.picture} alt={props.userData.username} variant='top' />
-            : null}
-          <Card.Title>
+          <FontAwesomeIcon
+            id='profile-pic'
+            className={`${mediatype}-color star-icon`}
+            icon={faStar}
+          />
+          <Card.Title id='fav-title'>
             {props.userData.username} favorited this {media.mediaType.toLowerCase()}!
             <p className='small'>Saved {moment(media.createdAt).calendar()}</p>
           </Card.Title>
