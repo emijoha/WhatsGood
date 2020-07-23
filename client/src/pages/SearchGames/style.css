@@ -39,11 +39,11 @@ outline: none !important;
 }
 
 #form-button {
-  color: rgb(121, 38, 255) !important;
+  color: rgb(83, 0, 238) !important;
   font-weight: bold;
   background-color: rgba(255, 255, 255, 0) !important;
   border-radius: 40px;
-  color: rgb(121, 38, 255) !important;
+  color: rgb(83, 0, 238) !important;
   font-weight: bold;
   font-size: 20px;
   padding: 10px;
@@ -53,14 +53,13 @@ outline: none !important;
 }
 
 #form-button:hover {
-  color: rgb(219, 38, 255) !important;
+  color: rgb(255, 2, 234) !important;
   background-color: rgba(255, 255, 255, 0) !important;
-  border: 1px solid rgb(219, 38, 255) !important;
+  border: 1px solid rgbrgb(225, 2, 255) !important;
 }
 
 #search-header {
-
-  color: rgb(121, 38, 255) !important;
+  color: rgb(83, 0, 238) !important;
   margin-left: 30px;
 }
 
