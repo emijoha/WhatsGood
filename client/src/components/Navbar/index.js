@@ -27,7 +27,7 @@ function AppNavbar() {
   return (
     <>
       <Navbar sticky="top" expand='lg' id="new-navbar">
-        <Container fluid>
+        <Container fluid id='nav-container'>
           {userData.username
             ? <span>
               <Navbar.Brand className='shorten' id='purple-hover' as={Link} to='/home'>
@@ -94,14 +94,14 @@ function AppNavbar() {
                         { console.log("notification in navbar", notification) }
                         return (
                           <NotificationDropdownItem
-                          likerUsername={notification.likerUsername}
-                          title={notification.title}
-                          notificationId={notification._id}
-                          type={notification.type}
-                          mediaType={notification.mediaType}
-                          mediaId={notification.mediaId}
-                          followerId={notification.followerId}
-                          comment={notification.comment}/>
+                            likerUsername={notification.likerUsername}
+                            title={notification.title}
+                            notificationId={notification._id}
+                            type={notification.type}
+                            mediaType={notification.mediaType}
+                            mediaId={notification.mediaId}
+                            followerId={notification.followerId}
+                            comment={notification.comment} />
                         )
                       })}
                     </div>

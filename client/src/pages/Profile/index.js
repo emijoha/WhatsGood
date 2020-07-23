@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
-import { Container, Form, Button, Col, Row, Image } from 'react-bootstrap';
+import { Card, Container, Form, Button, Col, Row, Image } from 'react-bootstrap';
 
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
@@ -383,270 +383,151 @@ function ProfilePage() {
 
   return (
     <>
-      {/* <Container fluid id="profile-container">
-        <Row id="profile-row">
-          <Col md={3} className="justify-content-center"> */}
-      {/* <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
-          <h1>
-            {userData.username.toUpperCase()}'S PROFILE
-          </h1>
-        </Container>
-      </Jumbotron> */}
       <Row>
-        {/* <Col md={3} className="justify-content-center">
-            <div>
-              <Image
-                src={userData.picture}
-                alt={`${userData.username}'s face, probably`}
-                roundedCircle
-                className='img-fluid'
-              />
-              {userData.username && (
-                <>
-                  {(userData.bio !== '' || null)
-                    ?
-                    <div>
-
-                      {console.log("userData.bio", userData.bio)}
-                      <h6>
-                        A little about me:
-                      </h6>
-                      <p>
-                        {userData.bio}
-                      </p>
-                      <Button
-                        className='btn btn-success'
-                        onClick={() => setBioUpdate(true)}
-                      >
-                        Update Your Bio
-                      </Button>
-                    </div>
-                    :
-                    <>
-                      <Button
-                        className='btn btn-success'
-                        onClick={() => setBioUpdate(true)}
-                      >
-                        Add a Mini-Bio
-                    </Button>
-                    </>
-                  }
-                </>
-              )}
-
-              {bioUpdate &&
-                <>
-                  <Form>
-                    <Col>
-                      <Form.Control
-                        name='bio-text'
-                        value={bioText}
-                        onChange={(e) => setBioText(e.target.value)}
-                        type='text'
-                        size='md'
-                        as='textarea'
-                        rows='6'
-                        placeholder='enter your bio here'
-                      />
-                    </Col>
-                  </Form>
-                  <Button
-                    className='btn btn-succes'
-                    onClick={() => updateBio(bioText)}
-                  >
-                    Save Bio
-                </Button>
-                </>
-              }
-            </div>
-          </Col>
-          <Col md={9}>
-            <Row>
-              <Col>
-                <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} page={'profile'} username={userData.username} />
-              </Col>
-            </Row>
-            <Container width="100%">
-              <Row id="main-body-row">
-                <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
-                  <SideBar
-                    cb={handleRenderMediaPage}
-                    page={'profile'}
-                    username={userData.username}
-                  />
-                </Col>
-                <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >
-                  {myMediaState.map(media => {
-                      return (
-                        <ProfileFeedCard
-                          media={media}
-                          cb={handleSaveLike}
-                          mediaType={media.mediaType.toLowerCase()}
-                          userData={userData}
-                          startRating={startRating}
-                          selectedMediaRating={selectedMediaRating}
-                          handleRatingFormSubmit={handleRatingFormSubmit}
-                          setUserRating={setUserRating}
-                          setHover={setHover}
-                          hover={hover}
-                          userRating={userRating}
-                          startReview={startReview}
-                          selectedMediaReview={selectedMediaReview}
-                          handleReviewFormSubmit={handleReviewFormSubmit}
-                          reviewInput={reviewInput}
-                          setReviewInput={setReviewInput}
-                          handleDeleteMedia={handleDeleteMedia}
-                          makeFavorite={makeFavorite}
-                        />
-                        // <FeedCard
-                        //   mediaType='book'
-                        //   media={media}
-                        //   cb={handleSaveLike}
-                        //   userData={userData}
-                        // >
-                      );
-                    return;
-                  })}
-                  {myFavoriteState.map(media => {
-                    return (
-                    <FeedCard
-                      media={media}
-                      userData={userData}
-                    />
-                  )
-                })
-                }
-          </Col> */}
         <Col>
-          <Row>
-            <Col>
-              <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} page={'profile'} />
-            </Col>
-          </Row>
-          <Container width="100%">
-            <Row id="main-body-row">
-              <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
-                <SideBar
-                  cb={handleRenderMediaPage}
-                  page={'profile'}
-                />
-              </Col>
-              <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >
-                {myMediaState.map(media => {
-                  if (media.mediaType === 'Book') {
-                    return (
-                      <ProfileFeedCard
-                        media={media}
-                        cb={handleSaveLike}
-                        mediaType={'book'}
-                        userData={userData}
-                        startRating={startRating}
-                        selectedMediaRating={selectedMediaRating}
-                        handleRatingFormSubmit={handleRatingFormSubmit}
-                        setUserRating={setUserRating}
-                        setHover={setHover}
-                        hover={hover}
-                        userRating={userRating}
-                        startReview={startReview}
-                        selectedMediaReview={selectedMediaReview}
-                        handleReviewFormSubmit={handleReviewFormSubmit}
-                        reviewInput={reviewInput}
-                        setReviewInput={setReviewInput}
-                        handleDeleteMedia={handleDeleteMedia}
-                        makeFavorite={makeFavorite}
-                      />
-                    );
-                  } else if (media.mediaType === "Music") {
-                    return (
-                      <ProfileFeedCard
-                        media={media}
-                        cb={handleSaveLike}
-                        mediaType={'music'}
-                        userData={userData}
-                        startRating={startRating}
-                        selectedMediaRating={selectedMediaRating}
-                        handleRatingFormSubmit={handleRatingFormSubmit}
-                        setUserRating={setUserRating}
-                        setHover={setHover}
-                        hover={hover}
-                        userRating={userRating}
-                        startReview={startReview}
-                        selectedMediaReview={selectedMediaReview}
-                        handleReviewFormSubmit={handleReviewFormSubmit}
-                        reviewInput={reviewInput}
-                        setReviewInput={setReviewInput}
-                        handleDeleteMedia={handleDeleteMedia}
-                        makeFavorite={makeFavorite}
-                      />
-                    );
-                  } else if (media.mediaType === "Movie") {
-                    return (
-                      <ProfileFeedCard
-                        media={media}
-                        cb={handleSaveLike}
-                        mediaType={'movie'}
-                        userData={userData}
-                        startRating={startRating}
-                        selectedMediaRating={selectedMediaRating}
-                        handleRatingFormSubmit={handleRatingFormSubmit}
-                        setUserRating={setUserRating}
-                        setHover={setHover}
-                        hover={hover}
-                        userRating={userRating}
-                        startReview={startReview}
-                        selectedMediaReview={selectedMediaReview}
-                        handleReviewFormSubmit={handleReviewFormSubmit}
-                        reviewInput={reviewInput}
-                        setReviewInput={setReviewInput}
-                        handleDeleteMedia={handleDeleteMedia}
-                        makeFavorite={makeFavorite}
-                      />
-                    );
-                  } else if (media.mediaType === "Game") {
-                    return (
-                      <ProfileFeedCard
-                        media={media}
-                        cb={handleSaveLike}
-                        mediaType={'game'}
-                        userData={userData}
-                        startRating={startRating}
-                        selectedMediaRating={selectedMediaRating}
-                        handleRatingFormSubmit={handleRatingFormSubmit}
-                        setUserRating={setUserRating}
-                        setHover={setHover}
-                        hover={hover}
-                        userRating={userRating}
-                        startReview={startReview}
-                        selectedMediaReview={selectedMediaReview}
-                        handleReviewFormSubmit={handleReviewFormSubmit}
-                        reviewInput={reviewInput}
-                        setReviewInput={setReviewInput}
-                        handleDeleteMedia={handleDeleteMedia}
-                        makeFavorite={makeFavorite}
-                      />
-                    );
-                  };
-                  return;
-                })}
-                {myFavoriteState.map(media => {
-                  return (
-                    <FeedCard
-                      media={media}
-                      userData={userData}
-                    />
-                  )
-                })
-                }
-
-              </Col>
-              <Col xs={0} s={0} md={1} lg={3}>
-
-              </Col>
-            </Row>
-          </Container>
+          <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} page={'profile'} />
         </Col>
       </Row>
+      <Container width="100%">
+        <Row>
+          <Col xs={0} s={0} md={0} lg={2}></Col>
+          <Col xs={12} s={12} md={12} lg={8} >
+            <Card id='profile-card' key={userData.username}>
+              <Card.Body id='profile-card-body'>
+                <div id='profile-image'>
+                  <Card.Img
+                    src={userData.picture}
+                    alt={`${userData.username}'s face, probably`}
+                    roundedCircle
+                    className='img-fluid'
+                    id='my-profile-pic'
+                  ></Card.Img>
+                </div>
+                <div id='profile-info'>
+                  <Card.Title id='user-title'>
+                    <b>{userData.username}</b>
+                  </Card.Title>
+                  {userData.username && (
+                    <>
+                      {(userData.bio !== '' || null)
+                        ?
+                        <div>
+                          {console.log("userData.bio", userData.bio)}
+                          <p className='about-me' id='purple'>
+                            ABOUT ME <a
+                            className='btn bio-btn'
+                            onClick={() => setBioUpdate(true)}
+                          >Update Bio</a>
+                          </p>
+                          <div id='bio-scroll'>
+                            {userData.bio}
+                          </div>
+                          
+                        </div>
+                        :
+                        <>
+                          <a
+                            className='btn bio-btn'
+                            onClick={() => setBioUpdate(true)}
+                          >Add Bio</a>
+                          <br></br>
+                        </>
+                      }
+                    </>
+                  )}
+                  {bioUpdate &&
+                    <>
+                      <br></br>
+                      <Form>
+                        <Form.Control
+                          name='bio-text'
+                          value={bioText}
+                          onChange={(e) => setBioText(e.target.value)}
+                          type='text'
+                          size='md'
+                          as='textarea'
+                          rows='6'
+                          placeholder='enter your bio here'
+                        />
+                      </Form>
+                      <div className='text-center'>
+                        <a
+                          className='btn'
+                          id='purple-hover'
+                          onClick={() => updateBio(bioText)}
+                        ><b>SUBMIT</b></a>
+                      </div>
+                    </>
+                  }
+                  <Button
+                    className='btn'
+                    id='purple-back'
+                    href='/messages'
+                  >MESSAGES</Button>
+                  {/* <Card.Title id='user-states'>
+                  <p>
+                  <span>{userData.bookCount}</span> Books 
+                  <span>, {userData.musicCount}</span> Music 
+                  <span>{userData.movieCount}</span> Movies 
+                  <span>, {userData.gameCount}</span> Games 
+                  </p>
+                </Card.Title> */}
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col xs={0} s={0} md={0} lg={2}></Col>
+        </Row>
+      </Container>
+      <hr></hr>
+      <Container width="100%">
+        <Row id="main-body-row">
+          <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
+            <SideBar
+              cb={handleRenderMediaPage}
+              page='profile'
+              username={userData.username}
+            />
+          </Col>
+          <Col id="media-feed-column2" xs={12} s={12} md={10} lg={6} >
+
+            {myMediaState.map(media => {
+              return (
+                <ProfileFeedCard
+                  media={media}
+                  cb={handleSaveLike}
+                  mediaType={media.mediaType.toLowerCase()}
+                  userData={userData}
+                  startRating={startRating}
+                  selectedMediaRating={selectedMediaRating}
+                  handleRatingFormSubmit={handleRatingFormSubmit}
+                  setUserRating={setUserRating}
+                  setHover={setHover}
+                  hover={hover}
+                  userRating={userRating}
+                  startReview={startReview}
+                  selectedMediaReview={selectedMediaReview}
+                  handleReviewFormSubmit={handleReviewFormSubmit}
+                  reviewInput={reviewInput}
+                  setReviewInput={setReviewInput}
+                  handleDeleteMedia={handleDeleteMedia}
+                  makeFavorite={makeFavorite}
+                />
+              );
+            })}
+            {myFavoriteState.map(media => {
+              return (
+                <FeedCard
+                  media={media}
+                  userData={userData}
+                />
+              )
+            })}
+          </Col>
+          {/* <Col xs={0} s={0} md={1} lg={3}>
+          </Col> */}
+        </Row>
+      </Container>
     </>
   )
 }

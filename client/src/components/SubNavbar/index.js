@@ -13,8 +13,9 @@ function SubNavbar({ cb, page }) {
   //   userData.getUserData();
   // }, []);
 
+  
   return (
-    <div className="text-center" id="sub-navbar-menu">
+    <div className='text-center' id="sub-navbar-menu">
       <Table>
         <tr id="table-row">
           <td id="sub-navbar-th"><button id="side-bar-li" onClick={() => cb("all")}>ALL</button></td>
