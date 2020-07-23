@@ -6,7 +6,7 @@
 }
 
 .mediaImage {
-    border-radius: 0px !important;
+    border-radius: 50%;
     width: 70%;
     margin-top: 25px;
 }
