@@ -64,7 +64,7 @@
   margin-bottom: 0px;
 }
 
-#search-icon {
+.search-icon {
   font-size: 2.2rem !important;
   padding: 6px;
   cursor: pointer;

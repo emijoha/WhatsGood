@@ -90,8 +90,8 @@ function App() {
             <Route exact path='/search_movies' component={SearchMovies} />
             <Route exact path='/saved_movies' component={SavedMovies} />
             <Route exact path='/saved_media' component={SavedMedia} />
-            <Route exact path='/search-user' component={SearchUser} />
-            <Route exact path='/saved-friends' component={SavedFriends} />
+            <Route exact path='/search_user' component={SearchUser} />
+            <Route exact path='/saved_friends' component={SavedFriends} />
             <Route exact path='/search_games' component={SearchGames} />
             <Route exact path='/saved_games' component={SavedGames} />
             <Route exact path='/messages' component={Messages} />

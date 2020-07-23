@@ -91,26 +91,41 @@ function SearchBooks() {
                     placeholder='Search for a book'
                   />
                   <p className='search-icon-group'>
-                    <FontAwesomeIcon
-                      id='search-icon'
-                      icon={faMusic}
-                    />
-                    <FontAwesomeIcon
-                      id='search-icon'
-                      icon={faVideo}
-                    />
-                    <FontAwesomeIcon
-                      id='search-icon'
-                      icon={faGamepad}
-                    />
-                    <FontAwesomeIcon
-                      id='search-icon'
-                      icon={faBookOpen}
-                    />
-                    <FontAwesomeIcon
-                      id='search-icon'
-                      icon={faUserCircle}
-                    />
+                    <a href='/search_music'>
+                      <FontAwesomeIcon
+                        className='search-icon'
+                        id='neon-hover'
+                        icon={faMusic}
+                      />
+                    </a>
+                    <a href='/search_movies'>
+                      <FontAwesomeIcon
+                        className='search-icon'
+                        id='neon-hover'
+                        icon={faVideo}
+                      />
+                    </a>
+                    <a href='/search_games'>
+                      <FontAwesomeIcon
+                        className='search-icon'
+                        id='neon-hover'
+                        icon={faGamepad}
+                      />
+                    </a>
+                    <a href='/search_books'>
+                      <FontAwesomeIcon
+                        className='search-icon'
+                        id='neon-hover'
+                        icon={faBookOpen}
+                      />
+                    </a>
+                    <a href='/search_user'>
+                      <FontAwesomeIcon
+                        className='search-icon'
+                        id='neon-hover'
+                        icon={faUserCircle}
+                      />
+                    </a>
                   </p>
                   <Button id="form-search-btn" type='submit' size='lg'>
                     SEARCH
