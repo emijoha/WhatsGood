@@ -63,6 +63,7 @@ function ProfileFeedCard(props) {
             title={media.title}
             cb={props.cb}
             userData={props.userData}
+            page='profile'
           />
           <CommentComponent
             comments={media.comments}
@@ -131,6 +132,7 @@ function ProfileFeedCard(props) {
             title={media.title}
             cb={props.cb}
             userData={props.userData}
+            page='profile'
           />
           <CommentComponent
             comments={media.comments}
@@ -193,6 +195,7 @@ function ProfileFeedCard(props) {
             title={media.title}
             cb={props.cb}
             userData={props.userData}
+            page='profile'
           />
           <CommentComponent
             comments={media.comments}
@@ -255,6 +258,7 @@ function ProfileFeedCard(props) {
             title={media.title}
             cb={props.cb}
             userData={props.userData}
+            page='profile'
           />
           <CommentComponent
             comments={media.comments}
