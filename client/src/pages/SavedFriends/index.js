@@ -9,81 +9,81 @@ import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
 import SavedCards from '../../components/SavedCards';
 function SavedFriends() {
-    // const [friendsArray, setFriendsArray] = useState([]);
-    // get whole userData state object from App.js
-    const userData = useContext(UserInfoContext);
-    // useEffect(() => {
-    //     console.log("user data Id", userData)
+  // const [friendsArray, setFriendsArray] = useState([]);
+  // get whole userData state object from App.js
+  const userData = useContext(UserInfoContext);
+  // useEffect(() => {
+  //     console.log("user data Id", userData)
 
-    //     if (userData._id !== '') {
-    //         API.getUser(userData._id)
-    //             .then(result => {
-    //                 console.log("RESULT DATA FRIENDS", result.data.friends);
-    //                 setFriendsArray(friendsArray => [...friendsArray], result.data.friends);
-    //             });
-    //     }
+  //     if (userData._id !== '') {
+  //         API.getUser(userData._id)
+  //             .then(result => {
+  //                 console.log("RESULT DATA FRIENDS", result.data.friends);
+  //                 setFriendsArray(friendsArray => [...friendsArray], result.data.friends);
+  //             });
+  //     }
 
-    // }, [userData]);
+  // }, [userData]);
 
 
-    // OLD WAY TO GET FRIENDS
-    // useEffect(() => {
+  // OLD WAY TO GET FRIENDS
+  // useEffect(() => {
 
-    //    console.log("mounted")
-    //    console.log("USER DATA INSIDE USE EFFECT", userData.friends)
-    //     userData.friends.map(friend => {
+  //    console.log("mounted")
+  //    console.log("USER DATA INSIDE USE EFFECT", userData.friends)
+  //     userData.friends.map(friend => {
 
-    //         console.log("this is friend", friend)
-    //         API.getUser(friend)
-    //             .then(result => {
+  //         console.log("this is friend", friend)
+  //         API.getUser(friend)
+  //             .then(result => {
 
-    //             setFriendsArray(friendsArray => [...friendsArray, result.data])
-    //             })
-    //     });
-    // }, [userData, userData.friends]);
+  //             setFriendsArray(friendsArray => [...friendsArray, result.data])
+  //             })
+  //     });
+  // }, [userData, userData.friends]);
 
-    // create function that accepts the friend's mongo _id value as param and deletes the friend from current user's collection
-    const handleDeleteFriend = (friend_id) => {
-        // get token
-        const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+  // create function that accepts the friend's mongo _id value as param and deletes the friend from current user's collection
+  const handleDeleteFriend = (friend_id) => {
+    // get token
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
-        if (!token) {
-            return false;
-        }
+    if (!token) {
+      return false;
+    }
 
-        API.deleteFriend(friend_id, token)
-            // upon succes, update user data to reflect book change
-            .then(() => userData.getUserData(),
-                console.log("made it back"))
-            .catch((err) => console.log(err));
-    };
+    API.deleteFriend(friend_id, token)
+      // upon succes, update user data to reflect book change
+      .then(() => userData.getUserData(),
+        console.log("made it back"))
+      .catch((err) => console.log(err));
+  };
 
-    return (
-        <div id="container">
-            {userData.username ?
-                <div>
-                     <div id="header-div">
-           
-           {userData.friends.length === 0
-                         ?  <div id="no-media-div">
-                         <p><h5 className="text-center" id="header">LOOKS EMPTY IN HERE.</h5></p>
-                         <p><h5 className="text-center" id="highlight-header">GO TO SEARCH AND ADD SOME FRIENDS!</h5></p>
-                         </div>
-                         : <h5 className="text-center" id="header">MY FRIENDS</h5>}
-               
-          
-           </div>
-                    <Container>
-                        <SavedCards
-                            cardType='savedFriends'
-                            savedArray={userData.friends}
-                            handleDeleteFriend={handleDeleteFriend}
-                        />
-                    </Container>
-                </div> :
-                <NotLoggedIn />}
-        </div>
-    );
+  return (
+    <div id="container">
+      {userData.username ?
+        <div>
+          <div id="header-div">
+
+            {userData.friends.length === 0
+              ? <div id="no-media-div">
+                <p><h5 className="text-center" id="header">LOOKS EMPTY IN HERE.</h5></p>
+                <p><h5 className="text-center" id="highlight-header">GO TO SEARCH AND ADD SOME FRIENDS!</h5></p>
+              </div>
+              : <h5 className="text-center" id="header">MY FRIENDS</h5>}
+
+
+          </div>
+          <Container>
+            <SavedCards
+              cardType='savedFriends'
+              savedArray={userData.friends}
+              handleDeleteFriend={handleDeleteFriend}
+            />
+          </Container>
+        </div> :
+        <NotLoggedIn />}
+    </div>
+  );
 }
 
 export default SavedFriends;

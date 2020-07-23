@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { Card, Container, Form, Button, Col, Row, Image } from 'react-bootstrap';
-
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
@@ -47,6 +46,10 @@ function ProfilePage() {
   function compareTimeStamp(a, b) {
     return b.timeStamp - a.timeStamp;
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [myMediaState, myFavoriteState]);
 
   // to pass into notifications so user knows who liked something
   // const likerId = userData._id;
@@ -478,8 +481,9 @@ function ProfilePage() {
           </Col>
           <Col xs={0} s={0} md={0} lg={2}></Col>
         </Row>
+        <hr></hr>
       </Container>
-      <hr></hr>
+      
       <Container width="100%">
         <Row id="main-body-row">
           <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
@@ -498,20 +502,20 @@ function ProfilePage() {
                   cb={handleSaveLike}
                   mediaType={media.mediaType.toLowerCase()}
                   userData={userData}
-                  startRating={startRating}
+                  // startRating={startRating}
                   selectedMediaRating={selectedMediaRating}
-                  handleRatingFormSubmit={handleRatingFormSubmit}
-                  setUserRating={setUserRating}
-                  setHover={setHover}
-                  hover={hover}
-                  userRating={userRating}
-                  startReview={startReview}
+                  // handleRatingFormSubmit={handleRatingFormSubmit}
+                  // setUserRating={setUserRating}
+                  // setHover={setHover}
+                  // // hover={hover}
+                  // userRating={userRating}
+                  // startReview={startReview}
                   selectedMediaReview={selectedMediaReview}
-                  handleReviewFormSubmit={handleReviewFormSubmit}
-                  reviewInput={reviewInput}
-                  setReviewInput={setReviewInput}
-                  handleDeleteMedia={handleDeleteMedia}
-                  makeFavorite={makeFavorite}
+                  // handleReviewFormSubmit={handleReviewFormSubmit}
+                  // reviewInput={reviewInput}
+                  // setReviewInput={setReviewInput}
+                  // handleDeleteMedia={handleDeleteMedia}
+                  // makeFavorite={makeFavorite}
                 />
               );
             })}
@@ -520,6 +524,7 @@ function ProfilePage() {
                 <FeedCard
                   media={media}
                   userData={userData}
+                  cb={handleSaveLike}
                 />
               )
             })}

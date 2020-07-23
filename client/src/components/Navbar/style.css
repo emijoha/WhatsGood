@@ -13,12 +13,12 @@
 }
 
 /* change to whatever final logo font is */
-.logo-text {
+/* .logo-text {
   font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
   font-size: 1.7rem;
   margin: 0;
-}
+} */
 
 .logo-text-main {
   font-family: 'Montserrat', sans-serif;
@@ -28,6 +28,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .logo-text-main {
+    font-size: 1.25rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 439px) {
+  .logo-text-main {
+    padding-top: 8px;
+    font-size: 0.95rem;
+  }
 }
 
 .nav-link-group {

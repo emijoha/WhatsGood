@@ -17,28 +17,32 @@ function FriendProfile() {
   const [friendMediaState, setFriendMediaState] = useState([]);
   const [friendFavoritesState, setFriendFavoritesState] = useState([]);
   const [friend, setFriend] = useState([]);
+  const [queryStringId, setQueryStringId] = useState('');
 
+  useEffect(() => {
+    setQueryStringId(window.location.search.split('=')[1]);
+    API.getUser(queryStringId)
+    .then((res) => {
+      setFriend(res.data);
+    })
+    .catch((err) => console.log(err));
+  }, [queryStringId !== window.location.search.split('=')[1]]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [friendMediaState, friendFavoritesState]);
+
+  useEffect(() => {
+    setFriendMediaState([]);
+    setFriendFavoritesState([]);
+    renderAllMedia();
+  }, [friend]);
 
   function compareTimeStamp(a, b) {
     return b.timeStamp - a.timeStamp;
   }
 
   const likerUsername = userData.username;
-
-  useEffect(() => {
-    setFriendMediaState([]);
-    setFriendFavoritesState([]);
-    renderAllMedia();
-  }, [userData.username]);
-
-  useEffect(() => {
-    API.getUser('5f120a454794944654a9018c')
-      .then((res) => {
-        setFriend(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes, ownerId, title) => {
     // find the friend in `searchedUser` state by the matching id
@@ -291,7 +295,7 @@ function FriendProfile() {
                         ?
                         <div>
                           <p className='about-me' id='purple'>
-                            ABOUT ME 
+                            ABOUT ME
                           </p>
                           <div id='bio-scroll'>
                             {friend.bio}
@@ -299,8 +303,8 @@ function FriendProfile() {
                         </div>
                         :
                         <>
-                        <p className='about-me' id='purple'>
-                            ABOUT ME 
+                          <p className='about-me' id='purple'>
+                            ABOUT ME
                           </p>
                           <div id='bio-scroll'>
                             What's good? Not this bio! This user has not submitted a bio yet.
@@ -309,11 +313,11 @@ function FriendProfile() {
                       }
                     </>
                   )}
-                  <Button
+                  {/* <Button
                     className='btn'
                     id='purple-back'
                     href='/messages'
-                  >MESSAGES</Button>
+                  >MESSAGES</Button> */}
                   {/* <Card.Title id='user-states'>
                   <p>
                   <span>{userData.bookCount}</span> Books 
@@ -328,8 +332,9 @@ function FriendProfile() {
           </Col>
           <Col xs={0} s={0} md={0} lg={2}></Col>
         </Row>
+        <hr></hr>
       </Container>
-      <hr></hr>
+     
       <Container width="100%">
         <Row id="main-body-row">
           <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useCallback } from 'react';
-import { Jumbotron, Container, Col, Form, Button } from 'react-bootstrap';
+import { Jumbotron, Row, Container, Col, Form, Button } from 'react-bootstrap';
 
 import * as API from '../../utils/API';
 import UserInfoContext from '../../utils/UserInfoContext';
@@ -7,6 +7,9 @@ import AuthService from '../../utils/auth';
 // import { saveMovie, searchOMDB, searchEachMovie, } from '../utils/API';
 // import { saveUserRating, saveMovieReview } as API from '../utils/API';
 import SearchCards from '../../components/SearchCards';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVideo, faBookOpen, faGamepad, faMusic, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import './style.css';
 
 function SearchMovies() {
   // create state for holding returned omdb api data
@@ -97,31 +100,71 @@ function SearchMovies() {
 
   return (
     <div id="container">
-      <div id="inner-container">
-        <Container>
-        <h5 id="search-header">SEARCH MOVIES</h5>
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Row>
-              <Col xs={12} md={8}>
-                <Form.Control
-                  id="form-input"
-                  name='searchInput'
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  type='text'
-                  size='lg'
-                  placeholder='Search for a movie'
-                />
-              </Col>
-              <Col xs={12} md={4}>
-                <Button id="form-button" type='submit' variant='success' size='lg'>
-                  SEARCH
+      <Row>
+        <Container id='search-wrap'>
+          <Row>
+            <Col xs={0} s={0} md={1} lg={2}></Col>
+            <Col xs={12} s={12} md={10} lg={8}>
+              <h5 id="search-heading">SEARCH MOVIES</h5>
+              <div id='form-hugger'>
+                <Form onSubmit={handleFormSubmit}>
+                  <Form.Control
+                    id="api-search-input"
+                    name='searchInput'
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
+                    type='text'
+                    size='lg'
+                    placeholder='Search for a movie'
+                  />
+                  <p className='search-icon-group'>
+                    <a href='/search_music'>
+                      <FontAwesomeIcon
+                        className='search-icon'
+                        id='neon-hover'
+                        icon={faMusic}
+                      />
+                    </a>
+                    <a href='/search_movies'>
+                      <FontAwesomeIcon
+                        className='search-icon'
+                        id='neon-hover'
+                        icon={faVideo}
+                      />
+                    </a>
+                    <a href='/search_games'>
+                      <FontAwesomeIcon
+                        className='search-icon'
+                        id='neon-hover'
+                        icon={faGamepad}
+                      />
+                    </a>
+                    <a href='/search_books'>
+                      <FontAwesomeIcon
+                        className='search-icon'
+                        id='neon-hover'
+                        icon={faBookOpen}
+                      />
+                    </a>
+                    <a href='/search_user'>
+                      <FontAwesomeIcon
+                        className='search-icon'
+                        id='neon-hover'
+                        icon={faUserCircle}
+                      />
+                    </a>
+                  </p>
+                  <Button id="form-search-btn" type='submit' size='lg'>
+                    SEARCH
                 </Button>
-              </Col>
-            </Form.Row>
-          </Form>
+                </Form>
+              </div>
+            </Col>
+            <Col xs={0} s={0} md={1} lg={2}></Col>
+          </Row>
+          <hr></hr>
         </Container>
-      </div>
+      </Row>
       <Container>
         <SearchCards
         cardType='searchedMovies'

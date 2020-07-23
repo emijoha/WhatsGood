@@ -31,6 +31,10 @@ function Home() {
     renderAllMedia();
   }, [userData.username]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
+
   function renderAllMedia() {
     userData.friends.map(friend => {
       API.getUser(friend.id)
