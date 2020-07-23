@@ -6,27 +6,27 @@ import UserInfoContext from '../../utils/UserInfoContext';
 import "./style.css";
 
 function Signup() {
-  
+
   const userData = useContext(UserInfoContext);
 
   return (
-
-    userData.username ? window.location.assign('/home') :
-    
-  
+    userData.username
+      ?
+      window.location.assign('/home')
+      :
       <Row className="justify-content-center">
-      <Col id="signup-card-column" xs={12} md={6} >
-      <Container>
-      <div className="signup-card">
-      <SignupForm />
-      <div className="login-link">
-      <Link as={Link} to='/'>
-        LOGIN
-      </Link>
-      </div>
-      </div>
-      </Container>
-      </Col>
+        <Col id="signup-card-column" xs={12} md={6} >
+          <Container>
+            <div className="signup-card">
+              <SignupForm />
+              <div className="login-link">
+                <Link id='neon-hover' className='login-link' as={Link} to='/'>
+                  LOGIN
+                </Link>
+              </div>
+            </div>
+          </Container>
+        </Col>
       </Row>
   );
 }
