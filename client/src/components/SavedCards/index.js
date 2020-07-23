@@ -1,5 +1,6 @@
 import React from 'react';
 import { CardColumns, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faBookOpen, faGamepad, faMusic } from '@fortawesome/free-solid-svg-icons'; import ReactAudioPlayer from 'react-audio-player';
 import RateSaved from '../RateSaved';
@@ -349,8 +350,8 @@ function SavedCards(props) {
       </>
     );
   } else if (props.cardType === 'savedFriends') {
-      let number = randomNum();
-      let background = ['book-back', 'music-back', 'movie-back', 'game-back'];
+    let number = randomNum();
+    let background = ['book-back', 'music-back', 'movie-back', 'game-back'];
     return (
       <>
         <CardColumns>
@@ -360,10 +361,14 @@ function SavedCards(props) {
 
               <Card className={`friend-border${number}`} key={friend._id} border='dark'>
                 <div className='center-wrap'>
-                  <Card.Img className='mediaImage' src={friend.picture} alt={friend.username} variant='top' />
+                  <Link to={`/friend_profile?id=${friend._id}`}>
+                    <Card.Img className='mediaImage' src={friend.picture} alt={friend.username} variant='top' />
+                  </Link>
                   <Card.Body>
                     <Card.Title>
-                      <b>{friend.username.toUpperCase()}</b>
+                      <Link to={`/friend_profile?id=${friend._id}`}>
+                        <b>{friend.username.toUpperCase()}</b>
+                      </Link>
                       <p className='by'><b>email:</b> {friend.email}</p>
                     </Card.Title>
                     <Button className={`btn-block ${background[number - 1]}`} onClick={() => props.handleDeleteFriend(friend._id)}>

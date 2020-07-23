@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { Card, Container, Form, Button, Col, Row, Image } from 'react-bootstrap';
-
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
@@ -47,6 +46,10 @@ function ProfilePage() {
   function compareTimeStamp(a, b) {
     return b.timeStamp - a.timeStamp;
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [myMediaState, myFavoriteState]);
 
   // to pass into notifications so user knows who liked something
   // const likerId = userData._id;
