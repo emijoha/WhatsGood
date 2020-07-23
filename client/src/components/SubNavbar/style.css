@@ -45,6 +45,12 @@
   }
 }
 
+@media screen and (max-width: 439px) {
+  #side-bar-li {
+    font-size: 0.75rem;
+  }
+}
+
 
 
 
