@@ -1,0 +1,38 @@
+{
+  "name": "googlebooks-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "cd server && npm start",
+    "start:dev": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "heroku-postbuild": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@work.github.com:arosenkranz/googlebooks-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "axios": "^0.19.2",
+    "if-env": "^1.0.4",
+    "moment": "^2.27.0",
+    "react-audio-player": "^0.13.0",
+    "react-icon": "^1.0.0",
+    "react-icons": "^3.10.0",
+    "react-router-dom": "^5.2.0",
+    "react-scroll": "^1.8.0",
+    "react-simple-chatbot": "^0.6.1",
+    "styled-components": "^5.1.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0"
+  }
+}

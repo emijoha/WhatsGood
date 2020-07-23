@@ -29,14 +29,13 @@ const {
   saveUserRating,
   addNotification,
   deleteNotification,
-  makeFavorite,
-  deleteMedia,
   getBook,
   getGame,
   getMovie,
   getMusic,
   saveChat,
-  saveMessage
+  saveMessage,
+  makeFavorite
 } = require('../../controllers/user-controller');
 
 // import middleware
@@ -65,8 +64,6 @@ router.route('/games/:id').delete(authMiddleware, deleteGame).put(addGameLike).g
 router.route('/music/:id').delete(authMiddleware, deleteMusic).put(addMusicLike).get(getMusic);
 
 router.route('/movies/:id').delete(authMiddleware, deleteMovie).put(addMovieLike).get(getMovie);
-
-router.route('/media/:type/:id').delete(authMiddleware, deleteMedia);
 
 router.route('/music').get(getAllUsers).put(authMiddleware, saveMusic);
 

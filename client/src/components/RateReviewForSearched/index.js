@@ -17,6 +17,8 @@ function RateReviewForSearched(props) {
 
         let icon;
 
+        console.log('mediaType: ', props.mediaTypeSg);
+
         switch (props.mediaTypeSg) {
             case 'Book':
                 icon = faBookOpen;
@@ -53,7 +55,7 @@ function RateReviewForSearched(props) {
                             <div className='center-wrap'>
                                 <p className='already-saved'>This {props.mediatype} has already been saved!</p>
                                 <Link to={props.link}>
-                                    <Button className={`btn-block ${props.mediatype}-back`} onClick={() => console.log((props.media))}  >
+                                    <Button className='btn-block btn-success' onClick={() => console.log((props.media))}  >
                                         Go to My {props.mediaType}
                                     </Button>
                                 </Link>
@@ -63,7 +65,7 @@ function RateReviewForSearched(props) {
                         <>
                             {console.log('savedArray: ', props.savedArray, 'media: ', props.media.mediaId)}
                             <div className='center-wrap'>
-                                <p className={`ratingReviewHeading ${props.mediatype}-border`}>Rate</p>
+                                <p className='ratingReviewHeading'>Rate</p>
                                 <p className='rating'>
                                     {[...Array(5)].map((star, i) => {
                                         const ratingValue = i + 1;
@@ -77,7 +79,7 @@ function RateReviewForSearched(props) {
                                         )
                                     })}
                                 </p>
-                                <p className={`ratingReviewHeading ${props.mediatype}-border`}>Review</p>
+                                <p className='ratingReviewHeading'>Review</p>
                             </div>
                             <Form>
                                 <Form.Control
@@ -93,7 +95,7 @@ function RateReviewForSearched(props) {
                                 />
                             </Form>
                             <Button
-                                className={`btn-block ${props.mediatype}-back`}
+                                className='btn-block btn-info'
                                 onClick={() => props.cb(props.media, userRating, reviewInput)}>
                                 Save this {props.mediaTypeSg}
                             </Button>

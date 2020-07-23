@@ -3,62 +3,45 @@
     /* backdrop-filter: blur(500px); */
     position: fixed;
     width: 100%;
-    z-index: 2 !important;
-    padding: 2.5px;
+    z-index: 1 !important;
    
 }
 
-/* change to whatever final logo font is */
-.logo-text {
+h5 {
     font-family: 'Montserrat', sans-serif;
     font-weight: bolder;
-    font-size: 1.7rem;
-    margin: 0;
+    font-size: 35px;
   }
 
-  .logo-text-main {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bolder;
-    font-size: 1.65rem;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .nav-link-group {
+   margin-top: 2%;
+   font-size: 20px;
+   
   }
-
-.nav-link-group {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 500;
-  font-size: 1.15rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.shorten {
-  margin-right: 0;
-}
 
   a {
-      color: black;
-      background-color: transparent;
+      color: black !important;
+      
   }
 
- /* a:active {
-    color: rgb(106, 0, 206) !important;
- } */
+ a:active {
+    color: rgb(121, 38, 255) !important;
+
+ }
 
 
  a:hover {
-  /* color: rgb(106, 0, 206) !important; */
-    text-decoration: none;
+    color: rgb(121, 38, 255) !important;
  }
 
   .btn {
       content: none;
       background: none;
-      border: none;   
+      border: none;
+      
   }
+
+  
 
   .btn:hover {
     content: none;

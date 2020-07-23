@@ -12,6 +12,10 @@ input {
     padding-left: 0.5rem;
 }
 
+.btn {
+    background-color: blueviolet;
+}
+
 .center-wrap {
     position: relative;
     width: 100%;
@@ -19,7 +23,7 @@ input {
 }
 
 .ratingReviewHeading {
-    border-bottom: solid 3px;
+    border-bottom: solid 1px black;
     font-weight: 500;
     color: black;
 }
@@ -37,4 +41,3 @@ input {
     font-size: 0.85rem;
     font-style: italic;
 }
-

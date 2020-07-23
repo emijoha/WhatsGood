@@ -7,9 +7,10 @@ import RateReviewForSearched from '../RateReviewForSearched';
 import './style.css';
 
 function SearchCards(props) {
-  function randomNum() {
-    return Math.floor(Math.random() * 4) + 1;
-  }
+
+    function randomNum() {
+        return Math.floor(Math.random() * 4) + 1;
+    }
 
     if (props.cardType === 'searchedBooks') {
         return (
@@ -21,8 +22,8 @@ function SearchCards(props) {
                 <CardColumns>
                     {props.resultArray.map((book) => {
                         return (
-                          
-                            <Card className='book-border' key={book.mediaId} border='dark'>
+
+                            <Card className={`book-border${randomNum()}`} key={book.mediaId} border='dark'>
                                 <div className='center-wrap'>
                                     {book.image ? <Card.Img className='mediaImage' src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
                                 </div>
@@ -65,7 +66,7 @@ function SearchCards(props) {
                     {props.resultArray.map((music) => {
                         return (
 
-                            <Card className='music-border' key={music.mediaId} border='dark'>
+                            <Card className={`music-border${randomNum()}`} key={music.mediaId} border='dark'>
                                 <div className='center-wrap'>
                                     {music.image ? <Card.Img className='mediaImage' src={music.image} alt={`The cover for ${music.title}`} variant='top' /> : null}
                                 </div>
@@ -109,7 +110,7 @@ function SearchCards(props) {
                     {props.resultArray.map((media) => {
                         return (
 
-                            <Card className='movie-border' key={media.mediaId} border='dark'>
+                            <Card className={`movie-border${randomNum()}`} key={media.mediaId} border='dark'>
                                 <div className='center-wrap'>
                                     {media.image === 'N/A' ? null : <Card.Img className='mediaImage' src={media.image} alt={`The cover for ${media.title}`} variant='top' />}
                                 </div>
@@ -153,7 +154,7 @@ function SearchCards(props) {
                 <CardColumns>
                     {props.resultArray.map((game) => {
                         return (
-                            <Card className='game-border' key={game.mediaId} border='dark'>
+                            <Card className={`game-border${randomNum()}`} key={game.mediaId} border='dark'>
                                 <div className='center-wrap'>
                                     {game.image ? <Card.Img className='mediaImage' src={game.image} alt={`The cover for ${game.title}`} variant='top' /> : null}
                                 </div>
@@ -189,7 +190,7 @@ function SearchCards(props) {
             <>
                 <CardColumns>
 
-                    <Card className={`friend-border${randomNum()}`} key={props.searchedUser._id} border='dark'>
+                    <Card key={props.searchedUser._id} border='dark'>
                         <div className='center-wrap'>
                             <Card.Img className='mediaImage' src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
                             <Card.Body>

@@ -29,18 +29,18 @@
 }
 
 .form-button {
-    color: rgb(106, 0, 206);
+    color: rgb(75, 0, 196) !important;
     font-weight: bold;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0) !important;
     border-radius: 40px;
-    border: 1px solid rgb(106, 0, 206);
+    border: 1px solid rgb(75, 0, 196) !important;
     font-weight: bold;
     margin-top: 20px;
 }
 
 .form-button:hover {
-    color: rgb(183, 2, 255);
-    background-color: rgba(255, 255, 255, 0);
+    color: rgb(183, 0, 255) !important;
+    background-color: rgba(255, 255, 255, 0) !important;
     border-radius: 40px;
-    border: 1px solid rgb(183, 2, 255);
+    border: 1px solid rgb(183, 0, 255) !important;
 }
