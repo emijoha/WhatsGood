@@ -103,7 +103,7 @@ function SignupForm() {
         </Form.Group>
         <div className="text-right">
         <Button
-          className="form-button"
+          id="form-button"
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
           variant='success'>

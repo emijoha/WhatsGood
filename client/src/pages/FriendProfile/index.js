@@ -5,161 +5,40 @@ import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
 import FeedCard from '../../components/FeedCard';
-import ProfileFeedCard from '../../components/ProfileFeedCard';
+import FriendProfileFeedCard from '../../components/FriendProfileFeedCard';
 import SideBar from '../../components/SideBar';
 import SubNavbar from '../../components/SubNavbar';
 import './style.css';
 
-function ProfilePage() {
+function FriendProfile() {
 
   const userData = useContext(UserInfoContext);
 
-  const [bioUpdate, setBioUpdate] = useState(false);
-  const [bioText, setBioText] = useState('');
+  const [friendMediaState, setFriendMediaState] = useState([]);
+  const [friendFavoritesState, setFriendFavoritesState] = useState([]);
+  const [friend, setFriend] = useState([]);
 
 
-  const updateBio = (bioText) => {
-
-    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
-
-    API.saveUserBio({ bioText }, token)
-      .then(() => setBioText(''))
-      .then(() => setBioUpdate(false))
-      .then(() => userData.getUserData())
-      .catch((err) => console.log(err));
-  }
-
-  const [reviewInput, setReviewInput] = useState('');
-  const [userRating, setUserRating] = useState(0);
-  const [hover, setHover] = useState(null);
-
-  // set state to activate review form
-  const [selectedMediaReview, setSelectedMediaReview] = useState('');
-  const [selectedMediaRating, setSelectedMediaRating] = useState(0);
-
-  const [myMediaState, setMyMediaState] = useState([]);
-  const [myFavoriteState, setMyFavoriteState] = useState([]);
 
   function compareTimeStamp(a, b) {
     return b.timeStamp - a.timeStamp;
   }
 
-  // to pass into notifications so user knows who liked something
-  // const likerId = userData._id;
   const likerUsername = userData.username;
 
   useEffect(() => {
-    setMyMediaState([]);
-    setMyFavoriteState([]);
+    setFriendMediaState([]);
+    setFriendFavoritesState([]);
     renderAllMedia();
   }, [userData.username]);
 
-  const makeFavorite = (media) => {
-
-    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
-
-    let isFavorite;
-
-    if (media.userFavorite === true) {
-      isFavorite = false;
-    } else {
-      isFavorite = true;
-    }
-
-    let updateCriteria = {
-      type: media.mediaType,
-      id: media._id,
-      favorite: isFavorite
-    }
-
-    API.makeFavorite(updateCriteria, token)
-      .then(() => userData.getUserData())
+  useEffect(() => {
+    API.getUser('5f120a454794944654a9018c')
+      .then((res) => {
+        setFriend(res.data);
+      })
       .catch((err) => console.log(err));
-  }
-
-  const startReview = (media) => {
-
-    setSelectedMediaReview(media);
-  }
-
-  const handleReviewFormSubmit = (event) => {
-    event.preventDefault();
-
-    saveUserReview();
-  }
-
-  const saveUserReview = () => {
-
-    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
-
-    let updateCriteria = {
-      type: selectedMediaReview.mediaType,
-      id: selectedMediaReview._id,
-      review: reviewInput
-    }
-
-    API.saveUserReview(updateCriteria, token)
-      .then(() => setReviewInput(''))
-      .then(() => setSelectedMediaReview(''))
-      .then(() => userData.getUserData())
-      .catch((err) => console.log(err));
-  }
-
-  const startRating = (media) => {
-
-    setSelectedMediaRating(media);
-  }
-
-  const handleRatingFormSubmit = (event) => {
-    event.preventDefault();
-
-    saveUserRating();
-  }
-
-  const saveUserRating = () => {
-
-    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
-
-    let updateCriteria = {
-      type: selectedMediaRating.mediaType,
-      id: selectedMediaRating._id,
-      userRating: userRating
-    }
-
-    API.saveUserRating(updateCriteria, token)
-      .then(() => setUserRating(0))
-      .then(() => setSelectedMediaRating(0))
-      .then(() => userData.getUserData())
-      .catch((err) => console.log(err));
-  }
-
-  const handleDeleteMedia = (media_id, media_mediaType) => {
-    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
-    API.deleteMedia(media_id, media_mediaType, token)
-      // upon succes, update user data to reflect book change
-      .then(() => userData.getUserData())
-      .catch((err) => console.log(err));
-  }
+  }, []);
 
   const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes, ownerId, title) => {
     // find the friend in `searchedUser` state by the matching id
@@ -214,7 +93,7 @@ function ProfilePage() {
   });
 
   const getSavedBookData = () => {
-    userData.savedBooks.map(savedBook => {
+    friend.savedBooks.map(savedBook => {
 
       let savedBookData = {
         mediaType: savedBook.mediaType,
@@ -222,9 +101,9 @@ function ProfilePage() {
         createdAt: savedBook.createdAt,
         _id: savedBook._id,
         mediaId: savedBook.mediaId,
-        username: userData.username,
-        picture: userData.picture,
-        userId: userData.id,
+        username: friend.username,
+        picture: friend.picture,
+        userId: friend.id,
         image: savedBook.image,
         title: savedBook.title,
         authors: savedBook.authors,
@@ -236,22 +115,22 @@ function ProfilePage() {
         userFavorite: savedBook.userFavorite
       }
 
-      setMyMediaState(myMediaState => [...myMediaState, savedBookData].sort(compareTimeStamp))
+      setFriendMediaState(friendMediaState => [...friendMediaState, savedBookData].sort(compareTimeStamp))
 
     })
   }
 
   const getSavedMusicData = () => {
-    userData.savedMusic.map(savedMusic => {
+    friend.savedMusic.map(savedMusic => {
 
       let savedMusicData = {
         mediaType: savedMusic.mediaType,
         timeStamp: savedMusic.timeStamp,
         createdAt: savedMusic.createdAt,
         _id: savedMusic._id,
-        username: userData.username,
-        picture: userData.picture,
-        userId: userData.id,
+        username: friend.username,
+        picture: friend.picture,
+        userId: friend.id,
         image: savedMusic.image,
         title: savedMusic.title,
         link: savedMusic.link,
@@ -264,13 +143,12 @@ function ProfilePage() {
         userFavorite: savedMusic.userFavorite
       }
 
-      setMyMediaState(myMediaState => [...myMediaState, savedMusicData].sort(compareTimeStamp))
-
+      setFriendMediaState(friendMediaState => [...friendMediaState, savedMusicData].sort(compareTimeStamp))
     })
   }
 
   const getSavedMovieData = () => {
-    userData.savedMovies.map(savedMovie => {
+    friend.savedMovies.map(savedMovie => {
 
       let savedMovieData = {
         mediaType: savedMovie.mediaType,
@@ -278,9 +156,9 @@ function ProfilePage() {
         createdAt: savedMovie.createdAt,
         _id: savedMovie._id,
         mediaId: savedMovie.mediaId,
-        username: userData.username,
-        picture: userData.picture,
-        userId: userData.id,
+        username: friend.username,
+        picture: friend.picture,
+        userId: friend.id,
         image: savedMovie.image,
         title: savedMovie.title,
         runtime: savedMovie.runtime,
@@ -297,22 +175,21 @@ function ProfilePage() {
         userFavorite: savedMovie.userFavorite
       }
 
-      setMyMediaState(myMediaState => [...myMediaState, savedMovieData].sort(compareTimeStamp))
-
+      setFriendMediaState(friendMediaState => [...friendMediaState, savedMovieData].sort(compareTimeStamp))
     })
   }
 
   const getSavedGameData = () => {
-    userData.savedGames.map(savedGame => {
+    friend.savedGames.map(savedGame => {
 
       let savedGameData = {
         mediaType: savedGame.mediaType,
         timeStamp: savedGame.timeStamp,
         createdAt: savedGame.createdAt,
         _id: savedGame._id,
-        username: userData.username,
-        picture: userData.picture,
-        userId: userData.id,
+        username: friend.username,
+        picture: friend.picture,
+        userId: friend.id,
         image: savedGame.image,
         title: savedGame.title,
         developer: savedGame.developer,
@@ -323,26 +200,27 @@ function ProfilePage() {
         comments: savedGame.comments,
         userFavorite: savedGame.userFavorite
       }
-      setMyMediaState(myMediaState => [...myMediaState, savedGameData].sort(compareTimeStamp))
+
+      setFriendMediaState(friendMediaState => [...friendMediaState, savedGameData].sort(compareTimeStamp))
     })
   }
 
   function renderAllMedia() {
 
-    userData.savedBooks && getSavedBookData();
+    friend.savedBooks && getSavedBookData();
 
-    userData.savedMusic && getSavedMusicData();
+    friend.savedMusic && getSavedMusicData();
 
-    userData.savedMovies && getSavedMovieData();
+    friend.savedMovies && getSavedMovieData();
 
-    userData.savedGames && getSavedGameData();
+    friend.savedGames && getSavedGameData();
 
   }
 
   const handleRenderMediaPage = useCallback((mediaType) => {
 
-    setMyMediaState([]);
-    setMyFavoriteState([]);
+    setFriendMediaState([]);
+    setFriendFavoritesState([]);
 
     let favoritesArr = [];
     let savedMediaArr = [];
@@ -365,7 +243,7 @@ function ProfilePage() {
         break;
       default:
         if (mediaType === "favorites") {
-          savedMediaArr = [...savedMediaArr, userData.savedBooks, userData.savedGames, userData.savedMovies, userData.savedMusic];
+          savedMediaArr = [...savedMediaArr, friend.savedBooks, friend.savedGames, friend.savedMovies, friend.savedMusic];
 
           savedMediaArr.map(savedMedia => {
             savedMedia.filter(media => {
@@ -375,7 +253,7 @@ function ProfilePage() {
             })
           })
 
-          setMyFavoriteState(favoritesArr.sort(compareTimeStamp));
+          setFriendFavoritesState(favoritesArr.sort(compareTimeStamp));
         }
         return;
     }
@@ -385,7 +263,7 @@ function ProfilePage() {
     <>
       <Row>
         <Col>
-          <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} page={'profile'} />
+          <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} page={'profile'} username={friend.username} />
         </Col>
       </Row>
       <Container width="100%">
@@ -396,8 +274,8 @@ function ProfilePage() {
               <Card.Body id='profile-card-body'>
                 <div id='profile-image'>
                   <Card.Img
-                    src={userData.picture}
-                    alt={`${userData.username}'s face, probably`}
+                    src={friend.picture}
+                    alt={`${friend.username}'s face, probably`}
                     roundedCircle
                     className='img-fluid'
                     id='my-profile-pic'
@@ -405,60 +283,32 @@ function ProfilePage() {
                 </div>
                 <div id='profile-info'>
                   <Card.Title id='user-title'>
-                    <b>{userData.username}</b>
+                    <b>{friend.username}</b>
                   </Card.Title>
                   {userData.username && (
                     <>
-                      {(userData.bio !== '' || null)
+                      {(friend.bio !== '' || null)
                         ?
                         <div>
-                          {console.log("userData.bio", userData.bio)}
                           <p className='about-me' id='purple'>
-                            ABOUT ME <a
-                            className='btn bio-btn'
-                            onClick={() => setBioUpdate(true)}
-                          >Update Bio</a>
+                            ABOUT ME 
                           </p>
                           <div id='bio-scroll'>
-                            {userData.bio}
+                            {friend.bio}
                           </div>
-                          
                         </div>
                         :
                         <>
-                          <a
-                            className='btn bio-btn'
-                            onClick={() => setBioUpdate(true)}
-                          >Add Bio</a>
-                          <br></br>
+                        <p className='about-me' id='purple'>
+                            ABOUT ME 
+                          </p>
+                          <div id='bio-scroll'>
+                            What's good? Not this bio! This user has not submitted a bio yet.
+                          </div>
                         </>
                       }
                     </>
                   )}
-                  {bioUpdate &&
-                    <>
-                      <br></br>
-                      <Form>
-                        <Form.Control
-                          name='bio-text'
-                          value={bioText}
-                          onChange={(e) => setBioText(e.target.value)}
-                          type='text'
-                          size='md'
-                          as='textarea'
-                          rows='6'
-                          placeholder='enter your bio here'
-                        />
-                      </Form>
-                      <div className='text-center'>
-                        <a
-                          className='btn'
-                          id='purple-hover'
-                          onClick={() => updateBio(bioText)}
-                        ><b>SUBMIT</b></a>
-                      </div>
-                    </>
-                  }
                   <Button
                     className='btn'
                     id='purple-back'
@@ -485,51 +335,38 @@ function ProfilePage() {
           <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
             <SideBar
               cb={handleRenderMediaPage}
-              page='profile'
-              username={userData.username}
+              page={'profile'}
+              username={friend.username}
             />
           </Col>
           <Col id="media-feed-column2" xs={12} s={12} md={10} lg={6} >
-
-            {myMediaState.map(media => {
+            {friendMediaState.map(media => {
               return (
-                <ProfileFeedCard
+                <FriendProfileFeedCard
+                  mediaType={media.mediaType.toLowerCase()}
                   media={media}
                   cb={handleSaveLike}
-                  mediaType={media.mediaType.toLowerCase()}
                   userData={userData}
-                  startRating={startRating}
-                  selectedMediaRating={selectedMediaRating}
-                  handleRatingFormSubmit={handleRatingFormSubmit}
-                  setUserRating={setUserRating}
-                  setHover={setHover}
-                  hover={hover}
-                  userRating={userRating}
-                  startReview={startReview}
-                  selectedMediaReview={selectedMediaReview}
-                  handleReviewFormSubmit={handleReviewFormSubmit}
-                  reviewInput={reviewInput}
-                  setReviewInput={setReviewInput}
-                  handleDeleteMedia={handleDeleteMedia}
-                  makeFavorite={makeFavorite}
                 />
               );
             })}
-            {myFavoriteState.map(media => {
+            {friendFavoritesState.map(media => {
               return (
                 <FeedCard
                   media={media}
-                  userData={userData}
+                  userData={friend}
                 />
               )
             })}
           </Col>
           {/* <Col xs={0} s={0} md={1} lg={3}>
+
           </Col> */}
         </Row>
       </Container>
+
     </>
   )
 }
 
-export default ProfilePage;
+export default FriendProfile;

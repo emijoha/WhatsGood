@@ -1,18 +1,29 @@
-/* #profile-pic {
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    
-
+.img-fluid {
+  margin-bottom: 1rem;
 }
 
-#media-pic {
+#my-profile-pic {
+  /* width: 50px;
+  height: 50px; */
+  border-radius: 100%;
+}
+
+/* #media-pic {
     width: 400px;
 }
 
 #comment-button {
     background-color: rgb(0, 162, 255);
     color: white;
+}  */
+
+/* #profile-container {
+  margin-top: 91px;
+}
+
+#profile-row {
+  margin-left: 0;
+  margin-right: 0;
 } */
 
 #main-body-row {
@@ -20,16 +31,11 @@
   margin: 0px !important;
 }
 
-#media-feed-column {
+#media-feed-column2 {
   margin-top: 15px;
   padding: 0px !important;
 }
 
- @media screen and (max-width: 991px) {
-   #media-feed-column {
-    margin-top: 65px;
-  }
-}
 
 #side-bar-column {
   display: flex;
@@ -38,4 +44,3 @@
   padding: 20px;
   padding-top: 0px;
 }
-

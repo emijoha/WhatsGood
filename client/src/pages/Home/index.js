@@ -49,6 +49,8 @@ function Home() {
                 title: savedBook.title,
                 authors: savedBook.authors,
                 description: savedBook.description,
+                userRating: savedBook.userRating,
+                userReview: savedBook.userReview,
                 likes: savedBook.likes,
                 comments: savedBook.comments
               }
@@ -70,6 +72,8 @@ function Home() {
                 link: savedMusic.link,
                 artist: savedMusic.artist,
                 preview: savedMusic.preview,
+                userRating: savedMusic.userRating,
+                userReview: savedMusic.userReview,
                 likes: savedMusic.likes,
                 comments: savedMusic.comments
               }
@@ -96,6 +100,8 @@ function Home() {
                 genre: savedMovie.genre,
                 director: savedMovie.director,
                 actors: savedMovie.actors,
+                userRating: savedMovie.userRating,
+                userReview: savedMovie.userReview,
                 likes: savedMovie.likes,
                 comments: savedMovie.comments
               }
@@ -116,6 +122,8 @@ function Home() {
                 title: savedGame.title,
                 developer: savedGame.developer,
                 description: savedGame.description,
+                userRating: savedGame.userRating,
+                userReview: savedGame.userReview,
                 likes: savedGame.likes,
                 comments: savedGame.comments
               }
@@ -332,9 +340,9 @@ function Home() {
           <h1>Viewing friends Media!</h1>
         </Container>
       </Jumbotron> */}
-      <Row>
+     <Row>
         <Col>
-          <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} />
+          <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} username={userData.username} />
         </Col>
       </Row>
       <Container width="100%">
@@ -342,6 +350,7 @@ function Home() {
           <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
             <SideBar
               cb={handleRenderMediaPage}
+              username={userData.username}
             />
           </Col>
           <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >
@@ -353,7 +362,6 @@ function Home() {
                     mediaType='book'
                     media={media}
                     cb={handleSaveLike}
-                    // cb2={handleSaveComment}
                     userData={userData}
                   />
                 );
@@ -364,7 +372,6 @@ function Home() {
                     mediaType='music'
                     media={media}
                     cb={handleSaveLike}
-                    // cb2={handleSaveComment}
                     userData={userData}
                   />
                 );
@@ -375,7 +382,6 @@ function Home() {
                     mediaType='movie'
                     media={media}
                     cb={handleSaveLike}
-                    // cb2={handleSaveComment}
                     userData={userData}
                   />
                 );
@@ -386,7 +392,6 @@ function Home() {
                     mediaType='game'
                     media={media}
                     cb={handleSaveLike}
-                    // cb2={handleSaveComment}
                     userData={userData}
                   />
                 );
