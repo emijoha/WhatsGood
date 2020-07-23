@@ -73,40 +73,43 @@ function SearchGames() {
 
   return (
     <div id="container">
-      <div id="inner-container">
-        <Container>
-          <h5 id="search-header">SEARCH VIDEO GAMES</h5>
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Row>
-              <Col xs={12} md={8}>
-                <Form.Control
-                  id="form-input"
-                  name='searchTitle'
-                  value={searchTitle}
-                  onChange={(e) => setSearchTitle(e.target.value)}
-                  type='text'
-                  size='lg'
-                  placeholder='Game title'
-                />
-                <select id='platform-select'>
-                  <option value='pc'>Game platform</option>
-                  <option value='pc'>PC</option>
-                  <option value='switch'>Nintendo Switch</option>
-                  <option value='xbox-one'>Xbox One</option>
-                  <option value='xbox-360'>Xbox 360</option>
-                  <option value='playstation-3'>PlayStation 3</option>
-                  <option value='playstation-4'>PlayStation 4</option>
-                </select>
-              </Col>
-              <Col xs={12} md={4}>
-                <Button id="form-button" type='submit' variant='success' size='lg'>
-                  SEARCH
+      <Row>
+        <Container id='search-wrap'>
+          <Row>
+            <Col xs={0} s={0} md={1} lg={2}></Col>
+            <Col xs={12} s={12} md={10} lg={8}>
+              <h5 id="search-heading">SEARCH VIDEO GAMES</h5>
+              <div id='form-hugger'>
+                <Form onSubmit={handleFormSubmit}>
+                  <Form.Control
+                    id="api-search-input"
+                    name='searchTitle'
+                    value={searchTitle}
+                    onChange={(e) => setSearchTitle(e.target.value)}
+                    type='text'
+                    size='lg'
+                    placeholder='Search a game title'
+                  />
+                  <select id='platform-select'>
+                    <option>Select the platform</option>
+                    <option value='pc'>PC</option>
+                    <option value='switch'>Nintendo Switch</option>
+                    <option value='xbox-one'>Xbox One</option>
+                    <option value='xbox-360'>Xbox 360</option>
+                    <option value='playstation-3'>PlayStation 3</option>
+                    <option value='playstation-4'>PlayStation 4</option>
+                  </select>
+                  <Button id="form-search-btn" type='submit' size='lg'>
+                    SEARCH
                 </Button>
-              </Col>
-            </Form.Row>
-          </Form>
+                </Form>
+              </div>
+            </Col>
+            <Col xs={0} s={0} md={1} lg={2}></Col>
+          </Row>
+          <hr></hr>
         </Container>
-      </div>
+      </Row>
       <Container>
         <SearchCards
           cardType='searchedGames'

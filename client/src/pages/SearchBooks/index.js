@@ -76,25 +76,25 @@ function SearchBooks() {
           <Row>
             <Col xs={0} s={0} md={1} lg={2}></Col>
             <Col xs={12} s={12} md={10} lg={8}>
-            <h5 id="search-heading">SEARCH BOOKS</h5>
+              <h5 id="search-heading">SEARCH BOOKS</h5>
               <div id='form-hugger'>
-              <Form onSubmit={handleFormSubmit}>
-                <Form.Control
-                  id="api-search-input"
-                  name='searchInput'
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  type='text'
-                  size='lg'
-                  placeholder='Search for a book'
-                />
-                <Button id="form-search-btn" type='submit' size='lg'>
-                  SEARCH
+                <Form onSubmit={handleFormSubmit}>
+                  <Form.Control
+                    id="api-search-input"
+                    name='searchInput'
+                    value={searchInput}
+                    onChange={(e) => setSearchInput(e.target.value)}
+                    type='text'
+                    size='lg'
+                    placeholder='Search for a book'
+                  />
+                  <Button id="form-search-btn" type='submit' size='lg'>
+                    SEARCH
                 </Button>
-              </Form>
+                </Form>
               </div>
             </Col>
-            <Col xs={0} s={0} md={2} lg={2}></Col>
+            <Col xs={0} s={0} md={1} lg={2}></Col>
           </Row>
           <hr></hr>
         </Container>
