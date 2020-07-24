@@ -359,7 +359,12 @@ function SavedCards(props) {
                       </Link>
                       <p className='by'><b>email:</b> {friend.email}</p>
                     </Card.Title>
-                    <Button className={`btn-block delete-btn ${media[number]}-color ${media[number]}-border ${media[number]}-hover-fill`} 
+                    <Button
+                    className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
+                    href='/messages'>
+                    Send a Message
+                    </Button>
+                    <Button className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`} 
                       onClick={() => props.handleDeleteFriend(friend._id)}>
                       Remove Friend
                     </Button>

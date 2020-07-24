@@ -397,6 +397,7 @@ function ProfilePage() {
           <Col xs={12} s={12} md={12} lg={8} >
             <Card id='profile-card' key={userData.username}>
               <Card.Body id='profile-card-body'>
+                <br></br>
                 <div id='profile-image'>
                   <Card.Img
                     src={userData.picture}
@@ -462,11 +463,11 @@ function ProfilePage() {
                       </div>
                     </>
                   }
-                  <Button
+                  {/* <Button
                     className='btn'
                     id='purple-back'
                     href='/messages'
-                  >MESSAGES</Button>
+                  >MESSAGES</Button> */}
                   {/* <Card.Title id='user-states'>
                   <p>
                   <span>{userData.bookCount}</span> Books 

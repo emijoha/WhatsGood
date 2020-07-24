@@ -64,7 +64,6 @@ height: 12px;
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(200, 200, 200);  
 }
-
 .delete-btn {
   font-weight: 600;
   background-color: rgba(255, 255, 255, 0) !important;
