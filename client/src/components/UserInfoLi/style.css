@@ -1,6 +1,5 @@
 li {
     list-style-type: none;
-    width: 100%;
  
 }
 
@@ -12,17 +11,17 @@ li {
 }
 
 #li-button {
-    width: 100%;
-    color: rgb(75, 0, 196) !important;
-    padding-left: 15px;
-    padding-right: 15px;
+    width: 90%;
+    color:rgb(94, 9, 251) !important;
+    padding-left: 10px;
+    padding-right: 10px;
     margin-bottom: 10px;  
     border: none !important;   
       
     }
     
 #li-button:hover {
-        color: rgb(183, 0, 255) !important;
+        color: rgb(255, 2, 234) !important;
         background-color: rgba(255, 255, 255, 0) !important;
     }
  
@@ -37,10 +36,11 @@ li {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
+    
 }
 
 #name-td {
-   margin-top: 14px;
+   margin-top: 16px;
 }
 
 @media screen and (max-width: 991px) {
@@ -48,9 +48,13 @@ li {
 
      
     #name-td {
-        padding-top: 0px;
+        display: none;
      }
 
+     #picture-td {
+       text-align: center;
+      margin-bottom: 11px;
+  }
 }
 
 

@@ -65,7 +65,7 @@ function ChatInput({ handleSendMessage, handleNewMessageState, newChatState }) {
 
 
     <Form onSubmit={handleFormSubmit}>
-      <Form.Row>
+      <Form.Row id="message-submit-group">
         <Col xs={11} md={11} lg={11}>
           <Form.Control
             id="chat-input"
@@ -77,12 +77,11 @@ function ChatInput({ handleSendMessage, handleNewMessageState, newChatState }) {
           />
         </Col>
         <Col xs={1} md={1} lg={1}>
-          <Button id="search-icon-button" type='submit' variant='success' size='lg' disabled={!newChatState.username}>
+          <Button id="message-icon-button" className='purple neon-hover' type='submit' variant='success' size='lg' disabled={!newChatState.username}>
             <FontAwesomeIcon icon={faPaperPlane} size={'md'} />
           </Button>
         </Col>
       </Form.Row>
-
     </Form>
 
 

@@ -206,7 +206,7 @@ function Messages() {
     <Container className='movie-border card' id="messages-container">
 
 
-      <h5 className='messenger-title' >MESSAGES</h5>
+      <span className='messenger-title' >YOUR MESSAGES</span>
 
       <div id="sm-screen-search">
         <SearchFriends sendSearchedUserToList={sendSearchedUserToList}></SearchFriends>
@@ -221,9 +221,9 @@ function Messages() {
             handleNewChatState={handleNewChatState}
           ></MessageList>
         </Col>
-        <Col xs={9} s={9} md={9} lg={8}>
-          {newChatState.username ? <h5 id="chat-box-header"> MESSAGING {newChatState.username.toUpperCase()}</h5> : <h5 className='purple' id="chat-box-header">SELECT FRIEND TO CHAT</h5>}
-          <ChatBox handleNewMessageState={handleNewMessageState}
+        <Col xs={9} s={9} md={9} lg={8} id='line-divide'>
+          {newChatState.username ? <h5 id="chat-box-header"> Messaging with {newChatState.username}</h5> : <h5 className='purple' id="chat-box-header">Select a friend to chat</h5>}
+          <ChatBox  handleNewMessageState={handleNewMessageState}
             setIsPreviousChatState={setIsPreviousChatState}
             setCurrentChatIdState={setCurrentChatIdState}
             newChatState={newChatState}>

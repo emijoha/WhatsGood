@@ -2,16 +2,10 @@
     margin-top: 50px;
     padding: 20px;
     height: 730px;
+    position: relative;
 }
 
-#chat-box-header {
-  margin-top: -35px;
-}
 
-#chat-box-header-active {
-  margin-top: -30px;
-  color: #9df100 !important;
-}
 
 
 
@@ -29,13 +23,16 @@
   }
 
   #chat-box-header {
-    margin-top: 0px;
-   
+    margin-top: 17.5px;
+    margin-left: -10px !important;
   }
   
   #chat-box-header-active {
     margin-top: 0px;
+    
   }
+
+
 }
 
 @media screen and (min-width: 991px) {
@@ -47,6 +44,18 @@
      
     }
 
+    #line-divide {
+      border-left: solid 1px rgb(221, 221, 221);
+      /* border-top: solid 1px rgb(221, 221, 221); */
+    }
+
+    #chat-box-header {
+      border-left: solid 1px rgb(221, 221, 221);
+      top: -65px;
+      left: -1px;
+      position: absolute;
+      padding: 20px 0px 21px 15px;
+    }
   
 }
 
@@ -54,4 +63,6 @@
   font-weight: 700;
   font-size: 1.75rem;
   margin-left: 2.5px;
+  margin-bottom: 14px;
+  width: fit-content;
 }

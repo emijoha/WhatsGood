@@ -1,10 +1,14 @@
-#search-icon-button {
+#search-icon-button, #search-icon-button:focus {
     color: rgb(75, 0, 196) !important;
     background-color: rgba(255, 255, 255, 0) !important;
     border: none !important;
-    margin: 10px;
-    margin-left: -5px;
-  
+    position: absolute;
+    top: 3px;
+    left: -10px;
+}
+
+#search-friend-grouping {
+  position: relative;
 }
 
 #search-icon-button:hover {
@@ -12,7 +16,7 @@
     background-color: rgba(255, 255, 255, 0) !important;
 }
 
-#form-input {
+#mess-form-input {
    
     border-radius: 40px;
     background: transparent;
@@ -22,9 +26,8 @@
     box-shadow: none;
     background: transparent !important;
     outline: none !important;
-    margin: 10px;
+    margin: 5px 10px 10px 0px;
     font-size: 15px;
-    margin-right: none; 
 }
 
 #form-input:active, .form-input:focus {
@@ -32,3 +35,12 @@
     outline: none !important;
 }
 
+@media screen and (max-width: 991px) {
+  #mess-form-input {
+    margin-bottom: 15px;
+  }
+
+  #message-form-div {
+    border-bottom: solid 1px rgb(218, 218, 218);
+  }
+}
