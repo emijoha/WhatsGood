@@ -53,7 +53,7 @@ function RateReviewForSearched(props) {
               <div className='center-wrap'>
                 <p className='already-saved'>This {props.mediatype} has already been saved!</p>
                 <Link to={props.link}>
-                  <Button className='btn-block' onClick={() => console.log((props.media))}  >
+                  <Button className={`btn-block save-media-btn ${props.mediatype}-color ${props.mediatype}-border ${props.mediatype}-hover-fill`} onClick={() => console.log((props.media))}  >
                     Go to My {props.mediaType}
                   </Button>
                 </Link>
