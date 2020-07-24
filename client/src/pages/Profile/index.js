@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
-import { Card, Container, Form, Button, Col, Row, Image } from 'react-bootstrap';
+import { Card, Container, Form, Button, Col, Row, Image, Modal, Tab } from 'react-bootstrap';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
@@ -7,13 +7,15 @@ import FeedCard from '../../components/FeedCard';
 import ProfileFeedCard from '../../components/ProfileFeedCard';
 import SideBar from '../../components/SideBar';
 import SubNavbar from '../../components/SubNavbar';
+import UploadPhoto from '../../components/UploadPhoto';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserCircle, faInbox, faPencil, faCamera } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserCircle, faInbox, faPencilAlt, faCamera } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function ProfilePage() {
 
   const userData = useContext(UserInfoContext);
+  const [showModal, setShowModal] = useState(false);
 
   const [bioUpdate, setBioUpdate] = useState(false);
   const [bioText, setBioText] = useState('');
@@ -411,6 +413,7 @@ function ProfilePage() {
                   <FontAwesomeIcon
                     className='upload-icon'
                     id='neon-hover'
+                    onClick={() => setShowModal(true)}
                     icon={faCamera}
                   />
                 </div>
@@ -428,7 +431,8 @@ function ProfilePage() {
                             ABOUT ME <a
                               className='btn bio-btn'
                               onClick={() => setBioUpdate(true)}
-                            >Update Bio</a>
+                            >Update Bio
+                            </a>
                           </p>
                           <div id='bio-scroll'>
                             {userData.bio}
@@ -440,7 +444,8 @@ function ProfilePage() {
                           <a
                             className='btn bio-btn'
                             onClick={() => setBioUpdate(true)}
-                          >Add Bio</a>
+                          >Add Bio
+                          </a>
                           <br></br>
                         </>
                       }
@@ -541,6 +546,23 @@ function ProfilePage() {
           </Col> */}
         </Row>
       </Container>
+      <Modal size='md' show={showModal} onHide={() => setShowModal(false)} aria-labelledby='signup-modal'>
+        {/* tab container to do either signup or login component */}
+        <Tab.Container defaultActiveKey='login'>
+          <Modal.Header closeButton>
+            <Modal.Title id='upload-photo-modal' className='logo-text-main'>
+              UPLOAD YOUR PHOTO
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Tab.Content>
+              <Tab.Pane eventKey='login'>
+                <UploadPhoto handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+            </Tab.Content>
+          </Modal.Body>
+        </Tab.Container>
+      </Modal>
     </>
   )
 }

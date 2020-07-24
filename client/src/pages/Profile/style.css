@@ -99,9 +99,10 @@
 }
 
 .upload-icon {
-  font-size: 3rem;
+  font-size: 2.5rem;
   position: absolute;
-  left: 5px;
+  top: 5px;
+  left: 7px;
 }
 
 @media screen and (max-width: 767px) {
