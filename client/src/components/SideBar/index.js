@@ -7,6 +7,9 @@ import AuthService from '../../utils/auth';
 import { CardBody } from 'react-bootstrap/Card';
 import * as API from '../../utils/API';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserCircle, faInbox, faPencil, faUpload } from '@fortawesome/free-solid-svg-icons';
+
 
 
 function SideBar({ cb, page, username }) {
@@ -28,12 +31,70 @@ function SideBar({ cb, page, username }) {
   return (
     <div id="side-bar-menu">
       <ul>
-        <li><button id="side-bar-li" onClick={() => cb("all")}>ALL</button></li>
-        {page === 'profile' && <li><button id="side-bar-li" onClick={() => cb("favorites")}>FAVORITES</button></li>}
-        <li><button id="side-bar-li" onClick={() => cb("music")}>MUSIC</button></li>
-        <li><button id="side-bar-li" onClick={() => cb("movie")}>MOVIES</button></li>
-        <li><button id="side-bar-li" onClick={() => cb("game")}>GAMES</button></li>
-        <li><button id="side-bar-li" onClick={() => cb("book")}>BOOKS</button></li>
+        <li>
+          <button id="side-bar-li" onClick={() => cb("all")}>
+            ALL
+            <FontAwesomeIcon
+              className='search-icon sidebar-icon'
+              id='neon-hover'
+              icon={faAsterisk}
+            />
+          </button>
+        </li>
+        {page === 'profile' &&
+          <li>
+            <button id="side-bar-li" onClick={() => cb("favorites")}>
+              FAVORITES
+              <FontAwesomeIcon
+                className='search-icon sidebar-icon'
+                id='neon-hover'
+                icon={faStar}
+              />
+            </button>
+          </li>
+        }
+        <li>
+          <button id="side-bar-li" onClick={() => cb("music")}>
+            MUSIC
+            <FontAwesomeIcon
+              className='search-icon sidebar-icon'
+              id='neon-hover'
+              icon={faMusic}
+            />
+          </button>
+
+        </li>
+        <li>
+          <button id="side-bar-li" onClick={() => cb("movie")}>
+            MOVIES
+            <FontAwesomeIcon
+              className='search-icon sidebar-icon'
+              id='neon-hover'
+              icon={faVideo}
+            />
+          </button>
+
+        </li>
+        <li>
+          <button id="side-bar-li" onClick={() => cb("game")}>
+            GAMES
+            <FontAwesomeIcon
+              className='search-icon sidebar-icon'
+              id='neon-hover'
+              icon={faGamepad}
+            />
+          </button>
+        </li>
+        <li>
+          <button id="side-bar-li" onClick={() => cb("book")}>
+            BOOKS
+            <FontAwesomeIcon
+              className='search-icon sidebar-icon'
+              id='neon-hover'
+              icon={faBookOpen}
+            />
+          </button>
+        </li>
       </ul>
     </div>
   );
