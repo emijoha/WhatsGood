@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Jumbotron, Container, Row, Col } from 'react-bootstrap';
+import { Jumbotron, Container, Row, Col, CardColumns } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk } from '@fortawesome/free-solid-svg-icons';
@@ -233,6 +233,7 @@ function SavedMedia() {
         </Container>
       </Row>
       <Container>
+        <CardColumns>
         <SavedCards
           cardType='savedBooks'
           savedArray={userData.savedBooks}
@@ -313,6 +314,7 @@ function SavedMedia() {
           makeFavorite={makeFavorite}
           handleDeleteGame={handleDeleteGame}
         />
+        </CardColumns>
         {/* ITS BUGGY */}
         {/* {!userData.username
           ? <NotLoggedIn />
