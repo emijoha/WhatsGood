@@ -9,7 +9,7 @@ import SideBar from '../../components/SideBar';
 import SubNavbar from '../../components/SubNavbar';
 import UploadPhoto from '../../components/UploadPhoto';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserCircle, faInbox, faPencilAlt, faCamera } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserFriends, faInbox, faCamera, faTh } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function ProfilePage() {
@@ -447,15 +447,16 @@ function ProfilePage() {
                           >Add Bio
                           </a>
                           <br></br>
+                          <br></br>
                         </>
                       }
                     </>
                   )}
                   {bioUpdate &&
                     <>
-                      <br></br>
                       <Form>
                         <Form.Control
+                        id='bio-textarea'
                           name='bio-text'
                           value={bioText}
                           onChange={(e) => setBioText(e.target.value)}
@@ -475,11 +476,44 @@ function ProfilePage() {
                       </div>
                     </>
                   }
-                  {/* <Button
-                    className='btn'
-                    id='purple-back'
-                    href='/messages'
-                  >MESSAGES</Button> */}
+                  <div className='prof-icon-group'>
+                    <div className='text-center prof-icon-wrap'>
+                      <a href='/messages'>
+                        <FontAwesomeIcon
+                          className='prof-page-icon'
+                          id='neon-hover'
+                          icon={faInbox}
+                        />
+                      </a>
+                      <p>
+                        INBOX
+                      </p>
+                    </div>
+                    <div className='text-center prof-icon-wrap'>
+                      <a href='/saved_media'>
+                        <FontAwesomeIcon
+                          className='prof-page-icon'
+                          id='neon-hover'
+                          icon={faTh}
+                        />
+                      </a>
+                      <p>
+                        MEDIA
+                      </p>
+                    </div>
+                    <div className='text-center prof-icon-wrap'>
+                      <a href='/saved_friends'>
+                        <FontAwesomeIcon
+                          className='prof-page-icon'
+                          id='neon-hover'
+                          icon={faUserFriends}
+                        />
+                      </a>
+                      <p>
+                        FRIENDS
+                      </p>
+                    </div>
+                  </div>
                   {/* <Card.Title id='user-states'>
                   <p>
                   <span>{userData.bookCount}</span> Books 

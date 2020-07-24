@@ -136,7 +136,7 @@ background-color: rgb(23, 156, 245) !important;
   border-image-source: linear-gradient(to bottom right, rgb(0, 255, 242), rgb(251, 255, 1) );
 }
 
-#purple, #purple-hover:hover {
+.purple, #purple, #purple-hover:hover {
   color: rgb(94, 9, 251) !important;
 }
 
