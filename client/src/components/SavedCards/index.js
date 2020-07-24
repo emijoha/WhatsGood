@@ -16,6 +16,8 @@ function SavedCards(props) {
   }
 
   if (props.cardType === 'savedBooks') {
+
+    
     return (
       <>
         <CardColumns>
@@ -97,6 +99,8 @@ function SavedCards(props) {
       </>
     );
   } else if (props.cardType === 'savedMusic') {
+
+    
     return (
       <>
         <CardColumns>

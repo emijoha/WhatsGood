@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
-import { Card, Container, Form, Button, Col, Row, Image, Modal, Tab } from 'react-bootstrap';
+import { Card, Container, Form, Button, Col, Row, Image, Modal, Tab, Spinner } from 'react-bootstrap';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
@@ -19,6 +19,7 @@ function ProfilePage() {
 
   const [bioUpdate, setBioUpdate] = useState(false);
   const [bioText, setBioText] = useState('');
+  const [loadingState, setLoadingState] = useState(true);
 
 
   const updateBio = (bioText) => {
@@ -244,7 +245,7 @@ function ProfilePage() {
       }
 
       setMyMediaState(myMediaState => [...myMediaState, savedBookData].sort(compareTimeStamp))
-
+    
     })
   }
 
@@ -272,7 +273,7 @@ function ProfilePage() {
       }
 
       setMyMediaState(myMediaState => [...myMediaState, savedMusicData].sort(compareTimeStamp))
-
+     
     })
   }
 
@@ -305,7 +306,7 @@ function ProfilePage() {
       }
 
       setMyMediaState(myMediaState => [...myMediaState, savedMovieData].sort(compareTimeStamp))
-
+      
     })
   }
 
@@ -331,18 +332,28 @@ function ProfilePage() {
         userFavorite: savedGame.userFavorite
       }
       setMyMediaState(myMediaState => [...myMediaState, savedGameData].sort(compareTimeStamp))
+     
     })
   }
 
   function renderAllMedia() {
+    setLoadingState(true);
 
     userData.savedBooks && getSavedBookData();
 
+    setLoadingState(true);
+
     userData.savedMusic && getSavedMusicData();
+
+    setLoadingState(true);
 
     userData.savedMovies && getSavedMovieData();
 
+    setLoadingState(true);
+
     userData.savedGames && getSavedGameData();
+
+    setLoadingState(false);
 
   }
 
@@ -399,6 +410,7 @@ function ProfilePage() {
         <Row>
           <Col xs={0} s={0} md={0} lg={2}></Col>
           <Col xs={12} s={12} md={12} lg={8} >
+          
             <Card id='profile-card' key={userData.username}>
               <Card.Body id='profile-card-body'>
                 <br></br>
@@ -540,6 +552,27 @@ function ProfilePage() {
             />
           </Col>
           <Col id="media-feed-column2" xs={12} s={12} md={10} lg={6} >
+            
+{loadingState ?
+
+<div className="text-center">
+<Spinner animation="border" />
+</div>
+
+: 
+
+<div>
+{myMediaState.length === 0 && myFavoriteState.length === 0 ?
+
+
+<div id="no-media-div">
+<p><h5 className="text-center" id="header">LOOKS EMPTY IN HERE.</h5></p>
+<p><h5 className="text-center" id="highlight-header">GO TO SEARCH AND ADD SOME MEDIA!</h5></p>
+</div>
+
+: 
+
+<div>
 
             {myMediaState.map(media => {
               return (
@@ -574,6 +607,10 @@ function ProfilePage() {
                 />
               )
             })}
+  </div>
+}
+</div>
+}
           </Col>
           {/* <Col xs={0} s={0} md={1} lg={3}>
           </Col> */}
