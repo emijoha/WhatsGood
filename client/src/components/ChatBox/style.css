@@ -1,6 +1,6 @@
 #chat-box-body {
     /* border-left: 1px solid rgb(195, 195, 195) !important; */
-    height: 550px;
+    height: 540px;
     width: 100%; 
     overflow: scroll;
   
@@ -87,6 +87,6 @@
 
 @media screen and (max-width: 991px) {
     #chat-box-body {
-      height: 575px;
+      height: 560px;
   }
 }

@@ -11,7 +11,7 @@ import SubNavbar from '../../components/SubNavbar';
 import './style.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserCircle, faInbox } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserCircle, faInbox, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 function FriendProfile() {
 
@@ -25,10 +25,10 @@ function FriendProfile() {
   useEffect(() => {
     setQueryStringId(window.location.search.split('=')[1]);
     API.getUser(queryStringId)
-    .then((res) => {
-      setFriend(res.data);
-    })
-    .catch((err) => console.log(err));
+      .then((res) => {
+        setFriend(res.data);
+      })
+      .catch((err) => console.log(err));
   }, [queryStringId !== window.location.search.split('=')[1]]);
 
   useEffect(() => {
@@ -312,6 +312,17 @@ function FriendProfile() {
                           <div id='bio-scroll'>
                             What's good? Not this bio! This user has not submitted a bio yet.
                           </div>
+                          <div className='prof-icon-wrap' >
+                            <a href='/messages'>
+                              <FontAwesomeIcon
+                                className='prof-page-icon neon-hover'
+                                id='mail-friend-icon'
+                                icon={faPaperPlane}
+                              />
+                            </a>
+                            <span id='mail-friend-text'>{` SEND ${friend.username.toUpperCase()} A MESSAGE `}</span>
+                            
+                          </div>
                         </>
                       }
                     </>
@@ -337,7 +348,7 @@ function FriendProfile() {
         </Row>
         <hr></hr>
       </Container>
-     
+
       <Container width="100%">
         <Row id="main-body-row">
           <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>

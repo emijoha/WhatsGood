@@ -51,3 +51,21 @@
   height: 100%;
   float: right;
 }
+
+#mail-friend-icon {
+  margin-left: -10px;
+}
+
+#mail-friend-text {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: rgb(153, 153, 153);
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  
+}
+
+.prof-icon-wrap {
+  position: relative;
+}
