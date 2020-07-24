@@ -10,6 +10,9 @@ import SideBar from '../../components/SideBar';
 import SubNavbar from '../../components/SubNavbar';
 import './style.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserCircle, faInbox } from '@fortawesome/free-solid-svg-icons';
+
 function FriendProfile() {
 
   const userData = useContext(UserInfoContext);

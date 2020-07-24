@@ -10,7 +10,8 @@ import * as API from '../../utils/API';
 import FeedCard from '../../components/FeedCard';
 import SideBar from '../../components/SideBar';
 import SubNavbar from '../../components/SubNavbar';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk } from '@fortawesome/free-solid-svg-icons';
 
 function Home() {
 

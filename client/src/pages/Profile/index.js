@@ -7,6 +7,8 @@ import FeedCard from '../../components/FeedCard';
 import ProfileFeedCard from '../../components/ProfileFeedCard';
 import SideBar from '../../components/SideBar';
 import SubNavbar from '../../components/SubNavbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserCircle, faInbox, faPencil, faUpload} from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function ProfilePage() {

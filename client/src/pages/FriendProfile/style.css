@@ -44,3 +44,10 @@
   padding: 20px;
   padding-top: 0px;
 }
+
+#profile-info {
+  padding-top: 10px;
+  width: 66%;
+  height: 100%;
+  float: right;
+}
