@@ -411,7 +411,7 @@ function ProfilePage() {
                     id='my-profile-pic'
                   ></Card.Img>
                   <FontAwesomeIcon
-                    className='upload-icon'
+                    className='upload-icon purple'
                     id='neon-hover'
                     onClick={() => setShowModal(true)}
                     icon={faCamera}
@@ -437,7 +437,6 @@ function ProfilePage() {
                           <div id='bio-scroll'>
                             {userData.bio}
                           </div>
-
                         </div>
                         :
                         <>

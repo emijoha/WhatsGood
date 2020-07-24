@@ -101,10 +101,15 @@
 }
 
 .upload-icon {
+  opacity: 0.25;
   font-size: 2.5rem;
   position: absolute;
   top: 5px;
   left: 7px;
+}
+
+.upload-icon:hover {
+  opacity: 1;
 }
 
 .prof-page-icon {
@@ -134,14 +139,19 @@
 
 .prof-icon-group {
   display: flex;
+  justify-content: start;
   font-size: 0.9rem;
   color: rgb(177, 177, 177);
+  position: relative;
 }
 
 .prof-icon-wrap {
-  margin-right: 10px;
+  margin-right: 20px;
   margin-left: 10px;
   margin-top: 10px;
+  position: absolute;
+  left: -7.5px;
+  top: -5px;
 }
 
 #bio-textarea {
