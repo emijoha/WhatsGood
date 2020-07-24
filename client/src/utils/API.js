@@ -114,12 +114,12 @@ export const getMusic = function (music_id) {
 
 export const searchOMDB = function (query) {
   console.log(query);
-  return axios.get(`http://www.omdbapi.com/?apikey=671512a8&s=${query}`, { params: { q: query } });
+  return axios.get(`https://www.omdbapi.com/?apikey=671512a8&s=${query}`, { params: { q: query } });
 };
 
 export const searchEachMovie = function (query) {
   console.log(query);
-  return axios.get(`http://www.omdbapi.com/?apikey=671512a8&i=${query}`, { params: { q: query } });
+  return axios.get(`https://www.omdbapi.com/?apikey=671512a8&i=${query}`, { params: { q: query } });
 };
 
 export const saveMovie = function (movieData, token) {
