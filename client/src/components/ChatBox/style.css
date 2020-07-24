@@ -1,34 +1,32 @@
 #chat-box-body {
-    border: 1px solid black !important;
-    height: 500px;
+    /* border-left: 1px solid rgb(195, 195, 195) !important; */
+    height: 540px;
     width: 100%; 
     overflow: scroll;
-
+  
 }
 
 #chat-message-row {
     width: 100%;
-   
+    position: relative;
 }
 
-#no-chat-head {
+/* #no-chat-head {
     font-size: 30px;
     margin-left: -30px;
-}
+} */
 
 
 #this-user-message {
-   
     float: right;
     color: white;
-    padding: 8px;
-    background: linear-gradient(to bottom, rgb(87, 202, 255) 0%, rgb(133, 58, 255) 100%);
+    padding: 5px 14px 5px 12px;
+    background: linear-gradient(to bottom, rgb(0, 255, 242) 5%, rgb(94, 9, 251) 100%);
     background-attachment: fixed;
     border-radius: 15px;
     border-bottom-right-radius: 2px;
-    margin: 10px;
-    margin-right: -20px;
-    margin-bottom: 15px;
+    margin-top: 20px;
+    margin-right: 20px;
 }
 
 #this-user-pic {
@@ -36,11 +34,9 @@
     float: right;
     height: 25px;
     width: 25px;
-
     border-radius: 100px;
-    margin: 10px;
-    margin-top: 5px;
-    margin-right: -20px;
+    margin-left: 8px;
+    margin-right: -10px;
 }
 
 #this-user-time {
@@ -49,20 +45,20 @@
     color: black;
     background: none;
     font-size: 10px;
-    margin-right: -20px;
+    margin-right: -3.5px;
+    margin-top: 5.5px;
 }
 
 #that-user-message {
-    
     float: left;
     color: black;
-    padding: 8px;
-    background: linear-gradient(to bottom, #e5ff00 0%, #a0f700 100%);
+    padding: 5px 12px 5px 14px;
+    background: linear-gradient(to bottom,rgb(251, 255, 1) 5%, rgb(0, 255, 242) 100%);
     background-attachment: fixed;
     border-radius: 15px;
     border-bottom-left-radius: 2px;
-    margin: 10px;
-    margin-bottom: 15px;
+    margin-top: 20px;
+    margin-left: 29px;
 }
 
 #that-user-pic {
@@ -70,11 +66,9 @@
     float: left;
     height: 25px;
     width: 25px;
-    margin-top: -5px;
-    margin-bottom: -5px; 
     border-radius: 100px;
-    margin: 10px;
-    margin-top: 5px;
+    margin-right: 3.5px;
+    margin-left: 0px;
 }
 
 #that-user-time {
@@ -83,9 +77,8 @@
     color: black;
     background: none;
     font-size: 10px;
-    margin-left: 10px;
-    margin-top: -5px;
-    margin-bottom: -5px;
+    /* margin-right: 10px; */
+    margin-top: 5.5px;
     
     
 }
@@ -93,8 +86,7 @@
 
 
 @media screen and (max-width: 991px) {
-
     #chat-box-body {
-      height: 515px;
+      height: 560px;
   }
 }

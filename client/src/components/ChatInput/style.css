@@ -17,3 +17,15 @@
     background: transparent !important;
     outline: none !important;
 }
+
+#message-submit-group {
+  position: relative;
+}
+
+#message-icon-button {
+  background: transparent !important;
+  font-size: 2rem;
+  position: absolute !important;
+  left: -5px;
+  top: -2px;
+}

@@ -1,18 +1,18 @@
 #message-list-div {
    
-    height: 366px;
+    height: 475px;
     width: 100%; 
     overflow: scroll;
  }
 
 #all-messages-button {
     border: none !important;
-    padding: 10px;
-    color: rgb(75, 0, 196) !important;
+    padding: 5px 5px 10px 7.5px;
+    font-weight: 600;
+    color: black;
   }
 
-  #all-messages-button:active, #all-messages-button:focus {
-    color: rgb(183, 0, 255) !important;
+  :active, #all-messages-button:focus {
     background-color: rgba(255, 255, 255, 0) !important;
     outline: none !important;
 
@@ -20,14 +20,23 @@
 
 
  #all-messages-button:hover {
-    color: rgb(183, 0, 255) !important;
+    color: rgb(255, 2, 234) !important;
     background-color: rgba(255, 255, 255, 0) !important;
  }
 
  @media screen and (max-width: 991px) {
 
     #message-list-div {
-      height: 448px;
+      height: 600px;
   }
-  
+
+  .expand-later {
+    display: block;
+    text-align: center;
+    border-right: solid 1px rgb(223, 223, 223);
+  }
+  #all-messages-button {
+    padding: 7.5px 5px 5px 0px !important;
+
+  }
 }

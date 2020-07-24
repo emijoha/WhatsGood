@@ -79,9 +79,6 @@ const CommentComponent = ({ mediaId, mediaType, title, ownerId, commenterUsernam
             setCommentInput(e.target.value);
           }} />
         </Form.Group>
-        {/* <Button id="comment-button" className='btn-block btn-primary' onClick={handleSaveComment}>
-          Comment!
-                </Button> */}
       </Form>
     </div>
   )

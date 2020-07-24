@@ -34,6 +34,14 @@ button#side-bar-li {
     border: none !important;
     padding: none !important;
     background-color: rgba(0, 0, 0, 0) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
+}
+
+.sidebar-icon {
+  margin-bottom: 4px;
 }
 
 /* #side-header-li:first-child {
@@ -68,4 +76,6 @@ button#side-bar-li {
     padding-bottom: 5px;
   }
 }
+
+
 

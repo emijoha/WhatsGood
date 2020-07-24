@@ -8,29 +8,26 @@ import { saveBook, searchGoogleBooks } from '../../utils/API';
 import "./style.css";
 
 function Login() {
-  
+
   const userData = useContext(UserInfoContext);
 
   return (
-
-    userData.username ? window.location.assign('/home') :
-
-    <>
-     
-     <Row className="justify-content-center">
-      <Col id="login-card-column" xs={12} md={6} >
-      <div className="login-card">
-      <LoginForm />
-      <div className="signup-link"> 
-      <Link  as={Link} to='/signup'>
-        SIGNUP
-      </Link>
-      </div>
-      </div>
-      </Col>
+    userData.username
+      ?
+      window.location.assign('/home')
+      :
+      <Row className="justify-content-center">
+        <Col id="login-card-column" xs={12} md={6} >
+          <div className="login-card movie-border">
+            <LoginForm />
+            <div className="signup-link">
+              <Link id='neon-hover' className='signup-link' as={Link} to='/signup'>
+                SIGNUP
+              </Link>
+            </div>
+          </div>
+        </Col>
       </Row>
-      
-    </>
   );
 }
 

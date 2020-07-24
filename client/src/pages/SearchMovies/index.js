@@ -8,7 +8,7 @@ import AuthService from '../../utils/auth';
 // import { saveUserRating, saveMovieReview } as API from '../utils/API';
 import SearchCards from '../../components/SearchCards';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function SearchMovies() {
@@ -150,7 +150,7 @@ function SearchMovies() {
                       <FontAwesomeIcon
                         className='search-icon'
                         id='neon-hover'
-                        icon={faUserCircle}
+                        icon={faUserFriends}
                       />
                     </a>
                   </p>

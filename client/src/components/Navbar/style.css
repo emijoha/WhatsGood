@@ -23,7 +23,7 @@
 .logo-text-main {
   font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
-  font-size: 1.65rem;
+  font-size: 1.55rem;
   margin: 0;
   display: flex;
   justify-content: center;
@@ -89,4 +89,7 @@ a:hover {
   content: none; 
 } 
 
-  
+.modal-header {
+  padding: 10px 10px 5px 10px;
+  background-color: rgb(224, 223, 223);
+}

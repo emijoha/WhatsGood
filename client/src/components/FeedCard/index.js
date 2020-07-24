@@ -73,6 +73,7 @@ function FeedCard(props) {
             title={media.title}
             cb={props.cb}
             userData={props.userData}
+            page='home'
           />
           <CommentComponent
             comments={media.comments}
@@ -144,6 +145,7 @@ function FeedCard(props) {
             title={media.title}
             cb={props.cb}
             userData={props.userData}
+            page='home'
           />
           <CommentComponent
             comments={media.comments}
@@ -210,6 +212,7 @@ function FeedCard(props) {
             title={media.title}
             cb={props.cb}
             userData={props.userData}
+            page='home'
           />
           <CommentComponent
             // cb={props.cb2}
@@ -277,6 +280,7 @@ function FeedCard(props) {
             title={media.title}
             cb={props.cb}
             userData={props.userData}
+            page='home'
           />
           <CommentComponent
             // cb={props.cb2}

@@ -1,0 +1,23 @@
+.custom-upload {
+  padding: 5px !important;
+  font-size: 1.25rem !important;
+}
+
+.custom-file-label {
+border-radius: 20px !important;
+border: solid 1px black;
+  margin-bottom: 0px !important;
+}
+
+.custom-file-label::after {
+  border-radius: 20px !important;
+}
+
+.upload-btn {
+  text-align: right;
+  float: right;
+  border: solid 1px !important;
+  border-radius: 20px !important;
+  padding-top: 7px;
+  font-weight: 600;
+}

@@ -1,19 +1,28 @@
 #notification-button {
-  background-color: rgb(106, 0, 206) !important;
-  padding: 2px 6px 0.5px 6px;
+  background-color: rgb(106, 0, 206);
+  padding: 2px 8px 0.5px 8px;
   color: white !important;
   margin-left: 6px;
+  border-radius: 25px;
+  /* float: right; */
+}
+#notification-button:hover {
+  background-color: rgb(255, 2, 234);
 }
 
 .notification-item {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  /* align-items: start; */
+  justify-content: space-between;
+}
+
+.notification-text {
+  justify-self: flex-end;
 }
 
 .notification-scroll {
   width: 100%;
   padding-right: 8px;
-  max-height: 158px;
+  max-height: 151px;
   overflow: scroll;
 }

@@ -121,12 +121,12 @@ function AppNavbar() {
         </Container>
       </Navbar>
       {/* set modal data up */}
-      <Modal size='lg' show={showModal} onHide={() => setShowModal(false)} aria-labelledby='signup-modal'>
+      <Modal size='md' show={showModal} onHide={() => setShowModal(false)} aria-labelledby='signup-modal'>
         {/* tab container to do either signup or login component */}
         <Tab.Container defaultActiveKey='login'>
           <Modal.Header closeButton>
-            <Modal.Title id='upload-photo-modal'>
-              Upload Photo
+            <Modal.Title id='upload-photo-modal' className='logo-text-main'>
+              UPLOAD YOUR PHOTO
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>

@@ -64,3 +64,16 @@ height: 12px;
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(200, 200, 200);  
 }
+.delete-btn {
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0) !important;
+  border-radius: 40px;
+  border: 1px solid !important;
+  font-size: 1.1rem;
+  padding: 10px 17.5px 7.5px 17.5px;
+  margin-top: 20px;
+}
+
+.delete-btn:hover {
+  color: white !important;
+}

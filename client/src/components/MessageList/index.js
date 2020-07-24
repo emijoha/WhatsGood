@@ -16,8 +16,8 @@ function MessageList({userList, getAllUserMessages, handleNewChatState }) {
 
     return (
       
-      <div>
-         <Button id="all-messages-button" onClick={() => getAllUserMessages()}>ALL MESSAGES</Button>
+      <div className='expand-later'>
+         <Button id="all-messages-button" className='neon-hover' onClick={() => getAllUserMessages()}>INBOX</Button>
       <div id="message-list-div">
        
         {userListState.map(user => {

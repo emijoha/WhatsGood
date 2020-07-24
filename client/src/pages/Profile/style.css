@@ -43,6 +43,7 @@
 
 #profile-card-body {
   padding: 0px !important;
+  position: relative;
 }
 
 #my-profile-pic {
@@ -54,6 +55,7 @@
   width: 30%;
   float: left;
   text-align: center;
+  position: relative;
 }
 
 #user-title {
@@ -68,6 +70,7 @@
 }
 
 #profile-info {
+  padding-top: 10px;
   width: 66%;
   height: 100%;
   float: right;
@@ -76,6 +79,7 @@
 #bio-scroll {
   width: 100%;
   padding-right: 8px;
+  margin-top: 10px;
   max-height: 105px;
   overflow: scroll;
 }
@@ -94,4 +98,62 @@
   font-size: 0.95rem;
   color: black !important;
   background-color: transparent;
+}
+
+.upload-icon {
+  opacity: 0.25;
+  font-size: 2.5rem;
+  position: absolute;
+  top: 5px;
+  left: 7px;
+}
+
+.upload-icon:hover {
+  opacity: 1;
+}
+
+.prof-page-icon {
+  font-size: 1.65rem !important;
+  color: rgb(190, 190, 190);
+}
+
+@media screen and (max-width: 767px) {
+
+  .upload-icon {
+    font-size: 2rem;
+    position: absolute;
+    left: 5px;
+  }
+
+}
+
+@media screen and (max-width: 439px) {
+
+  .upload-icon {
+    font-size: 1.5rem;
+    position: absolute;
+    left: 5px;
+  }
+
+}
+
+.prof-icon-group {
+  display: flex;
+  justify-content: start;
+  font-size: 0.9rem;
+  color: rgb(177, 177, 177);
+  position: relative;
+}
+
+.prof-icon-wrap {
+  margin-right: 20px;
+  margin-left: 10px;
+  margin-top: 10px;
+  position: absolute;
+  left: -7.5px;
+  top: -5px;
+}
+
+#bio-textarea {
+  height: 90px;
 }

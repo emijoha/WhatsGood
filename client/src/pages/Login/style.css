@@ -2,19 +2,21 @@
     border: solid;
     border-image-slice: 1;
     border-width: 20px;
-    border-image-source: linear-gradient(to bottom right, rgb(72, 0, 206), rgb(225, 2, 255));
     margin-top: 60px !important;
-    margin-top: 115px;
-    
 }
 
-.signup-link {
-    padding: 30px;
-    padding-top: 0px;
-    padding-left: 40px;
+.login-link {
+    padding-left: 30px;
+    margin-bottom: 30px;
+    font-weight: 600;
 }
 
 #login-card-column {
     margin-top: 80px;
     margin-bottom: 70px;
+}
+
+.movie-border {
+  border-image-slice: 1 ;
+  border-image-source: linear-gradient(to bottom right, rgb(94, 9, 251), rgb(255, 2, 234)) ;
 }

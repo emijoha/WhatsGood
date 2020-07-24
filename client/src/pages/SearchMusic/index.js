@@ -6,7 +6,7 @@ import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { saveMusic, searchMusic } from '../../utils/API';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function SearchMusic() {
@@ -131,7 +131,7 @@ function SearchMusic() {
                       <FontAwesomeIcon
                         className='search-icon'
                         id='neon-hover'
-                        icon={faUserCircle}
+                        icon={faUserFriends}
                       />
                     </a>
                   </p>
