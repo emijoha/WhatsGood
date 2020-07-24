@@ -1,7 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+import { Jumbotron, Row, Col, Container, CardColumns, Card, Button } from 'react-bootstrap';
 import NotLoggedIn from '../../components/NotLoggedIn';
 import './style.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserFriends, faInbox, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
@@ -60,7 +62,7 @@ function SavedFriends() {
 
   return (
     <div id="container">
-      {userData.username ?
+      {/* {userData.username ?
         <div>
           <div id="header-div">
 
@@ -72,16 +74,68 @@ function SavedFriends() {
               : <h5 className="text-center" id="header">MY FRIENDS</h5>}
 
 
-          </div>
-          <Container>
-            <SavedCards
-              cardType='savedFriends'
-              savedArray={userData.friends}
-              handleDeleteFriend={handleDeleteFriend}
-            />
-          </Container>
-        </div> :
-        <NotLoggedIn />}
+          </div> */}
+      <Row>
+        <Container>
+          <Row>
+            <Col xs={0} s={0} md={1} lg={2}></Col>
+            <Col xs={12} s={12} md={10} lg={8}>
+              <h5 className="text-center friend-text purple">
+                MY FRIENDS
+              </h5>
+              <div id="friend-icon-group">
+                <div id="friend-icon-div">
+                    <FontAwesomeIcon
+                      className='friend-page-icon'
+                      icon={faUserFriends}
+                    />
+                  <p id='friend-count-sub'>
+                    {userData.friends.length}
+                  </p>
+                </div>
+                <div id="friend-icon-div">
+                  <a href='./messages'>
+                    <FontAwesomeIcon
+                      className='friend-page-icon'
+                      id='neon-hover'
+                      icon={faInbox}
+                    />
+                  </a>
+                  <p id='friend-count-sub'>
+                    INBOX{/* {userData.friends.length} */}
+                  </p>
+                </div>
+                <div id="friend-icon-div">
+                  <a href='./search_user'>
+                    <FontAwesomeIcon
+                      className='friend-page-icon'
+                      id='neon-hover'
+                      icon={faSearch}
+                    />
+                  </a>
+                  <p id='friend-count-sub'>
+                    FIND{/* {userData.friends.length} */}
+                  </p>
+                </div>
+              </div>
+            </Col>
+            <Col xs={0} s={0} md={1} lg={2}></Col>
+          </Row>
+          <hr></hr>
+        </Container>
+      </Row>
+      <Container>
+        <SavedCards
+          cardType='savedFriends'
+          savedArray={userData.friends}
+          handleDeleteFriend={handleDeleteFriend}
+        />
+      </Container>
+      {/* ITS BUGGY */}
+      {/* {!userData.username
+          ? <NotLoggedIn />
+          : null
+        } */}
     </div>
   );
 }
