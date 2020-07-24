@@ -2,16 +2,10 @@
     margin-top: 50px;
     padding: 20px;
     height: 730px;
-    border: solid;
-    border-image-slice: 1;
-    border-width: 20px;
-    border-image-source: linear-gradient(to top left, rgb(179, 255, 1), rgb(0, 223, 74));
-
 }
 
 #chat-box-header {
-  margin-top: -30px;
-  color: rgb(121, 38, 255) !important;
+  margin-top: -35px;
 }
 
 #chat-box-header-active {
@@ -54,4 +48,10 @@
     }
 
   
+}
+
+.messenger-title {
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin-left: 2.5px;
 }

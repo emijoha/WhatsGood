@@ -144,7 +144,7 @@ background-color: rgb(23, 156, 245) !important;
   background-color: rgb(94, 9, 251) !important;
 }
 
-#neon, #neon-hover:hover {
+.neon, #neon, #neon-hover:hover {
   color: rgb(255, 2, 234) !important;
 }
 
