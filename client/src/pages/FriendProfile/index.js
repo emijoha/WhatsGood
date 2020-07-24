@@ -303,6 +303,17 @@ function FriendProfile() {
                           <div id='bio-scroll'>
                             {friend.bio}
                           </div>
+                          <div className='prof-icon-wrap' >
+                            <a href='/messages'>
+                              <FontAwesomeIcon
+                                className='prof-page-icon neon-hover'
+                                id='mail-friend-icon'
+                                icon={faPaperPlane}
+                              />
+                            </a>
+                            <span id='mail-friend-text'>SEND A MESSAGE</span>
+                            
+                          </div>
                         </div>
                         :
                         <>
@@ -320,7 +331,7 @@ function FriendProfile() {
                                 icon={faPaperPlane}
                               />
                             </a>
-                            <span id='mail-friend-text'>{` SEND ${friend.username.toUpperCase()} A MESSAGE `}</span>
+                            <span id='mail-friend-text'>SEND A MESSAGE</span>
                             
                           </div>
                         </>
