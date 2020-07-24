@@ -9,7 +9,7 @@ import SideBar from '../../components/SideBar';
 import SubNavbar from '../../components/SubNavbar';
 import UploadPhoto from '../../components/UploadPhoto';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserFriends, faInbox, faCamera, faTh, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserFriends, faInbox, faCamera, faTh, faPaperPlane, faSearch } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function ProfilePage() {
@@ -565,9 +565,16 @@ function ProfilePage() {
                 {myMediaState.length === 0 && myFavoriteState.length === 0 ?
 
 
-                  <div id="no-media-div">
-                    <p><h5 className="text-center" id="header">LOOKS EMPTY IN HERE.</h5></p>
-                    <p><h5 className="text-center" id="highlight-header">GO TO SEARCH AND ADD SOME MEDIA!</h5></p>
+                  <div className='text-center empty-content' id='neon-hover'>
+                    <a className="muted-subtext2" id='neon-hover' href='/search_user'>
+                      Add and rate media to show
+                      <FontAwesomeIcon
+                        className='search-icon-media'
+                        icon={faSearch}
+                      />
+                      <p className='muted-logo'>WHAT'S GOOD</p>
+                    </a>
+
                   </div>
 
                   :
