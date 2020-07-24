@@ -1,19 +1,19 @@
 #notification-button {
-  background-color: rgb(106, 0, 206);
-  padding: 2px 8px 0.5px 8px;
-  color: white !important;
+  background-color: transparent;
+  color: black;
+  padding: 2px 8px 2px 8px;
   margin-left: 6px;
   border-radius: 25px;
   /* float: right; */
-}
-#notification-button:hover {
-  background-color: rgb(255, 2, 234);
 }
 
 .notification-item {
   display: flex;
   /* align-items: start; */
   justify-content: space-between;
+}
+.notification-item:active {
+  color: black;
 }
 
 .notification-text {

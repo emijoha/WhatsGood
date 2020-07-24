@@ -84,15 +84,17 @@ function AppNavbar() {
               </Nav.Link>
               }
               {userData.notifications.length > 0 &&
-                (<h4>{userData.notifications.length}</h4>)
+                (<h4 id='notification-counter'>{userData.notifications.length}</h4>)
               }
               {userData.username &&
                 <NavDropdown
                   alignRight
-                  title={<ProfilePic picture={userData.picture} username={userData.username} />}
+                  title={<div className="text-center"><ProfilePic picture={userData.picture} username={userData.username} /></div>}
                 >
-                  <NavDropdown.Item onClick={() => setShowModal(true)}>UPLOAD PROFILE PIC</NavDropdown.Item>
+                  <NavDropdown.Item onClick={() => setShowModal(true)}>UPLOAD PHOTO</NavDropdown.Item>
                   <NavDropdown.Item href="/profile">MY PROFILE</NavDropdown.Item>
+                  
+                  <NavDropdown.Item href="/messages">MESSAGES</NavDropdown.Item>
                   {userData.notifications.length
                     ? <div className='notification-scroll'>
                       {userData.notifications.map((notification) => {
@@ -112,7 +114,6 @@ function AppNavbar() {
                     </div>
                     : null
                   }
-                  <NavDropdown.Item href="/messages">MESSAGES</NavDropdown.Item>
                   <NavDropdown.Item onClick={AuthService.logout}>LOGOUT</NavDropdown.Item>
                 </NavDropdown>
               }
