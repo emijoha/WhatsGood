@@ -54,6 +54,7 @@
   width: 30%;
   float: left;
   text-align: center;
+  position: relative;
 }
 
 #user-title {
@@ -95,4 +96,30 @@
   font-size: 0.95rem;
   color: black !important;
   background-color: transparent;
+}
+
+.upload-icon {
+  font-size: 3rem;
+  position: absolute;
+  left: 5px;
+}
+
+@media screen and (max-width: 767px) {
+
+  .upload-icon {
+    font-size: 2rem;
+    position: absolute;
+    left: 5px;
+  }
+
+}
+
+@media screen and (max-width: 439px) {
+
+  .upload-icon {
+    font-size: 1.5rem;
+    position: absolute;
+    left: 5px;
+  }
+
 }

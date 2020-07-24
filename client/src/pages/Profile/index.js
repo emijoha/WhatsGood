@@ -8,7 +8,7 @@ import ProfileFeedCard from '../../components/ProfileFeedCard';
 import SideBar from '../../components/SideBar';
 import SubNavbar from '../../components/SubNavbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserCircle, faInbox, faPencil, faUpload} from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserCircle, faInbox, faPencil, faCamera } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function ProfilePage() {
@@ -408,6 +408,11 @@ function ProfilePage() {
                     className='img-fluid'
                     id='my-profile-pic'
                   ></Card.Img>
+                  <FontAwesomeIcon
+                    className='upload-icon'
+                    id='neon-hover'
+                    icon={faCamera}
+                  />
                 </div>
                 <div id='profile-info'>
                   <Card.Title id='user-title'>
@@ -421,14 +426,14 @@ function ProfilePage() {
                           {console.log("userData.bio", userData.bio)}
                           <p className='about-me' id='purple'>
                             ABOUT ME <a
-                            className='btn bio-btn'
-                            onClick={() => setBioUpdate(true)}
-                          >Update Bio</a>
+                              className='btn bio-btn'
+                              onClick={() => setBioUpdate(true)}
+                            >Update Bio</a>
                           </p>
                           <div id='bio-scroll'>
                             {userData.bio}
                           </div>
-                          
+
                         </div>
                         :
                         <>
@@ -486,7 +491,7 @@ function ProfilePage() {
         </Row>
         <hr></hr>
       </Container>
-      
+
       <Container width="100%">
         <Row id="main-body-row">
           <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
@@ -514,11 +519,11 @@ function ProfilePage() {
                   // userRating={userRating}
                   // startReview={startReview}
                   selectedMediaReview={selectedMediaReview}
-                  // handleReviewFormSubmit={handleReviewFormSubmit}
-                  // reviewInput={reviewInput}
-                  // setReviewInput={setReviewInput}
-                  // handleDeleteMedia={handleDeleteMedia}
-                  // makeFavorite={makeFavorite}
+                // handleReviewFormSubmit={handleReviewFormSubmit}
+                // reviewInput={reviewInput}
+                // setReviewInput={setReviewInput}
+                // handleDeleteMedia={handleDeleteMedia}
+                // makeFavorite={makeFavorite}
                 />
               );
             })}
