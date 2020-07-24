@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import NotLoggedIn from '../../components/NotLoggedIn';
-import { Jumbotron, Container, Row, Col } from 'react-bootstrap';
+import { Jumbotron, Container, Row, Col, CardColumns } from 'react-bootstrap';
 import SavedCards from '../../components/SavedCards';
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faSearch } from '@fortawesome/free-solid-svg-icons';
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
 
@@ -199,6 +199,16 @@ function SavedMovies() {
         </Container>
       </Row>
       <Container>
+        <a className='muted-subtext' id='neon-hover' href='/search_movies'>
+          <div className="empty-message">
+            Add movies to your collection
+            <FontAwesomeIcon
+              className='search-icon-media'
+              icon={faSearch}
+            />
+          </div>
+        </a>
+        <CardColumns>
         <SavedCards
           cardType='savedMovies'
           savedArray={userData.savedMovies}
@@ -219,6 +229,7 @@ function SavedMovies() {
           makeFavorite={makeFavorite}
           handleDeleteMovie={handleDeleteMovie}
         />
+        </CardColumns>
         {/* ITS BUGGY */}
         {/* {!userData.username
           ? <NotLoggedIn />

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Jumbotron, Container, Row, Col, CardColumns } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faSearch } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
@@ -233,6 +233,15 @@ function SavedMedia() {
         </Container>
       </Row>
       <Container>
+      <a className='muted-subtext' id='neon-hover' href='/search_music'>
+          <div className="empty-message">
+            Add media to your collections
+            <FontAwesomeIcon
+              className='search-icon-media'
+              icon={faSearch}
+            />
+          </div>
+        </a>
         <CardColumns>
         <SavedCards
           cardType='savedBooks'

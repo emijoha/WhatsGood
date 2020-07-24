@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { Jumbotron, Container, Row, Col } from 'react-bootstrap';
+import { Jumbotron, Container, Row, Col, CardColumns } from 'react-bootstrap';
 // import ReactAudioPlayer from 'react-audio-player';
 import SavedCards from '../../components/SavedCards';
 import NotLoggedIn from '../../components/NotLoggedIn';
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
@@ -22,13 +22,11 @@ function SavedMusic() {
   const [selectedMediaReview, setSelectedMediaReview] = useState('');
   const [selectedMediaRating, setSelectedMediaRating] = useState(0);
 
-
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
   console.log("this is the user data, ", userData);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
-
   const makeFavorite = (media) => {
     console.log('from SavedMovies: ', media);
 
@@ -197,26 +195,37 @@ function SavedMusic() {
         </Container>
       </Row>
       <Container>
-        <SavedCards
-          cardType='savedMusic'
-          savedArray={userData.savedMusic}
-          username={userData.username}
-          userData={userData}
-          startRating={startRating}
-          selectedMediaRating={selectedMediaRating}
-          handleRatingFormSubmit={handleRatingFormSubmit}
-          setUserRating={setUserRating}
-          setHover={setHover}
-          hover={hover}
-          userRating={userRating}
-          startReview={startReview}
-          selectedMediaReview={selectedMediaReview}
-          handleReviewFormSubmit={handleReviewFormSubmit}
-          reviewInput={reviewInput}
-          setReviewInput={setReviewInput}
-          makeFavorite={makeFavorite}
-          handleDeleteMusic={handleDeleteMusic}
-        />
+      <a className='muted-subtext' id='neon-hover' href='/search_music'>
+          <div className="empty-message">
+            Add music to your collection
+            <FontAwesomeIcon
+              className='search-icon-media'
+              icon={faSearch}
+            />
+          </div>
+        </a>
+        <CardColumns>
+          <SavedCards
+            cardType='savedMusic'
+            savedArray={userData.savedMusic}
+            username={userData.username}
+            userData={userData}
+            startRating={startRating}
+            selectedMediaRating={selectedMediaRating}
+            handleRatingFormSubmit={handleRatingFormSubmit}
+            setUserRating={setUserRating}
+            setHover={setHover}
+            hover={hover}
+            userRating={userRating}
+            startReview={startReview}
+            selectedMediaReview={selectedMediaReview}
+            handleReviewFormSubmit={handleReviewFormSubmit}
+            reviewInput={reviewInput}
+            setReviewInput={setReviewInput}
+            makeFavorite={makeFavorite}
+            handleDeleteMusic={handleDeleteMusic}
+          />
+        </CardColumns>
         {/* ITS BUGGY */}
         {/* {!userData.username
           ? <NotLoggedIn />

@@ -3,7 +3,7 @@ import { Jumbotron, Row, Col, Container, CardColumns, Card, Button } from 'react
 import NotLoggedIn from '../../components/NotLoggedIn';
 import './style.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserFriends, faInbox, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faUserFriends, faPaperPlane, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
@@ -85,10 +85,10 @@ function SavedFriends() {
               </h5>
               <div id="friend-icon-group">
                 <div id="friend-icon-div">
-                    <FontAwesomeIcon
-                      className='friend-page-icon'
-                      icon={faUserFriends}
-                    />
+                  <FontAwesomeIcon
+                    className='friend-page-icon'
+                    icon={faUserFriends}
+                  />
                   <p id='friend-count-sub'>
                     {userData.friends.length}
                   </p>
@@ -98,11 +98,11 @@ function SavedFriends() {
                     <FontAwesomeIcon
                       className='friend-page-icon'
                       id='neon-hover'
-                      icon={faInbox}
+                      icon={faPaperPlane}
                     />
                   </a>
                   <p id='friend-count-sub'>
-                    INBOX{/* {userData.friends.length} */}
+                    MSG{/* {userData.friends.length} */}
                   </p>
                 </div>
                 <div id="friend-icon-div">
@@ -124,13 +124,17 @@ function SavedFriends() {
           <hr></hr>
         </Container>
       </Row>
+
       <Container>
-        <SavedCards
-          cardType='savedFriends'
-          savedArray={userData.friends}
-          handleDeleteFriend={handleDeleteFriend}
-        />
+        <CardColumns>
+          <SavedCards
+            cardType='savedFriends'
+            savedArray={userData.friends}
+            handleDeleteFriend={handleDeleteFriend}
+          />
+        </CardColumns>
       </Container>
+
       {/* ITS BUGGY */}
       {/* {!userData.username
           ? <NotLoggedIn />
