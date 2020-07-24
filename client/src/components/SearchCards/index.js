@@ -197,10 +197,14 @@ function SearchCards(props) {
 
                     <Card className={`friend-border${number}`} key={props.searchedUser._id} border='dark'>
                         <div className='center-wrap'>
-                            <Card.Img className='friendImage' src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
+                        <Link to={`/friend_profile?id=${props.searchedUser._id}`}>
+                          <Card.Img className='friendImage' src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
+                        </Link>
                             <Card.Body>
                                 <Card.Title>
+                                  <Link to={`/friend_profile?id=${props.searchedUser._id}`}>
                                     <b>{props.searchedUser.username.toUpperCase()}</b>
+                                  </Link>
                                     <p className='by'><b>email:</b> {props.searchedUser.email}</p>
                                 </Card.Title>
                                 {props.savedArray?.every((friend) => friend._id !== props.searchedUser._id)
@@ -209,7 +213,7 @@ function SearchCards(props) {
                                         className={`btn-block ${background[number - 1]}`}
                                         onClick={() => props.handleSaveFriend()}>
                                         Save Friend
-                                </Button>
+                                      </Button>
                                     : <Button
                                         className={`btn-block ${background[number - 1]}`}
                                         onClick={() => props.handleDeleteFriend(props.searchedUser._id)}>
