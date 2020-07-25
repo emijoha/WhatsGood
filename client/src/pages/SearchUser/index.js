@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import SearchCards from '../../components/SearchCards';
+import SavedIconLinks from '../../components/SavedIconLinks';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { saveFriend, searchFriend, deleteFriend, addNotification } from '../../utils/API';
@@ -28,7 +29,12 @@ function SearchUser() {
         username: user.data.username,
         _id: user.data._id,
         picture: user.data.picture,
-        email: user.data.email
+        email: user.data.email,
+        music: user.data.savedMusic,
+        movies: user.data.savedMovies,
+        games: user.data.saveGames,
+        books: user.data.savedBooks
+
       }))
     // }
   }, [queryStringUsername !== window.location.search.split('=')[1]]);
@@ -57,7 +63,11 @@ function SearchUser() {
         username: user.data.username,
         _id: user.data._id,
         picture: user.data.picture,
-        email: user.data.email
+        email: user.data.email,
+        music: user.data.savedMusic,
+        movies: user.data.savedMovies,
+        games: user.data.savedGames,
+        books: user.data.savedBooks
       }),
         setSearchInput(''),
         history.push('/search_user')

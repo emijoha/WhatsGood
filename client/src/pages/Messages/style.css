@@ -6,9 +6,14 @@
 }
 
 
+#chat-box-header {
+  color: rgb(195, 195, 195) !important;
+  
+}
 
-
-
+#all-messages-button {
+  cursor: pointer;
+}
 
 @media screen and (max-width: 991px) {
      
@@ -23,6 +28,7 @@
   }
 
   #chat-box-header {
+    
     margin-top: 17.5px;
     margin-left: -10px !important;
   }
@@ -31,6 +37,8 @@
     margin-top: 0px;
     
   }
+
+ 
 
 
 }
