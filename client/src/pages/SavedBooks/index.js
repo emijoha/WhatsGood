@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Jumbotron, Container, Row, Col, CardColumns } from 'react-bootstrap';
 import NotLoggedIn from '../../components/NotLoggedIn';
 import SavedCards from '../../components/SavedCards';
+import SavedIconLinks from '../../components/SavedIconLinks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faSearch } from '@fortawesome/free-solid-svg-icons';
 // import context for global state
@@ -147,43 +148,7 @@ function SavedBooks() {
               <div id="sub-container" >
                 <div id="header-div">
                   <h5 className="text-center" id="media-header">MY BOOKS</h5>
-                  <p className='saved-icon-group text-center'>
-                    <a href='/saved_media'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faAsterisk}
-                      />
-                    </a>
-                    <a href='/saved_music'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faMusic}
-                      />
-                    </a>
-                    <a href='/saved_movies'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faVideo}
-                      />
-                    </a>
-                    <a href='/saved_games'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faGamepad}
-                      />
-                    </a>
-                    <a href='/saved_books'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faBookOpen}
-                      />
-                    </a>
-                  </p>
+                  <SavedIconLinks></SavedIconLinks>
                 </div>
               </div>
             </Col>
@@ -193,7 +158,7 @@ function SavedBooks() {
         </Container>
       </Row>
       <Container>
-      <a className='muted-subtext' id='neon-hover' href='/search_books'>
+        <a className='muted-subtext' id='neon-hover' href='/search_books'>
           <div className="empty-message">
             Add books to your collection
             <FontAwesomeIcon
@@ -203,29 +168,29 @@ function SavedBooks() {
           </div>
         </a>
         <CardColumns>
-        <SavedCards
-          cardType='savedBooks'
-          savedArray={userData.savedBooks}
-          username={userData.username}
-          userData={userData}
-          startRating={startRating}
-          selectedMediaRating={selectedMediaRating}
-          handleRatingFormSubmit={handleRatingFormSubmit}
-          setUserRating={setUserRating}
-          setHover={setHover}
-          hover={hover}
-          userRating={userRating}
-          startReview={startReview}
-          selectedMediaReview={selectedMediaReview}
-          handleReviewFormSubmit={handleReviewFormSubmit}
-          reviewInput={reviewInput}
-          setReviewInput={setReviewInput}
-          handleDeleteBook={handleDeleteBook}
-          makeFavorite={makeFavorite}
-          comments={userData.savedBooks.comments}
-        />
-        {/* ITS BUGGY */}
-        {/* {!userData.username
+          <SavedCards
+            cardType='savedBooks'
+            savedArray={userData.savedBooks}
+            username={userData.username}
+            userData={userData}
+            startRating={startRating}
+            selectedMediaRating={selectedMediaRating}
+            handleRatingFormSubmit={handleRatingFormSubmit}
+            setUserRating={setUserRating}
+            setHover={setHover}
+            hover={hover}
+            userRating={userRating}
+            startReview={startReview}
+            selectedMediaReview={selectedMediaReview}
+            handleReviewFormSubmit={handleReviewFormSubmit}
+            reviewInput={reviewInput}
+            setReviewInput={setReviewInput}
+            handleDeleteBook={handleDeleteBook}
+            makeFavorite={makeFavorite}
+            comments={userData.savedBooks.comments}
+          />
+          {/* ITS BUGGY */}
+          {/* {!userData.username
           ? <NotLoggedIn />
           : null
         } */}

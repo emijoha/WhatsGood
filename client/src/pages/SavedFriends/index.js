@@ -102,7 +102,7 @@ function SavedFriends() {
                     />
                   </a>
                   <p id='friend-count-sub'>
-                    MSG{/* {userData.friends.length} */}
+                    MSG
                   </p>
                 </div>
                 <div id="friend-icon-div">
@@ -114,7 +114,7 @@ function SavedFriends() {
                     />
                   </a>
                   <p id='friend-count-sub'>
-                    FIND{/* {userData.friends.length} */}
+                    FIND
                   </p>
                 </div>
               </div>

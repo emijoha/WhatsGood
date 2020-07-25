@@ -3,6 +3,7 @@ import { Jumbotron, Container, Row, Col, CardColumns } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faSearch } from '@fortawesome/free-solid-svg-icons';
+import SavedIconLinks from '../../components/SavedIconLinks';
 import './style.css';
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
@@ -16,7 +17,7 @@ function SavedMedia() {
   const [reviewInput, setReviewInput] = useState('');
   const [userRating, setUserRating] = useState(0);
   const [hover, setHover] = useState(null);
- 
+
 
   // set state to activate review form
   const [selectedMediaReview, setSelectedMediaReview] = useState('');
@@ -186,44 +187,10 @@ function SavedMedia() {
             <Col xs={12} s={12} md={10} lg={8}>
               <div id="sub-container" >
                 <div id="header-div">
-                  <h5 className="text-center" id="media-header">MY MEDIA</h5>
-                  <p className='saved-icon-group text-center'>
-                    <a href='/saved_media'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faAsterisk}
-                      />
-                    </a>
-                    <a href='/saved_music'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faMusic}
-                      />
-                    </a>
-                    <a href='/saved_movies'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faVideo}
-                      />
-                    </a>
-                    <a href='/saved_games'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faGamepad}
-                      />
-                    </a>
-                    <a href='/saved_books'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faBookOpen}
-                      />
-                    </a>
-                  </p>
+                  <h5 className="text-center" id="media-header">
+                    MY MEDIA
+                  </h5>
+                  <SavedIconLinks></SavedIconLinks>
                 </div>
               </div>
             </Col>
@@ -233,7 +200,7 @@ function SavedMedia() {
         </Container>
       </Row>
       <Container>
-      <a className='muted-subtext' id='neon-hover' href='/search_music'>
+        <a className='muted-subtext' id='neon-hover' href='/search_music'>
           <div className="empty-message">
             Add media to your collections
             <FontAwesomeIcon
@@ -243,86 +210,86 @@ function SavedMedia() {
           </div>
         </a>
         <CardColumns>
-        <SavedCards
-          cardType='savedBooks'
-          savedArray={userData.savedBooks}
-          username={userData.username}
-          userData={userData}
-          startRating={startRating}
-          selectedMediaRating={selectedMediaRating}
-          handleRatingFormSubmit={handleRatingFormSubmit}
-          setUserRating={setUserRating}
-          setHover={setHover}
-          hover={hover}
-          userRating={userRating}
-          startReview={startReview}
-          selectedMediaReview={selectedMediaReview}
-          handleReviewFormSubmit={handleReviewFormSubmit}
-          reviewInput={reviewInput}
-          setReviewInput={setReviewInput}
-          makeFavorite={makeFavorite}
-          handleDeleteBook={handleDeleteBook}
-        />
-        <SavedCards
-          cardType='savedMusic'
-          savedArray={userData.savedMusic}
-          username={userData.username}
-          userData={userData}
-          startRating={startRating}
-          selectedMediaRating={selectedMediaRating}
-          handleRatingFormSubmit={handleRatingFormSubmit}
-          setUserRating={setUserRating}
-          setHover={setHover}
-          hover={hover}
-          userRating={userRating}
-          startReview={startReview}
-          selectedMediaReview={selectedMediaReview}
-          handleReviewFormSubmit={handleReviewFormSubmit}
-          reviewInput={reviewInput}
-          setReviewInput={setReviewInput}
-          makeFavorite={makeFavorite}
-          handleDeleteMusic={handleDeleteMusic}
-        />
-        <SavedCards
-          cardType='savedMovies'
-          savedArray={userData.savedMovies}
-          username={userData.username}
-          userData={userData}
-          startRating={startRating}
-          selectedMediaRating={selectedMediaRating}
-          handleRatingFormSubmit={handleRatingFormSubmit}
-          setUserRating={setUserRating}
-          setHover={setHover}
-          hover={hover}
-          userRating={userRating}
-          startReview={startReview}
-          selectedMediaReview={selectedMediaReview}
-          handleReviewFormSubmit={handleReviewFormSubmit}
-          reviewInput={reviewInput}
-          setReviewInput={setReviewInput}
-          makeFavorite={makeFavorite}
-          handleDeleteMovie={handleDeleteMovie}
-        />
-        <SavedCards
-          cardType='savedGames'
-          savedArray={userData.savedGames}
-          username={userData.username}
-          userData={userData}
-          startRating={startRating}
-          selectedMediaRating={selectedMediaRating}
-          handleRatingFormSubmit={handleRatingFormSubmit}
-          setUserRating={setUserRating}
-          setHover={setHover}
-          hover={hover}
-          userRating={userRating}
-          startReview={startReview}
-          selectedMediaReview={selectedMediaReview}
-          handleReviewFormSubmit={handleReviewFormSubmit}
-          reviewInput={reviewInput}
-          setReviewInput={setReviewInput}
-          makeFavorite={makeFavorite}
-          handleDeleteGame={handleDeleteGame}
-        />
+          <SavedCards
+            cardType='savedBooks'
+            savedArray={userData.savedBooks}
+            username={userData.username}
+            userData={userData}
+            startRating={startRating}
+            selectedMediaRating={selectedMediaRating}
+            handleRatingFormSubmit={handleRatingFormSubmit}
+            setUserRating={setUserRating}
+            setHover={setHover}
+            hover={hover}
+            userRating={userRating}
+            startReview={startReview}
+            selectedMediaReview={selectedMediaReview}
+            handleReviewFormSubmit={handleReviewFormSubmit}
+            reviewInput={reviewInput}
+            setReviewInput={setReviewInput}
+            makeFavorite={makeFavorite}
+            handleDeleteBook={handleDeleteBook}
+          />
+          <SavedCards
+            cardType='savedMusic'
+            savedArray={userData.savedMusic}
+            username={userData.username}
+            userData={userData}
+            startRating={startRating}
+            selectedMediaRating={selectedMediaRating}
+            handleRatingFormSubmit={handleRatingFormSubmit}
+            setUserRating={setUserRating}
+            setHover={setHover}
+            hover={hover}
+            userRating={userRating}
+            startReview={startReview}
+            selectedMediaReview={selectedMediaReview}
+            handleReviewFormSubmit={handleReviewFormSubmit}
+            reviewInput={reviewInput}
+            setReviewInput={setReviewInput}
+            makeFavorite={makeFavorite}
+            handleDeleteMusic={handleDeleteMusic}
+          />
+          <SavedCards
+            cardType='savedMovies'
+            savedArray={userData.savedMovies}
+            username={userData.username}
+            userData={userData}
+            startRating={startRating}
+            selectedMediaRating={selectedMediaRating}
+            handleRatingFormSubmit={handleRatingFormSubmit}
+            setUserRating={setUserRating}
+            setHover={setHover}
+            hover={hover}
+            userRating={userRating}
+            startReview={startReview}
+            selectedMediaReview={selectedMediaReview}
+            handleReviewFormSubmit={handleReviewFormSubmit}
+            reviewInput={reviewInput}
+            setReviewInput={setReviewInput}
+            makeFavorite={makeFavorite}
+            handleDeleteMovie={handleDeleteMovie}
+          />
+          <SavedCards
+            cardType='savedGames'
+            savedArray={userData.savedGames}
+            username={userData.username}
+            userData={userData}
+            startRating={startRating}
+            selectedMediaRating={selectedMediaRating}
+            handleRatingFormSubmit={handleRatingFormSubmit}
+            setUserRating={setUserRating}
+            setHover={setHover}
+            hover={hover}
+            userRating={userRating}
+            startReview={startReview}
+            selectedMediaReview={selectedMediaReview}
+            handleReviewFormSubmit={handleReviewFormSubmit}
+            reviewInput={reviewInput}
+            setReviewInput={setReviewInput}
+            makeFavorite={makeFavorite}
+            handleDeleteGame={handleDeleteGame}
+          />
         </CardColumns>
         {/* ITS BUGGY */}
         {/* {!userData.username
