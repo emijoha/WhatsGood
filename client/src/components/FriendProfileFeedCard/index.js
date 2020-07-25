@@ -24,7 +24,6 @@ function FriendProfileFeedCard(props) {
             : null}
           <Card.Title>{media.username} saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
-            <br />
           </Card.Title>
           {media.image
             ? <div id="center-wrap">
@@ -59,13 +58,15 @@ function FriendProfileFeedCard(props) {
           <div className='scroll-box'>
             {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
           </div>
-          <LikeButton mediaLikes={media.likes}
+          <LikeButton 
+          mediaLikes={media.likes}
             mediaType={props.mediaType}
             ownerId={media.userId}
             mediaId={media._id}
             title={media.title}
             cb={props.cb}
             userData={props.userData}
+            page='friend-profile'
           />
           <CommentComponent
             comments={media.comments}
@@ -89,7 +90,6 @@ function FriendProfileFeedCard(props) {
             : null}
           <Card.Title>{media.username} saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
-            <br />
           </Card.Title>
           {media.image
             ? <div id="center-wrap">
@@ -135,6 +135,7 @@ function FriendProfileFeedCard(props) {
             title={media.title}
             cb={props.cb}
             userData={props.userData}
+            page='friend-profile'
           />
           <CommentComponent
             comments={media.comments}
@@ -157,7 +158,6 @@ function FriendProfileFeedCard(props) {
             : null}
           <Card.Title>{media.username} saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
-            <br />
           </Card.Title>
           {media.image
             ? <div id="center-wrap">
@@ -198,6 +198,7 @@ function FriendProfileFeedCard(props) {
             title={media.title}
             cb={props.cb}
             userData={props.userData}
+            page='friend-profile'
           />
           <CommentComponent
             comments={media.comments}
@@ -220,7 +221,6 @@ function FriendProfileFeedCard(props) {
             : null}
           <Card.Title>{media.username} saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
-            <br />
           </Card.Title>
           {media.image
             ? <div id="center-wrap">
@@ -261,6 +261,7 @@ function FriendProfileFeedCard(props) {
             title={media.title}
             cb={props.cb}
             userData={props.userData}
+            page='friend-profile'
           />
           <CommentComponent
             comments={media.comments}

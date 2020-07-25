@@ -1,46 +1,54 @@
 .form-outer-div {
-    padding: 50px;
+    padding: 40px 60px 10px 60px;
     background-color: rgba(0, 128, 0, 0);
 }
 
-.form-label {
-    margin-top: 20px;
+#form-label {
+  margin-bottom: 15px !important;
+  margin-top: 10px !important;
+  font-weight: 600;
 }
 
-.form-input {
-   
+#form-input-signup {
     border-radius: 40px;
     background: transparent;
     color: black;
     border: none;
     border: 1px solid black;
     box-shadow: none;
-    
+    padding: 22px;
+    font-size: 18px;
+    margin: 0px !important;
+    outline: none !important;
 }
 
-.form-input:active, .form-input:focus {
+#form-input-signup:active, #form-input-signup:focus {
     background: transparent !important;
     outline: none !important;
 }
 
-.form-input {
-    background: transparent !important;
-  outline: none !important;
+
+#form-button-signup {
+  color: rgb(94, 9, 251) !important;
+  font-weight: 700;
+  background-color: rgba(255, 255, 255, 0) !important;
+  border-radius: 40px;
+  border: 1px solid rgb(94, 9, 251) !important;
+  font-size: 1.1rem;
+  padding: 10px 17.5px 7.5px 17.5px;
+  margin-top: 20px;
 }
 
-#form-button {
-    color: rgb(94, 9, 251);
-    font-weight: bold;
-    background-color: rgba(255, 255, 255, 0);
-    border-radius: 40px;
-    border: 1px solid rgb(75, 0, 196);
-    font-weight: bold;
-    margin-top: 20px;
-}
-
-#form-button:hover {
+#form-button-signup:hover {
   color: rgb(255, 2, 234) !important;
   background-color: rgba(255, 255, 255, 0) !important;
   border: 1px solid rgb(255, 2, 234) !important;
-  border-radius: 40px;
+}
+
+#heading-signup {
+  color: rgb(94, 9, 251) !important;
+  margin-top: 15px;
+  padding-bottom: 20px;
+  font-size: 1.75rem;
+  font-weight: 700;
 }

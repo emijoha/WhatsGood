@@ -48,14 +48,14 @@ function LoginForm() {
     <div className="form-outer-div">
     
       <Form  noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <h5>LOGIN</h5>
+        <h5 id='heading-login'>LOGIN</h5>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           {errorText || 'Something went wrong with your login credentials!'}
         </Alert>
         <Form.Group>
-          <Form.Label className="form-label" htmlFor='username'>USERNAME</Form.Label>
+          <Form.Label id="form-label" htmlFor='username'>USERNAME</Form.Label>
           <Form.Control
-            className="form-input"
+            id="form-input-login"
             type='text'
             placeholder='Your username'
             name='username'
@@ -67,9 +67,9 @@ function LoginForm() {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label className="form-label" htmlFor='password'>PASSWORD</Form.Label>
+          <Form.Label id="form-label" htmlFor='password'>PASSWORD</Form.Label>
           <Form.Control
-            className="form-input"
+            id="form-input-login"
             type='password'
             placeholder='Your password'
             name='password'
@@ -80,7 +80,9 @@ function LoginForm() {
           <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
         </Form.Group>
         <div className="text-right">
-        <Button className="form-button" disabled={!(userFormData.username && userFormData.password)} type='submit' variant='success'>
+        <Button className="form-button-login" 
+        disabled={!(userFormData.username && userFormData.password)} 
+        type='submit' >
           SUBMIT
         </Button>
         </div>

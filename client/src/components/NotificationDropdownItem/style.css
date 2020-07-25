@@ -1,19 +1,28 @@
 #notification-button {
-  background-color: rgb(106, 0, 206) !important;
-  padding: 2px 6px 0.5px 6px;
-  color: white !important;
+  background-color: transparent;
+  color: black;
+  padding: 2px 8px 2px 8px;
   margin-left: 6px;
+  border-radius: 25px;
+  /* float: right; */
 }
 
 .notification-item {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  /* align-items: start; */
+  justify-content: space-between;
+}
+.notification-item:active {
+  color: black;
+}
+
+.notification-text {
+  justify-self: flex-end;
 }
 
 .notification-scroll {
   width: 100%;
   padding-right: 8px;
-  max-height: 158px;
+  max-height: 151px;
   overflow: scroll;
 }

@@ -10,42 +10,38 @@ function ChatBox({ handleNewMessageState, newChatState, setIsPreviousChatState, 
 
   const userData = useContext(UserInfoContext);
   const [convoState, setConvoState] = useState([]);
-  
-   
-  
-  
-    
+
   const messagesEndRef = useRef(null)
 
   function scrollToBottom() {
     animateScroll.scrollToBottom({
       containerId: "chat-box-body"
     });
-}
+  }
 
   useEffect(() => {
 
     setConvoState([]);
-    
+
     scrollToBottom();
-  
-  
+
+
   }, [userData.username]);
 
 
   useEffect(() => {
 
-   
-    
+
+
     scrollToBottom();
-  
-  
+
+
   }, [convoState]);
 
   useEffect(() => {
-    
+
     let chatUser = [];
-    
+
     userData.chats.map(chat => {
 
       chat.users.map(user =>
@@ -56,24 +52,25 @@ function ChatBox({ handleNewMessageState, newChatState, setIsPreviousChatState, 
 
     })
 
-    {chatUser?.some((user) => user._id === newChatState.receiverId)
-      // ? setConvoState(myConvo) : 
-      ? renderPreviousChat() :
-      renderNoChatMessage()
-  }
-    
-    
-    
+    {
+      chatUser?.some((user) => user._id === newChatState.receiverId)
+        // ? setConvoState(myConvo) : 
+        ? renderPreviousChat() :
+        renderNoChatMessage()
+    }
 
-  
+
+
+
+
     scrollToBottom();
-  
-  
+
+
   }, [newChatState]);
 
 
   const handleSendMessage = useCallback((message) => {
-  
+
     setConvoState(convoState => [...convoState, message])
     scrollToBottom();
   });
@@ -85,16 +82,16 @@ function ChatBox({ handleNewMessageState, newChatState, setIsPreviousChatState, 
     userData.chats.map(chat => {
 
       chat.users.map(user => {
-        if (user._id === newChatState.receiverId){
+        if (user._id === newChatState.receiverId) {
 
           setConvoState(chat.messages)
           setCurrentChatIdState(chat._id)
-        }      
+        }
       })
 
     })
   }
-  
+
   function renderNoChatMessage() {
 
     setIsPreviousChatState(false);
@@ -104,103 +101,74 @@ function ChatBox({ handleNewMessageState, newChatState, setIsPreviousChatState, 
 
     setConvoState(noChatArray)
   }
-  
 
-    return (
-        <div>
-        <div ref={messagesEndRef} id="chat-box-body">
 
-          
+  return (
+    <div>
+      <div ref={messagesEndRef} id="chat-box-body">
+
+
         {convoState.map((convo => {
 
 
           if (convo.type === "no chat history") {
-           return (    
-           <Row>
-            </Row>
-           )
+            return (
+              <Row>
+              </Row>
+            )
           }
 
           if (convo.senderId === userData._id) {
             return (
               <div>
-
-              <Row id="chat-message-row">
-                <Col xs={6} sm={6} md={6} lg={6}></Col>
-              <Col xs={6} sm={6} md={6} lg={6}>
-              <img id="this-user-pic" src={convo.senderPicture}/>
-              
-              </Col>
-              </Row>
-              <Row id="chat-message-row">
-                <Col xs={6} sm={6} md={6} lg={6}></Col>
-              <Col xs={6} sm={6} md={6} lg={6}>
-              <div id="this-user-time">{moment(convo.createdAt).calendar()}</div>
-          
-             
-              </Col>
-              </Row>
-              <Row id="chat-message-row">
-              <Col xs={6} sm={6} md={6} lg={6}></Col>
-                <Col xs={6} sm={6} md={6} lg={6}>
-               
-                <div id="this-user-message">
-                
-                  {convo.messageText}
-                </div>
-               
-                </Col>
+                <Row id="chat-message-row">
+                  <Col xs={6} sm={6} md={6} lg={6}></Col>
+                  <Col xs={6} sm={6} md={6} lg={6}>
+                    <div id="this-user-message">
+                      {convo.messageText}
+                    </div>
+                  </Col>
                 </Row>
-               </div>
+                <Row id="chat-message-row">
+                  <Col xs={6} sm={6} md={6} lg={6}></Col>
+                  <Col xs={6} sm={6} md={6} lg={6}>
+                    <img id="this-user-pic" src={convo.senderPicture} />
+                    <div id="this-user-time">{moment(convo.createdAt).calendar()} </div>
+                  </Col>
+                </Row>
+              </div>
             )
-
-
           }
           return (
             <div>
-
-            <Row id="chat-message-row">
-            <Col xs={6} sm={6} md={6} lg={6}>
-            <img id="that-user-pic" src={convo.senderPicture}/>
-        
-            
-            </Col>
-            </Row>
-            <Row id="chat-message-row">
-            <Col xs={6} sm={6} md={6} lg={6}>
-            <div id="that-user-time">{moment(convo.createdAt).calendar()}</div>
-        
-            
-            </Col>
-            </Row>
-            <Row id="chat-message-row">
-            <Col xs={6} sm={6} md={6} lg={6}>
-     
-            <div id="that-user-message">
-              {convo.messageText}
-            </div>
-            
-            </Col>
-            </Row>
+              <Row id="chat-message-row">
+                <Col xs={6} sm={6} md={6} lg={6}>
+                  <div id="that-user-message">
+                    {convo.messageText}
+                  </div>
+                </Col>
+              </Row>
+              <Row id="chat-message-row">
+                <Col xs={6} sm={6} md={6} lg={6}>
+                <img id="that-user-pic" src={convo.senderPicture} />
+                  <div id="that-user-time">{moment(convo.createdAt).calendar()}</div>
+                </Col>
+              </Row>
             </div>
           )
-
-
-
         }))}
 
-        
-        </div>
-        <ChatInput
-            
-            handleSendMessage={handleSendMessage}
-            handleNewMessageState={handleNewMessageState}
-            newChatState={newChatState}
-            >
-        </ChatInput>
-        </div>
 
-    );
+      </div>
+      <ChatInput
+        handleSendMessage={handleSendMessage}
+        handleNewMessageState={handleNewMessageState}
+        newChatState={newChatState}
+      >
+      </ChatInput>
+    </div>
+
+  );
 
 }
 

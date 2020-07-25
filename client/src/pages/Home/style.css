@@ -38,4 +38,15 @@
   padding: 20px;
   padding-top: 0px;
 }
-
+.empty-content {
+  padding-top: 50px;
+}
+.muted-subtext2 {
+  color: rgb(185, 185, 185);
+}
+.muted-logo {
+  font-weight: 700;
+  font-size: 1.85rem;
+  position: relative;
+  top: -5px
+}

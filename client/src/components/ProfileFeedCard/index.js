@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
 import moment from 'moment';
@@ -7,16 +7,23 @@ import CommentComponent from '../CommentComponent'
 import RateSaved from '../RateSaved';
 import ReviewSaved from '../ReviewSaved';
 import MakeFavorite from '../MakeFavorite';
+import 'aos/dist/aos.css';
+import Aos from 'aos';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faBookOpen, faGamepad, faMusic } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 
 function ProfileFeedCard(props) {
+
+  useEffect(()=> {
+    Aos.init({ duration: 800 })
+  }, []);
+
   if (props.media.mediaType === 'Book') {
     const media = props.media;
     return (
-      <Card className='book-border' key={media._id} border='dark'>
+      <Card data-aos="fade-up" className='book-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -26,7 +33,7 @@ function ProfileFeedCard(props) {
           </Card.Title>
           {media.image
             ? <div id="center-wrap">
-              <Card.Img id="media-pic" src={media.image} alt={`The cover for ${media.title}`} variant='top' />
+              <Card.Img data-aos="fade-up" id="media-pic" src={media.image} alt={`The cover for ${media.title}`} variant='top' />
             </div>
             : null}
           <div id="center-wrap">
@@ -80,7 +87,7 @@ function ProfileFeedCard(props) {
   } else if (props.media.mediaType === 'Music') {
     const media = props.media;
     return (
-      <Card className='music-border' key={media._id} border='dark'>
+      <Card data-aos="fade-up" className='music-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -90,7 +97,7 @@ function ProfileFeedCard(props) {
           </Card.Title>
           {media.image
             ? <div id="center-wrap">
-              <Card.Img id="media-pic" src={media.image} alt={media.artist} variant='top' />
+              <Card.Img data-aos="fade-up" id="media-pic" src={media.image} alt={media.artist} variant='top' />
             </div>
             : null}
           <div id="center-wrap">
@@ -148,7 +155,7 @@ function ProfileFeedCard(props) {
   } else if (props.media.mediaType === 'Movie') {
     const media = props.media;
     return (
-      <Card className='movie-border' key={media._id} border='dark'>
+      <Card data-aos="fade-up" className='movie-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -158,7 +165,7 @@ function ProfileFeedCard(props) {
           </Card.Title>
           {media.image
             ? <div id="center-wrap">
-              <Card.Img id="media-pic" src={media.image} alt={`The cover for ${media.title}`} variant='top' />
+              <Card.Img data-aos="fade-up" id="media-pic" src={media.image} alt={`The cover for ${media.title}`} variant='top' />
             </div>
             : null}
           <div id='center-wrap'>
@@ -211,7 +218,7 @@ function ProfileFeedCard(props) {
   } else if (props.media.mediaType === 'Game') {
     const media = props.media;
     return (
-      <Card className='game-border' key={media._id} border='dark'>
+      <Card data-aos="fade-up" className='game-border' key={media._id} border='dark'>
         <Card.Body>
           {media.picture
             ? <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
@@ -221,7 +228,7 @@ function ProfileFeedCard(props) {
           </Card.Title>
           {media.image
             ? <div id="center-wrap">
-              <Card.Img id="media-pic" src={media.image} alt={`The image for ${media.title}`} variant='top' />
+              <Card.Img data-aos="fade-up" id="media-pic" src={media.image} alt={`The image for ${media.title}`} variant='top' />
             </div>
             : null}
           <div id="center-wrap">

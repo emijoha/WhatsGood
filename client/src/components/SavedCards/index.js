@@ -2,7 +2,7 @@ import React from 'react';
 import { CardColumns, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic } from '@fortawesome/free-solid-svg-icons'; 
+import { faVideo, faBookOpen, faGamepad, faMusic, faSearch } from '@fortawesome/free-solid-svg-icons';
 import ReactAudioPlayer from 'react-audio-player';
 import RateSaved from '../RateSaved';
 import ReviewSaved from '../ReviewSaved';
@@ -18,10 +18,9 @@ function SavedCards(props) {
   if (props.cardType === 'savedBooks') {
     return (
       <>
-        <CardColumns>
-          {props.savedArray.map((book) => {
+        {
+          props.savedArray.map((book) => {
             return (
-
               <Card className='book-border' key={book._id} border='dark'>
                 <MakeFavorite
                   username={props.username}
@@ -83,21 +82,23 @@ function SavedCards(props) {
                     handleReviewFormSubmit={props.handleReviewFormSubmit}
                     setReviewInput={props.setReviewInput}
                   />
-                  <Button className='btn-block book-back' onClick={() => props.handleDeleteBook(book._id)}>
+                  <Button
+                    className='btn-block delete-btn book-color book-border book-hover-fill'
+                    onClick={() => props.handleDeleteBook(book._id)}
+                  >
                     Delete this Book!
                   </Button>
                 </Card.Body>
               </Card>
             );
-          })}
-        </CardColumns>
-      </>
-    );
+          })
+        }</>);
+
   } else if (props.cardType === 'savedMusic') {
     return (
       <>
-        <CardColumns>
-          {props.savedArray.map((music) => {
+        {
+          props.savedArray.map((music) => {
             return (
 
               <Card className='music-border' key={music._id} border='dark'>
@@ -161,21 +162,19 @@ function SavedCards(props) {
                     handleReviewFormSubmit={props.handleReviewFormSubmit}
                     setReviewInput={props.setReviewInput}
                   />
-                  <Button className='btn-block music-back' onClick={() => props.handleDeleteMusic(music._id)}>
+                  <Button className='btn-block delete-btn music-color music-border music-hover-fill' onClick={() => props.handleDeleteMusic(music._id)}>
                     Delete!
                   </Button>
                 </Card.Body>
               </Card>
             );
-          })}
-        </CardColumns>
-      </>
-    );
+          })
+        }</>);
   } else if (props.cardType === 'savedMovies') {
     return (
       <>
-        <CardColumns>
-          {props.savedArray.map((media) => {
+        {
+          props.savedArray.map((media) => {
             return (
               <Card className='movie-border' key={media.mediaId} border='dark'>
                 <MakeFavorite
@@ -243,21 +242,21 @@ function SavedCards(props) {
                     handleReviewFormSubmit={props.handleReviewFormSubmit}
                     setReviewInput={props.setReviewInput}
                   />
-                  <Button className='btn-block movie-back' onClick={() => props.handleDeleteMovie(media._id)}>
+                  <Button
+                    className='btn-block delete-btn movie-color movie-border movie-hover-fill'
+                    onClick={() => props.handleDeleteMovie(media._id)}>
                     Delete this Movie!
                   </Button>
                 </Card.Body>
               </Card>
             );
-          })}
-        </CardColumns>
-      </>
-    );
+          })
+        }</>);
   } else if (props.cardType === 'savedGames') {
     return (
       <>
-        <CardColumns>
-          {props.savedArray.map((game) => {
+        {
+          props.savedArray.map((game) => {
             return (
               <Card className='game-border' key={game._id} border='dark'>
                 <MakeFavorite
@@ -320,26 +319,26 @@ function SavedCards(props) {
                     handleReviewFormSubmit={props.handleReviewFormSubmit}
                     setReviewInput={props.setReviewInput}
                   />
-                  <Button className='btn-block game-back' onClick={() => props.handleDeleteGame(game._id)}>
+                  <Button
+                    className='btn-block delete-btn game-color game-border game-hover-fill'
+                    onClick={() => props.handleDeleteGame(game._id)}>
                     Delete this Game!
                   </Button>
                 </Card.Body>
               </Card>
             );
-          })}
-        </CardColumns>
-      </>
-    );
+          })
+        }</>);
+
   } else if (props.cardType === 'savedFriends') {
     let number = randomNum();
-    let background = ['book-back', 'music-back', 'movie-back', 'game-back'];
+    let media = ['book', 'music', 'movie', 'game'];
     return (
       <>
-        <CardColumns>
-          {props.savedArray.map(friend => {
+        {
+          props.savedArray.map(friend => {
             console.log("this is my friend, ", friend)
             return (
-
               <Card className={`friend-border${number}`} key={friend._id} border='dark'>
                 <div className='center-wrap'>
                   <Link to={`/friend_profile?id=${friend._id}`}>
@@ -352,19 +351,23 @@ function SavedCards(props) {
                       </Link>
                       <p className='by'><b>email:</b> {friend.email}</p>
                     </Card.Title>
-                    <Button className={`btn-block ${background[number - 1]}`} onClick={() => props.handleDeleteFriend(friend._id)}>
+                    <Button
+                      className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
+                      href='/messages'>
+                      Send a Message
+                    </Button>
+                    <Button className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
+                      onClick={() => props.handleDeleteFriend(friend._id)}>
                       Remove Friend
                     </Button>
                   </Card.Body>
                 </div>
               </Card>
-
             );
           })
-          }
-        </CardColumns>
-      </>
-    );
+        }</>);
+  } else {
+    return null;
   }
 
 }

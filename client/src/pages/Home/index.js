@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container, Col, Row, Spinner } from 'react-bootstrap';
 import "./style.css";
+
 
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
@@ -10,11 +11,13 @@ import * as API from '../../utils/API';
 import FeedCard from '../../components/FeedCard';
 import SideBar from '../../components/SideBar';
 import SubNavbar from '../../components/SubNavbar';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function Home() {
 
   const [allFriendsMediaState, setAllFriendsMediaState] = useState([]);
+  const [loadingState, setLoadingState] = useState(false);
 
   function compareTimeStamp(a, b) {
     return b.timeStamp - a.timeStamp;
@@ -36,6 +39,12 @@ function Home() {
   }, []);
 
   function renderAllMedia() {
+    setLoadingState(true);
+
+    if (userData.friends.length === 0) {
+      setLoadingState(false)
+    }
+
     userData.friends.map(friend => {
       API.getUser(friend.id)
         .then(result => {
@@ -58,7 +67,7 @@ function Home() {
                 likes: savedBook.likes,
                 comments: savedBook.comments
               }
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedBookData].sort(compareTimeStamp))
+              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedBookData])
             })
           }
           if (result.data.savedMusic.length > 0) {
@@ -82,7 +91,7 @@ function Home() {
                 comments: savedMusic.comments
               }
               console.log("this is savedBookData: ", savedMusicData)
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMusicData].sort(compareTimeStamp))
+              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMusicData])
             })
           }
           if (result.data.savedMovies.length > 0) {
@@ -109,7 +118,7 @@ function Home() {
                 likes: savedMovie.likes,
                 comments: savedMovie.comments
               }
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData].sort(compareTimeStamp))
+              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData])
             })
           }
           if (result.data.savedGames.length > 0) {
@@ -131,20 +140,34 @@ function Home() {
                 likes: savedGame.likes,
                 comments: savedGame.comments
               }
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedGameData].sort(compareTimeStamp))
+              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedGameData])
             })
           }
+
+
+          setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState].sort(compareTimeStamp))
+          setLoadingState(false);
         })
+
+
     })
+
+
   }
   const handleRenderMediaPage = useCallback((mediaType) => {
 
     setAllFriendsMediaState([]);
 
+    setLoadingState(true)
+
     if (mediaType === "all") {
       renderAllMedia();
     }
     if (mediaType === "music") {
+
+      if (userData.friends.length === 0) {
+        setLoadingState(false)
+      }
 
       userData.friends.map(friend => {
         API.getUser(friend.id)
@@ -172,14 +195,20 @@ function Home() {
 
               }
 
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMusicData].sort(compareTimeStamp))
+              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMusicData])
 
             })
+            setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState].sort(compareTimeStamp))
+            setLoadingState(false);
           })
       })
     }
 
     if (mediaType === "game") {
+
+      if (userData.friends.length === 0) {
+        setLoadingState(false)
+      }
 
       userData.friends.map(friend => {
         API.getUser(friend.id)
@@ -204,13 +233,19 @@ function Home() {
                 likes: savedGame.likes,
                 comments: savedGame.comments
               }
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedGameData].sort(compareTimeStamp))
+              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedGameData])
             })
+            setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState].sort(compareTimeStamp))
+            setLoadingState(false);
           })
       })
     }
 
     if (mediaType === "movie") {
+
+      if (userData.friends.length === 0) {
+        setLoadingState(false)
+      }
 
       userData.friends.map(friend => {
         API.getUser(friend.id)
@@ -241,14 +276,21 @@ function Home() {
                 comments: savedMovie.comments
               }
 
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData].sort(compareTimeStamp))
+              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData])
 
             })
+
+            setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState].sort(compareTimeStamp))
+            setLoadingState(false);
           })
       })
     }
 
     if (mediaType === "book") {
+
+      if (userData.friends.length === 0) {
+        setLoadingState(false)
+      }
 
       userData.friends.map(friend => {
         API.getUser(friend.id)
@@ -277,12 +319,17 @@ function Home() {
               console.log("this is savedBookData: ", savedBookData)
               console.log("this is savedBook: ", savedBook)
 
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedBookData].sort(compareTimeStamp))
+              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedBookData])
 
             })
+
+            setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState].sort(compareTimeStamp))
+            setLoadingState(false);
           })
+
       })
     }
+
   })
 
   const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes, ownerId, title) => {
@@ -358,53 +405,90 @@ function Home() {
             />
           </Col>
           <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >
+
             {console.log("allfriendsmediaState in the return", allFriendsMediaState)}
-            {allFriendsMediaState.map(media => {
-              if (media.mediaType === "book") {
-                return (
-                  <FeedCard
-                    key={media._id}
-                    mediaType='book'
-                    media={media}
-                    cb={handleSaveLike}
-                    userData={userData}
-                  />
-                );
-              }
-              if (media.mediaType === "music") {
-                return (
-                  <FeedCard
-                    key={media._id}
-                    mediaType='music'
-                    media={media}
-                    cb={handleSaveLike}
-                    userData={userData}
-                  />
-                );
-              }
-              if (media.mediaType === "movie") {
-                return (
-                  <FeedCard
-                    key={media._id}
-                    mediaType='movie'
-                    media={media}
-                    cb={handleSaveLike}
-                    userData={userData}
-                  />
-                );
-              }
-              if (media.mediaType === "game") {
-                return (
-                  <FeedCard
-                    key={media._id}
-                    mediaType='game'
-                    media={media}
-                    cb={handleSaveLike}
-                    userData={userData}
-                  />
-                );
-              }
-            })}
+            {loadingState ?
+
+              <div className="text-center">
+                <Spinner animation="border" />
+              </div>
+
+              :
+
+              <div>
+                {allFriendsMediaState.length === 0
+
+                  ?
+                  <div className='text-center empty-content' id='neon-hover'>
+                    <a className="muted-subtext2" id='neon-hover' href='/search_user'>
+                      Find and add friends to see
+                      <FontAwesomeIcon
+                        className='search-icon-media'
+                        icon={faSearch}
+                      />
+                      <p className='muted-logo'>WHAT'S GOOD</p>
+                    </a>
+
+                  </div>
+                  :
+                  <div>
+                    {allFriendsMediaState.map(media => {
+
+
+
+                      if (media.mediaType === "book") {
+                        return (
+                          <FeedCard
+                            key={media._id}
+                            mediaType='book'
+                            media={media}
+                            cb={handleSaveLike}
+                            userData={userData}
+                          />
+                        );
+                      }
+                      if (media.mediaType === "music") {
+                        return (
+                          <FeedCard
+                            key={media._id}
+                            mediaType='music'
+                            media={media}
+                            cb={handleSaveLike}
+                            userData={userData}
+                          />
+                        );
+                      }
+                      if (media.mediaType === "movie") {
+                        return (
+                          <FeedCard
+                            key={media._id}
+                            mediaType='movie'
+                            media={media}
+                            cb={handleSaveLike}
+                            userData={userData}
+                          />
+                        );
+                      }
+                      if (media.mediaType === "game") {
+                        return (
+                          <FeedCard
+                            key={media._id}
+                            mediaType='game'
+                            media={media}
+                            cb={handleSaveLike}
+                            userData={userData}
+                          />
+                        );
+                      }
+
+
+                    })
+
+
+                    }
+                  </div>
+                }
+              </div>}
           </Col>
         </Row>
       </Container>

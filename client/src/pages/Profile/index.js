@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
-import { Card, Container, Form, Button, Col, Row, Image } from 'react-bootstrap';
+import { Card, Container, Form, Button, Col, Row, Image, Modal, Tab, Spinner } from 'react-bootstrap';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
@@ -7,14 +7,19 @@ import FeedCard from '../../components/FeedCard';
 import ProfileFeedCard from '../../components/ProfileFeedCard';
 import SideBar from '../../components/SideBar';
 import SubNavbar from '../../components/SubNavbar';
+import UploadPhoto from '../../components/UploadPhoto';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserFriends, faInbox, faCamera, faTh, faPaperPlane, faSearch } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function ProfilePage() {
 
   const userData = useContext(UserInfoContext);
+  const [showModal, setShowModal] = useState(false);
 
   const [bioUpdate, setBioUpdate] = useState(false);
   const [bioText, setBioText] = useState('');
+  const [loadingState, setLoadingState] = useState(true);
 
 
   const updateBio = (bioText) => {
@@ -327,18 +332,28 @@ function ProfilePage() {
         userFavorite: savedGame.userFavorite
       }
       setMyMediaState(myMediaState => [...myMediaState, savedGameData].sort(compareTimeStamp))
+
     })
   }
 
   function renderAllMedia() {
+    setLoadingState(true);
 
     userData.savedBooks && getSavedBookData();
 
+    setLoadingState(true);
+
     userData.savedMusic && getSavedMusicData();
+
+    setLoadingState(true);
 
     userData.savedMovies && getSavedMovieData();
 
+    setLoadingState(true);
+
     userData.savedGames && getSavedGameData();
+
+    setLoadingState(false);
 
   }
 
@@ -395,8 +410,10 @@ function ProfilePage() {
         <Row>
           <Col xs={0} s={0} md={0} lg={2}></Col>
           <Col xs={12} s={12} md={12} lg={8} >
+
             <Card id='profile-card' key={userData.username}>
               <Card.Body id='profile-card-body'>
+                <br></br>
                 <div id='profile-image'>
                   <Card.Img
                     src={userData.picture}
@@ -405,6 +422,12 @@ function ProfilePage() {
                     className='img-fluid'
                     id='my-profile-pic'
                   ></Card.Img>
+                  <FontAwesomeIcon
+                    className='upload-icon purple'
+                    id='neon-hover'
+                    onClick={() => setShowModal(true)}
+                    icon={faCamera}
+                  />
                 </div>
                 <div id='profile-info'>
                   <Card.Title id='user-title'>
@@ -418,21 +441,23 @@ function ProfilePage() {
                           {console.log("userData.bio", userData.bio)}
                           <p className='about-me' id='purple'>
                             ABOUT ME <a
-                            className='btn bio-btn'
-                            onClick={() => setBioUpdate(true)}
-                          >Update Bio</a>
+                              className='btn bio-btn'
+                              onClick={() => setBioUpdate(true)}
+                            >Update Bio
+                            </a>
                           </p>
                           <div id='bio-scroll'>
                             {userData.bio}
                           </div>
-                          
                         </div>
                         :
                         <>
                           <a
                             className='btn bio-btn'
                             onClick={() => setBioUpdate(true)}
-                          >Add Bio</a>
+                          >Add Bio
+                          </a>
+                          <br></br>
                           <br></br>
                         </>
                       }
@@ -440,9 +465,9 @@ function ProfilePage() {
                   )}
                   {bioUpdate &&
                     <>
-                      <br></br>
                       <Form>
                         <Form.Control
+                          id='bio-textarea'
                           name='bio-text'
                           value={bioText}
                           onChange={(e) => setBioText(e.target.value)}
@@ -462,11 +487,44 @@ function ProfilePage() {
                       </div>
                     </>
                   }
-                  <Button
-                    className='btn'
-                    id='purple-back'
-                    href='/messages'
-                  >MESSAGES</Button>
+                  <div className='prof-icon-group'>
+                    <div className='text-center prof-icon-wrap'>
+                      <a href='/messages'>
+                        <FontAwesomeIcon
+                          className='prof-page-icon'
+                          id='neon-hover'
+                          icon={faInbox}
+                        />
+                      </a>
+                      <p>
+                        INBOX
+                      </p>
+                    </div>
+                    <div className='text-center prof-icon-wrap'>
+                      <a href='/saved_media'>
+                        <FontAwesomeIcon
+                          className='prof-page-icon'
+                          id='neon-hover'
+                          icon={faTh}
+                        />
+                      </a>
+                      <p>
+                        MEDIA
+                      </p>
+                    </div>
+                    <div className='text-center prof-icon-wrap'>
+                      <a href='/saved_friends'>
+                        <FontAwesomeIcon
+                          className='prof-page-icon'
+                          id='neon-hover'
+                          icon={faUserFriends}
+                        />
+                      </a>
+                      <p>
+                        FRIENDS
+                      </p>
+                    </div>
+                  </div>
                   {/* <Card.Title id='user-states'>
                   <p>
                   <span>{userData.bookCount}</span> Books 
@@ -483,7 +541,7 @@ function ProfilePage() {
         </Row>
         <hr></hr>
       </Container>
-      
+
       <Container width="100%">
         <Row id="main-body-row">
           <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
@@ -495,45 +553,95 @@ function ProfilePage() {
           </Col>
           <Col id="media-feed-column2" xs={12} s={12} md={10} lg={6} >
 
-            {myMediaState.map(media => {
-              return (
-                <ProfileFeedCard
-                  key={media._id}
-                  media={media}
-                  cb={handleSaveLike}
-                  mediaType={media.mediaType.toLowerCase()}
-                  userData={userData}
-                  // startRating={startRating}
-                  selectedMediaRating={selectedMediaRating}
-                  // handleRatingFormSubmit={handleRatingFormSubmit}
-                  // setUserRating={setUserRating}
-                  // setHover={setHover}
-                  // // hover={hover}
-                  // userRating={userRating}
-                  // startReview={startReview}
-                  selectedMediaReview={selectedMediaReview}
-                  // handleReviewFormSubmit={handleReviewFormSubmit}
-                  // reviewInput={reviewInput}
-                  // setReviewInput={setReviewInput}
-                  // handleDeleteMedia={handleDeleteMedia}
-                  // makeFavorite={makeFavorite}
-                />
-              );
-            })}
-            {myFavoriteState.map(media => {
-              return (
-                <FeedCard
-                  media={media}
-                  userData={userData}
-                  cb={handleSaveLike}
-                />
-              )
-            })}
+            {loadingState ?
+
+              <div className="text-center">
+                <Spinner animation="border" />
+              </div>
+
+              :
+
+              <div>
+                {myMediaState.length === 0 && myFavoriteState.length === 0 ?
+
+
+                  <div className='text-center empty-content' id='neon-hover'>
+                    <a className="muted-subtext2" id='neon-hover' href='/search_user'>
+                      Add and rate media to show
+                      <FontAwesomeIcon
+                        className='search-icon-media'
+                        icon={faSearch}
+                      />
+                      <p className='muted-logo'>WHAT'S GOOD</p>
+                    </a>
+
+                  </div>
+
+                  :
+
+                  <div>
+
+                    {myMediaState.map(media => {
+                      return (
+                        <ProfileFeedCard
+                        key={media._id}
+                          media={media}
+                          cb={handleSaveLike}
+                          mediaType={media.mediaType.toLowerCase()}
+                          userData={userData}
+                          // startRating={startRating}
+                          selectedMediaRating={selectedMediaRating}
+                          // handleRatingFormSubmit={handleRatingFormSubmit}
+                          // setUserRating={setUserRating}
+                          // setHover={setHover}
+                          // // hover={hover}
+                          // userRating={userRating}
+                          // startReview={startReview}
+                          selectedMediaReview={selectedMediaReview}
+                        // handleReviewFormSubmit={handleReviewFormSubmit}
+                        // reviewInput={reviewInput}
+                        // setReviewInput={setReviewInput}
+                        // handleDeleteMedia={handleDeleteMedia}
+                        // makeFavorite={makeFavorite}
+                        />
+                      );
+                    })}
+                    {myFavoriteState.map(media => {
+                      return (
+                        <FeedCard
+                        key={media._id}
+                          media={media}
+                          userData={userData}
+                          cb={handleSaveLike}
+                        />
+                      )
+                    })}
+                  </div>
+                }
+              </div>
+            }
           </Col>
           {/* <Col xs={0} s={0} md={1} lg={3}>
           </Col> */}
         </Row>
       </Container>
+      <Modal size='md' show={showModal} onHide={() => setShowModal(false)} aria-labelledby='signup-modal'>
+        {/* tab container to do either signup or login component */}
+        <Tab.Container defaultActiveKey='login'>
+          <Modal.Header closeButton>
+            <Modal.Title id='upload-photo-modal' className='logo-text-main'>
+              UPLOAD YOUR PHOTO
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Tab.Content>
+              <Tab.Pane eventKey='login'>
+                <UploadPhoto handleModalClose={() => setShowModal(false)} />
+              </Tab.Pane>
+            </Tab.Content>
+          </Modal.Body>
+        </Tab.Container>
+      </Modal>
     </>
   )
 }

@@ -54,16 +54,16 @@ function SignupForm() {
     <div className="form-outer-div">
       {/* This is needed for the validation functionality above */}
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-      <h5>SIGNUP</h5>
+      <h5 id='heading-login'>SIGNUP</h5>
         {/* show alert if server response is bad */}
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           {errorText || 'Something went wrong with your signup!'}
         </Alert>
 
         <Form.Group>
-          <Form.Label className="form-label" htmlFor='username'>USERNAME</Form.Label>
+          <Form.Label id="form-label" htmlFor='username'>USERNAME</Form.Label>
           <Form.Control
-            className="form-input"
+            id="form-input-signup"
             type='text'
             placeholder='Your username'
             name='username'
@@ -75,9 +75,9 @@ function SignupForm() {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label className="form-label" htmlFor='email'>EMAIL</Form.Label>
+          <Form.Label id="form-label" htmlFor='email'>EMAIL</Form.Label>
           <Form.Control
-            className="form-input"
+            id="form-input-signup"
             type='email'
             placeholder='Your email address'
             name='email'
@@ -89,9 +89,9 @@ function SignupForm() {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label className="form-label" htmlFor='password'>PASSWORD</Form.Label>
+          <Form.Label id="form-label" htmlFor='password'>PASSWORD</Form.Label>
           <Form.Control
-            className="form-input"
+            id="form-input-signup"
             type='password'
             placeholder='Your password'
             name='password'
@@ -103,11 +103,11 @@ function SignupForm() {
         </Form.Group>
         <div className="text-right">
         <Button
-          id="form-button"
+          id="form-button-signup"
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
-          variant='success'>
-          Submit
+          >
+          SUBMIT
         </Button>
         </div>
       </Form>

@@ -4,6 +4,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { savePicture } from '../../utils/API';
+import './style.css';
 
 
 var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dxrhczeo9/upload/";
@@ -67,7 +68,8 @@ function UploadPhoto({ handleModalClose }) {
       <Form>
         <Form.File
           id="custom-file"
-          label="CHOOSE PROFILE PIC"
+          className='custom-upload'
+          label="Choose a picture file"
           onChange={uploadImage}
           custom
         />
@@ -78,9 +80,9 @@ function UploadPhoto({ handleModalClose }) {
           : (<img src={image} style={{ width: '300px' }} />)
         }
         <Button
-          id='purple-back'
-          className='btn-block upload-button'
-          onClick={() => handleSavePicture(image)}>Upload Picture
+          id='neon-hover'
+          className='btn upload-btn movie-color'
+          onClick={() => handleSavePicture(image)}>UPLOAD
         </Button>
       </Form>
     </div>

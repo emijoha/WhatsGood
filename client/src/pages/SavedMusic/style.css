@@ -22,3 +22,17 @@
   font-weight: 700;
   margin-bottom: 20px;
 }
+
+.search-icon-media {
+  position: relative;
+  margin-left: 5px;
+}
+
+.empty-message {
+  padding-bottom: 7.5px;
+  margin-top: -7.5px
+}
+
+.muted-subtext {
+  color: rgb(175, 175, 175) !important;
+}

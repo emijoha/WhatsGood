@@ -8,62 +8,62 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 function SearchFriends({ sendSearchedUserToList }) {
 
 
-    const [searchInput, setSearchInput] = useState('');
-  
+  const [searchInput, setSearchInput] = useState('');
 
 
-    // create method to search for users and set state on form submit
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-        console.log("clicked", searchInput)
 
-        if (!searchInput) {
-            return false;
-        }
+  // create method to search for users and set state on form submit
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    console.log("clicked", searchInput)
 
-        searchFriend(searchInput)
-            .then(user => {
-
-                sendSearchedUserToList(user.data)
-            
-            
-          },
-                setSearchInput(''));
-            
-            ;
-            
-            
+    if (!searchInput) {
+      return false;
     }
 
+    searchFriend(searchInput)
+      .then(user => {
 
-    return (
-      <div>
-        SEARCH FRIENDS
-       
+        sendSearchedUserToList(user.data)
+
+
+      },
+        setSearchInput(''));
+
+    ;
+
+
+  }
+
+
+  return (
+    <div id='message-form-div'>
+      <span>&nbsp;&nbsp;</span>SEARCH FRIENDS
+
       <Form onSubmit={handleFormSubmit}>
-                        <Form.Row>
-                            <Col xs={11} md={11} lg={10}>
-                                <Form.Control
-                                    id="form-input"
-                                    name='searchInput'
-                                    value={searchInput}
-                                    onChange={(e) => setSearchInput(e.target.value)}
-                                    type='text'
-                                    size='lg'
-                                    placeholder='Search for a friend by user name'
-                                />
-                            </Col>
-                            <Col xs={1} md={1} lg={2}>
-                                <Button id="search-icon-button" type='submit' variant='success' size='lg'>
-                                    <FontAwesomeIcon  icon={faSearch} size={'lg'} />
-                                </Button>
-                            </Col>
-                        </Form.Row>
-                    </Form>
-      
-      </div>
+        <Form.Row>
+          <Col xs={11} md={11} lg={10}>
+            <Form.Control
+              id="mess-form-input"
+              name='searchInput'
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              type='text'
+              size='lg'
+              placeholder='Search a friend to message'
+            />
+          </Col>
+          <Col xs={1} md={1} lg={2} id='search-friend-grouping'>
+            <Button id="search-icon-button" type='submit' size='lg'>
+              <FontAwesomeIcon id='search-friend-icon' icon={faSearch} size={'lg'} />
+            </Button>
+          </Col>
+        </Form.Row>
+      </Form>
 
-    );
+    </div>
+
+  );
 
 }
 

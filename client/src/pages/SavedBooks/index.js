@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { Jumbotron, Container, Row, Col } from 'react-bootstrap';
+import { Jumbotron, Container, Row, Col, CardColumns } from 'react-bootstrap';
 import NotLoggedIn from '../../components/NotLoggedIn';
 import SavedCards from '../../components/SavedCards';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faSearch } from '@fortawesome/free-solid-svg-icons';
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
 
@@ -193,6 +193,16 @@ function SavedBooks() {
         </Container>
       </Row>
       <Container>
+      <a className='muted-subtext' id='neon-hover' href='/search_books'>
+          <div className="empty-message">
+            Add books to your collection
+            <FontAwesomeIcon
+              className='search-icon-media'
+              icon={faSearch}
+            />
+          </div>
+        </a>
+        <CardColumns>
         <SavedCards
           cardType='savedBooks'
           savedArray={userData.savedBooks}
@@ -219,6 +229,7 @@ function SavedBooks() {
           ? <NotLoggedIn />
           : null
         } */}
+        </CardColumns>
       </Container>
     </div>
   );

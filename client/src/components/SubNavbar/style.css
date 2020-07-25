@@ -11,6 +11,16 @@
   z-index: 1;
 }
 
+#sub-nav-li  {
+  color: black !important;
+  border: none !important;
+  padding: none !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  /* display: flexbox;
+  align-items: center;
+  justify-content: space-evenly; */
+}
+
 #table-row {
   background-color: rgb(255, 255, 255) !important;
 }
@@ -38,7 +48,7 @@
     padding: 0px !important;
   } 
 
-  #side-bar-li {
+  #sub-nav-li {
     margin: 0px !important;
     padding-top: 5px;
     padding-bottom: 5px;

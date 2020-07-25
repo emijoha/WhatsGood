@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
-import { Card, Container, Form, Button, Col, Row, Image } from 'react-bootstrap';
+import { Card, Container, Form, Button, Col, Row, Image, Spinner } from 'react-bootstrap';
 
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
@@ -10,6 +10,9 @@ import SideBar from '../../components/SideBar';
 import SubNavbar from '../../components/SubNavbar';
 import './style.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserCircle, faInbox, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+
 function FriendProfile() {
 
   const userData = useContext(UserInfoContext);
@@ -18,14 +21,15 @@ function FriendProfile() {
   const [friendFavoritesState, setFriendFavoritesState] = useState([]);
   const [friend, setFriend] = useState([]);
   const [queryStringId, setQueryStringId] = useState('');
+  const [loadingState, setLoadingState] = useState(true);
 
   useEffect(() => {
     setQueryStringId(window.location.search.split('=')[1]);
     API.getUser(queryStringId)
-    .then((res) => {
-      setFriend(res.data);
-    })
-    .catch((err) => console.log(err));
+      .then((res) => {
+        setFriend(res.data);
+      })
+      .catch((err) => console.log(err));
   }, [queryStringId !== window.location.search.split('=')[1]]);
 
   useEffect(() => {
@@ -210,15 +214,19 @@ function FriendProfile() {
   }
 
   function renderAllMedia() {
+    setLoadingState(true);
 
     friend.savedBooks && getSavedBookData();
+    setLoadingState(true);
 
     friend.savedMusic && getSavedMusicData();
+    setLoadingState(true);
 
     friend.savedMovies && getSavedMovieData();
+    setLoadingState(true);
 
     friend.savedGames && getSavedGameData();
-
+    setLoadingState(false);
   }
 
   const handleRenderMediaPage = useCallback((mediaType) => {
@@ -300,6 +308,17 @@ function FriendProfile() {
                           <div id='bio-scroll'>
                             {friend.bio}
                           </div>
+                          <div className='prof-icon-wrap' >
+                            <a href='/messages'>
+                              <FontAwesomeIcon
+                                className='prof-page-icon neon-hover'
+                                id='mail-friend-icon'
+                                icon={faPaperPlane}
+                              />
+                            </a>
+                            <span id='mail-friend-text'>SEND A MESSAGE</span>
+
+                          </div>
                         </div>
                         :
                         <>
@@ -308,6 +327,17 @@ function FriendProfile() {
                           </p>
                           <div id='bio-scroll'>
                             What's good? Not this bio! This user has not submitted a bio yet.
+                          </div>
+                          <div className='prof-icon-wrap' >
+                            <a href='/messages'>
+                              <FontAwesomeIcon
+                                className='prof-page-icon neon-hover'
+                                id='mail-friend-icon'
+                                icon={faPaperPlane}
+                              />
+                            </a>
+                            <span id='mail-friend-text'>SEND A MESSAGE</span>
+
                           </div>
                         </>
                       }
@@ -334,7 +364,7 @@ function FriendProfile() {
         </Row>
         <hr></hr>
       </Container>
-     
+
       <Container width="100%">
         <Row id="main-body-row">
           <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
@@ -345,24 +375,52 @@ function FriendProfile() {
             />
           </Col>
           <Col id="media-feed-column2" xs={12} s={12} md={10} lg={6} >
-            {friendMediaState.map(media => {
-              return (
-                <FriendProfileFeedCard
-                  mediaType={media.mediaType.toLowerCase()}
-                  media={media}
-                  cb={handleSaveLike}
-                  userData={userData}
-                />
-              );
-            })}
-            {friendFavoritesState.map(media => {
-              return (
-                <FeedCard
-                  media={media}
-                  userData={friend}
-                />
-              )
-            })}
+
+            {loadingState
+              ?
+              <div className="text-center">
+                <Spinner animation="border" />
+              </div>
+              :
+              <div>
+                {
+                  (friendMediaState.length === 0 && friendFavoritesState.length === 0)
+                    ?
+                    <div className='text-center empty-content' id='neon-hover'>
+                      <a className="muted-subtext2" id='neon-hover' href='/message'>
+                        {friend.username} hasn't saved to this collection
+                      <FontAwesomeIcon
+                          className='search-icon-media'
+                          icon={faPaperPlane}
+                        />
+                        <p className='muted-logo'>ASK WHAT'S GOOD?</p>
+                      </a>
+                    </div>
+                    :
+                    <div>
+                      {friendMediaState.map(media => {
+                        return (
+                          <FriendProfileFeedCard
+                            mediaType={media.mediaType.toLowerCase()}
+                            media={media}
+                            cb={handleSaveLike}
+                            userData={userData}
+                          />
+                        );
+                      })}
+                      {friendFavoritesState.map(media => {
+                        return (
+                          <FeedCard
+                            media={media}
+                            userData={friend}
+                          />
+                        )
+                      })}
+                    </div>
+                }
+              </div>
+            }
+
           </Col>
           {/* <Col xs={0} s={0} md={1} lg={3}>
 
