@@ -31,6 +31,10 @@ button {
   font-style: italic;
 }
 
+a:hover, a:focus {
+  color: rgb(134, 0, 223);
+}
+
 /* eventually put this in component styling */
 /* card styling */
 .card {

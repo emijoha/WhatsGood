@@ -113,7 +113,7 @@
 }
 
 .prof-page-icon {
-  font-size: 1.65rem !important;
+  font-size: 1.35rem !important;
   color: rgb(190, 190, 190);
 }
 
@@ -140,18 +140,16 @@
 .prof-icon-group {
   display: flex;
   justify-content: start;
-  font-size: 0.9rem;
   color: rgb(177, 177, 177);
   position: relative;
 }
 
 .prof-icon-wrap {
+  font-size: 0.9rem;
+  /* margin-right: 20px; */
+  /* margin-left: 10px; */
   margin-right: 20px;
-  margin-left: 10px;
   margin-top: 10px;
-  position: absolute;
-  left: -7.5px;
-  top: -5px;
 }
 
 #bio-textarea {
