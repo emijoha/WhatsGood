@@ -498,6 +498,7 @@ function ProfilePage() {
             {myMediaState.map(media => {
               return (
                 <ProfileFeedCard
+                  key={media._id}
                   media={media}
                   cb={handleSaveLike}
                   mediaType={media.mediaType.toLowerCase()}

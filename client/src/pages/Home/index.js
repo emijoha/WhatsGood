@@ -344,7 +344,7 @@ function Home() {
           <h1>Viewing friends Media!</h1>
         </Container>
       </Jumbotron> */}
-     <Row>
+      <Row>
         <Col>
           <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} username={userData.username} />
         </Col>
@@ -358,11 +358,12 @@ function Home() {
             />
           </Col>
           <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >
-          {console.log("allfriendsmediaState in the return", allFriendsMediaState)}
+            {console.log("allfriendsmediaState in the return", allFriendsMediaState)}
             {allFriendsMediaState.map(media => {
               if (media.mediaType === "book") {
                 return (
                   <FeedCard
+                    key={media._id}
                     mediaType='book'
                     media={media}
                     cb={handleSaveLike}
@@ -373,6 +374,7 @@ function Home() {
               if (media.mediaType === "music") {
                 return (
                   <FeedCard
+                    key={media._id}
                     mediaType='music'
                     media={media}
                     cb={handleSaveLike}
@@ -383,6 +385,7 @@ function Home() {
               if (media.mediaType === "movie") {
                 return (
                   <FeedCard
+                    key={media._id}
                     mediaType='movie'
                     media={media}
                     cb={handleSaveLike}
@@ -393,6 +396,7 @@ function Home() {
               if (media.mediaType === "game") {
                 return (
                   <FeedCard
+                    key={media._id}
                     mediaType='game'
                     media={media}
                     cb={handleSaveLike}
