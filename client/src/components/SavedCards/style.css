@@ -77,3 +77,8 @@ height: 12px;
 .delete-btn:hover {
   color: white !important;
 }
+
+.friend-name-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}

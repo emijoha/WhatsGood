@@ -12,41 +12,56 @@
   padding-right: 20px !important;
 }
 
-/* change to whatever final logo font is */
-/* .logo-text {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bolder;
-  font-size: 1.7rem;
-  margin: 0;
-} */
-
 .logo-text-main {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bolder;
-  font-size: 1.55rem;
+  font-weight: 800;
+  font-size: 2rem;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.photo-header {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+@media screen and (max-width: 1238px) {
+  .logo-text-main {
+    font-size: 1.8rem;
+    padding-top: 0px;
+  }
+}
+
+@media screen and (max-width: 1051px) {
+  .logo-text-main {
+    font-size: 1.55rem;
+    padding-top: 0px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .logo-text-main {
+    font-size: 1.5rem;
+    padding-top: 0px;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .logo-text-main {
     font-size: 1.25rem;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 0px;
   }
 }
 
 @media screen and (max-width: 439px) {
   .logo-text-main {
-    padding-top: 8px;
-    font-size: 0.95rem;
+    /* padding-top: 8px; */
+    font-size: 1.2rem;
   }
 }
 
 .nav-link-group {
-  font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   font-size: 1.15rem;
   display: flex;

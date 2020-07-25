@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 import ReactAudioPlayer from 'react-audio-player';
+import SavedIconLinks from '../../components/SavedIconLinks';
 import { FaVideo } from 'react-icons/fa';
 import RateReviewForSearched from '../RateReviewForSearched';
 import './style.css';
@@ -199,9 +200,16 @@ function SearchCards(props) {
               <Card.Img className='friendImage' src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
               <Card.Body>
                 <Card.Title>
-                  <b>{props.searchedUser.username.toUpperCase()}</b>
-                  <p className='by'><b>email:</b> {props.searchedUser.email}</p>
+                <div className='friend-name-title'><b>{props.searchedUser.username.toUpperCase()}</b></div>
                 </Card.Title>
+                <SavedIconLinks
+                  type='friend'
+                  music={props.searchedUser.music.length}
+                  movies={props.searchedUser.movies.length}
+                  games={props.searchedUser.games.length}
+                  books={props.searchedUser.books.length}
+                ></SavedIconLinks>
+                {console.log("WHATS THIS,", props.searchedUser)}
                 {props.savedArray?.every((friend) => friend._id !== props.searchedUser._id)
                   ? <Button
                     disabled={userData._id === props.searchedUser._id}

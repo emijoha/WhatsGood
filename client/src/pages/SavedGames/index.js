@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Jumbotron, Container, Row, Col, CardColumns } from 'react-bootstrap';
 import NotLoggedIn from '../../components/NotLoggedIn';
 import SavedCards from '../../components/SavedCards';
+import SavedIconLinks from '../../components/SavedIconLinks';
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -147,43 +148,7 @@ function SavedGames() {
               <div id="sub-container" >
                 <div id="header-div">
                   <h5 className="text-center" id="media-header">MY GAMES</h5>
-                  <p className='saved-icon-group text-center'>
-                    <a href='/saved_media'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faAsterisk}
-                      />
-                    </a>
-                    <a href='/saved_music'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faMusic}
-                      />
-                    </a>
-                    <a href='/saved_movies'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faVideo}
-                      />
-                    </a>
-                    <a href='/saved_games'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faGamepad}
-                      />
-                    </a>
-                    <a href='/saved_books'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faBookOpen}
-                      />
-                    </a>
-                  </p>
+                  <SavedIconLinks userData={userData}></SavedIconLinks>
                 </div>
               </div>
             </Col>

@@ -393,7 +393,7 @@ function FriendProfile() {
                           className='search-icon-media'
                           icon={faPaperPlane}
                         />
-                        <p className='muted-logo'>ASK WHAT'S GOOD?</p>
+                        <p className='muted-logo special-font'>ASK WHAT'S GOOD?</p>
                       </a>
                     </div>
                     :
