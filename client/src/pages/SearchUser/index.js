@@ -32,7 +32,7 @@ function SearchUser() {
         email: user.data.email,
         music: user.data.savedMusic,
         movies: user.data.savedMovies,
-        games: user.data.saveGames,
+        games: user.data.savedGames,
         books: user.data.savedBooks
 
       }))
@@ -40,7 +40,6 @@ function SearchUser() {
   }, [queryStringUsername !== window.location.search.split('=')[1]]);
 
 
-  console.log('userData', userData)
   const notificationData = {
     likerUsername: userData.username,
     type: "follow",
