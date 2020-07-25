@@ -1,5 +1,16 @@
+.special-font {
+    /* font-family: 'Open Sans', sans-serif; */
+      font-family: 'Montserrat', sans-serif;
+/* font-family: 'Montserrat Subrayada', sans-serif; */
+  }
+
+.light-gray {
+  color: rgb(189, 189, 189);
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Open Sans', sans-serif; */
   background: linear-gradient(412.9deg, rgba(255,255,255,1) 0%, rgb(253, 253, 253) 82.68%, rgba(235,235,235,1) 100%);
   height: 100vh;
   width: 100% auto;

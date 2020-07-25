@@ -222,7 +222,7 @@ function Messages() {
           ></MessageList>
         </Col>
         <Col xs={9} s={9} md={9} lg={8} id='line-divide'>
-          {newChatState.username ? <h5 id="chat-box-header"> Messaging with {newChatState.username}</h5> : <h5 className='purple' id="chat-box-header">Select a friend to chat</h5>}
+          {newChatState.username ? <h5 id="chat-box-header"> Messaging with {newChatState.username}</h5> : <h5 id="chat-box-header">Select a friend to chat</h5>}
           <ChatBox  handleNewMessageState={handleNewMessageState}
             setIsPreviousChatState={setIsPreviousChatState}
             setCurrentChatIdState={setCurrentChatIdState}
