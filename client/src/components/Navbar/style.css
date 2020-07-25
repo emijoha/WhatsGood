@@ -93,3 +93,12 @@ a:hover {
   padding: 10px 10px 5px 10px;
   background-color: rgb(224, 223, 223);
 }
+
+button.navbar-toggler {
+  border: none !important;
+  background-color: transparent;
+}
+
+.navbar-toggler-icon {
+  color: rgb(94, 9, 251)!important;
+}

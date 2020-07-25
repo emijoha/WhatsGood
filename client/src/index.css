@@ -8,12 +8,12 @@ body {
   background-repeat:no-repeat;
 }
 
-/* textarea,
+textarea,
 select,
 input,
 button {
-  outline: none;
-} */
+  outline: none !important;
+}
 
 .small {
   font-weight: 400;

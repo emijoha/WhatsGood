@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { Jumbotron, Container, Row, Col } from 'react-bootstrap';
+import { Jumbotron, Container, Row, Col, CardColumns } from 'react-bootstrap';
 import NotLoggedIn from '../../components/NotLoggedIn';
 import SavedCards from '../../components/SavedCards';
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faSearch } from '@fortawesome/free-solid-svg-icons';
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
 
@@ -193,26 +193,37 @@ function SavedGames() {
         </Container>
       </Row>
       <Container>
-        <SavedCards
-          cardType='savedGames'
-          savedArray={userData.savedGames}
-          username={userData.username}
-          userData={userData}
-          startRating={startRating}
-          selectedMediaRating={selectedMediaRating}
-          handleRatingFormSubmit={handleRatingFormSubmit}
-          setUserRating={setUserRating}
-          setHover={setHover}
-          hover={hover}
-          userRating={userRating}
-          startReview={startReview}
-          selectedMediaReview={selectedMediaReview}
-          handleReviewFormSubmit={handleReviewFormSubmit}
-          reviewInput={reviewInput}
-          setReviewInput={setReviewInput}
-          makeFavorite={makeFavorite}
-          handleDeleteGame={handleDeleteGame}
-        />
+        <a className='muted-subtext' id='neon-hover' href='/search_games'>
+          <div className="empty-message">
+            Add games to your collection
+            <FontAwesomeIcon
+              className='search-icon-media'
+              icon={faSearch}
+            />
+          </div>
+        </a>
+        <CardColumns>
+          <SavedCards
+            cardType='savedGames'
+            savedArray={userData.savedGames}
+            username={userData.username}
+            userData={userData}
+            startRating={startRating}
+            selectedMediaRating={selectedMediaRating}
+            handleRatingFormSubmit={handleRatingFormSubmit}
+            setUserRating={setUserRating}
+            setHover={setHover}
+            hover={hover}
+            userRating={userRating}
+            startReview={startReview}
+            selectedMediaReview={selectedMediaReview}
+            handleReviewFormSubmit={handleReviewFormSubmit}
+            reviewInput={reviewInput}
+            setReviewInput={setReviewInput}
+            makeFavorite={makeFavorite}
+            handleDeleteGame={handleDeleteGame}
+          />
+        </CardColumns>
         {/* ITS BUGGY */}
         {/* {!userData.username
           ? <NotLoggedIn />

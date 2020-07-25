@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
-import { Card, Container, Form, Button, Col, Row, Image } from 'react-bootstrap';
+import { Card, Container, Form, Button, Col, Row, Image, Spinner } from 'react-bootstrap';
 
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
@@ -21,6 +21,7 @@ function FriendProfile() {
   const [friendFavoritesState, setFriendFavoritesState] = useState([]);
   const [friend, setFriend] = useState([]);
   const [queryStringId, setQueryStringId] = useState('');
+  const [loadingState, setLoadingState] = useState(true);
 
   useEffect(() => {
     setQueryStringId(window.location.search.split('=')[1]);
@@ -213,15 +214,19 @@ function FriendProfile() {
   }
 
   function renderAllMedia() {
+    setLoadingState(true);
 
     friend.savedBooks && getSavedBookData();
+    setLoadingState(true);
 
     friend.savedMusic && getSavedMusicData();
+    setLoadingState(true);
 
     friend.savedMovies && getSavedMovieData();
+    setLoadingState(true);
 
     friend.savedGames && getSavedGameData();
-
+    setLoadingState(false);
   }
 
   const handleRenderMediaPage = useCallback((mediaType) => {
@@ -303,6 +308,17 @@ function FriendProfile() {
                           <div id='bio-scroll'>
                             {friend.bio}
                           </div>
+                          <div className='prof-icon-wrap' >
+                            <a href='/messages'>
+                              <FontAwesomeIcon
+                                className='prof-page-icon neon-hover'
+                                id='mail-friend-icon'
+                                icon={faPaperPlane}
+                              />
+                            </a>
+                            <span id='mail-friend-text'>SEND A MESSAGE</span>
+
+                          </div>
                         </div>
                         :
                         <>
@@ -320,8 +336,8 @@ function FriendProfile() {
                                 icon={faPaperPlane}
                               />
                             </a>
-                            <span id='mail-friend-text'>{` SEND ${friend.username.toUpperCase()} A MESSAGE `}</span>
-                            
+                            <span id='mail-friend-text'>SEND A MESSAGE</span>
+
                           </div>
                         </>
                       }
@@ -359,24 +375,52 @@ function FriendProfile() {
             />
           </Col>
           <Col id="media-feed-column2" xs={12} s={12} md={10} lg={6} >
-            {friendMediaState.map(media => {
-              return (
-                <FriendProfileFeedCard
-                  mediaType={media.mediaType.toLowerCase()}
-                  media={media}
-                  cb={handleSaveLike}
-                  userData={userData}
-                />
-              );
-            })}
-            {friendFavoritesState.map(media => {
-              return (
-                <FeedCard
-                  media={media}
-                  userData={friend}
-                />
-              )
-            })}
+
+            {loadingState
+              ?
+              <div className="text-center">
+                <Spinner animation="border" />
+              </div>
+              :
+              <div>
+                {
+                  (friendMediaState.length === 0 && friendFavoritesState.length === 0)
+                    ?
+                    <div className='text-center empty-content' id='neon-hover'>
+                      <a className="muted-subtext2" id='neon-hover' href='/message'>
+                        {friend.username} hasn't saved to this collection
+                      <FontAwesomeIcon
+                          className='search-icon-media'
+                          icon={faPaperPlane}
+                        />
+                        <p className='muted-logo'>ASK WHAT'S GOOD?</p>
+                      </a>
+                    </div>
+                    :
+                    <div>
+                      {friendMediaState.map(media => {
+                        return (
+                          <FriendProfileFeedCard
+                            mediaType={media.mediaType.toLowerCase()}
+                            media={media}
+                            cb={handleSaveLike}
+                            userData={userData}
+                          />
+                        );
+                      })}
+                      {friendFavoritesState.map(media => {
+                        return (
+                          <FeedCard
+                            media={media}
+                            userData={friend}
+                          />
+                        )
+                      })}
+                    </div>
+                }
+              </div>
+            }
+
           </Col>
           {/* <Col xs={0} s={0} md={1} lg={3}>
 

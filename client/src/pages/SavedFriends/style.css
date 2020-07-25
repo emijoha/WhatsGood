@@ -4,13 +4,33 @@
 
 }
 
-#header-div {
-  padding: 30px;
-
-
+#friend-icon-div {
+  text-align: center;
+  padding: 0px;
+  margin: 5px 10px -10px 10px;
 }
 
-#highlight-header {
- 
-  color: rgb(121, 38, 255) !important;
+/* .flex-type {
+  display: flexbox;
+  align-content: center !important;
+  justify-content: center !important;
+} */
+#friend-icon-group {
+  display: flex;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: rgb(177, 177, 177);
+}
+
+
+.friend-page-icon {
+  font-size: 1.5rem;
+  color: rgb(190, 190, 190);
+}
+
+.friend-text {
+  font-weight: 700;
+  font-size: 1.45rem;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }

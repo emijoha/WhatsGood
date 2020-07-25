@@ -12,7 +12,7 @@ import FeedCard from '../../components/FeedCard';
 import SideBar from '../../components/SideBar';
 import SubNavbar from '../../components/SubNavbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function Home() {
 
@@ -41,10 +41,10 @@ function Home() {
   function renderAllMedia() {
     setLoadingState(true);
 
-    if (userData.friends.length === 0 ) {
+    if (userData.friends.length === 0) {
       setLoadingState(false)
     }
-   
+
     userData.friends.map(friend => {
       API.getUser(friend.id)
         .then(result => {
@@ -144,15 +144,15 @@ function Home() {
             })
           }
 
-         
+
           setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState].sort(compareTimeStamp))
           setLoadingState(false);
         })
-        
-       
+
+
     })
 
-    
+
   }
   const handleRenderMediaPage = useCallback((mediaType) => {
 
@@ -165,7 +165,7 @@ function Home() {
     }
     if (mediaType === "music") {
 
-      if (userData.friends.length === 0 ) {
+      if (userData.friends.length === 0) {
         setLoadingState(false)
       }
 
@@ -206,7 +206,7 @@ function Home() {
 
     if (mediaType === "game") {
 
-      if (userData.friends.length === 0 ) {
+      if (userData.friends.length === 0) {
         setLoadingState(false)
       }
 
@@ -243,7 +243,7 @@ function Home() {
 
     if (mediaType === "movie") {
 
-      if (userData.friends.length === 0 ) {
+      if (userData.friends.length === 0) {
         setLoadingState(false)
       }
 
@@ -288,7 +288,7 @@ function Home() {
 
     if (mediaType === "book") {
 
-      if (userData.friends.length === 0 ) {
+      if (userData.friends.length === 0) {
         setLoadingState(false)
       }
 
@@ -322,14 +322,14 @@ function Home() {
               setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedBookData])
 
             })
-            
+
             setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState].sort(compareTimeStamp))
             setLoadingState(false);
           })
-          
+
       })
     }
-    
+
   })
 
   const handleSaveLike = useCallback((likeMediaType, like_id, mediaLikes, ownerId, title) => {
@@ -391,7 +391,7 @@ function Home() {
           <h1>Viewing friends Media!</h1>
         </Container>
       </Jumbotron> */}
-     <Row>
+      <Row>
         <Col>
           <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} username={userData.username} />
         </Col>
@@ -405,80 +405,86 @@ function Home() {
             />
           </Col>
           <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >
-        
-          {console.log("allfriendsmediaState in the return", allFriendsMediaState)}
-          {loadingState ?
 
-            <div className="text-center">
-            <Spinner animation="border" />
-            </div>
+            {console.log("allfriendsmediaState in the return", allFriendsMediaState)}
+            {loadingState ?
 
-          : 
-          
-          <div>
-          {allFriendsMediaState.length  === 0 ?
+              <div className="text-center">
+                <Spinner animation="border" />
+              </div>
 
+              :
 
-          <div id="no-media-div">
-          <p><h5 className="text-center" id="header">LOOKS EMPTY IN HERE.</h5></p>
-          <p><h5 className="text-center" id="highlight-header">GO TO SEARCH AND ADD SOME FRIENDS!</h5></p>
-          </div>
-
-          : 
-            <div>
-            {allFriendsMediaState.map(media => {
+              <div>
+                {allFriendsMediaState.length === 0 
                 
-             
+                ?
+                  <div className='text-center empty-content' id='neon-hover'>
+                    <a className="muted-subtext2" id='neon-hover' href='/search_user'>
+                      Find and add friends to see
+                      <FontAwesomeIcon
+                        className='search-icon-media'
+                        icon={faSearch}
+                      />
+                    <p className='muted-logo'>WHAT'S GOOD</p>
+                    </a>
 
-              if (media.mediaType === "book") {
-                return (
-                  <FeedCard
-                    mediaType='book'
-                    media={media}
-                    cb={handleSaveLike}
-                    userData={userData}
-                  />
-                );
-              }
-              if (media.mediaType === "music") {
-                return (
-                  <FeedCard
-                    mediaType='music'
-                    media={media}
-                    cb={handleSaveLike}
-                    userData={userData}
-                  />
-                );
-              }
-              if (media.mediaType === "movie") {
-                return (
-                  <FeedCard
-                    mediaType='movie'
-                    media={media}
-                    cb={handleSaveLike}
-                    userData={userData}
-                  />
-                );
-              }
-              if (media.mediaType === "game") {
-                return (
-                  <FeedCard
-                    mediaType='game'
-                    media={media}
-                    cb={handleSaveLike}
-                    userData={userData}
-                  />
-                );
-              }
+                  </div>
+                :
+                  <div>
+                    {allFriendsMediaState.map(media => {
 
-            
-            }) 
-          
-          
-          }
-          </div>
-       }
-       </div>}
+
+
+                      if (media.mediaType === "book") {
+                        return (
+                          <FeedCard
+                            mediaType='book'
+                            media={media}
+                            cb={handleSaveLike}
+                            userData={userData}
+                          />
+                        );
+                      }
+                      if (media.mediaType === "music") {
+                        return (
+                          <FeedCard
+                            mediaType='music'
+                            media={media}
+                            cb={handleSaveLike}
+                            userData={userData}
+                          />
+                        );
+                      }
+                      if (media.mediaType === "movie") {
+                        return (
+                          <FeedCard
+                            mediaType='movie'
+                            media={media}
+                            cb={handleSaveLike}
+                            userData={userData}
+                          />
+                        );
+                      }
+                      if (media.mediaType === "game") {
+                        return (
+                          <FeedCard
+                            mediaType='game'
+                            media={media}
+                            cb={handleSaveLike}
+                            userData={userData}
+                          />
+                        );
+                      }
+
+
+                    })
+
+
+                    }
+                  </div>
+                }
+              </div>}
           </Col>
         </Row>
       </Container>

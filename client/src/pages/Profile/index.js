@@ -9,7 +9,7 @@ import SideBar from '../../components/SideBar';
 import SubNavbar from '../../components/SubNavbar';
 import UploadPhoto from '../../components/UploadPhoto';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserFriends, faInbox, faCamera, faTh, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faVideo, faBookOpen, faGamepad, faMusic, faAsterisk, faUserFriends, faInbox, faCamera, faTh, faPaperPlane, faSearch } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function ProfilePage() {
@@ -245,7 +245,7 @@ function ProfilePage() {
       }
 
       setMyMediaState(myMediaState => [...myMediaState, savedBookData].sort(compareTimeStamp))
-    
+
     })
   }
 
@@ -273,7 +273,7 @@ function ProfilePage() {
       }
 
       setMyMediaState(myMediaState => [...myMediaState, savedMusicData].sort(compareTimeStamp))
-     
+
     })
   }
 
@@ -306,7 +306,7 @@ function ProfilePage() {
       }
 
       setMyMediaState(myMediaState => [...myMediaState, savedMovieData].sort(compareTimeStamp))
-      
+
     })
   }
 
@@ -332,7 +332,7 @@ function ProfilePage() {
         userFavorite: savedGame.userFavorite
       }
       setMyMediaState(myMediaState => [...myMediaState, savedGameData].sort(compareTimeStamp))
-     
+
     })
   }
 
@@ -410,7 +410,7 @@ function ProfilePage() {
         <Row>
           <Col xs={0} s={0} md={0} lg={2}></Col>
           <Col xs={12} s={12} md={12} lg={8} >
-          
+
             <Card id='profile-card' key={userData.username}>
               <Card.Body id='profile-card-body'>
                 <br></br>
@@ -467,7 +467,7 @@ function ProfilePage() {
                     <>
                       <Form>
                         <Form.Control
-                        id='bio-textarea'
+                          id='bio-textarea'
                           name='bio-text'
                           value={bioText}
                           onChange={(e) => setBioText(e.target.value)}
@@ -552,65 +552,72 @@ function ProfilePage() {
             />
           </Col>
           <Col id="media-feed-column2" xs={12} s={12} md={10} lg={6} >
-            
-{loadingState ?
 
-<div className="text-center">
-<Spinner animation="border" />
-</div>
+            {loadingState ?
 
-: 
+              <div className="text-center">
+                <Spinner animation="border" />
+              </div>
 
-<div>
-{myMediaState.length === 0 && myFavoriteState.length === 0 ?
+              :
+
+              <div>
+                {myMediaState.length === 0 && myFavoriteState.length === 0 ?
 
 
-<div id="no-media-div">
-<p><h5 className="text-center" id="header">LOOKS EMPTY IN HERE.</h5></p>
-<p><h5 className="text-center" id="highlight-header">GO TO SEARCH AND ADD SOME MEDIA!</h5></p>
-</div>
+                  <div className='text-center empty-content' id='neon-hover'>
+                    <a className="muted-subtext2" id='neon-hover' href='/search_user'>
+                      Add and rate media to show
+                      <FontAwesomeIcon
+                        className='search-icon-media'
+                        icon={faSearch}
+                      />
+                      <p className='muted-logo'>WHAT'S GOOD</p>
+                    </a>
 
-: 
+                  </div>
 
-<div>
+                  :
 
-            {myMediaState.map(media => {
-              return (
-                <ProfileFeedCard
-                  media={media}
-                  cb={handleSaveLike}
-                  mediaType={media.mediaType.toLowerCase()}
-                  userData={userData}
-                  // startRating={startRating}
-                  selectedMediaRating={selectedMediaRating}
-                  // handleRatingFormSubmit={handleRatingFormSubmit}
-                  // setUserRating={setUserRating}
-                  // setHover={setHover}
-                  // // hover={hover}
-                  // userRating={userRating}
-                  // startReview={startReview}
-                  selectedMediaReview={selectedMediaReview}
-                // handleReviewFormSubmit={handleReviewFormSubmit}
-                // reviewInput={reviewInput}
-                // setReviewInput={setReviewInput}
-                // handleDeleteMedia={handleDeleteMedia}
-                // makeFavorite={makeFavorite}
-                />
-              );
-            })}
-            {myFavoriteState.map(media => {
-              return (
-                <FeedCard
-                  media={media}
-                  userData={userData}
-                  cb={handleSaveLike}
-                />
-              )
-            })}
-  </div>
-}
-</div>
-}
+                  <div>
+
+                    {myMediaState.map(media => {
+                      return (
+                        <ProfileFeedCard
+                          media={media}
+                          cb={handleSaveLike}
+                          mediaType={media.mediaType.toLowerCase()}
+                          userData={userData}
+                          // startRating={startRating}
+                          selectedMediaRating={selectedMediaRating}
+                          // handleRatingFormSubmit={handleRatingFormSubmit}
+                          // setUserRating={setUserRating}
+                          // setHover={setHover}
+                          // // hover={hover}
+                          // userRating={userRating}
+                          // startReview={startReview}
+                          selectedMediaReview={selectedMediaReview}
+                        // handleReviewFormSubmit={handleReviewFormSubmit}
+                        // reviewInput={reviewInput}
+                        // setReviewInput={setReviewInput}
+                        // handleDeleteMedia={handleDeleteMedia}
+                        // makeFavorite={makeFavorite}
+                        />
+                      );
+                    })}
+                    {myFavoriteState.map(media => {
+                      return (
+                        <FeedCard
+                          media={media}
+                          userData={userData}
+                          cb={handleSaveLike}
+                        />
+                      )
+                    })}
+                  </div>
+                }
+              </div>
+            }
           </Col>
           {/* <Col xs={0} s={0} md={1} lg={3}>
           </Col> */}
