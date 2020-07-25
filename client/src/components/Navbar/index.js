@@ -126,7 +126,7 @@ function AppNavbar() {
         {/* tab container to do either signup or login component */}
         <Tab.Container defaultActiveKey='login'>
           <Modal.Header closeButton>
-            <Modal.Title id='upload-photo-modal' className='logo-text-main'>
+            <Modal.Title id='upload-photo-modal' className='photo-header'>
               UPLOAD YOUR PHOTO
             </Modal.Title>
           </Modal.Header>

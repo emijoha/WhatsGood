@@ -190,7 +190,7 @@ function SavedMedia() {
                   <h5 className="text-center" id="media-header">
                     MY MEDIA
                   </h5>
-                  <SavedIconLinks></SavedIconLinks>
+                  <SavedIconLinks userData={userData}></SavedIconLinks>
                 </div>
               </div>
             </Col>

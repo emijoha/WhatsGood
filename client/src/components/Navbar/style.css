@@ -21,6 +21,11 @@
   align-items: center;
 }
 
+.photo-header {
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
 @media screen and (max-width: 1238px) {
   .logo-text-main {
     font-size: 1.8rem;

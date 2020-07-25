@@ -29,8 +29,9 @@
 }
 
 .empty-message {
+  display: inline;
   padding-bottom: 7.5px;
-  margin-top: -7.5px
+  font-size: 1.12rem;
 }
 
 .muted-subtext {

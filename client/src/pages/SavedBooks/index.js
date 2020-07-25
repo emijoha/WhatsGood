@@ -148,7 +148,7 @@ function SavedBooks() {
               <div id="sub-container" >
                 <div id="header-div">
                   <h5 className="text-center" id="media-header">MY BOOKS</h5>
-                  <SavedIconLinks></SavedIconLinks>
+                  <SavedIconLinks userData={userData}></SavedIconLinks>
                 </div>
               </div>
             </Col>
