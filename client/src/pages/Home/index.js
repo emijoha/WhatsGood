@@ -416,9 +416,9 @@ function Home() {
               :
 
               <div>
-                {allFriendsMediaState.length === 0 
-                
-                ?
+                {allFriendsMediaState.length === 0
+
+                  ?
                   <div className='text-center empty-content' id='neon-hover'>
                     <a className="muted-subtext2" id='neon-hover' href='/search_user'>
                       Find and add friends to see
@@ -426,11 +426,11 @@ function Home() {
                         className='search-icon-media'
                         icon={faSearch}
                       />
-                    <p className='muted-logo'>WHAT'S GOOD</p>
+                      <p className='muted-logo'>WHAT'S GOOD</p>
                     </a>
 
                   </div>
-                :
+                  :
                   <div>
                     {allFriendsMediaState.map(media => {
 
@@ -439,6 +439,7 @@ function Home() {
                       if (media.mediaType === "book") {
                         return (
                           <FeedCard
+                            key={media._id}
                             mediaType='book'
                             media={media}
                             cb={handleSaveLike}
@@ -449,6 +450,7 @@ function Home() {
                       if (media.mediaType === "music") {
                         return (
                           <FeedCard
+                            key={media._id}
                             mediaType='music'
                             media={media}
                             cb={handleSaveLike}
@@ -459,6 +461,7 @@ function Home() {
                       if (media.mediaType === "movie") {
                         return (
                           <FeedCard
+                            key={media._id}
                             mediaType='movie'
                             media={media}
                             cb={handleSaveLike}
@@ -469,6 +472,7 @@ function Home() {
                       if (media.mediaType === "game") {
                         return (
                           <FeedCard
+                            key={media._id}
                             mediaType='game'
                             media={media}
                             cb={handleSaveLike}
