@@ -68,7 +68,7 @@ const CommentComponent = ({ mediaId, mediaType, title, ownerId, commenterUsernam
               {commentsOnMedia.map(comment => {
                 console.log("comment.content", comment.content)
                 return (
-                  <p className='comments'><span className='commenter'>{comment.commenterUsername}:</span> {comment.content}</p>
+                  <p className='comments' key={comment._id}><span className='commenter'>{comment.commenterUsername}:</span> {comment.content}</p>
                 )
               })}
             </div>

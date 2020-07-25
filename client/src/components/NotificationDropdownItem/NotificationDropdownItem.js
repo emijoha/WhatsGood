@@ -17,7 +17,6 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type, 
 
     event.preventDefault()
 
-    console.log("EVENT", event.type);
     deleteNotification(notificationId)
       .then(() => {
         userData.getUserData();
