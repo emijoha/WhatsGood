@@ -57,19 +57,19 @@ Our media data comes from the following APIs:
 ### Emilia Josefina Hartline
   - [GitHub](https://github.com/emijoha)
   - [LinkedIn](https://www.linkedin.com/in/emilia-josefina-hartline-a14ab21a0/)
-  - [email](ejhartline@gmail.com)
+  - email: ejhartline@gmail.com
 
 ### Roger Pouncey
   - [GitHub](https://github.com/rpounceyjr)
   - [LinkedIn](https://www.linkedin.com/in/roger-pouncey-48568b198/)
-  - [email](rpounceyjr@gmail.com)
+  - email: rpounceyjr@gmail.com
 
 ### Danny Reyes
   - [GitHub](https://github.com/reyesdmusic)
   - [LinkedIn](https://www.linkedin.com/in/danny-reyes-dev/)
-  - [email](reyesdmusic@gmail.com)
+  - email: reyesdmusic@gmail.com
 
 ### Daniel Abell
   - [GitHub](https://github.com/dmabell693)
   - [LinkedIn](https://www.linkedin.com/in/daniel-abell-782350199/)
-  - [email](dmabell693@gmail.com)
+  - email: dmabell693@gmail.com
