@@ -3,11 +3,13 @@ import { CardColumns, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faBookOpen, faGamepad, faMusic, faSearch } from '@fortawesome/free-solid-svg-icons';
+import SavedIconLinks from '../../components/SavedIconLinks';
 import ReactAudioPlayer from 'react-audio-player';
 import RateSaved from '../RateSaved';
 import ReviewSaved from '../ReviewSaved';
 import MakeFavorite from '../MakeFavorite';
 import './style.css';
+import FriendProfile from '../../pages/FriendProfile';
 
 function SavedCards(props) {
 
@@ -331,13 +333,12 @@ function SavedCards(props) {
         }</>);
 
   } else if (props.cardType === 'savedFriends') {
-    let number = randomNum();
-    let media = ['book', 'music', 'movie', 'game'];
     return (
       <>
         {
           props.savedArray.map(friend => {
-            console.log("this is my friend, ", friend)
+            let number = randomNum();
+            let media = ['book', 'music', 'movie', 'game'];
             return (
               <Card className={`friend-border${number}`} key={friend._id} border='dark'>
                 <div className='center-wrap'>
@@ -346,10 +347,16 @@ function SavedCards(props) {
                   </Link>
                   <Card.Body>
                     <Card.Title>
-                      <Link to={`/friend_profile?id=${friend._id}`}>
-                        <b>{friend.username.toUpperCase()}</b>
+                      <Link id='neon-hover' to={`/friend_profile?id=${friend._id}`}>
+                        <div className='friend-name-title'><b>{friend.username.toUpperCase()}</b></div>
                       </Link>
-                      <p className='by'><b>email:</b> {friend.email}</p>
+                      <SavedIconLinks 
+                        type='friend'
+                        music={friend.savedMusic.length}
+                        movies={friend.savedMovies.length}
+                        games={friend.savedGames.length}
+                        books={friend.savedBooks.length}
+                      ></SavedIconLinks>
                     </Card.Title>
                     <Button
                       className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}

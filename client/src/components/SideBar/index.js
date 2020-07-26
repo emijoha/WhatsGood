@@ -36,7 +36,7 @@ function SideBar({ cb, page, username }) {
             ALL
             <FontAwesomeIcon
               className='search-icon sidebar-icon'
-              id='neon-hover'
+              id='purple-hover'
               icon={faAsterisk}
             />
           </button>
@@ -47,7 +47,7 @@ function SideBar({ cb, page, username }) {
               FAVORITES
               <FontAwesomeIcon
                 className='search-icon sidebar-icon'
-                id='neon-hover'
+                id='purple-hover'
                 icon={faStar}
               />
             </button>
@@ -58,7 +58,7 @@ function SideBar({ cb, page, username }) {
             MUSIC
             <FontAwesomeIcon
               className='search-icon sidebar-icon'
-              id='neon-hover'
+              id='purple-hover'
               icon={faMusic}
             />
           </button>
@@ -69,7 +69,7 @@ function SideBar({ cb, page, username }) {
             MOVIES
             <FontAwesomeIcon
               className='search-icon sidebar-icon'
-              id='neon-hover'
+              id='purple-hover'
               icon={faVideo}
             />
           </button>
@@ -80,7 +80,7 @@ function SideBar({ cb, page, username }) {
             GAMES
             <FontAwesomeIcon
               className='search-icon sidebar-icon'
-              id='neon-hover'
+              id='purple-hover'
               icon={faGamepad}
             />
           </button>
@@ -90,7 +90,7 @@ function SideBar({ cb, page, username }) {
             BOOKS
             <FontAwesomeIcon
               className='search-icon sidebar-icon'
-              id='neon-hover'
+              id='purple-hover'
               icon={faBookOpen}
             />
           </button>

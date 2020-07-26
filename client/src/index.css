@@ -1,5 +1,16 @@
+.special-font {
+    /* font-family: 'Open Sans', sans-serif; */
+      font-family: 'Montserrat', sans-serif;
+/* font-family: 'Montserrat Subrayada', sans-serif; */
+  }
+
+.light-gray {
+  color: rgb(189, 189, 189);
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Open Sans', sans-serif; */
   background: linear-gradient(412.9deg, rgba(255,255,255,1) 0%, rgb(253, 253, 253) 82.68%, rgba(235,235,235,1) 100%);
   height: 100vh;
   width: 100% auto;
@@ -20,6 +31,10 @@ button {
   font-style: italic;
 }
 
+a:hover, a:focus {
+  color: rgb(134, 0, 223);
+}
+
 /* eventually put this in component styling */
 /* card styling */
 .card {
@@ -32,23 +47,15 @@ button {
 /* BOOK COLORS */
 .book-border {
   border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom right,  rgb(94, 9, 251), rgb(0, 255, 242));
+  border-image-source: linear-gradient(to bottom right,  rgb(94, 9, 251), rgb(0, 233, 221));
 }
 
-.book-color {
-color: rgb(23, 156, 245) !important;
+.book-color, .book-hover:hover  {
+color: rgb(43, 146, 230) !important;
 }
 
-.book-back {
-background-color: rgb(23, 156, 245) !important;
-}
-
-.book-hover:hover {
-  color: rgb(23, 156, 245) !important;
-}
-
-.book-hover-fill:hover {
-  background-color: rgb(23, 156, 245) !important;
+.book-back, .book-hover-fill:hover {
+  background: linear-gradient(to bottom right, rgb(94, 9, 251) 0%, rgb(0, 233, 221) 95%) !important;
 }
 
 
@@ -57,68 +64,47 @@ background-color: rgb(23, 156, 245) !important;
   border-image-slice: 1 ;
   border-image-source: linear-gradient(to bottom right,  rgb(255, 2, 234), rgb(251, 255, 1)) ;
 }
-.music-color {
-  color: rgb(241, 118, 2) !important;
+.music-color, .music-hover:hover  {
+  color: rgb(255, 123, 123)!important;
 }
 
-.music-back {
- background-color: rgb(241, 118, 2) !important;
+.music-back, .music-hover-fill:hover  {
+ /* background-color: rgb(255, 110, 122)   !important; */
+ background: linear-gradient(to bottom right, rgb(255, 2, 234) 0%, rgb(251, 255, 1) 95%) !important;
 }
 
-.music-hover:hover {
-  color: rgb(241, 118, 2) !important;
-}
-
-.music-hover-fill:hover {
-  background-color: rgb(241, 118, 2) !important;
-}
 
 /* MOVIE COLORS */
 .movie-border {
   border-image-slice: 1 ;
   border-image-source: linear-gradient(to bottom right, rgb(94, 9, 251), rgb(255, 2, 234)) ;
 }
-.movie-color {
-  color: rgb(134, 0, 223) !important ;
+.movie-color, .movie-hover:hover {
+  color: rgb(196, 67, 255) !important ;
 }
 
-.movie-back {
-  background-color: rgb(134, 0, 223) !important;
+.movie-back, .movie-hover-fill:hover {
+  background: linear-gradient(to bottom right, rgb(94, 9, 251) 0%, rgb(255, 2, 234) 95%) !important;
 }
 
-.movie-hover:hover {
-  color: rgb(134, 0, 223) !important;
-}
-
-.movie-hover-fill:hover {
-  background-color: rgb(134, 0, 223) !important;
-}
 
 /* GAME COLORS */
 .game-border {
   border-image-slice: 1 ;
-  border-image-source: linear-gradient(to bottom right, rgb(0, 255, 242), rgb(251, 255, 1) ) ;
+  border-image-source: linear-gradient(to bottom right, rgb(0, 233, 221), rgb(251, 255, 1) ) ;
 }
-.game-color {
-  color: rgb(118, 211, 11) !important;
-}
-
-.game-back {
-  background-color: rgb(118, 211, 11) !important;
+.game-color, .game-hover:hover  {
+  color: rgb(98, 236, 116) !important;
 }
 
-.game-hover:hover {
-  color: rgb(118, 211, 11) !important ;
+.game-back, .game-hover-fill:hover {
+  background: linear-gradient(to bottom right, rgb(0, 233, 221) 0%, rgb(251, 255, 1) 95%) !important;
 }
-.game-hover-fill:hover {
-  background-color: rgb(118, 211, 11) !important ;
-}
-
 
 /* FRIENDS BORDERS? OR MIX OF ALL COLORS? */
 .friend-border1 {
   border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom left, rgb(94, 9, 251), rgb(0, 255, 242));
+  border-image-source: linear-gradient(to bottom left, rgb(94, 9, 251), rgb(0, 233, 221));
 }
 
 .friend-border2 {
@@ -133,7 +119,7 @@ background-color: rgb(23, 156, 245) !important;
 
 .friend-border4 {
   border-image-slice: 1;
-  border-image-source: linear-gradient(to bottom right, rgb(0, 255, 242), rgb(251, 255, 1) );
+  border-image-source: linear-gradient(to bottom right, rgb(0, 233, 221), rgb(251, 255, 1) );
 }
 
 .purple, #purple, #purple-hover:hover {

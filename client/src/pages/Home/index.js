@@ -426,7 +426,7 @@ function Home() {
                         className='search-icon-media'
                         icon={faSearch}
                       />
-                      <p className='muted-logo'>WHAT'S GOOD</p>
+                    <p className='muted-logo special-font'>WHAT'S GOOD</p>
                     </a>
 
                   </div>

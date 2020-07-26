@@ -31,15 +31,15 @@ function AppNavbar() {
           {userData.username
             ? <span>
               <Navbar.Brand className='shorten' id='purple-hover' as={Link} to='/home'>
-                <p className='logo-text-main'>WHAT'S GOOD<span>&nbsp;</span></p>
+                <p className='logo-text-main special-font'>WHAT'S GOOD<span>&nbsp;</span></p>
               </Navbar.Brand>
-              <Navbar.Brand id='neon-hover' as={Link} to='/profile'>
-                <p className='logo-text-main'>{`${userData.username.toUpperCase()}?`}</p>
+              <Navbar.Brand  as={Link} to='/profile'>
+                <p className='logo-text-main special-font light-gray' id='neon-hover'>{`${userData.username.toUpperCase()}?`}</p>
               </Navbar.Brand>
             </span>
             :
             <Navbar.Brand id='purple-hover' as={Link} to='/'>
-              <p className='logo-text-main'>WHAT'S GOOD</p>
+              <p className='logo-text-main special-font'>WHAT'S GOOD</p>
             </Navbar.Brand>
           }
           <Navbar.Toggle aria-controls='navbar' />
@@ -127,7 +127,7 @@ function AppNavbar() {
         {/* tab container to do either signup or login component */}
         <Tab.Container defaultActiveKey='login'>
           <Modal.Header closeButton>
-            <Modal.Title id='upload-photo-modal' className='logo-text-main'>
+            <Modal.Title id='upload-photo-modal' className='photo-header'>
               UPLOAD YOUR PHOTO
             </Modal.Title>
           </Modal.Header>

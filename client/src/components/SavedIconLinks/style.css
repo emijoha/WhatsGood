@@ -1,0 +1,24 @@
+
+#saved-icon-div {
+  text-align: center;
+  padding: 0px;
+  margin: 5px 15px -10px 15px;
+}
+
+#media-count-sub {
+  max-width: 40px;
+  position: relative;
+  overflow: auto;
+}
+
+.media-icon {
+  font-size: 1.4rem;
+}
+.saved-icon-group {
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+  color: rgb(177, 177, 177);
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
