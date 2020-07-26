@@ -72,7 +72,7 @@ function SearchUser() {
         }))
         console.log('searchedUsers: ', foundUsers);
 
-        foundUsers.filter(user => (user._id !== userData._id));
+        foundUsers.filter(user => (user._id !== userData._id)).sort();
 
         console.log('now: ', foundUsers);
         return setSearchedUsers(foundUsers);

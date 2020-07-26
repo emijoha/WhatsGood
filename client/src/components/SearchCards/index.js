@@ -206,6 +206,9 @@ function SearchCards(props) {
                     <Card.Title>
                       <Link id='neon-hover' to={`/friend_profile?username=${searchedUser.username}`}>
                         <div className='friend-name-title'><b>{searchedUser.username.toUpperCase()}</b></div>
+                        <div className='center-wrap mt-1' style={{fontStyle: 'italic'}}>
+                          <p>{searchedUser.firstName} {searchedUser.lastName}</p>
+                        </div>
                       </Link>
                     </Card.Title>
                     <SavedIconLinks
