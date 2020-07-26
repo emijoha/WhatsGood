@@ -10,6 +10,30 @@ module.exports = {
     const users = await User.find();
     return res.json(users);
   },
+
+  async searchAllUsers({ params }, res) {
+    console.log('searchAllUsers params: ', params);
+    let firstName = params.anyname.split(' ')[0];
+    let lastName = params.anyname.split(' ')[1];
+    lastName === undefined ? lastName = ' ' : lastName = lastName;
+    console.log('firstName: ', firstName, 'lastName: ', lastName);
+    try {
+      const searchedUsers = await User.find({
+        $or: [
+          { username: { $regex: params.anyname, $options: 'i' }},
+          { firstName: { $regex: firstName, $options: 'i' }},
+          { lastName: { $regex: lastName, $options: 'i' }},
+          { lastName: { $regex: firstName, $options: 'i' }}
+        ]
+      })
+      console.log('searchedUsers: ', searchedUsers);
+      res.json(searchedUsers);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
   // get a single user by either their id or their username
   async getSingleUser({ user = null, params }, res) {
     console.log("made it to get single user")
@@ -36,7 +60,7 @@ module.exports = {
         return res.status(400).json({ message: 'Cannot find a user with this id!' });
       }
       res.json(foundUser);
-      
+
     } catch (err) {
       console.log(err);
       return res.status(400).json(err);
