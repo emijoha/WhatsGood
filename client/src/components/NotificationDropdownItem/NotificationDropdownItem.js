@@ -63,7 +63,7 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type, 
     )
   } else if (type === 'follow') {
     return (
-      <NavDropdown.Item className='notification-item' as={Link} to={`/search_user?username=${likerUsername}`}>
+      <NavDropdown.Item className='notification-item' as={Link} to={`/friend_profile?username=${likerUsername}`}>
         {likerUsername} started following you
         <div onClick={(event) => event.stopPropagation()}>
           <a

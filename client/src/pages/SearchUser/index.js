@@ -1,13 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import SearchCards from '../../components/SearchCards';
-import SavedIconLinks from '../../components/SavedIconLinks';
+import SearchIconGroup from '../../components/SearchIconGroup';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { saveFriend, searchFriend, deleteFriend, addNotification } from '../../utils/API';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function SearchUser() {
@@ -133,46 +131,10 @@ function SearchUser() {
                     size='lg'
                     placeholder='Search for a friend by username'
                   />
-                  <p className='search-icon-group'>
-                    <a href='/search_music'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faMusic}
-                      />
-                    </a>
-                    <a href='/search_movies'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faVideo}
-                      />
-                    </a>
-                    <a href='/search_games'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faGamepad}
-                      />
-                    </a>
-                    <a href='/search_books'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faBookOpen}
-                      />
-                    </a>
-                    <a href='/search_user'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faUserFriends}
-                      />
-                    </a>
-                  </p>
+                  <SearchIconGroup />
                   <Button id="form-search-btn" type='submit' size='lg'>
                     SEARCH
-                </Button>
+                  </Button>
                 </Form>
               </div>
             </Col>

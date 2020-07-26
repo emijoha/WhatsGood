@@ -197,10 +197,14 @@ function SearchCards(props) {
         <CardColumns>
           <Card className={`friend-border${number}`} key={props.searchedUser._id} border='dark'>
             <div className='center-wrap'>
-              <Card.Img className='friendImage' src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
+              <Link id='neon-hover' to={`/friend_profile?id=${props.searchedUser._id}`}>
+                <Card.Img className='friendImage' src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
+              </Link>
               <Card.Body>
                 <Card.Title>
-                <div className='friend-name-title'><b>{props.searchedUser.username.toUpperCase()}</b></div>
+                  <Link id='neon-hover' to={`/friend_profile?id=${props.searchedUser._id}`}>
+                    <div className='friend-name-title'><b>{props.searchedUser.username.toUpperCase()}</b></div>
+                  </Link>
                 </Card.Title>
                 <SavedIconLinks
                   type='friend'
