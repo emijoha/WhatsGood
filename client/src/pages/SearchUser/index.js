@@ -6,6 +6,7 @@ import SearchIconGroup from '../../components/SearchIconGroup';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { saveFriend, searchFriend, searchAllUsers, deleteFriend, addNotification } from '../../utils/API';
+import useDebounce from '../../utils/debounceHook';
 import './style.css';
 
 function SearchUser() {
@@ -15,6 +16,38 @@ function SearchUser() {
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
   const userData = useContext(UserInfoContext);
+
+  const debouncedSearchInput = useDebounce(searchInput, 500);
+
+  useEffect(() => {
+    if (!searchInput) {
+      return;
+    }
+    if (debouncedSearchInput) {
+      searchAllUsers(searchInput)
+      .then((res) => {
+        let foundUsers = res.data.map(user => ({
+          username: user.username,
+          _id: user._id,
+          picture: user.picture,
+          email: user.email,
+          music: user.savedMusic,
+          movies: user.savedMovies,
+          games: user.savedGames,
+          books: user.savedBooks,
+          firstName: user.firstName,
+          lastName: user.lastName
+        }))
+        console.log('searchedUsers: ', foundUsers);
+
+        foundUsers.filter(user => (user._id !== userData._id)).sort();
+
+        console.log('now: ', foundUsers);
+        return setSearchedUsers(foundUsers);
+      })
+      .catch(err => console.log(err));
+    }
+  }, [debouncedSearchInput]);
 
   // const [queryStringUsername, setQueryStringUsername] = useState()
 
@@ -76,7 +109,8 @@ function SearchUser() {
 
         console.log('now: ', foundUsers);
         return setSearchedUsers(foundUsers);
-      });
+      })
+      .catch(err => console.log(err));
 
     // NEED TO PASS SEARCHINPUT AS PARAMS.USERNAME
     // searchFriend(searchInput)
