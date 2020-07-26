@@ -1,59 +1,75 @@
-# googlebooks-app with authentication using JWT (JSON Web Token)
+# What's Good
 
-## About This Boilerplate
+What's Good is a content-based social media app.
 
-This setup allows for a Node/Express/React/JWT app which can be easily deployed to Heroku.
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
 
-An article on how the server is setup with JWT can be found [here](https://hptechblogs.com/using-json-web-token-for-authentication/). This has been modified to use a mongo database instead of hardcoded array of users.
+## About What's Good
 
-The front end has been setup to use JWT as a way of authenticating users and routes. To understand it's structure better please refer to the following article [here](https://hptechblogs.com/using-json-web-token-react/)
+As our world becomes increasingly driven by social media and, sadly, polarized along politico-cultural lines, it seems apparent that social media is increasingly co-opted as a tool to drive wedges between social niches. Our vision with What's Good was to carve out a positive space on the web by creating a social media platform for friendly interaction concentrated around shared tastes in books, games, movies, and music. Here, friends are invited to comment on their favorite (or not-so-favorite!) music, rate the newest video games, share a film they recently watched, write reviews on books both new and old, or preferrably, all of the above! We wanted to provide a forum for people to put a virtual representation of their favorite media on display, and we hope you enjoy it!
 
-Please feel free to modify this code in anyway you see fit for your project. It is a boilerplate setup that tries to make sure you can get something up and running without having to worry about setting up user authentication from scratch.
-I highly suggest you read the articles before jumping in so you can have an better understanding of how everything works in the code.
+You can participate [here](#https://whatsgood-v1.herokuapp.com/).
 
-Server-side article and using JWT: https://hptechblogs.com/using-json-web-token-for-authentication/
 
-Front End article on using the JWT on a react application: https://hptechblogs.com/using-json-web-token-react/
 
-## Starting the app locally
+## Table of Contents
 
-First off make sure you have a local version of MongoDB running on your machine. This project will make a local database for you called `appDB`.
+* [Dependencies](#Dependencies)
+* [APIs](#APIs)
+* [Contributors](#Contributors)
 
-```
-mongod
-```
 
-Start by installing front and backend dependencies. While in the root directory, run the following command:
 
-```
-npm install
-```
+## Dependencies
 
-After all installations complete, run the following command in your terminal:
+We used [React](#https://reactjs.org/) to create the UI. The following libraries comprise bits and pieces of functionality:
 
-```
-npm start
-```
+* [react-dom](#https://www.npmjs.com/package/react-dom) does the DOM rendering
+* [react-router-dom](#https://www.npmjs.com/package/react-router-dom) handles client-side routes
+* [react-bootstrap](#https://www.npmjs.com/package/react-bootstrap) for styling
+* [react-scroll](#https://www.npmjs.com/package/react-scroll) handles scroll animation
+* [react-audio-player](#https://www.npmjs.com/package/react-audio-player) enable audio playback
+* [react-fontawesome](#https://www.npmjs.com/package/@fortawesome/react-fontawesome) renders all the cool icons
+* [aos](#https://www.npmjs.com/package/aos) provides some scrolling animation
+* [moment](#https://www.npmjs.com/package/moment) for time stamping
+* [axios](#https://www.npmjs.com/package/axios) facilitates client to server api calls
+* [jsonwebtoken](#https://www.npmjs.com/package/jsonwebtoken) powers our user authentication services
+* [jwt-decode](#https://www.npmjs.com/package/jwt-decode) for jsonwebtoken decoding
+* [bcrypt](#https://www.npmjs.com/package/bcrypt) handles password hashing
+* [express](#https://www.npmjs.com/package/express) handles api routes 
+* [mongoose](#https://mongoosejs.com/) handles object modeling for our database 
+* [MondoDB](#https://www.mongodb.com/) our database, our brain
 
-That's it, your app should be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
 
-## Deployment (Heroku)
 
-### Create a Git Repo
+## APIs
 
-Once you're ready to deploy, start by making sure your project is a git repository. If so, proceed to the next section, otherwise run the following commands in your terminal:
+Our media data comes from the following APIs:
+* [Google Books APIs](#https://developers.google.com/books)
+* [Chicken Coop](#https://rapidapi.com/valkiki/api/chicken-coop/details)
+* [OMDB API](#http://www.omdbapi.com/)
+* [Deezer](#https://developers.deezer.com/)
 
-```
-git init
-git add .
-git commit -m "Initial commit"
-```
 
-### Deploying
 
-1. Go onto your heroku account and link your repository through the UI
-2. Go to resources and find mLab as a Add-on
-3. Provision a Mongo Database
-4. Go back and click "Deploy"
+## Contributors
+
+### Emilia Josefina Hartline
+  - [GitHub](#https://github.com/emijoha)
+  - [LinkedIn](#https://www.linkedin.com/in/emilia-josefina-hartline-a14ab21a0/)
+  - [email](#ejhartline@gmail.com)
+
+### Roger Pouncey
+  - [GitHub](#https://github.com/rpounceyjr)
+  - [LinkedIn](#https://www.linkedin.com/in/roger-pouncey-48568b198/)
+  - [email](#rpounceyjr@gmail.com)
+
+### Danny Reyes
+  - [GitHub](#https://github.com/reyesdmusic)
+  - [LinkedIn](#https://www.linkedin.com/in/danny-reyes-dev/)
+  - [email](#reyesdmusic@gmail.com)
+
+### Daniel Abell
+  - [GitHub](#https://github.com/dmabell693)
+  - [LinkedIn](#https://www.linkedin.com/in/daniel-abell-782350199/)
+  - [email](#dmabell693@gmail.com)
