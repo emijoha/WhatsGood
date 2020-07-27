@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useCallback } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, CardColumns } from 'react-bootstrap';
 // import { useHistory } from 'react-router-dom';
 import SearchCards from '../../components/SearchCards';
 import SearchIconGroup from '../../components/SearchIconGroup';
@@ -25,27 +25,27 @@ function SearchUser() {
     }
     if (debouncedSearchInput) {
       searchAllUsers(searchInput)
-      .then((res) => {
-        let foundUsers = res.data.map(user => ({
-          username: user.username,
-          _id: user._id,
-          picture: user.picture,
-          email: user.email,
-          music: user.savedMusic,
-          movies: user.savedMovies,
-          games: user.savedGames,
-          books: user.savedBooks,
-          firstName: user.firstName,
-          lastName: user.lastName
-        }))
-        console.log('searchedUsers: ', foundUsers);
+        .then((res) => {
+          let foundUsers = res.data.map(user => ({
+            username: user.username,
+            _id: user._id,
+            picture: user.picture,
+            email: user.email,
+            music: user.savedMusic,
+            movies: user.savedMovies,
+            games: user.savedGames,
+            books: user.savedBooks,
+            firstName: user.firstName,
+            lastName: user.lastName
+          }))
+          console.log('searchedUsers: ', foundUsers);
 
-        foundUsers.filter(user => (user._id !== userData._id)).sort();
+          foundUsers.filter(user => (user._id !== userData._id)).sort();
 
-        console.log('now: ', foundUsers);
-        return setSearchedUsers(foundUsers);
-      })
-      .catch(err => console.log(err));
+          console.log('now: ', foundUsers);
+          return setSearchedUsers(foundUsers);
+        })
+        .catch(err => console.log(err));
     }
   }, [debouncedSearchInput]);
 
@@ -208,13 +208,15 @@ function SearchUser() {
       </Row>
       {/* {searchedUser._id && */}
       <Container>
-        <SearchCards
-          cardType='searchedUsers'
-          searchedUsers={searchedUsers}
-          savedArray={userData.friends}
-          handleSaveFriend={handleSaveFriend}
-          handleDeleteFriend={handleDeleteFriend}
-        />
+        <CardColumns>
+          <SearchCards
+            cardType='searchedUsers'
+            searchedUsers={searchedUsers}
+            savedArray={userData.friends}
+            handleSaveFriend={handleSaveFriend}
+            handleDeleteFriend={handleDeleteFriend}
+          />
+        </CardColumns>
       </Container>
       {/* } */}
     </div>
