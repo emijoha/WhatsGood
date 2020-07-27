@@ -10,32 +10,61 @@ module.exports = {
     const users = await User.find();
     return res.json(users);
   },
+
+  async searchAllUsers({ params }, res) {
+    console.log('searchAllUsers params: ', params);
+    let firstName = params.anyname.split(' ')[0];
+    let lastName = params.anyname.split(' ')[1];
+    lastName === undefined ? lastName = ' ' : lastName = lastName;
+    console.log('firstName: ', firstName, 'lastName: ', lastName);
+    try {
+      const searchedUsers = await User.find({
+        $or: [
+          { username: { $regex: params.anyname, $options: 'i' }},
+          { firstName: { $regex: firstName, $options: 'i' }},
+          { lastName: { $regex: lastName, $options: 'i' }},
+          { lastName: { $regex: firstName, $options: 'i' }}
+        ]
+      })
+      console.log('searchedUsers: ', searchedUsers);
+      res.json(searchedUsers);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
   // get a single user by either their id or their username
   async getSingleUser({ user = null, params }, res) {
     console.log("made it to get single user")
     console.log("params", params);
-    const foundUser = await User.findOne({
-      $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    })
-    .populate('savedGames')
-    .populate('savedBooks')
-    .populate('savedMusic')
-    .populate('savedMovies')
-    .populate('friends')
-    .populate('savedLikes')
-    .populate('notifications')
-    .populate({ path: 'savedBooks', populate: { path: 'comments' } })
-    .populate({ path: 'savedMovies', populate: { path: 'comments' } })
-    .populate({ path: 'savedMusic', populate: { path: 'comments' } })
-    .populate({ path: 'savedGames', populate: { path: 'comments' } })
-    .populate('chats').populate({ path: 'chats', populate: { path: 'users' } })
-    .populate({ path: 'chats', populate: { path: 'messages' } });
+    try {
+      const foundUser = await User.findOne({
+        $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
+      })
+        .populate('savedGames')
+        .populate('savedBooks')
+        .populate('savedMusic')
+        .populate('savedMovies')
+        .populate('friends')
+        .populate('savedLikes')
+        .populate('notifications')
+        .populate({ path: 'savedBooks', populate: { path: 'comments' } })
+        .populate({ path: 'savedMovies', populate: { path: 'comments' } })
+        .populate({ path: 'savedMusic', populate: { path: 'comments' } })
+        .populate({ path: 'savedGames', populate: { path: 'comments' } })
+        .populate('chats').populate({ path: 'chats', populate: { path: 'users' } })
+        .populate({ path: 'chats', populate: { path: 'messages' } });
 
-    if (!foundUser) {
-      return res.status(400).json({ message: 'Cannot find a user with this id!' });
+      if (!foundUser) {
+        return res.status(400).json({ message: 'Cannot find a user with this id!' });
+      }
+      res.json(foundUser);
+
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
     }
-
-    res.json(foundUser);
   },
 
   // get all of Users friends
@@ -757,11 +786,11 @@ module.exports = {
       return res.status(400).json(err);
     }
   },
-  async getGame({params}, res) {
+  async getGame({ params }, res) {
     // console.log("made it to get single user")
     // console.log("params", params);
     const foundGame = await Game.findOne(
-      {_id: params.id}).populate('comments');
+      { _id: params.id }).populate('comments');
 
     if (!foundGame) {
       return res.status(400).json({ message: 'Cannot find a game with this id!' });
@@ -769,11 +798,11 @@ module.exports = {
 
     res.json(foundGame);
   },
-  async getBook({params}, res) {
+  async getBook({ params }, res) {
     // console.log("made it to get single user")
     // console.log("params", params);
     const foundBook = await Book.findOne(
-      {_id: params.id}).populate('comments');
+      { _id: params.id }).populate('comments');
 
     if (!foundBook) {
       return res.status(400).json({ message: 'Cannot find a book with this id!' });
@@ -781,11 +810,11 @@ module.exports = {
 
     res.json(foundBook);
   },
-  async getMusic({params}, res) {
+  async getMusic({ params }, res) {
     // console.log("made it to get single user")
     // console.log("params", params);
     const foundMusic = await Music.findOne(
-      {_id: params.id}).populate('comments');
+      { _id: params.id }).populate('comments');
 
     if (!foundMusic) {
       return res.status(400).json({ message: 'Cannot find any music with this id!' });
@@ -793,11 +822,11 @@ module.exports = {
 
     res.json(foundMusic);
   },
-  async getMovie({params}, res) {
+  async getMovie({ params }, res) {
     // console.log("made it to get single user")
     // console.log("params", params);
     const foundMovie = await Movie.findOne(
-      {_id: params.id}).populate('comments');
+      { _id: params.id }).populate('comments');
 
     if (!foundMovie) {
       return res.status(400).json({ message: 'Cannot find a movie with this id!' });

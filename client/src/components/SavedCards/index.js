@@ -342,12 +342,12 @@ function SavedCards(props) {
             return (
               <Card className={`friend-border${number}`} key={friend._id} border='dark'>
                 <div className='center-wrap'>
-                  <Link to={`/friend_profile?id=${friend._id}`}>
+                  <Link to={`/friend_profile?username=${friend.username}`}>
                     <Card.Img className='friendImage' src={friend.picture} alt={friend.username} variant='top' />
                   </Link>
                   <Card.Body>
                     <Card.Title>
-                      <Link id='neon-hover' to={`/friend_profile?id=${friend._id}`}>
+                      <Link id='neon-hover' to={`/friend_profile?username=${friend.username}`}>
                         <div className='friend-name-title'><b>{friend.username.toUpperCase()}</b></div>
                       </Link>
                       <SavedIconLinks 

@@ -2,6 +2,7 @@ const router = require('express').Router();
 const {
   createUser,
   getAllUsers,
+  searchAllUsers,
   getSingleUser,
   saveBook,
   saveGame,
@@ -49,6 +50,8 @@ router.route('/signup').get(getAllUsers).post(createUser);
 router.route('/books').get(getAllUsers).put(authMiddleware, saveBook);
 
 router.route('/login').post(login);
+
+router.route('/search-all/:anyname').get(searchAllUsers);
 
 router.route('/me').get(authMiddleware, getSingleUser);
 

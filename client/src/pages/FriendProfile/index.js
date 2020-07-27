@@ -20,17 +20,17 @@ function FriendProfile() {
   const [friendMediaState, setFriendMediaState] = useState([]);
   const [friendFavoritesState, setFriendFavoritesState] = useState([]);
   const [friend, setFriend] = useState([]);
-  const [queryStringId, setQueryStringId] = useState('');
+  const [queryStringUsername, setQueryStringUsername] = useState('');
   const [loadingState, setLoadingState] = useState(true);
 
   useEffect(() => {
-    setQueryStringId(window.location.search.split('=')[1]);
-    API.getUser(queryStringId)
+    setQueryStringUsername(window.location.search.split('=')[1]);
+    API.searchFriend(queryStringUsername)
       .then((res) => {
         setFriend(res.data);
       })
       .catch((err) => console.log(err));
-  }, [queryStringId !== window.location.search.split('=')[1]]);
+  }, [queryStringUsername !== window.location.search.split('=')[1]]);
 
   useEffect(() => {
     window.scrollTo(0, 0);

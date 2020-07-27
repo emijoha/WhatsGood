@@ -14,6 +14,10 @@ export const getUser = function (id) {
   return axios.get(`/api/users/${id}`);
 };
 
+export const searchAllUsers = function (anyname) {
+  return axios.get(`/api/users/search-all/${anyname}`);
+}
+
 export const searchFriend = function (username) {
   return axios.get(`/api/users/find/${username}`);
 };
