@@ -18,6 +18,7 @@ function Home() {
 
   const [allFriendsMediaState, setAllFriendsMediaState] = useState([]);
   const [loadingState, setLoadingState] = useState(false);
+  const [friendPicArray, setFriendPicArray] = useState([]);
 
   function compareTimeStamp(a, b) {
     return b.timeStamp - a.timeStamp;
@@ -25,9 +26,6 @@ function Home() {
 
   const userData = useContext(UserInfoContext);
   console.log("userDATA:  ", userData);
-
-  // to pass into notifications so user knows who liked something
-  // const likerId = userData._id;
   const likerUsername = userData.username;
 
   useEffect(() => {
@@ -38,123 +36,48 @@ function Home() {
     window.scrollTo(0, 0)
   }, []);
 
-  function renderAllMedia() {
+  
+function renderAllMedia() {
     setLoadingState(true);
 
     if (userData.friends.length === 0) {
       setLoadingState(false)
     }
 
-    userData.friends.map(friend => {
-      API.getUser(friend.id)
-        .then(result => {
-          if (result.data.savedBooks.length > 0) {
-            result.data.savedBooks.map(savedBook => {
-              let savedBookData = {
-                mediaType: "book",
-                timeStamp: savedBook.timeStamp,
-                createdAt: savedBook.createdAt,
-                _id: savedBook._id,
-                username: friend.username,
-                picture: friend.picture,
-                userId: friend.id,
-                image: savedBook.image,
-                title: savedBook.title,
-                authors: savedBook.authors,
-                description: savedBook.description,
-                userRating: savedBook.userRating,
-                userReview: savedBook.userReview,
-                likes: savedBook.likes,
-                comments: savedBook.comments
-              }
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedBookData])
-            })
-          }
-          if (result.data.savedMusic.length > 0) {
-            result.data.savedMusic.map(savedMusic => {
-              let savedMusicData = {
-                mediaType: "music",
-                timeStamp: savedMusic.timeStamp,
-                createdAt: savedMusic.createdAt,
-                _id: savedMusic._id,
-                username: friend.username,
-                picture: friend.picture,
-                userId: friend.id,
-                image: savedMusic.image,
-                title: savedMusic.title,
-                link: savedMusic.link,
-                artist: savedMusic.artist,
-                preview: savedMusic.preview,
-                userRating: savedMusic.userRating,
-                userReview: savedMusic.userReview,
-                likes: savedMusic.likes,
-                comments: savedMusic.comments
-              }
-              console.log("this is savedBookData: ", savedMusicData)
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMusicData])
-            })
-          }
-          if (result.data.savedMovies.length > 0) {
-            result.data.savedMovies.map(savedMovie => {
-              let savedMovieData = {
-                mediaType: "movie",
-                timeStamp: savedMovie.timeStamp,
-                createdAt: savedMovie.createdAt,
-                _id: savedMovie._id,
-                username: friend.username,
-                picture: friend.picture,
-                userId: friend.id,
-                image: savedMovie.image,
-                title: savedMovie.title,
-                runtime: savedMovie.runtime,
-                release: savedMovie.released,
-                rated: savedMovie.rated,
-                plot: savedMovie.plot,
-                genre: savedMovie.genre,
-                director: savedMovie.director,
-                actors: savedMovie.actors,
-                userRating: savedMovie.userRating,
-                userReview: savedMovie.userReview,
-                likes: savedMovie.likes,
-                comments: savedMovie.comments
-              }
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData])
-            })
-          }
-          if (result.data.savedGames.length > 0) {
-            result.data.savedGames.map(savedGame => {
-              let savedGameData = {
-                mediaType: "game",
-                timeStamp: savedGame.timeStamp,
-                createdAt: savedGame.createdAt,
-                _id: savedGame._id,
-                username: friend.username,
-                picture: friend.picture,
-                userId: friend.id,
-                image: savedGame.image,
-                title: savedGame.title,
-                developer: savedGame.developer,
-                description: savedGame.description,
-                userRating: savedGame.userRating,
-                userReview: savedGame.userReview,
-                likes: savedGame.likes,
-                comments: savedGame.comments
-              }
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedGameData])
-            })
-          }
 
+let friendsIdArray = []
+userData.friends.map(friend =>{
 
-          setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState].sort(compareTimeStamp))
-          setLoadingState(false);
-        })
+  friendsIdArray.push(friend.id)
 
-
-    })
-
-
+  const friendData = {
+    _id: friend._id,
+    picture: friend.picture
   }
-  const handleRenderMediaPage = useCallback((mediaType) => {
+
+  setFriendPicArray(friendPicArray => [...friendPicArray, friendData])
+})
+
+const request = {
+  friendsArray: friendsIdArray
+};
+
+
+
+API.getMedia(JSON.stringify(request))
+.then(result => {
+
+  result.data.map(media => {
+    setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, media].sort(compareTimeStamp));
+  })
+
+  setLoadingState(false);
+  
+  })
+
+}
+
+const handleRenderMediaPage = useCallback((mediaType) => {
 
     setAllFriendsMediaState([]);
 
@@ -165,169 +88,174 @@ function Home() {
     }
     if (mediaType === "music") {
 
+
+      setLoadingState(true);
+
       if (userData.friends.length === 0) {
         setLoadingState(false)
       }
+  
+  
+  let friendsIdArray = []
+  userData.friends.map(friend =>{
+  
+    friendsIdArray.push(friend.id)
+  
+    const friendData = {
+      _id: friend._id,
+      picture: friend.picture
+    }
+  
+    setFriendPicArray(friendPicArray => [...friendPicArray, friendData])
+  })
+  
+  const request = {
+    friendsArray: friendsIdArray
+  };
+  
+  
+  
+  API.getMedia(JSON.stringify(request))
+  .then(result => {
+  
+    result.data.map(media => {
 
-      userData.friends.map(friend => {
-        API.getUser(friend.id)
-          .then(result => {
+      if (media.mediaType === "music")
+      setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, media].sort(compareTimeStamp));
+    })
+  
+    setLoadingState(false);
+    
+    })
 
-            result.data.savedMusic.map(savedMusic => {
-
-              let savedMusicData = {
-                mediaType: "music",
-                timeStamp: savedMusic.timeStamp,
-                createdAt: savedMusic.createdAt,
-                _id: savedMusic._id,
-                username: friend.username,
-                picture: friend.picture,
-                userId: friend.id,
-                image: savedMusic.image,
-                title: savedMusic.title,
-                link: savedMusic.link,
-                artist: savedMusic.artist,
-                preview: savedMusic.preview,
-                userRating: savedMusic.userRating,
-                userReview: savedMusic.userReview,
-                likes: savedMusic.likes,
-                comments: savedMusic.comments
-
-              }
-
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMusicData])
-
-            })
-            setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState].sort(compareTimeStamp))
-            setLoadingState(false);
-          })
-      })
     }
 
     if (mediaType === "game") {
 
+ 
+      setLoadingState(true);
+
       if (userData.friends.length === 0) {
         setLoadingState(false)
       }
+  
+  
+  let friendsIdArray = []
+  userData.friends.map(friend =>{
+  
+    friendsIdArray.push(friend.id)
+  
+    const friendData = {
+      _id: friend._id,
+      picture: friend.picture
+    }
+  
+    setFriendPicArray(friendPicArray => [...friendPicArray, friendData])
+  })
+  
+  const request = {
+    friendsArray: friendsIdArray
+  };
+  
+  
+  
+  API.getMedia(JSON.stringify(request))
+  .then(result => {
+  
+    result.data.map(media => {
 
-      userData.friends.map(friend => {
-        API.getUser(friend.id)
-          .then(result => {
-
-            result.data.savedGames.map(savedGame => {
-
-              let savedGameData = {
-                mediaType: "game",
-                timeStamp: savedGame.timeStamp,
-                createdAt: savedGame.createdAt,
-                _id: savedGame._id,
-                username: friend.username,
-                picture: friend.picture,
-                userId: friend.id,
-                image: savedGame.image,
-                title: savedGame.title,
-                developer: savedGame.developer,
-                description: savedGame.description,
-                userRating: savedGame.userRating,
-                userReview: savedGame.userReview,
-                likes: savedGame.likes,
-                comments: savedGame.comments
-              }
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedGameData])
-            })
-            setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState].sort(compareTimeStamp))
-            setLoadingState(false);
-          })
-      })
+      if (media.mediaType === "game")
+      setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, media].sort(compareTimeStamp));
+    })
+  
+    setLoadingState(false);
+    
+    })
     }
 
     if (mediaType === "movie") {
 
+    
+      setLoadingState(true);
+
       if (userData.friends.length === 0) {
         setLoadingState(false)
       }
+  
+  
+  let friendsIdArray = []
+  userData.friends.map(friend =>{
+  
+    friendsIdArray.push(friend.id)
+  
+    const friendData = {
+      _id: friend._id,
+      picture: friend.picture
+    }
+  
+    setFriendPicArray(friendPicArray => [...friendPicArray, friendData])
+  })
+  
+  const request = {
+    friendsArray: friendsIdArray
+  };
+  
+  
+  
+  API.getMedia(JSON.stringify(request))
+  .then(result => {
+  
+    result.data.map(media => {
 
-      userData.friends.map(friend => {
-        API.getUser(friend.id)
-          .then(result => {
-
-            result.data.savedMovies.map(savedMovie => {
-
-              let savedMovieData = {
-                mediaType: "movie",
-                timeStamp: savedMovie.timeStamp,
-                createdAt: savedMovie.createdAt,
-                _id: savedMovie._id,
-                username: friend.username,
-                picture: friend.picture,
-                userId: friend.id,
-                image: savedMovie.image,
-                title: savedMovie.title,
-                runtime: savedMovie.runtime,
-                release: savedMovie.released,
-                rated: savedMovie.rated,
-                plot: savedMovie.plot,
-                genre: savedMovie.genre,
-                director: savedMovie.director,
-                actors: savedMovie.actors,
-                userRating: savedMovie.userRating,
-                userReview: savedMovie.userReview,
-                likes: savedMovie.likes,
-                comments: savedMovie.comments
-              }
-
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedMovieData])
-
-            })
-
-            setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState].sort(compareTimeStamp))
-            setLoadingState(false);
-          })
-      })
+      if (media.mediaType === "movie")
+      setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, media].sort(compareTimeStamp));
+    })
+  
+    setLoadingState(false);
+    
+    })
     }
 
     if (mediaType === "book") {
 
+      setLoadingState(true);
+
       if (userData.friends.length === 0) {
         setLoadingState(false)
       }
+  
+  
+  let friendsIdArray = []
+  userData.friends.map(friend =>{
+  
+    friendsIdArray.push(friend.id)
+  
+    const friendData = {
+      _id: friend._id,
+      picture: friend.picture
+    }
+  
+    setFriendPicArray(friendPicArray => [...friendPicArray, friendData])
+  })
+  
+  const request = {
+    friendsArray: friendsIdArray
+  };
+  
+  
+  
+  API.getMedia(JSON.stringify(request))
+  .then(result => {
+  
+    result.data.map(media => {
 
-      userData.friends.map(friend => {
-        API.getUser(friend.id)
-          .then(result => {
-
-            result.data.savedBooks.map(savedBook => {
-
-              let savedBookData = {
-                mediaType: "book",
-                timeStamp: savedBook.timeStamp,
-                createdAt: savedBook.createdAt,
-                _id: savedBook._id,
-                username: friend.username,
-                picture: friend.picture,
-                userId: friend.id,
-                image: savedBook.image,
-                title: savedBook.title,
-                authors: savedBook.authors,
-                description: savedBook.description,
-                userRating: savedBook.userRating,
-                userReview: savedBook.userReview,
-                likes: savedBook.likes,
-                comments: savedBook.comments
-              }
-
-              console.log("this is savedBookData: ", savedBookData)
-              console.log("this is savedBook: ", savedBook)
-
-              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, savedBookData])
-
-            })
-
-            setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState].sort(compareTimeStamp))
-            setLoadingState(false);
-          })
-
-      })
+      if (media.mediaType === "book")
+      setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, media].sort(compareTimeStamp));
+    })
+  
+    setLoadingState(false);
+    
+    })
     }
 
   })
@@ -386,11 +314,7 @@ function Home() {
 
   return (
     <>
-      {/* <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
-          <h1>Viewing friends Media!</h1>
-        </Container>
-      </Jumbotron> */}
+    
       <Row>
         <Col>
           <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} username={userData.username} />
@@ -405,6 +329,8 @@ function Home() {
             />
           </Col>
           <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >
+
+            {/* <button onClick={() => getMediaFromApi()}></button> */}
 
             {console.log("allfriendsmediaState in the return", allFriendsMediaState)}
             {loadingState ?
@@ -434,11 +360,13 @@ function Home() {
                   <div>
                     {allFriendsMediaState.map(media => {
 
+                    const found = friendPicArray.find(element => element._id === media.userId)
 
 
                       if (media.mediaType === "book") {
                         return (
                           <FeedCard
+                            picture={found.picture}
                             key={media._id}
                             mediaType='book'
                             media={media}
@@ -450,6 +378,7 @@ function Home() {
                       if (media.mediaType === "music") {
                         return (
                           <FeedCard
+                            picture={found.picture}
                             key={media._id}
                             mediaType='music'
                             media={media}
@@ -461,6 +390,7 @@ function Home() {
                       if (media.mediaType === "movie") {
                         return (
                           <FeedCard
+                            picture={found.picture}
                             key={media._id}
                             mediaType='movie'
                             media={media}
@@ -472,6 +402,7 @@ function Home() {
                       if (media.mediaType === "game") {
                         return (
                           <FeedCard
+                            picture={found.picture}
                             key={media._id}
                             mediaType='game'
                             media={media}

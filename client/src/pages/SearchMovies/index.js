@@ -68,6 +68,9 @@ function SearchMovies() {
   const handleSaveMedia = useCallback((movie, userRating, userReview) => {
     // find the movie in `searchedMovies` state by the matching id
     const movieToSave = {
+      username: userData.username,
+      userId: userData._id,
+      mediaType: "movie",
       mediaId: movie.mediaId,
       timeStamp: Date.now(),
       createdAt: Date(),

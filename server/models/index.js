@@ -8,5 +8,6 @@ module.exports = {
     Comment: require('./Comment'),
     Notification: require('./Notification'),
     Chat: require('./Chat'),
-    Message: require('./Message')
+    Message: require('./Message'),
+    Media: require('./Media')
 };

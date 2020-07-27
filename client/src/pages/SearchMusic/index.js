@@ -51,6 +51,9 @@ function SearchMusic() {
   const handleSaveMedia = useCallback((music, userRating, userReview) => {
     // find the book in `searchedBooks` state by the matching id
     const musicToSave = {
+      username: userData.username,
+      userId: userData._id,
+      mediaType: "music",
       mediaId: music.mediaId,
       timeStamp: Date.now(),
       createdAt: Date(),
