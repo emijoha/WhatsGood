@@ -26,12 +26,12 @@ function FeedCard(props) {
         <Card.Body>
           {media.picture
             ? 
-            <Link to={`/friend_profile?id=${media.userId}`}>
+            <Link to={`/friend_profile?username=${media.username}`}>
             <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
             </Link>
             : null}
           <Card.Title>
-            <Link to={`/friend_profile?id=${media.userId}`}>{media.username}</Link> saved this {props.mediaType}
+            <Link to={`/friend_profile?username=${media.username}`}>{media.username}</Link> saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
           </Card.Title>
           {media.image
@@ -93,12 +93,12 @@ function FeedCard(props) {
         <Card.Body>
         {media.picture
             ? 
-            <Link to={`/friend_profile?id=${media.userId}`}>
+            <Link to={`/friend_profile?username=${media.username}`}>
             <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
             </Link>
             : null}
           <Card.Title>
-            <Link to={`/friend_profile?id=${media.userId}`}>{media.username}</Link> saved this {props.mediaType}
+            <Link to={`/friend_profile?username=${media.username}`}>{media.username}</Link> saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
           </Card.Title>
           {media.image
@@ -165,12 +165,12 @@ function FeedCard(props) {
         <Card.Body>
         {media.picture
             ? 
-            <Link to={`/friend_profile?id=${media.userId}`}>
+            <Link to={`/friend_profile?username=${media.username}`}>
             <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
             </Link>
             : null}
           <Card.Title>
-            <Link to={`/friend_profile?id=${media.userId}`}>{media.username}</Link> saved this {props.mediaType}
+            <Link to={`/friend_profile?username=${media.username}`}>{media.username}</Link> saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
           </Card.Title>
           {media.image
@@ -233,12 +233,12 @@ function FeedCard(props) {
         <Card.Body>
         {media.picture
             ? 
-            <Link to={`/friend_profile?id=${media.userId}`}>
+            <Link to={`/friend_profile?username=${media.username}`}>
             <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
             </Link>
             : null}
           <Card.Title>
-            <Link to={`/friend_profile?id=${media.userId}`}>{media.username}</Link> saved this {props.mediaType}
+            <Link to={`/friend_profile?username=${media.username}`}>{media.username}</Link> saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
           </Card.Title>
           {media.image

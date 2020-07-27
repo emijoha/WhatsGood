@@ -8,7 +8,7 @@ import AuthService from '../../utils/auth';
 
 function SignupForm() {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', firstName: '', lastName: '' });
   // set state for form validation
   const [validated, setValidation] = useState(false);
   // set state for alert
@@ -61,6 +61,35 @@ function SignupForm() {
         </Alert>
 
         <Form.Group>
+          <Form.Label id="form-label" htmlFor='firstName'>First Name</Form.Label>
+          <Form.Control
+            id="form-input-signup"
+            type='text'
+            placeholder='Your first name'
+            name='firstName'
+            onChange={handleInputChange}
+            value={userFormData.firstName}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>First Name is required!</Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label id="form-label" htmlFor='lastName'>Last Name</Form.Label>
+          <Form.Control
+            id="form-input-signup"
+            type='text'
+            placeholder='Your last name'
+            name='lastName'
+            onChange={handleInputChange}
+            value={userFormData.lastName}
+            required
+          />
+          <Form.Control.Feedback type='invalid'>Last Name is required!</Form.Control.Feedback>
+        </Form.Group>
+
+
+        <Form.Group>
           <Form.Label id="form-label" htmlFor='username'>USERNAME</Form.Label>
           <Form.Control
             id="form-input-signup"
@@ -104,7 +133,7 @@ function SignupForm() {
         <div className="text-right">
         <Button
           id="form-button-signup"
-          disabled={!(userFormData.username && userFormData.email && userFormData.password)}
+          disabled={!(userFormData.username && userFormData.email && userFormData.password && userFormData.firstName && userFormData.lastName)}
           type='submit'
           >
           SUBMIT

@@ -195,38 +195,48 @@ function SearchCards(props) {
     return (
       <>
         <CardColumns>
-          <Card className={`friend-border${number}`} key={props.searchedUser._id} border='dark'>
-            <div className='center-wrap'>
-              <Card.Img className='friendImage' src={props.searchedUser.picture} alt={` ${props.searchedUser.username}`} variant='top' />
-              <Card.Body>
-                <Card.Title>
-                <div className='friend-name-title'><b>{props.searchedUser.username.toUpperCase()}</b></div>
-                </Card.Title>
-                <SavedIconLinks
-                  type='friend'
-                  music={props.searchedUser.music.length}
-                  movies={props.searchedUser.movies.length}
-                  games={props.searchedUser.games.length}
-                  books={props.searchedUser.books.length}
-                ></SavedIconLinks>
-                {console.log("WHATS THIS,", props.searchedUser)}
-                {props.savedArray?.every((friend) => friend._id !== props.searchedUser._id)
-                  ? <Button
-                    disabled={userData._id === props.searchedUser._id}
-                    className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
-                    onClick={() => props.handleSaveFriend()}>
-                    Save Friend
-                    </Button>
-                  : <Button
-                    className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
-                    onClick={() => props.handleDeleteFriend(props.searchedUser._id)}>
-                    Remove Friend
-                    </Button>
-                }
-              </Card.Body>
-            </div>
-          </Card>
-
+          {props.searchedUsers.map(searchedUser => {
+            return (
+              <Card className={`friend-border${number}`} key={searchedUser._id} border='dark'>
+                <div className='center-wrap'>
+                  <Link id='neon-hover' to={`/friend_profile?username=${searchedUser.username}`}>
+                    <Card.Img className='friendImage' src={searchedUser.picture} alt={` ${searchedUser.username}`} variant='top' />
+                  </Link>
+                  <Card.Body>
+                    <Card.Title>
+                      <Link id='neon-hover' to={`/friend_profile?username=${searchedUser.username}`}>
+                        <div className='friend-name-title'><b>{searchedUser.username.toUpperCase()}</b></div>
+                        <div className='center-wrap mt-1' style={{fontStyle: 'italic'}}>
+                          <p>{searchedUser.firstName} {searchedUser.lastName}</p>
+                        </div>
+                      </Link>
+                    </Card.Title>
+                    <SavedIconLinks
+                      type='friend'
+                      music={searchedUser.music.length}
+                      movies={searchedUser.movies.length}
+                      games={searchedUser.games.length}
+                      books={searchedUser.books.length}
+                    />
+                    {console.log("WHATS THIS,", searchedUser)}
+                    {props.savedArray?.every((friend) => friend._id !== searchedUser._id)
+                      ? <Button
+                        disabled={userData._id === searchedUser._id}
+                        className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
+                        onClick={() => props.handleSaveFriend(searchedUser)}>
+                        Save Friend
+                      </Button>
+                      : <Button
+                        className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
+                        onClick={() => props.handleDeleteFriend(searchedUser._id)}>
+                        Remove Friend
+                      </Button>
+                    }
+                  </Card.Body>
+                </div>
+              </Card>
+            );
+          })}
         </CardColumns>
       </>
     );

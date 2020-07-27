@@ -1,51 +1,83 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+// import { useHistory } from 'react-router-dom';
 import SearchCards from '../../components/SearchCards';
-import SavedIconLinks from '../../components/SavedIconLinks';
+import SearchIconGroup from '../../components/SearchIconGroup';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
-import { saveFriend, searchFriend, deleteFriend, addNotification } from '../../utils/API';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { saveFriend, searchFriend, searchAllUsers, deleteFriend, addNotification } from '../../utils/API';
+import useDebounce from '../../utils/debounceHook';
 import './style.css';
 
 function SearchUser() {
   // create state for holding returned google api data
-  const [searchedUser, setSearchedUser] = useState([]);
+  // const [searchedUser, setSearchedUser] = useState([]);
+  const [searchedUsers, setSearchedUsers] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
   const userData = useContext(UserInfoContext);
 
-  const [queryStringUsername, setQueryStringUsername] = useState()
-
-  const history = useHistory();
+  const debouncedSearchInput = useDebounce(searchInput, 500);
 
   useEffect(() => {
-    // if (window.location.search) {
-    setQueryStringUsername(window.location.search.split('=')[1])
-    searchFriend(window.location.search.split('=')[1])
-      .then(user => setSearchedUser({
-        username: user.data.username,
-        _id: user.data._id,
-        picture: user.data.picture,
-        email: user.data.email,
-        music: user.data.savedMusic,
-        movies: user.data.savedMovies,
-        games: user.data.savedGames,
-        books: user.data.savedBooks
+    if (!searchInput) {
+      return;
+    }
+    if (debouncedSearchInput) {
+      searchAllUsers(searchInput)
+      .then((res) => {
+        let foundUsers = res.data.map(user => ({
+          username: user.username,
+          _id: user._id,
+          picture: user.picture,
+          email: user.email,
+          music: user.savedMusic,
+          movies: user.savedMovies,
+          games: user.savedGames,
+          books: user.savedBooks,
+          firstName: user.firstName,
+          lastName: user.lastName
+        }))
+        console.log('searchedUsers: ', foundUsers);
 
-      }))
-    // }
-  }, [queryStringUsername !== window.location.search.split('=')[1]]);
+        foundUsers.filter(user => (user._id !== userData._id)).sort();
+
+        console.log('now: ', foundUsers);
+        return setSearchedUsers(foundUsers);
+      })
+      .catch(err => console.log(err));
+    }
+  }, [debouncedSearchInput]);
+
+  // const [queryStringUsername, setQueryStringUsername] = useState()
+
+  // const history = useHistory();
+
+  // useEffect(() => {
+  //   // if (window.location.search) {
+  //   setQueryStringUsername(window.location.search.split('=')[1])
+  //   searchFriend(window.location.search.split('=')[1])
+  //     .then(user => setSearchedUser({
+  //       username: user.data.username,
+  //       _id: user.data._id,
+  //       picture: user.data.picture,
+  //       email: user.data.email,
+  //       music: user.data.savedMusic,
+  //       movies: user.data.savedMovies,
+  //       games: user.data.savedGames,
+  //       books: user.data.savedBooks
+
+  //     }))
+  //   // }
+  // }, [queryStringUsername !== window.location.search.split('=')[1]]);
 
 
-  const notificationData = {
-    likerUsername: userData.username,
-    type: "follow",
-    ownerId: searchedUser._id,
-    followerId: userData._id
-  };
+  // const notificationData = {
+  //   likerUsername: userData.username,
+  //   type: "follow",
+  //   ownerId: searchedUser._id,
+  //   followerId: userData._id
+  // };
 
 
   // create method to search for users and set state on form submit
@@ -56,26 +88,50 @@ function SearchUser() {
     if (!searchInput) {
       return false;
     }
+
+    searchAllUsers(searchInput)
+      .then((res) => {
+        let foundUsers = res.data.map(user => ({
+          username: user.username,
+          _id: user._id,
+          picture: user.picture,
+          email: user.email,
+          music: user.savedMusic,
+          movies: user.savedMovies,
+          games: user.savedGames,
+          books: user.savedBooks,
+          firstName: user.firstName,
+          lastName: user.lastName
+        }))
+        console.log('searchedUsers: ', foundUsers);
+
+        foundUsers.filter(user => (user._id !== userData._id)).sort();
+
+        console.log('now: ', foundUsers);
+        return setSearchedUsers(foundUsers);
+      })
+      .catch(err => console.log(err));
+
     // NEED TO PASS SEARCHINPUT AS PARAMS.USERNAME
-    searchFriend(searchInput)
-      .then(user => setSearchedUser({
-        username: user.data.username,
-        _id: user.data._id,
-        picture: user.data.picture,
-        email: user.data.email,
-        music: user.data.savedMusic,
-        movies: user.data.savedMovies,
-        games: user.data.savedGames,
-        books: user.data.savedBooks
-      }),
-        setSearchInput(''),
-        history.push('/search_user')
-        // window.location.reload()
-      );
+    // searchFriend(searchInput)
+    //   .then(user => setSearchedUser({
+    //     username: user.data.username,
+    //     _id: user.data._id,
+    //     picture: user.data.picture,
+    //     email: user.data.email,
+    //     music: user.data.savedMusic,
+    //     movies: user.data.savedMovies,
+    //     games: user.data.savedGames,
+    //     books: user.data.savedBooks
+    //   }),
+    //     setSearchInput(''),
+    //     history.push('/search_user')
+    //     // window.location.reload()
+    //   );
   }
 
   // function to handle saving a friend to database
-  const handleSaveFriend = () => {
+  const handleSaveFriend = (user) => {
     // find the friend in `searchedUser` state by the matching id
     // const userToSave = searchedUser.find((user) => user._id === userId);
 
@@ -86,13 +142,18 @@ function SearchUser() {
     }
 
     // send the friend data to our api
-    saveFriend(searchedUser, token)
+    saveFriend(user, token)
       .then(() => {
         userData.getUserData();
       })
       .catch((err) => console.log(err));
 
-    addNotification(notificationData)
+    addNotification({
+      likerUsername: userData.username,
+      type: "follow",
+      ownerId: user._id,
+      followerId: userData._id
+    })
       .then(() => {
         userData.getUserData();
       })
@@ -131,48 +192,12 @@ function SearchUser() {
                     onChange={(e) => setSearchInput(e.target.value)}
                     type='text'
                     size='lg'
-                    placeholder='Search for a friend by username'
+                    placeholder='Search for a friend'
                   />
-                  <p className='search-icon-group'>
-                    <a href='/search_music'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faMusic}
-                      />
-                    </a>
-                    <a href='/search_movies'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faVideo}
-                      />
-                    </a>
-                    <a href='/search_games'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faGamepad}
-                      />
-                    </a>
-                    <a href='/search_books'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faBookOpen}
-                      />
-                    </a>
-                    <a href='/search_user'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faUserFriends}
-                      />
-                    </a>
-                  </p>
+                  <SearchIconGroup />
                   <Button id="form-search-btn" type='submit' size='lg'>
                     SEARCH
-                </Button>
+                  </Button>
                 </Form>
               </div>
             </Col>
@@ -181,17 +206,17 @@ function SearchUser() {
           <hr></hr>
         </Container>
       </Row>
-      {searchedUser._id &&
-        <Container>
-          <SearchCards
-            cardType='searchedUsers'
-            searchedUser={searchedUser}
-            savedArray={userData.friends}
-            handleSaveFriend={handleSaveFriend}
-            handleDeleteFriend={handleDeleteFriend}
-          />
-        </Container>
-      }
+      {/* {searchedUser._id && */}
+      <Container>
+        <SearchCards
+          cardType='searchedUsers'
+          searchedUsers={searchedUsers}
+          savedArray={userData.friends}
+          handleSaveFriend={handleSaveFriend}
+          handleDeleteFriend={handleDeleteFriend}
+        />
+      </Container>
+      {/* } */}
     </div>
   );
 }

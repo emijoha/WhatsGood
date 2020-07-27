@@ -7,6 +7,7 @@ import AuthService from '../../utils/auth';
 // import { saveMovie, searchOMDB, searchEachMovie, } from '../utils/API';
 // import { saveUserRating, saveMovieReview } as API from '../utils/API';
 import SearchCards from '../../components/SearchCards';
+import SearchIconGroup from '../../components/SearchIconGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVideo, faBookOpen, faGamepad, faMusic, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
@@ -117,43 +118,7 @@ function SearchMovies() {
                     size='lg'
                     placeholder='Search for a movie'
                   />
-                  <p className='search-icon-group'>
-                    <a href='/search_music'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faMusic}
-                      />
-                    </a>
-                    <a href='/search_movies'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faVideo}
-                      />
-                    </a>
-                    <a href='/search_games'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faGamepad}
-                      />
-                    </a>
-                    <a href='/search_books'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faBookOpen}
-                      />
-                    </a>
-                    <a href='/search_user'>
-                      <FontAwesomeIcon
-                        className='search-icon'
-                        id='neon-hover'
-                        icon={faUserFriends}
-                      />
-                    </a>
-                  </p>
+                  <SearchIconGroup />
                   <Button id="form-search-btn" type='submit' size='lg'>
                     SEARCH
                 </Button>
