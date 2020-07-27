@@ -349,6 +349,9 @@ function SavedCards(props) {
                     <Card.Title>
                       <Link id='neon-hover' to={`/friend_profile?username=${friend.username}`}>
                         <div className='friend-name-title'><b>{friend.username.toUpperCase()}</b></div>
+                        <div className='center-wrap mt-1' style={{ fontStyle: 'italic' }}>
+                        <p>{friend.firstName} {friend.lastName}</p>
+                      </div>
                       </Link>
                       <SavedIconLinks 
                         type='friend'

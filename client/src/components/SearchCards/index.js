@@ -223,7 +223,7 @@ function SearchCards(props) {
                       disabled={userData._id === searchedUser._id}
                       className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
                       onClick={() => props.handleSaveFriend(searchedUser)}>
-                      Save Friend
+                      Add Friend
                       </Button>
                     : <Button
                       className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
