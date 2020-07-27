@@ -7,6 +7,10 @@ const mediaSchema = new Schema({
           type: String,
         },
       ],
+      artist: {
+        type: String,
+        required: true,
+      },
       description: {
         type: String,
         required: false,
