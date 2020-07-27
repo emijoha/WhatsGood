@@ -16,6 +16,8 @@ function SearchMusic() {
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
+  const [validSearch, setValidSearch] = useState(true);
+
   const userData = useContext(UserInfoContext);
 
   // create method to search for books and set state on form submit
@@ -28,7 +30,10 @@ function SearchMusic() {
 
     searchMusic(searchInput)
       .then(({ data }) => {
-        console.log(data.data);
+        console.log("SEARCH MUSIC DATA", data.data[0]);
+        if(data.data[0] === undefined){
+          return setValidSearch(false);
+        }
         const musicData = data.data.map((music) => ({
           mediaId: music.id.toString(),
           timeStamp: Date.now(),
@@ -41,7 +46,8 @@ function SearchMusic() {
         }));
         console.log(musicData);
 
-        return setSearchedMusic(musicData);
+        setSearchedMusic(musicData);
+        setValidSearch(true);
       })
       .then(() => setSearchInput(''))
       .catch((err) => console.log(err));
@@ -112,13 +118,15 @@ function SearchMusic() {
         </Container>
       </Row>
       <Container>
-        <SearchCards
+        {validSearch ?
+          <SearchCards
           cardType='searchedMusic'
           resultArray={searchedMusic}
           savedArray={userData.savedMusic}
           username={userData.username}
           cb={handleSaveMedia}
         />
+        : <h2>Sorry, we could not find any music that matched your search.</h2>}
       </Container>
     </div>
   );
