@@ -18,7 +18,6 @@ import Home from './pages/Home';
 import Messages from './pages/Messages';
 import ProfilePage from './pages/Profile';
 import FriendProfile from './pages/FriendProfile';
-import './index.css';
 
 import * as API from './utils/API';
 import AuthService from './utils/auth';
