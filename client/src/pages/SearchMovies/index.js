@@ -18,6 +18,8 @@ function SearchMovies() {
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
+  const [validSearch, setValidSearch] = useState(true);
+
   const userData = useContext(UserInfoContext);
 
   // create method to search for movies and set state on form submit
@@ -32,6 +34,10 @@ function SearchMovies() {
 
     API.searchOMDB(searchInput)
       .then(({ data }) => {
+        console.log("DATA", data);
+        if(data.Response === "False"){
+          return setValidSearch(false);
+        }
         const movieID = data.Search.map(movie => (movie.imdbID));
 
         movieID.forEach(id => {
@@ -55,7 +61,8 @@ function SearchMovies() {
                 image: movie.data.Poster || '',
               }));
 
-              return setSearchedMovies(movieData);
+              setSearchedMovies(movieData);
+              setValidSearch(true);
             })
         });
       })
@@ -131,13 +138,15 @@ function SearchMovies() {
         </Container>
       </Row>
       <Container>
-        <SearchCards
+        {validSearch ?
+          <SearchCards
         cardType='searchedMovies'
         resultArray={searchedMovies}
         savedArray={userData.savedMovies}
         username={userData.username}
         cb={handleSaveMedia}
         />
+        : <h2>Sorry, we could not find any movies that matched your search.</h2>}
       </Container>
     </div>
   );

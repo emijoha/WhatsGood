@@ -16,6 +16,8 @@ function SearchGames() {
   const [searchTitle, setSearchTitle] = useState('');
   const [searchPlatform, setSearchPlatform] = useState('pc');
 
+  const [validSearch, setValidSearch] = useState(true);
+
   const userData = useContext(UserInfoContext);
 
   // create method to search for games and set state on form submit
@@ -28,24 +30,29 @@ function SearchGames() {
 
     searchVideoGames(searchTitle, searchPlatform)
       .then(({ data }) => {
-        const gameData = [{
-          mediaId: `${data.result.title}-${data.result.developer}-${searchPlatform}`,
-          timeStamp: Date.now(),
-          createdAt: Date(),
-          developer: data.result.developer || ['No developer to display'],
-          title: data.result.title,
-          description: data.result.description,
-          image: data.result.image || '',
-        }];
-        console.log(data);
+        if (data.result === "No result") {
+          return setValidSearch(false);
+        } 
+          const gameData = [{
+            mediaId: `${data.result.title}-${data.result.developer}-${searchPlatform}`,
+            timeStamp: Date.now(),
+            createdAt: Date(),
+            developer: data.result.developer || ['No developer to display'],
+            title: data.result.title,
+            description: data.result.description,
+            image: data.result.image || '',
+          }];
+          console.log(data);
 
-        return setSearchedGame(gameData);
+          setSearchedGame(gameData);
+          setValidSearch(true);
       })
       .then(() => {
         setSearchTitle('');
       })
       .catch((err) => console.log(err));
   };
+
 
   // create function to handle saving a book to our database
   const handleSaveGame = useCallback((game, userRating, userReview) => {
@@ -115,13 +122,16 @@ function SearchGames() {
         </Container>
       </Row>
       <Container>
-        <SearchCards
-          cardType='searchedGames'
-          resultArray={searchedGame}
-          savedArray={userData.savedGames}
-          username={userData.username}
-          cb={handleSaveGame}
-        />
+        {validSearch ?
+          <SearchCards
+            cardType='searchedGames'
+            resultArray={searchedGame}
+            savedArray={userData.savedGames}
+            username={userData.username}
+            cb={handleSaveGame}
+          />
+          : <h2>Sorry, we could not find any video games that matched your search.</h2>
+        }
       </Container>
     </div>
   );
