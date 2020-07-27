@@ -36,8 +36,8 @@ function Home() {
     window.scrollTo(0, 0)
   }, []);
 
-  
-function renderAllMedia() {
+
+  function renderAllMedia() {
     setLoadingState(true);
 
     if (userData.friends.length === 0) {
@@ -45,39 +45,39 @@ function renderAllMedia() {
     }
 
 
-let friendsIdArray = []
-userData.friends.map(friend =>{
+    let friendsIdArray = []
+    userData.friends.map(friend => {
 
-  friendsIdArray.push(friend.id)
+      friendsIdArray.push(friend.id)
 
-  const friendData = {
-    _id: friend._id,
-    picture: friend.picture
+      const friendData = {
+        _id: friend._id,
+        picture: friend.picture
+      }
+
+      setFriendPicArray(friendPicArray => [...friendPicArray, friendData])
+    })
+
+    const request = {
+      friendsArray: friendsIdArray
+    };
+
+
+
+    API.getMedia(JSON.stringify(request))
+      .then(result => {
+
+        result.data.map(media => {
+          setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, media].sort(compareTimeStamp));
+        })
+
+        setLoadingState(false);
+
+      })
+
   }
 
-  setFriendPicArray(friendPicArray => [...friendPicArray, friendData])
-})
-
-const request = {
-  friendsArray: friendsIdArray
-};
-
-
-
-API.getMedia(JSON.stringify(request))
-.then(result => {
-
-  result.data.map(media => {
-    setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, media].sort(compareTimeStamp));
-  })
-
-  setLoadingState(false);
-  
-  })
-
-}
-
-const handleRenderMediaPage = useCallback((mediaType) => {
+  const handleRenderMediaPage = useCallback((mediaType) => {
 
     setAllFriendsMediaState([]);
 
@@ -94,126 +94,126 @@ const handleRenderMediaPage = useCallback((mediaType) => {
       if (userData.friends.length === 0) {
         setLoadingState(false)
       }
-  
-  
-  let friendsIdArray = []
-  userData.friends.map(friend =>{
-  
-    friendsIdArray.push(friend.id)
-  
-    const friendData = {
-      _id: friend._id,
-      picture: friend.picture
-    }
-  
-    setFriendPicArray(friendPicArray => [...friendPicArray, friendData])
-  })
-  
-  const request = {
-    friendsArray: friendsIdArray
-  };
-  
-  
-  
-  API.getMedia(JSON.stringify(request))
-  .then(result => {
-  
-    result.data.map(media => {
 
-      if (media.mediaType === "music")
-      setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, media].sort(compareTimeStamp));
-    })
-  
-    setLoadingState(false);
-    
-    })
+
+      let friendsIdArray = []
+      userData.friends.map(friend => {
+
+        friendsIdArray.push(friend.id)
+
+        const friendData = {
+          _id: friend._id,
+          picture: friend.picture
+        }
+
+        setFriendPicArray(friendPicArray => [...friendPicArray, friendData])
+      })
+
+      const request = {
+        friendsArray: friendsIdArray
+      };
+
+
+
+      API.getMedia(JSON.stringify(request))
+        .then(result => {
+
+          result.data.map(media => {
+
+            if (media.mediaType === "music")
+              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, media].sort(compareTimeStamp));
+          })
+
+          setLoadingState(false);
+
+        })
 
     }
 
     if (mediaType === "game") {
 
- 
+
       setLoadingState(true);
 
       if (userData.friends.length === 0) {
         setLoadingState(false)
       }
-  
-  
-  let friendsIdArray = []
-  userData.friends.map(friend =>{
-  
-    friendsIdArray.push(friend.id)
-  
-    const friendData = {
-      _id: friend._id,
-      picture: friend.picture
-    }
-  
-    setFriendPicArray(friendPicArray => [...friendPicArray, friendData])
-  })
-  
-  const request = {
-    friendsArray: friendsIdArray
-  };
-  
-  
-  
-  API.getMedia(JSON.stringify(request))
-  .then(result => {
-  
-    result.data.map(media => {
 
-      if (media.mediaType === "game")
-      setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, media].sort(compareTimeStamp));
-    })
-  
-    setLoadingState(false);
-    
-    })
+
+      let friendsIdArray = []
+      userData.friends.map(friend => {
+
+        friendsIdArray.push(friend.id)
+
+        const friendData = {
+          _id: friend._id,
+          picture: friend.picture
+        }
+
+        setFriendPicArray(friendPicArray => [...friendPicArray, friendData])
+      })
+
+      const request = {
+        friendsArray: friendsIdArray
+      };
+
+
+
+      API.getMedia(JSON.stringify(request))
+        .then(result => {
+
+          result.data.map(media => {
+
+            if (media.mediaType === "game")
+              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, media].sort(compareTimeStamp));
+          })
+
+          setLoadingState(false);
+
+        })
     }
 
     if (mediaType === "movie") {
 
-    
+
       setLoadingState(true);
 
       if (userData.friends.length === 0) {
         setLoadingState(false)
       }
-  
-  
-  let friendsIdArray = []
-  userData.friends.map(friend =>{
-  
-    friendsIdArray.push(friend.id)
-  
-    const friendData = {
-      _id: friend._id,
-      picture: friend.picture
-    }
-  
-    setFriendPicArray(friendPicArray => [...friendPicArray, friendData])
-  })
-  
-  const request = {
-    friendsArray: friendsIdArray
-  };
-  
-  
-  
-  API.getMedia(JSON.stringify(request))
-  .then(result => {
-  
-    result.data.map(media => {
 
-      if (media.mediaType === "movie")
-      setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, media].sort(compareTimeStamp));
-    })
-  
-    setLoadingState(false);
-    
-    })
+
+      let friendsIdArray = []
+      userData.friends.map(friend => {
+
+        friendsIdArray.push(friend.id)
+
+        const friendData = {
+          _id: friend._id,
+          picture: friend.picture
+        }
+
+        setFriendPicArray(friendPicArray => [...friendPicArray, friendData])
+      })
+
+      const request = {
+        friendsArray: friendsIdArray
+      };
+
+
+
+      API.getMedia(JSON.stringify(request))
+        .then(result => {
+
+          result.data.map(media => {
+
+            if (media.mediaType === "movie")
+              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, media].sort(compareTimeStamp));
+          })
+
+          setLoadingState(false);
+
+        })
     }
 
     if (mediaType === "book") {
@@ -223,39 +223,39 @@ const handleRenderMediaPage = useCallback((mediaType) => {
       if (userData.friends.length === 0) {
         setLoadingState(false)
       }
-  
-  
-  let friendsIdArray = []
-  userData.friends.map(friend =>{
-  
-    friendsIdArray.push(friend.id)
-  
-    const friendData = {
-      _id: friend._id,
-      picture: friend.picture
-    }
-  
-    setFriendPicArray(friendPicArray => [...friendPicArray, friendData])
-  })
-  
-  const request = {
-    friendsArray: friendsIdArray
-  };
-  
-  
-  
-  API.getMedia(JSON.stringify(request))
-  .then(result => {
-  
-    result.data.map(media => {
 
-      if (media.mediaType === "book")
-      setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, media].sort(compareTimeStamp));
-    })
-  
-    setLoadingState(false);
-    
-    })
+
+      let friendsIdArray = []
+      userData.friends.map(friend => {
+
+        friendsIdArray.push(friend.id)
+
+        const friendData = {
+          _id: friend._id,
+          picture: friend.picture
+        }
+
+        setFriendPicArray(friendPicArray => [...friendPicArray, friendData])
+      })
+
+      const request = {
+        friendsArray: friendsIdArray
+      };
+
+
+
+      API.getMedia(JSON.stringify(request))
+        .then(result => {
+
+          result.data.map(media => {
+
+            if (media.mediaType === "book")
+              setAllFriendsMediaState(allFriendsMediaState => [...allFriendsMediaState, media].sort(compareTimeStamp));
+          })
+
+          setLoadingState(false);
+
+        })
     }
 
   })
@@ -314,7 +314,7 @@ const handleRenderMediaPage = useCallback((mediaType) => {
 
   return (
     <>
-    
+
       <Row>
         <Col>
           <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} username={userData.username} />
@@ -352,7 +352,7 @@ const handleRenderMediaPage = useCallback((mediaType) => {
                         className='search-icon-media'
                         icon={faSearch}
                       />
-                    <p className='muted-logo special-font'>WHAT'S GOOD</p>
+                      <p className='muted-logo special-font'>WHAT'S GOOD</p>
                     </a>
 
                   </div>
@@ -360,7 +360,7 @@ const handleRenderMediaPage = useCallback((mediaType) => {
                   <div>
                     {allFriendsMediaState.map(media => {
 
-                    const found = friendPicArray.find(element => element._id === media.userId)
+                      const found = friendPicArray.find(element => element._id === media.userId)
 
 
                       if (media.mediaType === "book") {
