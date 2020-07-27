@@ -15,6 +15,8 @@ function SearchBooks() {
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
+  const [validSearch, setValidSearch] = useState(true);
+
   const userData = useContext(UserInfoContext);
 
   // create method to search for books and set state on form submit
@@ -27,6 +29,11 @@ function SearchBooks() {
 
     searchGoogleBooks(searchInput)
       .then(({ data }) => {
+        console.log("BOOK DATA", data);
+        if(data.totalItems === 0){
+          return setValidSearch(false);
+        }
+
         const bookData = data.items.map((book) => ({
           mediaId: book.id,
           timeStamp: Date.now(),
@@ -38,7 +45,8 @@ function SearchBooks() {
         }));
         console.log(bookData);
 
-        return setSearchedBooks(bookData);
+        setSearchedBooks(bookData);
+        setValidSearch(true);
       })
       .then(() => setSearchInput(''))
       .catch((err) => console.log(err));
@@ -108,13 +116,15 @@ function SearchBooks() {
         </Container>
       </Row>
       <Container>
-        <SearchCards
+        {validSearch ?
+          <SearchCards
           cardType='searchedBooks'
           resultArray={searchedBooks}
           savedArray={userData.savedBooks}
           username={userData.username}
           cb={handleSaveMedia}
         />
+        : <h2>Sorry, we could not find any books that matched your search.</h2>}
       </Container>
     </div>
   );
