@@ -39,7 +39,7 @@
 }
 
 .dark-mode .username-logo {
-  color: rgb(75, 75, 75);
+  color: rgb(102, 102, 102);
 }
 
 .photo-header {
@@ -66,6 +66,15 @@
     font-size: 1.5rem;
     /* padding-top: 0px; */
   }
+
+  #notification-counter {
+    text-align: center;
+    position: relative;
+    top: 26px;
+    left: -27px;
+  }
+
+
 }
 
 @media screen and (max-width: 767px) {
@@ -73,12 +82,24 @@
     font-size: 1.25rem;
     /* padding-top: 0px; */
   }
+
+  #notification-counter {
+    text-align: center;
+    top: 26px;
+    left: -27px;
+  }
 }
 
 @media screen and (max-width: 439px) {
   .logo-text-main {
     /* padding-top: 8px; */
     font-size: 1.2rem;
+  }
+
+  #notification-counter {
+    text-align: center;
+    top: 26px;
+    left: -27px;
   }
 }
 
@@ -153,3 +174,16 @@ button.navbar-toggler {
   color: rgb(94, 9, 251)!important;
 }
 
+.dark-mode #list-drop, .dark-mode #list-drop:hover {
+  background-color: rgb(15, 15, 15);
+  color: rgb(121, 121, 121);
+  font-weight: 500;
+}
+
+.dark-mode .dropdown-menu {
+  background-color: rgb(15, 15, 15);
+}
+
+.dark-mode #notification-counter {
+  color: white;
+}

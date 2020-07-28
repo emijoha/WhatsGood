@@ -8,6 +8,25 @@
   color: rgb(189, 189, 189);
 }
 
+.mode-btn {
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0) !important;
+  border-radius: 40px;
+  border: 1px solid !important;
+  font-size: 1.1rem;
+  padding: 10px 17.5px 7.5px 17.5px;
+}
+
+.mode-btn:hover {
+  color: white !important;
+}
+
+.dark-mode .mode-btn:hover {
+  border-color: black !important;
+  color: black !important;
+  font-weight: 700;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
   /* font-family: 'Open Sans', sans-serif; */;

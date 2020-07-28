@@ -64,7 +64,7 @@ function UploadPhoto({ handleModalClose }) {
 
 
   return (
-    <div>
+    <div class='modal-for-pic'>
       <Form>
         <Form.File
           id="custom-file"

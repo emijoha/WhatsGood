@@ -110,7 +110,9 @@ function App() {
         <UserInfoContext.Provider value={userInfo}>
           <div className={darkMode ? "dark-mode" : "light-mode"}>
             <Navbar>
-            <button onClick={(e) => {
+            <button 
+              className='mode-btn btn-block movie-color movie-border movie-hover-fill'
+              onClick={(e) => {
               e.preventDefault();
               setDarkMode(prevMode => !prevMode)}
               }>

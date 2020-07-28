@@ -88,15 +88,16 @@ function AppNavbar(props) {
               }
               {userData.username &&
                 <NavDropdown
+                  id='drop-down-list'
                   alignRight
                   title={<div className="text-center"><ProfilePic picture={userData.picture} username={userData.username} /></div>}
                 >
-                  <NavDropdown.Item onClick={() => setShowModal(true)}>UPLOAD PHOTO</NavDropdown.Item>
-                  <NavDropdown.Item href="/profile">MY PROFILE</NavDropdown.Item>
+                  <NavDropdown.Item id='list-drop' onClick={() => setShowModal(true)}>UPLOAD PHOTO</NavDropdown.Item>
+                  <NavDropdown.Item id='list-drop'  href="/profile">MY PROFILE</NavDropdown.Item>
 
-                  <NavDropdown.Item href="/messages">MESSAGES</NavDropdown.Item>
+                  <NavDropdown.Item id='list-drop'  href="/messages">MESSAGES</NavDropdown.Item>
                   {userData.notifications.length
-                    ? <div className='notification-scroll'>
+                    ? <div id='list-drop'  className='notification-scroll'>
                       {userData.notifications.map((notification) => {
                         { console.log("notification in navbar", notification) }
                         return (
@@ -115,8 +116,8 @@ function AppNavbar(props) {
                     </div>
                     : null
                   }
-                  <NavDropdown.Item onClick={AuthService.logout}>LOGOUT</NavDropdown.Item>
-                <NavDropdown.Item>{props.children}</NavDropdown.Item>
+                  <NavDropdown.Item id='list-drop'  onClick={AuthService.logout}>LOGOUT</NavDropdown.Item>
+                  <NavDropdown.Item id='list-drop' >{props.children}</NavDropdown.Item>
                 </NavDropdown>
               }
             </Nav>
