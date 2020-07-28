@@ -483,7 +483,7 @@ function ProfilePage() {
                           className='btn'
                           id='purple-hover'
                           onClick={() => updateBio(bioText)}
-                        ><b>SUBMIT</b></a>
+                        ><b className="text-right">SUBMIT</b></a>
                       </div>
                     </>
                   }

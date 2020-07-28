@@ -386,11 +386,6 @@ function Home() {
 
   return (
     <>
-      {/* <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
-          <h1>Viewing friends Media!</h1>
-        </Container>
-      </Jumbotron> */}
       <Row>
         <Col>
           <SubNavbar xs={12} s={12} md={12} lg={0} cb={handleRenderMediaPage} username={userData.username} />

@@ -11,7 +11,7 @@ import AuthService from '../../utils/auth';
 
 
 
-function AppNavbar() {
+function AppNavbar(props) {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
   // get username out of context object to display in nav
@@ -31,15 +31,15 @@ function AppNavbar() {
           {userData.username
             ? <span>
               <Navbar.Brand className='shorten' id='purple-hover' as={Link} to='/home'>
-                <p className='logo-text-main special-font'>WHAT'S GOOD<span>&nbsp;</span></p>
+                <p id='whats-good' className='logo-text-main special-font'>WHAT'S GOOD<span>&nbsp;</span></p>
               </Navbar.Brand>
-              <Navbar.Brand  as={Link} to='/profile'>
+              <Navbar.Brand as={Link} to='/profile'>
                 <p className='logo-text-main special-font light-gray' id='neon-hover'>{`${userData.username.toUpperCase()}?`}</p>
               </Navbar.Brand>
             </span>
             :
             <Navbar.Brand id='purple-hover' as={Link} to='/'>
-              <p className='logo-text-main special-font'>WHAT'S GOOD</p>
+              <p id='whats-good' className='logo-text-main special-font'>WHAT'S GOOD</p>
             </Navbar.Brand>
           }
           <Navbar.Toggle aria-controls='navbar' />
@@ -93,7 +93,7 @@ function AppNavbar() {
                 >
                   <NavDropdown.Item onClick={() => setShowModal(true)}>UPLOAD PHOTO</NavDropdown.Item>
                   <NavDropdown.Item href="/profile">MY PROFILE</NavDropdown.Item>
-                  
+
                   <NavDropdown.Item href="/messages">MESSAGES</NavDropdown.Item>
                   {userData.notifications.length
                     ? <div className='notification-scroll'>
@@ -116,6 +116,7 @@ function AppNavbar() {
                     : null
                   }
                   <NavDropdown.Item onClick={AuthService.logout}>LOGOUT</NavDropdown.Item>
+                <NavDropdown.Item>{props.children}</NavDropdown.Item>
                 </NavDropdown>
               }
             </Nav>

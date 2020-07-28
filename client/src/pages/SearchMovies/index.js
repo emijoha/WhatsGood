@@ -109,10 +109,10 @@ function SearchMovies() {
   return (
     <div id="container">
       <Row>
-        <Container id='search-wrap'>
+        <Container>
           <Row>
             <Col xs={0} s={0} md={1} lg={2}></Col>
-            <Col xs={12} s={12} md={10} lg={8}>
+            <Col id='search-wrap' xs={12} s={12} md={10} lg={8}>
               <h5 id="search-heading">SEARCH MOVIES</h5>
               <div id='form-hugger'>
                 <Form onSubmit={handleFormSubmit}>

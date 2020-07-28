@@ -31,7 +31,7 @@ function FeedCard(props) {
             </Link>
             : null}
           <Card.Title>
-            <Link to={`/friend_profile?username=${media.username}`}>{media.username}</Link> saved this {props.mediaType}
+            <Link to={`/friend_profile?username=${media.username}`}><span id='name-on-card'>{media.username}</span></Link> saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
           </Card.Title>
           {media.image

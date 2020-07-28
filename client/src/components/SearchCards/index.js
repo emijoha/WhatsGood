@@ -204,9 +204,9 @@ function SearchCards(props) {
                 <Card.Body>
                   <Card.Title>
                     <Link id='neon-hover' to={`/friend_profile?username=${searchedUser.username}`}>
-                      <div className='friend-name-title'><b>{searchedUser.username.toUpperCase()}</b></div>
+                      <div className='friend-name-title'>{searchedUser.username.toUpperCase()}</div>
                       <div className='center-wrap mt-1' style={{ fontStyle: 'italic' }}>
-                        <p>{searchedUser.firstName} {searchedUser.lastName}</p>
+                        <p id='full-user-name'>{searchedUser.firstName} {searchedUser.lastName}</p>
                       </div>
                     </Link>
                   </Card.Title>
@@ -222,12 +222,14 @@ function SearchCards(props) {
                     ? <Button
                       disabled={userData._id === searchedUser._id}
                       className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
-                      onClick={() => props.handleSaveFriend(searchedUser)}>
+                      onClick={() => props.handleSaveFriend(searchedUser)}
+                      id='first-btn2'>
                       Add Friend
                       </Button>
                     : <Button
                       className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
-                      onClick={() => props.handleDeleteFriend(searchedUser._id)}>
+                      onClick={() => props.handleDeleteFriend(searchedUser._id)}
+                      id='first-btn2'>
                       Remove Friend
                       </Button>
                   }

@@ -1,15 +1,26 @@
 #new-navbar {
-  background-color: rgb(255, 255, 255) !important;
+ 
   /* backdrop-filter: blur(500px); */
   position: fixed;
   width: 100%;
   z-index: 2 !important;
-  padding: 2.5px;
+  /* padding: 2.5px; */
 }
 
-#nav-container {
-  padding-left: 20px !important;
-  padding-right: 20px !important;
+.light-mode #new-navbar {
+  background-color: rgb(255, 255, 255) !important;
+}
+
+.dark-mode #new-navbar {
+  background-color: rgb(34, 34, 34) !important;
+}
+
+.dark-mode .nav-link-group {
+  color: rgb(130, 130, 130) !important;
+}
+
+.dark-mode .nav-link-group:hover {
+  color: rgb(255, 255, 255) !important;
 }
 
 .logo-text-main {
@@ -21,6 +32,14 @@
   align-items: center;
 }
 
+#whats-good:hover {
+  color: rgb(94, 9, 251) !important;
+}
+
+.dark-mode #whats-good {
+  color: rgb(220, 220, 220);
+}
+
 .photo-header {
   font-weight: 700;
   font-size: 1.25rem;
@@ -29,28 +48,28 @@
 @media screen and (max-width: 1238px) {
   .logo-text-main {
     font-size: 1.8rem;
-    padding-top: 0px;
+    padding-top: 2px;
   }
 }
 
 @media screen and (max-width: 1051px) {
   .logo-text-main {
     font-size: 1.55rem;
-    padding-top: 0px;
+    /* padding-top: 0px; */
   }
 }
 
 @media screen and (max-width: 991px) {
   .logo-text-main {
     font-size: 1.5rem;
-    padding-top: 0px;
+    /* padding-top: 0px; */
   }
 }
 
 @media screen and (max-width: 767px) {
   .logo-text-main {
     font-size: 1.25rem;
-    padding-top: 0px;
+    /* padding-top: 0px; */
   }
 }
 
@@ -78,6 +97,13 @@ a {
   background-color: transparent;
 }
 
+.dark-mode a {
+  color: rgb(255, 255, 255);
+}
+
+.dark-mode a:hover {
+  color: rgb(94, 9, 251);
+}
 /* a:active {
   color: rgb(106, 0, 206) !important;
 } */
@@ -106,7 +132,14 @@ a:hover {
 
 .modal-header {
   padding: 10px 10px 5px 10px;
+}
+
+.light-mode .modal-header {
   background-color: rgb(224, 223, 223);
+}
+
+.dark-mode .modal-header{
+ background-color: black;
 }
 
 button.navbar-toggler {
@@ -117,3 +150,4 @@ button.navbar-toggler {
 .navbar-toggler-icon {
   color: rgb(94, 9, 251)!important;
 }
+

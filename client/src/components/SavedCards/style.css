@@ -47,7 +47,7 @@
   padding-right: 8px;
   padding-left: 12px;
   max-height: 135px;
-  overflow: scroll;
+  overflow: auto;
 }
     
 /* Scrollbar styles */
@@ -78,7 +78,21 @@ height: 12px;
   color: white !important;
 }
 
+.dark-mode .delete-btn:hover {
+  border-color: black !important;
+  color: black !important;
+  font-weight: 700;
+}
+
 .friend-name-title {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 800;
+}
+
+.dark-mode #full-user-name {
+  color: rgb(136, 136, 136);
+}
+
+.dark-mode #first-btn {
+  margin-top: 0px;
 }

@@ -84,10 +84,10 @@ function SearchGames() {
   return (
     <div id="container">
       <Row>
-        <Container id='search-wrap'>
+        <Container >
           <Row>
             <Col xs={0} s={0} md={1} lg={2}></Col>
-            <Col xs={12} s={12} md={10} lg={8}>
+            <Col  id='search-wrap' xs={12} s={12} md={10} lg={8}>
               <h5 id="search-heading">SEARCH VIDEO GAMES</h5>
               <div id='form-hugger'>
                 <Form onSubmit={handleFormSubmit}>
@@ -103,7 +103,6 @@ function SearchGames() {
                   <select id='platform-select'>
                     <option>Select the platform</option>
                     <option value='pc'>PC</option>
-                    <option value='switch'>Nintendo Switch</option>
                     <option value='xbox-one'>Xbox One</option>
                     <option value='xbox-360'>Xbox 360</option>
                     <option value='playstation-3'>PlayStation 3</option>

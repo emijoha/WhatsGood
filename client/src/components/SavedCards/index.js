@@ -348,9 +348,9 @@ function SavedCards(props) {
                   <Card.Body>
                     <Card.Title>
                       <Link id='neon-hover' to={`/friend_profile?username=${friend.username}`}>
-                        <div className='friend-name-title'><b>{friend.username.toUpperCase()}</b></div>
+                        <div className='friend-name-title'>{friend.username.toUpperCase()}</div>
                         <div className='center-wrap mt-1' style={{ fontStyle: 'italic' }}>
-                        <p>{friend.firstName} {friend.lastName}</p>
+                        <p id='full-user-name'>{friend.firstName} {friend.lastName}</p>
                       </div>
                       </Link>
                       <SavedIconLinks 
@@ -363,7 +363,8 @@ function SavedCards(props) {
                     </Card.Title>
                     <Button
                       className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
-                      href='/messages'>
+                      href='/messages'
+                      id='first-btn'>
                       Send a Message
                     </Button>
                     <Button className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}

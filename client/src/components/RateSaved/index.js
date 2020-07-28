@@ -6,8 +6,9 @@ import './style.css';
 
 
 function RateSaved(props) {
-
+  
   const [faIcon, setFaIcon] = useState('');
+  const [rateColor, setRateColor] = useState('');
 
   useEffect(() => {
 
@@ -17,20 +18,25 @@ function RateSaved(props) {
       case 'Book':
         icon = faBookOpen;
         setFaIcon(icon);
+        setRateColor('rgb(43, 146, 230)');
         break;
       case 'Music':
         icon = faMusic;
         setFaIcon(icon);
+        setRateColor('rgb(255, 123, 123)');
         break;
       case 'Game':
         icon = faGamepad;
         setFaIcon(icon);
+        setRateColor('rgb(98, 236, 116)');
         break;
       default:
         icon = faVideo;
+        setRateColor('rgb(196, 67, 255) ');
         setFaIcon(icon);
     }
   }, []);
+
 
 
   return (
@@ -38,13 +44,13 @@ function RateSaved(props) {
       {props.username && (
         <>
           {(props.media.userRating === 0) ?
-            <Button className='btn-block' id='rate-btn' onClick={() => props.startRating(props.media)}  >
+            <a className='btn-block text-center' id='rate-btn' onClick={() => props.startRating(props.media)}  >
               Rate this {props.mediaType}!
-            </Button>
+            </a>
             :
-            <Button className='btn-block' id='rate-btn' onClick={() => props.startRating(props.media)}  >
+            <a className='btn-block text-center' id='rate-btn' onClick={() => props.startRating(props.media)}  >
               Update your Rating?
-            </Button>
+            </a>
           }
         </>
       )}
@@ -60,22 +66,25 @@ function RateSaved(props) {
                     console.log('faIcon: ', faIcon)
                     return (
                       <label key={i}>
-                        <input type='radio' name='rating'
+                        <input id='rate-it' type='radio' name='rating'
                           value={i} onClick={() => props.setUserRating(ratingValue)} />
                         <FontAwesomeIcon
                           key={ratingValue}
-                          icon={faIcon} 
+                          icon={faIcon}
                           className='star'
                           onMouseEnter={() => props.setHover(ratingValue)}
                           onMouseLeave={() => props.setHover(null)}
-                          color={ratingValue <= (props.hover || props.userRating) ? 'black' : '#e4e5e9'}
+                          color=
+                          {ratingValue <= (props.hover || props.userRating)
+                            ? rateColor
+                            : 'gray'}
                           size={'lg'} />
                       </label>
                     )
                   })}
                 </div>
-                  <Button id='rating-submit-btn' type='submit' size='md'>
-                    SUBMIT
+                <Button id='rating-submit-btn' type='submit' size='md'>
+                  SUBMIT
                 </Button>
               </Form>
             </div>

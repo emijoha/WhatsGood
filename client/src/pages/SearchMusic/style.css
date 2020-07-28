@@ -1,10 +1,14 @@
-#container {
-  background-color: rgba(255, 255, 255, 0);
-  height: 100vh;
-}
+
 
 #search-wrap {
   margin-top: 30px;
+}
+
+.dark-mode #search-wrap {
+  background: linear-gradient(412.9deg, rgba(0, 0, 0, 0) 20%, rgb(17, 17, 17) 30%, rgb(37, 37, 37) 100%);
+  margin-top: 28px;
+  padding: 15px;
+  border-radius: 4px;
 }
 
 #form-hugger {
@@ -25,6 +29,11 @@
   font-size: 20px;
   margin-top: 14px;
   margin-bottom: 15px;
+}
+
+.dark-mode #api-search-input {
+  background-color: black;
+  color: rgb(216, 216, 216);
 }
 
 #api-search-input:active, #api-search-input:focus {
@@ -62,6 +71,10 @@
   float: left;
   margin-top: 4px;
   margin-bottom: 0px;
+}
+
+.dark-mode .search-icon {
+  color: rgb(93, 93, 93)  !important;
 }
 
 .search-icon {
