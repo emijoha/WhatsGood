@@ -24,10 +24,10 @@ function FeedCard(props) {
     return (
       <Card data-aos="fade-up" className='book-border' key={media._id} border='dark'>
         <Card.Body>
-          {media.picture
+          {props.picture
             ? 
             <Link to={`/friend_profile?username=${media.username}`}>
-            <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+            <Card.Img id="profile-pic" src={props.picture} alt={media.username} variant='top' />
             </Link>
             : null}
           <Card.Title>
@@ -91,10 +91,10 @@ function FeedCard(props) {
     return (
       <Card data-aos="fade-up" className='music-border' key={media._id} border='dark'>
         <Card.Body>
-        {media.picture
+        {props.picture
             ? 
             <Link to={`/friend_profile?username=${media.username}`}>
-            <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+            <Card.Img id="profile-pic" src={props.picture} alt={media.username} variant='top' />
             </Link>
             : null}
           <Card.Title>
@@ -163,10 +163,10 @@ function FeedCard(props) {
     return (
       <Card data-aos="fade-up" className='movie-border' key={media._id} border='dark'>
         <Card.Body>
-        {media.picture
+        {props.picture
             ? 
             <Link to={`/friend_profile?username=${media.username}`}>
-            <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+            <Card.Img id="profile-pic" src={props.picture} alt={media.username} variant='top' />
             </Link>
             : null}
           <Card.Title>
@@ -231,10 +231,10 @@ function FeedCard(props) {
     return (
       <Card data-aos="fade-up" className='game-border' key={media._id} border='dark'>
         <Card.Body>
-        {media.picture
+        {props.picture
             ? 
             <Link to={`/friend_profile?username=${media.username}`}>
-            <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+            <Card.Img id="profile-pic" src={props.picture} alt={media.username} variant='top' />
             </Link>
             : null}
           <Card.Title>
@@ -298,7 +298,6 @@ function FeedCard(props) {
     const media = props.media;
     const mediatype = media.mediaType.toLowerCase();
     const border = `${mediatype}-border`;
-    console.log('from FeedCard: ', media, props.userData)
     return (
       <Card data-aos="fade-up" className={border} key={media.mediaId} border='dark'>
         <Card.Body>

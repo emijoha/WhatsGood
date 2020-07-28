@@ -14,15 +14,15 @@ function RateSaved(props) {
     let icon;
 
     switch (props.media.mediaType) {
-      case 'Book':
+      case 'book':
         icon = faBookOpen;
         setFaIcon(icon);
         break;
-      case 'Music':
+      case 'music':
         icon = faMusic;
         setFaIcon(icon);
         break;
-      case 'Game':
+      case 'game':
         icon = faGamepad;
         setFaIcon(icon);
         break;

@@ -13,7 +13,7 @@ import './style.css';
 
 
 function FriendProfileFeedCard(props) {
-  if (props.media.mediaType === 'Book') {
+  if (props.media.mediaType === 'book') {
     const media = props.media;
     console.log(media.authors)
     return (
@@ -80,7 +80,7 @@ function FriendProfileFeedCard(props) {
         </Card.Body>
       </Card>
     )
-  } else if (props.media.mediaType === 'Music') {
+  } else if (props.media.mediaType === 'music') {
     const media = props.media;
     return (
       <Card className='music-border' key={media._id} border='dark'>
@@ -148,7 +148,7 @@ function FriendProfileFeedCard(props) {
         </Card.Body>
       </Card>
     );
-  } else if (props.media.mediaType === 'Movie') {
+  } else if (props.media.mediaType === 'movie') {
     const media = props.media;
     return (
       <Card className='movie-border' key={media._id} border='dark'>
@@ -211,7 +211,7 @@ function FriendProfileFeedCard(props) {
         </Card.Body>
       </Card>
     );
-  } else if (props.media.mediaType === 'Game') {
+  } else if (props.media.mediaType === 'game') {
     const media = props.media;
     return (
       <Card className='game-border' key={media._id} border='dark'>

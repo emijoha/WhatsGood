@@ -1,5 +1,5 @@
 // import user model
-const { User, Book, Music, Movie, Game, Like, Notification, Comment, Chat, Message } = require('../models');
+const { User, Media, Like, Notification, Comment, Chat, Message } = require('../models');
 
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
@@ -42,6 +42,7 @@ module.exports = {
       const foundUser = await User.findOne({
         $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
       })
+        .populate('savedMedia')
         .populate('savedGames')
         .populate('savedBooks')
         .populate('savedMusic')
@@ -49,6 +50,7 @@ module.exports = {
         .populate('friends')
         .populate('savedLikes')
         .populate('notifications')
+        .populate({ path: 'savedMedia', populate: { path: 'comments' } })
         .populate({ path: 'savedBooks', populate: { path: 'comments' } })
         .populate({ path: 'savedMovies', populate: { path: 'comments' } })
         .populate({ path: 'savedMusic', populate: { path: 'comments' } })
@@ -109,7 +111,7 @@ module.exports = {
   async saveBook({ user, body }, res) {
     console.log(user);
     try {
-      const createdBook = await Book.create(body);
+      const createdBook = await Media.create(body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
         { $addToSet: { savedBooks: createdBook._id } },
@@ -151,7 +153,7 @@ module.exports = {
   async saveMusic({ user, body }, res) {
     console.log(user);
     try {
-      const createdMusic = await Music.create(body);
+      const createdMusic = await Media.create(body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
         { $addToSet: { savedMusic: createdMusic._id } },
@@ -168,7 +170,7 @@ module.exports = {
     console.log(user);
     console.log(body);
     try {
-      const createdMovie = await Movie.create(body);
+      const createdMovie = await Media.create(body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
         { $addToSet: { savedMovies: createdMovie._id } },
@@ -188,7 +190,7 @@ module.exports = {
       const model = body.type;
       switch (model) {
         case 'Movie':
-          const newMovieReview = await Movie.findOneAndUpdate(
+          const newMovieReview = await Media.findOneAndUpdate(
             { _id: body.id },
             { $set: { userReview: body.review, } },
             { new: true, runValidators: true }
@@ -196,7 +198,7 @@ module.exports = {
           console.log('newMovieReview: ', newMovieReview);
           return res.json(newMovieReview);
         case 'Book':
-          const newBookReview = await Book.findOneAndUpdate(
+          const newBookReview = await Media.findOneAndUpdate(
             { _id: body.id },
             { $set: { userReview: body.review, } },
             { new: true, runValidators: true }
@@ -204,7 +206,7 @@ module.exports = {
           console.log('newBookReview: ', newBookReview);
           return res.json(newBookReview);
         case 'Music':
-          const newMusicReview = await Music.findOneAndUpdate(
+          const newMusicReview = await Media.findOneAndUpdate(
             { _id: body.id },
             { $set: { userReview: body.review, } },
             { new: true, runValidators: true }
@@ -212,7 +214,7 @@ module.exports = {
           console.log('newMusicReview: ', newMusicReview);
           return res.json(newMusicReview);
         default:
-          const newGameReview = await Game.findOneAndUpdate(
+          const newGameReview = await Media.findOneAndUpdate(
             { _id: body.id },
             { $set: { userReview: body.review, } },
             { new: true, runValidators: true }
@@ -232,7 +234,7 @@ module.exports = {
       const model = body.type;
       switch (model) {
         case 'Movie':
-          const newMovieRating = await Movie.findOneAndUpdate(
+          const newMovieRating = await Media.findOneAndUpdate(
             { _id: body.id },
             { $set: { userRating: body.userRating, } },
             { new: true, runValidators: true }
@@ -240,7 +242,7 @@ module.exports = {
           console.log('newMovieRating: ', newMovieRating);
           return res.json(newMovieRating);
         case 'Book':
-          const newBookRating = await Book.findOneAndUpdate(
+          const newBookRating = await Media.findOneAndUpdate(
             { _id: body.id },
             { $set: { userRating: body.userRating, } },
             { new: true, runValidators: true }
@@ -248,7 +250,7 @@ module.exports = {
           console.log('newBookRating: ', newBookRating);
           return res.json(newBookRating);
         case 'Music':
-          const newMusicRating = await Music.findOneAndUpdate(
+          const newMusicRating = await Media.findOneAndUpdate(
             { _id: body.id },
             { $set: { userRating: body.userRating, } },
             { new: true, runValidators: true }
@@ -256,7 +258,7 @@ module.exports = {
           console.log('newMusicRating: ', newMusicRating);
           return res.json(newMusicRating);
         default:
-          const newGameRating = await Game.findOneAndUpdate(
+          const newGameRating = await Media.findOneAndUpdate(
             { _id: body.id },
             { $set: { userRating: body.userRating, } },
             { new: true, runValidators: true }
@@ -418,7 +420,7 @@ module.exports = {
     console.log("THE USER:", user);
     console.log("THE BODY:", body);
     try {
-      const createdGame = await Game.create(body);
+      const createdGame = await Media.create(body);
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
         { $addToSet: { savedGames: createdGame._id } },
@@ -454,7 +456,7 @@ module.exports = {
 
       let newLikeTotal = body.likes + 1;
 
-      const updatedBook = await Book.findOneAndUpdate(
+      const updatedBook = await Media.findOneAndUpdate(
         { _id: body._id },
         { $set: { likes: newLikeTotal } },
         { new: true, runValidators: true }
@@ -474,7 +476,7 @@ module.exports = {
 
       let newLikeTotal = body.likes + 1;
 
-      const updatedMusic = await Music.findOneAndUpdate(
+      const updatedMusic = await Media.findOneAndUpdate(
         { _id: body._id },
         { $set: { likes: newLikeTotal } },
         { new: true, runValidators: true }
@@ -494,7 +496,7 @@ module.exports = {
 
       let newLikeTotal = body.likes + 1;
 
-      const updatedGame = await Game.findOneAndUpdate(
+      const updatedGame = await Media.findOneAndUpdate(
         { _id: body._id },
         { $set: { likes: newLikeTotal } },
         { new: true, runValidators: true }
@@ -514,7 +516,7 @@ module.exports = {
 
       let newLikeTotal = body.likes + 1;
 
-      const updatedMovie = await Movie.findOneAndUpdate(
+      const updatedMovie = await Media.findOneAndUpdate(
         { _id: body._id },
         { $set: { likes: newLikeTotal } },
         { new: true, runValidators: true }
@@ -578,7 +580,7 @@ module.exports = {
       const newComment = await Comment.create(
         { content: body.content, commenterUsername: body.commenterUsername }
       );
-      const updatedMovie = await Movie.findOneAndUpdate(
+      const updatedMovie = await Media.findOneAndUpdate(
         { _id: body.mediaId },
         { $addToSet: { comments: newComment._id } },
         { new: true, runValidators: true }
@@ -596,7 +598,7 @@ module.exports = {
       const newComment = await Comment.create(
         { content: body.content, commenterUsername: body.commenterUsername }
       );
-      const updatedBook = await Book.findOneAndUpdate(
+      const updatedBook = await Media.findOneAndUpdate(
         { _id: body.mediaId },
         { $addToSet: { comments: newComment._id } },
         { new: true, runValidators: true }
@@ -614,7 +616,7 @@ module.exports = {
       const newComment = await Comment.create(
         { content: body.content, commenterUsername: body.commenterUsername }
       );
-      const updatedMovie = await Music.findOneAndUpdate(
+      const updatedMovie = await Media.findOneAndUpdate(
         { _id: body.mediaId },
         { $addToSet: { comments: newComment._id } },
         { new: true, runValidators: true }
@@ -632,7 +634,7 @@ module.exports = {
       const newComment = await Comment.create(
         { content: body.content, commenterUsername: body.commenterUsername }
       );
-      const updatedGame = await Game.findOneAndUpdate(
+      const updatedGame = await Media.findOneAndUpdate(
         { _id: body.mediaId },
         { $addToSet: { comments: newComment._id } },
         { new: true, runValidators: true }
@@ -749,7 +751,7 @@ module.exports = {
       const model = body.type;
       switch (model) {
         case 'Movie':
-          const newMovieFavorite = await Movie.findOneAndUpdate(
+          const newMovieFavorite = await Media.findOneAndUpdate(
             { _id: body.id },
             { $set: { userFavorite: body.favorite, } },
             { new: true, runValidators: true }
@@ -757,7 +759,7 @@ module.exports = {
           console.log('newMovieFavorite: ', newMovieFavorite);
           return res.json(newMovieFavorite);
         case 'Book':
-          const newBookFavorite = await Book.findOneAndUpdate(
+          const newBookFavorite = await Media.findOneAndUpdate(
             { _id: body.id },
             { $set: { userFavorite: body.favorite, } },
             { new: true, runValidators: true }
@@ -765,7 +767,7 @@ module.exports = {
           console.log('newBookFavorite: ', newBookFavorite);
           return res.json(newBookFavorite);
         case 'Music':
-          const newMusicFavorite = await Music.findOneAndUpdate(
+          const newMusicFavorite = await Media.findOneAndUpdate(
             { _id: body.id },
             { $set: { userFavorite: body.favorite, } },
             { new: true, runValidators: true }
@@ -773,7 +775,7 @@ module.exports = {
           console.log('newMusicFavorite: ', newMusicFavorite);
           return res.json(newMusicFavorite);
         default:
-          const newGameFavorite = await Game.findOneAndUpdate(
+          const newGameFavorite = await Media.findOneAndUpdate(
             { _id: body.id },
             { $set: { userFavorite: body.favorite, } },
             { new: true, runValidators: true }
@@ -789,7 +791,7 @@ module.exports = {
   async getGame({ params }, res) {
     // console.log("made it to get single user")
     // console.log("params", params);
-    const foundGame = await Game.findOne(
+    const foundGame = await Media.findOne(
       { _id: params.id }).populate('comments');
 
     if (!foundGame) {
@@ -801,7 +803,7 @@ module.exports = {
   async getBook({ params }, res) {
     // console.log("made it to get single user")
     // console.log("params", params);
-    const foundBook = await Book.findOne(
+    const foundBook = await Media.findOne(
       { _id: params.id }).populate('comments');
 
     if (!foundBook) {
@@ -813,7 +815,7 @@ module.exports = {
   async getMusic({ params }, res) {
     // console.log("made it to get single user")
     // console.log("params", params);
-    const foundMusic = await Music.findOne(
+    const foundMusic = await Media.findOne(
       { _id: params.id }).populate('comments');
 
     if (!foundMusic) {
@@ -825,7 +827,7 @@ module.exports = {
   async getMovie({ params }, res) {
     // console.log("made it to get single user")
     // console.log("params", params);
-    const foundMovie = await Movie.findOne(
+    const foundMovie = await Media.findOne(
       { _id: params.id }).populate('comments');
 
     if (!foundMovie) {
@@ -834,4 +836,16 @@ module.exports = {
 
     res.json(foundMovie);
   }
+  ,
+  async getMedia({ params }, res) {
+
+    const friendsIdArray = JSON.parse(params.id);
+
+    console.log("these are the params form get media", friendsIdArray.friendsArray)
+   
+    const foundMedia = await Media.find(
+      { userId: { $in: friendsIdArray.friendsArray } }).populate('comments').limit(50);
+
+      return res.json(foundMedia);
+    }
 };

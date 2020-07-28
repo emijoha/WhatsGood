@@ -12,12 +12,6 @@ const CommentComponent = ({ mediaId, mediaType, title, ownerId, commenterUsernam
   const [commentInput, setCommentInput] = useState();
   const [commentsOnMedia, setCommentsOnMedia] = useState(mediaComments)
 
-  // useEffect(() => {
-  //   console.log("comments on media", commentsOnMedia)
-  // }, [commentsOnMedia]);
-
-  // Here's the stuff to create a comment and add notification for comment
-
   const handleSaveComment = () => {
 
     const commentData = {
@@ -66,7 +60,7 @@ const CommentComponent = ({ mediaId, mediaType, title, ownerId, commenterUsernam
           commentsOnMedia.length
             ? <div className='comment-box'>
               {commentsOnMedia.map(comment => {
-                console.log("comment.content", comment.content)
+              
                 return (
                   <p className='comments' key={comment._id}><span className='commenter'>{comment.commenterUsername}:</span> {comment.content}</p>
                 )

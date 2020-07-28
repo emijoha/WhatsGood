@@ -36,30 +36,36 @@ const userSchema = new Schema(
       default: ''
     },
     // set savedBooks to be an array of data that adheres to the bookSchema
+    savedMedia: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Media"
+      }
+    ],
     savedBooks: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Book"
+        ref: "Media"
       }
     ],
 
     savedGames: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Game"
+        ref: "Media"
       }
     ],
 
     savedMusic: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Music"
+        ref: "Media"
       }
     ],
     savedMovies: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Movie"
+        ref: "Media"
       }
     ],
     savedLikes: [

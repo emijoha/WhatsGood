@@ -8,6 +8,7 @@ const UserInfoContext = React.createContext({
   username: '',
   email: '',
   picture: '',
+  savedMedia: [],
   savedBooks: [],
   savedMusic: [],
   savedMovies: [],
