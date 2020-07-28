@@ -34,7 +34,7 @@ function AppNavbar(props) {
                 <p id='whats-good' className='logo-text-main special-font'>WHAT'S GOOD<span>&nbsp;</span></p>
               </Navbar.Brand>
               <Navbar.Brand as={Link} to='/profile'>
-                <p className='logo-text-main special-font light-gray' id='neon-hover'>{`${userData.username.toUpperCase()}?`}</p>
+                <p className='logo-text-main special-font light-gray username-logo' id='neon-hover'>{`${userData.username.toUpperCase()}?`}</p>
               </Navbar.Brand>
             </span>
             :

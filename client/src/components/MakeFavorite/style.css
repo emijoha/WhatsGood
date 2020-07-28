@@ -23,8 +23,8 @@
 }
 
 .dark-mode .fav-label {
-  color: rgb(78, 78, 78);
-  font-weight: 500;
+  color: rgb(95, 95, 95);
+  font-weight: 600;
 }
 
 #fave-icon {
@@ -35,7 +35,7 @@
 }
 
 .dark-mode #fave-icon {
-  color: rgb(63, 63, 63);
+  color: rgb(78, 78, 78);
 }
 
 #faved-icon {

@@ -284,6 +284,7 @@ function FriendProfile() {
           <Col xs={12} s={12} md={12} lg={8} >
             <Card id='profile-card' key={userData.username}>
               <Card.Body id='profile-card-body'>
+                <br></br>
                 <div id='profile-image'>
                   <Card.Img
                     src={friend.picture}
@@ -325,7 +326,7 @@ function FriendProfile() {
                           <p className='about-me' id='purple'>
                             ABOUT ME
                           </p>
-                          <div id='bio-scroll'>
+                          <div className='pr-4' id='bio-scroll'>
                             What's good? Not this bio! This user has not submitted a bio yet.
                           </div>
                           <div className='prof-icon-wrap' >

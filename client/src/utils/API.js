@@ -229,3 +229,12 @@ export const saveMessage = function (messageData, token) {
     console.log(favorite);
     return axios.put('/api/users/make-favorite', favorite, { headers: { authorization: `Bearer ${token}` } });
   };
+
+  // export const getMedia = function (userId) {
+  //   return axios.get(`/api/users/all-media/${userId}`);
+  // };
+
+    export const getMedia = function (request) {
+    return axios.get(`/api/users/all-media/${request}`);
+  };
+

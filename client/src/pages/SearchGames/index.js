@@ -57,6 +57,9 @@ function SearchGames() {
   // create function to handle saving a book to our database
   const handleSaveGame = useCallback((game, userRating, userReview) => {
     const gameToSave = {
+      username: userData.username,
+      userId: userData._id,
+      mediaType: "game",
       mediaId: game.mediaId,
       timeStamp: Date.now(),
       createdAt: Date(),

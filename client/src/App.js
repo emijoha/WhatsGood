@@ -39,6 +39,7 @@ function App() {
     email: '',
     picture: '',
     bio: '',
+    savedMedia: [],
     savedBooks: [],
     savedMusic: [],
     savedMovies: [],
@@ -62,9 +63,8 @@ function App() {
       }
       API.getMe(token)
 
-
-        .then(({ data: { _id, username, firstName, lastName, email, picture, bio, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends, notifications, chats } }) =>
-          setUserInfo({ ...userInfo, _id, username, firstName, lastName, email, picture, bio, savedBooks, savedMusic, savedMovies, savedGames, savedLikes, bookCount, musicCount, movieCount, gameCount, friends, notifications, chats })
+        .then(({ data: { _id, username, firstName, lastName, email, picture, bio, savedBooks, savedMusic, savedMovies, savedGames, savedMedia, savedLikes, bookCount, musicCount, movieCount, gameCount, friends, notifications, chats  } }) =>
+          setUserInfo({ ...userInfo, _id, username, firstName, lastName, email, picture, bio, savedBooks, savedMusic, savedMovies, savedGames, savedMedia, savedLikes, bookCount, musicCount, movieCount, gameCount, friends, notifications, chats  })
         )
         .catch((err) => console.log(err));
     }

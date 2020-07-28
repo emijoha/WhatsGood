@@ -37,7 +37,8 @@ const {
   getMovie,
   getMusic,
   saveChat,
-  saveMessage
+  saveMessage,
+  getMedia
 } = require('../../controllers/user-controller');
 
 // import middleware
@@ -106,6 +107,8 @@ router.route('/chats').get(getAllUsers).put(saveChat);
 router.route('/make-favorite').get(getAllUsers).put(authMiddleware, makeFavorite);
 
 router.route('/messages').get(getAllUsers).put(saveMessage);
+
+router.route('/all-media/:id').get(getMedia);
 
 
 module.exports = router;

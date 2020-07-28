@@ -51,6 +51,7 @@
   outline: none;
   border: none;
 }
+
 .dark-mode #rate-btn:hover, .dark-mode #rate-btn:focus {
   color: white !important;
 }

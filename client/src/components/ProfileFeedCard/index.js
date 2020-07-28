@@ -20,7 +20,7 @@ function ProfileFeedCard(props) {
     Aos.init({ duration: 800 })
   }, []);
 
-  if (props.media.mediaType === 'Book') {
+  if (props.media.mediaType === 'book') {
     const media = props.media;
     return (
       <Card data-aos="fade-up" className='book-border' key={media._id} border='dark'>
@@ -84,7 +84,7 @@ function ProfileFeedCard(props) {
         </Card.Body>
       </Card>
     )
-  } else if (props.media.mediaType === 'Music') {
+  } else if (props.media.mediaType === 'music') {
     const media = props.media;
     return (
       <Card data-aos="fade-up" className='music-border' key={media._id} border='dark'>
@@ -152,7 +152,7 @@ function ProfileFeedCard(props) {
         </Card.Body>
       </Card>
     );
-  } else if (props.media.mediaType === 'Movie') {
+  } else if (props.media.mediaType === 'movie') {
     const media = props.media;
     return (
       <Card data-aos="fade-up" className='movie-border' key={media._id} border='dark'>
@@ -215,7 +215,7 @@ function ProfileFeedCard(props) {
         </Card.Body>
       </Card>
     );
-  } else if (props.media.mediaType === 'Game') {
+  } else if (props.media.mediaType === 'game') {
     const media = props.media;
     return (
       <Card data-aos="fade-up" className='game-border' key={media._id} border='dark'>

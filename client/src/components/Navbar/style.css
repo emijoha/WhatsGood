@@ -1,7 +1,5 @@
 #new-navbar {
- 
-  /* backdrop-filter: blur(500px); */
-  position: fixed;
+   position: fixed;
   width: 100%;
   z-index: 2 !important;
   /* padding: 2.5px; */
@@ -37,7 +35,11 @@
 }
 
 .dark-mode #whats-good {
-  color: rgb(220, 220, 220);
+  color: rgb(221, 221, 221);
+}
+
+.dark-mode .username-logo {
+  color: rgb(75, 75, 75);
 }
 
 .photo-header {

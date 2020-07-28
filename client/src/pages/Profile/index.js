@@ -438,7 +438,6 @@ function ProfilePage() {
                       {(userData.bio !== '' || null)
                         ?
                         <div>
-                          {console.log("userData.bio", userData.bio)}
                           <p className='about-me' id='purple'>
                             ABOUT ME <a
                               className='btn bio-btn'
@@ -452,12 +451,18 @@ function ProfilePage() {
                         </div>
                         :
                         <>
-                          <a
-                            className='btn bio-btn'
-                            onClick={() => setBioUpdate(true)}
-                          >Add Bio
-                          </a>
-                          <br></br>
+                          <div>
+                          <p className='about-me' id='purple'>
+                            ABOUT ME <a
+                              className='btn bio-btn'
+                              onClick={() => setBioUpdate(true)}
+                            >Add Bio
+                            </a>
+                          </p>
+                          <div className='pr-4' id='bio-scroll'>
+                          What's good? Not this bio! You have not submitted a bio yet.
+                          </div>
+                        </div>
                           <br></br>
                         </>
                       }

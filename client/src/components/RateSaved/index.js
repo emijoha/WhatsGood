@@ -15,17 +15,17 @@ function RateSaved(props) {
     let icon;
 
     switch (props.media.mediaType) {
-      case 'Book':
+      case 'book':
         icon = faBookOpen;
         setFaIcon(icon);
         setRateColor('rgb(43, 146, 230)');
         break;
-      case 'Music':
+      case 'music':
         icon = faMusic;
         setFaIcon(icon);
         setRateColor('rgb(255, 123, 123)');
         break;
-      case 'Game':
+      case 'game':
         icon = faGamepad;
         setFaIcon(icon);
         setRateColor('rgb(98, 236, 116)');
