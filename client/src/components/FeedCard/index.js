@@ -298,7 +298,6 @@ function FeedCard(props) {
     const media = props.media;
     const mediatype = media.mediaType.toLowerCase();
     const border = `${mediatype}-border`;
-    console.log('from FeedCard: ', media, props.userData)
     return (
       <Card data-aos="fade-up" className={border} key={media.mediaId} border='dark'>
         <Card.Body>

@@ -25,7 +25,6 @@ function Home() {
   }
 
   const userData = useContext(UserInfoContext);
-  console.log("userDATA:  ", userData);
   const likerUsername = userData.username;
 
   useEffect(() => {
@@ -306,7 +305,7 @@ function Home() {
     //call to send notification to user  
     API.addNotification(notificationData, token)
       .then(() => {
-        console.log("NOTIFICATION ADDED");
+    
         userData.getUserData();
       })
       .catch(err => console.log(err));
@@ -330,9 +329,6 @@ function Home() {
           </Col>
           <Col id="media-feed-column" xs={12} s={12} md={10} lg={6} >
 
-            {/* <button onClick={() => getMediaFromApi()}></button> */}
-
-            {console.log("allfriendsmediaState in the return", allFriendsMediaState)}
             {loadingState ?
 
               <div className="text-center">
