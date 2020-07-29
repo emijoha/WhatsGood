@@ -847,5 +847,18 @@ module.exports = {
       { userId: { $in: friendsIdArray.friendsArray } }).populate('comments').limit(50);
 
       return res.json(foundMedia);
+    },
+    async deleteThisMedia({ params }, res) {
+      console.log("delete notification params", params);
+      try {
+        const deletedMedia = await Media.deleteOne(
+          { _id: params.id },
+          { new: true, runValidators: true }
+        );
+        return res.json(deletedMedia)
+      } catch (err) {
+        console.log(err);
+        return res.status(400).json(err);
+      }
     }
-};
+    };

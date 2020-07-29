@@ -134,6 +134,12 @@ function SavedMusic() {
     if (!token) {
       return false;
     }
+    API.deleteThisMedia(music_id)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => console.log(err));
+
     API.deleteMusic(music_id, token)
       // upon succes, update user data to reflect book change
       .then(() => userData.getUserData())
