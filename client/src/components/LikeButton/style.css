@@ -3,10 +3,11 @@
 } */
 .like-group {
   margin-bottom: 0px;
-  margin-top: 7px;
+  margin-top: 25px;
   display: flex;
   justify-content: start;
   align-items: center;
+
 }
 
 .like-label {
@@ -20,10 +21,14 @@
   font-size: 1.65rem !important;
   cursor: pointer;
   padding-bottom: 3px;
+  position: relative;
+  bottom: 1.6px;
 }
 
 #liked-icon {
   font-size: 1.65rem !important;
   color: black;
   padding-bottom: 3px;
+  position: relative;
+  bottom: 1.6px;
 }
