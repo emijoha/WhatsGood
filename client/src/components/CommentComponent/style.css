@@ -7,8 +7,21 @@
   margin-bottom: 8px;
 }
 
+.dark-mode .comments {
+  background-color: rgb(38, 38, 38);
+  border: solid 1px rgb(17, 17, 17);
+  color: rgb(148, 148, 148);
+}
+
 .commenter {
   font-weight: 600;
+  padding-right: 2.5px;
+}
+
+.dark-mode .commenter {
+  font-weight: 300;
+  color: rgb(255, 255, 255);
+ 
 }
 
 .comment-box {
@@ -29,26 +42,21 @@ padding-bottom: 4px;
  font-size: 1rem;
 }
 
+.dark-mode .comment-label {
+  border-color: rgb(41, 41, 41);
+  border-width: 2px;
+}
+
 #comment-grouping {
   margin-bottom: 0px !important;
-}
-    
-/* Scrollbar styles */
-::-webkit-scrollbar {
-width: 12px;
-height: 12px;
-}
-
-::-webkit-scrollbar-thumb {
-background: rgb(225, 225, 225);  
-border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-background: rgb(200, 200, 200);  
 }
 
 .comment-input {
   border: solid 1px black !important;
   border-radius: 20px;
+}
+
+.dark-mode .comment-input {
+  background-color: rgb(36, 36, 36);
+  color: rgb(235, 235, 235);
 }

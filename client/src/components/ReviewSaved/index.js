@@ -9,13 +9,13 @@ function ReviewSaved(props) {
       {props.username && (
         <>
           {(props.media.userReview === '') ?
-            <Button className='btn-block' id='review-btn' onClick={() => props.startReview(props.media)}  >
+            <a className='btn-block text-center' id='review-btn' onClick={() => props.startReview(props.media)}  >
               Review this {props.mediaType}!
-            </Button>
+            </a>
             :
-            <Button className='btn-block' id='review-btn' onClick={() => props.startReview(props.media)}  >
+            <a className='btn-block text-center' id='review-btn' onClick={() => props.startReview(props.media)}  >
               Update your Review?
-            </Button>
+            </a>
           }
         </>
       )}

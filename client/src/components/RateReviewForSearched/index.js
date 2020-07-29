@@ -10,6 +10,7 @@ function RateReviewForSearched(props) {
   const [userRating, setUserRating] = useState(0);
   const [hover, setHover] = useState(null);
   const [reviewInput, setReviewInput] = useState('');
+  const [rateColor, setRateColor] = useState('');
 
   const [faIcon, setFaIcon] = useState('');
 
@@ -21,22 +22,22 @@ function RateReviewForSearched(props) {
       case 'Book':
         icon = faBookOpen;
         setFaIcon(icon);
-        console.log(icon);
+        setRateColor('rgb(43, 146, 230)');
         break;
       case 'Music':
         icon = faMusic;
         setFaIcon(icon);
-        console.log(icon);
+        setRateColor('rgb(255, 123, 123)');
         break;
       case 'Game':
         icon = faGamepad;
         setFaIcon(icon);
-        console.log(icon);
+        setRateColor('rgb(98, 236, 116)');
         break;
       default:
         icon = faVideo;
         setFaIcon(icon);
-        console.log(icon);
+        setRateColor('rgb(196, 67, 255) ');
     }
 
   }, []);
@@ -72,7 +73,7 @@ function RateReviewForSearched(props) {
                         <input type='radio' name={props.media.mediaId}
                           value={i} onClick={() => setUserRating(ratingValue)} />
                         <FontAwesomeIcon key={ratingValue} icon={faIcon} className='star' onMouseEnter={() => setHover(ratingValue)}
-                          onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? 'black' : '#e4e5e9'} size={'lg'} />
+                          onMouseLeave={() => setHover(null)} color={ratingValue <= (hover || userRating) ? rateColor : 'gray'} size={'lg'} />
                       </label>
                     )
                   })}

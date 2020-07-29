@@ -61,7 +61,7 @@ function SignupForm() {
         </Alert>
 
         <Form.Group>
-          <Form.Label id="form-label" htmlFor='firstName'>First Name</Form.Label>
+          <Form.Label id="form-label" htmlFor='firstName'>FIRST NAME</Form.Label>
           <Form.Control
             id="form-input-signup"
             type='text'
@@ -75,7 +75,7 @@ function SignupForm() {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label id="form-label" htmlFor='lastName'>Last Name</Form.Label>
+          <Form.Label id="form-label" htmlFor='lastName'>LAST NAME</Form.Label>
           <Form.Control
             id="form-input-signup"
             type='text'

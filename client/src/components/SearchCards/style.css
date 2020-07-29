@@ -50,7 +50,7 @@ button {
   padding-right: 8px;
   padding-left: 12px;
   max-height: 135px;
-  overflow: scroll;
+  overflow: auto;
 }
     
 /* Scrollbar styles */
@@ -80,4 +80,8 @@ height: 12px;
 
 .delete-btn:hover {
   color: white !important;
+}
+
+#first-btn2 {
+  margin-top: 10px;
 }

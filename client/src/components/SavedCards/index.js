@@ -39,7 +39,7 @@ function SavedCards(props) {
                       <p className='by'>{book.authors.length > 1 ? 'Authors' : 'Author'}: {book.authors}</p>
                     </Card.Title>
                   </div>
-                  <div className='scroll-box'>
+                  <div className='scroll-box mb-3'>
                     <Card.Text>{book.description}</Card.Text>
                   </div>
                   <div className='center-wrap'>
@@ -194,15 +194,15 @@ function SavedCards(props) {
                       {media.director === 'N/A' ? null : <p className='by'>Director: {media.director}</p>}
                     </Card.Title>
                   </div>
-                  <div className='scroll-box'>
+                  <div className='scroll-box mb-3'>
                     {media.plot === 'N/A' ? null : <Card.Text> {media.plot}</Card.Text>}
                   </div>
-                  {media.actors === 'N/A' ? null : <p className='small closer-p'><b>Starring:</b> {media.actors}</p>}
-                  {media.released === 'N/A' ? null : <p className='small closer-p'><b>Released:</b> {media.released}</p>}
-                  {media.genre === 'N/A' ? null : <p className='small closer-p'><b>Genre:</b> {media.genre}</p>}
-                  {media.rated === 'N/A' ? null : <p className='small closer-p'><b>Rated:</b> {media.rated}</p>}
-                  {media.runtime === 'N/A' ? null : <p className='small'><b>Runtime:</b> {media.runtime}</p>}
-                  <div className='center-wrap'>
+                  {media.actors === 'N/A' ? null : <p className='small closer-p'><b className='detail-title'>Starring:</b> {media.actors}</p>}
+                  {media.released === 'N/A' ? null : <p className='small closer-p'><b className='detail-title'>Released:</b> {media.released}</p>}
+                  {media.genre === 'N/A' ? null : <p className='small closer-p'><b className='detail-title'>Genre:</b> {media.genre}</p>}
+                  {media.rated === 'N/A' ? null : <p className='small closer-p'><b className='detail-title'>Rated:</b> {media.rated}</p>}
+                  {media.runtime === 'N/A' ? null : <p className='small'><b className='detail-title'>Runtime:</b> {media.runtime}</p>}
+                  <div className='center-wrap mt-2'>
                     <p className='ratingReviewHeading movie-border'>Your Rating</p>
                     <p className='rating'>
                       {
@@ -348,7 +348,10 @@ function SavedCards(props) {
                   <Card.Body>
                     <Card.Title>
                       <Link id='neon-hover' to={`/friend_profile?username=${friend.username}`}>
-                        <div className='friend-name-title'><b>{friend.username.toUpperCase()}</b></div>
+                        <div className='friend-name-title'>{friend.username.toUpperCase()}</div>
+                        <div className='center-wrap mt-1' style={{ fontStyle: 'italic' }}>
+                        <p id='full-user-name'>{friend.firstName} {friend.lastName}</p>
+                      </div>
                       </Link>
                       <SavedIconLinks 
                         type='friend'
@@ -360,7 +363,8 @@ function SavedCards(props) {
                     </Card.Title>
                     <Button
                       className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
-                      href='/messages'>
+                      href='/messages'
+                      id='first-btn'>
                       Send a Message
                     </Button>
                     <Button className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}

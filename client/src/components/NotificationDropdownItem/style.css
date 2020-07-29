@@ -7,11 +7,27 @@
   /* float: right; */
 }
 
+.dark-mode #notification-button {
+  color: white;
+}
+
 .notification-item {
   display: flex;
   /* align-items: start; */
   justify-content: space-between;
 }
+
+.dark-mode .notification-item {
+  background-color: transparent !important;
+  color: rgb(185, 185, 185);
+}
+
+.dark-mode .notification-item:hover {
+  background-color: transparent !important;
+  color: rgb(255, 2, 234);
+}
+
+
 .notification-item:active {
   color: black;
 }
@@ -24,5 +40,5 @@
   width: 100%;
   padding-right: 8px;
   max-height: 151px;
-  overflow: scroll;
+  overflow: auto;
 }

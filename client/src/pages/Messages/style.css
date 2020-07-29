@@ -1,8 +1,19 @@
 #messages-container {
-    margin-top: 50px;
-    padding: 20px;
-    height: 730px;
+    padding: 20px 20px 0px 20px !important;
+    height: 100%;
     position: relative;
+}
+
+.dark-mode #messages-container {
+  background-color: transparent;
+}
+
+#message-page {
+  padding-top: 50px;
+}
+
+.dark-mode #message-page {
+  padding-top: 75px;
 }
 
 
@@ -23,23 +34,25 @@
     }
 
     #messages-container {
-
-      height: 880px;
+      
+      height: 100%px;
   }
 
   #chat-box-header {
     
     margin-top: 17.5px;
-    margin-left: -10px !important;
+    margin-left: -1px !important;
   }
   
-  #chat-box-header-active {
+  #chat-box-header:active {
     margin-top: 0px;
     
   }
 
- 
-
+  .dark-mode #chat-box-header {
+    border-color: rgb(47, 47, 47);
+    color: rgb(100, 100, 100) !important;
+  }
 
 }
 
@@ -57,12 +70,21 @@
       /* border-top: solid 1px rgb(221, 221, 221); */
     }
 
+    .dark-mode #line-divide {
+      border-color: rgb(47, 47, 47);
+    }
+
     #chat-box-header {
       border-left: solid 1px rgb(221, 221, 221);
       top: -65px;
       left: -1px;
       position: absolute;
       padding: 20px 0px 21px 15px;
+    }
+
+    .dark-mode #chat-box-header {
+      border-color: rgb(47, 47, 47);
+      color: rgb(100, 100, 100) !important;
     }
   
 }
@@ -71,6 +93,14 @@
   font-weight: 700;
   font-size: 1.75rem;
   margin-left: 2.5px;
-  margin-bottom: 14px;
+  margin-bottom: 5px;
   width: fit-content;
+}
+
+.dark-mode .messenger-title {
+  color: rgb(75, 0, 196);
+}
+
+#remove-pr {
+  padding-right: 0px;
 }

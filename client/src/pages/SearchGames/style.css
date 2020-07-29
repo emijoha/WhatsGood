@@ -1,7 +1,8 @@
-#container {
+div#container {
   background-color: rgba(255, 255, 255, 0);
-  height: 100vh;
+  height: 100%
 }
+
 
 #search-wrap {
   margin-top: 30px;
@@ -21,6 +22,11 @@
   margin-bottom: 15px;
 }
 
+.dark-mode #platform-select {
+  background-color: black;
+  color: rgb(151, 151, 151);
+}
+
 #api-search-input {
   width: 100%;
   display: block;
@@ -33,6 +39,11 @@
   font-size: 20px;
   margin-top: 14px;
   margin-bottom: 15px;
+}
+
+.dark-mode #api-search-input {
+  background-color: black !important;
+  color: rgb(151, 151, 151);
 }
 
 #api-search-input:active, #api-search-input:focus {

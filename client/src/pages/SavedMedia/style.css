@@ -42,3 +42,8 @@
 .media-icon {
   font-size: 1.4rem;
 }
+
+.dark-mode .empty-message {
+  color: rgb(66, 66, 66);
+  font-weight: 500;
+}

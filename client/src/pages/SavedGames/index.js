@@ -144,7 +144,7 @@ function SavedGames() {
         <Container>
           <Row>
             <Col xs={0} s={0} md={1} lg={2}></Col>
-            <Col xs={12} s={12} md={10} lg={8}>
+            <Col id='search-wrap' xs={12} s={12} md={10} lg={8}>
               <div id="sub-container" >
                 <div id="header-div">
                   <h5 className="text-center" id="media-header">MY GAMES</h5>

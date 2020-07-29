@@ -1,6 +1,6 @@
 li {
     list-style-type: none;
- 
+    /* background-color: transparent; */
 }
 
 #li-picture {
@@ -10,6 +10,11 @@ li {
     margin-top: 11px;
 }
 
+.trans-it {
+  background: transparent !important;
+}
+
+
 #li-button {
     width: 90%;
     color:rgb(94, 9, 251) !important;
@@ -17,8 +22,13 @@ li {
     padding-right: 10px;
     margin-bottom: 10px;  
     border: none !important;   
-      
+    background-color: transparent !important; 
     }
+
+  .dark-mode #li-button {
+    color: gray !important;
+    background-color: transparent;
+  }
     
 #li-button:hover {
         color: rgb(255, 2, 234) !important;
@@ -36,7 +46,6 @@ li {
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     white-space: nowrap !important;
-    
 }
 
 #name-td {

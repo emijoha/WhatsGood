@@ -6,9 +6,14 @@
 }
 
 .login-link {
-    padding-left: 30px;
-    margin-bottom: 30px;
+    padding-left: 32.5px;
+    margin-top: 25px;
+    margin-bottom: 35px;
     font-weight: 600;
+}
+
+.dark-mode .login-link {
+  color: rgb(194, 194, 194);
 }
 
 #login-card-column {
@@ -16,7 +21,7 @@
     margin-bottom: 70px;
 }
 
-.movie-border {
+/* .movie-border {
   border-image-slice: 1 ;
   border-image-source: linear-gradient(to bottom right, rgb(94, 9, 251), rgb(255, 2, 234)) ;
-}
+} */

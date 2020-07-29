@@ -1,7 +1,3 @@
-input {
-    display: none;
-}
-
 .star {
     cursor: pointer;
     transition: color 200ms;
@@ -17,12 +13,17 @@ input {
   width: 100%;
 }
 
+.dark-mode .review-text {
+  background-color: transparent;
+  border-color: rgb(49, 49, 49);
+  color: rgb(184, 184, 184);
+}
+
 .center-wrap-review {
   position: relative;
   width: 100%;
   text-align: center;
   padding: 0px;
-  margin-bottom: 20px;
 }
 
 #review-btn {
@@ -35,6 +36,16 @@ input {
   height: 25px;
   font-style: italic;
 }
+
+.dark-mode #review-btn {
+  color: rgb(85, 85, 85) !important;
+  font-weight: 500;
+}
+
+.dark-mode #review-btn:hover, .dark-mode #review-btn:focus {
+  color: white !important;
+}
+
 
 #review-btn:hover, #review-btn:focus {
   font-size: 1rem;
@@ -54,10 +65,16 @@ input {
   height: 25px;
 }
 
+.dark-mode #review-submit-btn {
+  color: rgb(95, 95, 95);
+}
+
+.dark-mode #review-submit-btn:hover {
+  color: white !important;
+}
+
 #review-submit-btn:hover, #review-submit-btn:focus {
   color: black !important;
   font-weight: 700;
   background-color: transparent;
 }
-/* #ffc107
-#e4e5e9 */

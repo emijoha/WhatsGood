@@ -38,7 +38,7 @@ function SearchCards(props) {
                       <p className='by'>{book.authors.length > 1 ? 'Authors' : 'Author'}: {book.authors}</p>
                     </Card.Title>
                   </div>
-                  <div className='scroll-box'>
+                  <div className='scroll-box mb-3'>
                     <Card.Text>{book.description}</Card.Text>
                   </div>
                   <RateReviewForSearched
@@ -125,7 +125,7 @@ function SearchCards(props) {
                       {media.director === 'N/A' ? null : <p className='by'>Director: {media.director}</p>}
                     </Card.Title>
                   </div>
-                  {media.plot === 'N/A' ? null : <div className='scroll-box'><Card.Text> {media.plot}</Card.Text></div>}
+                  {media.plot === 'N/A' ? null : <div className='scroll-box mb-3'><Card.Text> {media.plot}</Card.Text></div>}
                   {media.actors === 'N/A' ? null : <p className='small closer-p'><b>Starring:</b> {media.actors}</p>}
                   {media.released === 'N/A' ? null : <p className='small closer-p'><b>Released:</b> {media.released}</p>}
                   {media.genre === 'N/A' ? null : <p className='small closer-p'><b>Genre:</b> {media.genre}</p>}
@@ -169,7 +169,7 @@ function SearchCards(props) {
                       <p className='by'>Developer: {game.developer}</p>
                     </Card.Title>
                   </div>
-                  <div className='scroll-box'>
+                  <div className='scroll-box mb-3'>
                     <Card.Text>{game.description}</Card.Text>
                   </div>
                   <RateReviewForSearched
@@ -190,54 +190,54 @@ function SearchCards(props) {
       </>
     );
   } else if (props.cardType === 'searchedUsers') {
-    let number = randomNum();
-    let media = ['book', 'music', 'movie', 'game'];
     return (
       <>
-        <CardColumns>
-          {props.searchedUsers.map(searchedUser => {
-            return (
-              <Card className={`friend-border${number}`} key={searchedUser._id} border='dark'>
-                <div className='center-wrap'>
-                  <Link id='neon-hover' to={`/friend_profile?username=${searchedUser.username}`}>
-                    <Card.Img className='friendImage' src={searchedUser.picture} alt={` ${searchedUser.username}`} variant='top' />
-                  </Link>
-                  <Card.Body>
-                    <Card.Title>
-                      <Link id='neon-hover' to={`/friend_profile?username=${searchedUser.username}`}>
-                        <div className='friend-name-title'><b>{searchedUser.username.toUpperCase()}</b></div>
-                        <div className='center-wrap mt-1' style={{fontStyle: 'italic'}}>
-                          <p>{searchedUser.firstName} {searchedUser.lastName}</p>
-                        </div>
-                      </Link>
-                    </Card.Title>
-                    <SavedIconLinks
-                      type='friend'
-                      music={searchedUser.music.length}
-                      movies={searchedUser.movies.length}
-                      games={searchedUser.games.length}
-                      books={searchedUser.books.length}
-                    />
-                    {console.log("WHATS THIS,", searchedUser)}
-                    {props.savedArray?.every((friend) => friend._id !== searchedUser._id)
-                      ? <Button
-                        disabled={userData._id === searchedUser._id}
-                        className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
-                        onClick={() => props.handleSaveFriend(searchedUser)}>
-                        Save Friend
+        {props.searchedUsers.map(searchedUser => {
+          let number = randomNum();
+          let media = ['book', 'music', 'movie', 'game'];
+          return (
+            <Card className={`friend-border${number}`} key={searchedUser._id} border='dark'>
+              <div className='center-wrap'>
+                <Link id='neon-hover' to={`/friend_profile?username=${searchedUser.username}`}>
+                  <Card.Img className='friendImage' src={searchedUser.picture} alt={` ${searchedUser.username}`} variant='top' />
+                </Link>
+                <Card.Body>
+                  <Card.Title>
+                    <Link id='neon-hover' to={`/friend_profile?username=${searchedUser.username}`}>
+                      <div className='friend-name-title'>{searchedUser.username.toUpperCase()}</div>
+                      <div className='center-wrap mt-1' style={{ fontStyle: 'italic' }}>
+                        <p id='full-user-name'>{searchedUser.firstName} {searchedUser.lastName}</p>
+                      </div>
+                    </Link>
+                  </Card.Title>
+                  <SavedIconLinks
+                    type='friend'
+                    music={searchedUser.music.length}
+                    movies={searchedUser.movies.length}
+                    games={searchedUser.games.length}
+                    books={searchedUser.books.length}
+                  />
+                  {console.log("WHATS THIS,", searchedUser)}
+                  {props.savedArray?.every((friend) => friend._id !== searchedUser._id)
+                    ? <Button
+                      disabled={userData._id === searchedUser._id}
+                      className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
+                      onClick={() => props.handleSaveFriend(searchedUser)}
+                      id='first-btn2'>
+                      Add Friend
                       </Button>
-                      : <Button
-                        className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
-                        onClick={() => props.handleDeleteFriend(searchedUser._id)}>
-                        Remove Friend
+                    : <Button
+                      className={`btn-block delete-btn ${media[number - 1]}-color ${media[number - 1]}-border ${media[number - 1]}-hover-fill`}
+                      onClick={() => props.handleDeleteFriend(searchedUser._id)}
+                      id='first-btn2'>
+                      Remove Friend
                       </Button>
-                    }
-                  </Card.Body>
-                </div>
-              </Card>
-            );
-          })}
-        </CardColumns>
+                  }
+                </Card.Body>
+              </div>
+            </Card>
+          );
+        })}
       </>
     );
   }

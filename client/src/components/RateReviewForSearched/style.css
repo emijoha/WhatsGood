@@ -32,6 +32,12 @@ input {
     width: 100%;
 }
 
+.dark-mode .review-input {
+  background-color: transparent;
+  border-color: rgb(49, 49, 49);
+  color: rgb(184, 184, 184);
+}
+
 .save-media-btn {
   font-weight: 600;
   background-color: rgba(255, 255, 255, 0) !important;
@@ -46,9 +52,20 @@ input {
   color: white !important;
 }
 
+.dark-mode .save-media-btn:hover {
+  border-color: black !important;
+  color: black !important;
+  font-weight: 700;
+}
+
 .already-saved {
-    margin-bottom: 0 !important;
+    margin-bottom: -10px !important;
     font-size: 0.85rem;
     font-style: italic;
+}
+
+.dark-mode .already-saved {
+  color: rgb(105, 105, 105);
+  font-weight: 500;
 }
 

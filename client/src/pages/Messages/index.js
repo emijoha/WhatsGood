@@ -201,42 +201,39 @@ function Messages() {
   });
 
   return (
+    <Container id='message-page'>
+      <div className='movie-border card' id="messages-container">
 
 
-    <Container className='movie-border card' id="messages-container">
+        <span className='messenger-title' >YOUR MESSAGES</span>
 
+        <div id="sm-screen-search">
+          <SearchFriends sendSearchedUserToList={sendSearchedUserToList}></SearchFriends>
+        </div>
+        <Row>
+          <Col id='remove-pr' xs={3} s={3} md={3} lg={4}>
+            <div id="lg-screen-search">
+              <SearchFriends sendSearchedUserToList={sendSearchedUserToList}></SearchFriends>
+            </div>
+            <MessageList userList={userListState}
+              getAllUserMessages={getAllUserMessages}
+              handleNewChatState={handleNewChatState}
+            ></MessageList>
+          </Col>
+          <Col xs={9} s={9} md={9} lg={8} id='line-divide'>
+            {newChatState.username ? <h5 id="chat-box-header"> Messaging with {newChatState.username}</h5> : <h5 id="chat-box-header">Select a friend to chat</h5>}
+            <ChatBox handleNewMessageState={handleNewMessageState}
+              setIsPreviousChatState={setIsPreviousChatState}
+              setCurrentChatIdState={setCurrentChatIdState}
+              newChatState={newChatState}>
 
-      <span className='messenger-title' >YOUR MESSAGES</span>
+            </ChatBox>
+          </Col>
+        </Row>
 
-      <div id="sm-screen-search">
-        <SearchFriends sendSearchedUserToList={sendSearchedUserToList}></SearchFriends>
       </div>
-      <Row>
-        <Col xs={3} s={3} md={3} lg={4}>
-          <div id="lg-screen-search">
-            <SearchFriends sendSearchedUserToList={sendSearchedUserToList}></SearchFriends>
-          </div>
-          <MessageList userList={userListState}
-            getAllUserMessages={getAllUserMessages}
-            handleNewChatState={handleNewChatState}
-          ></MessageList>
-        </Col>
-        <Col xs={9} s={9} md={9} lg={8} id='line-divide'>
-          {newChatState.username ? <h5 id="chat-box-header"> Messaging with {newChatState.username}</h5> : <h5 id="chat-box-header">Select a friend to chat</h5>}
-          <ChatBox  handleNewMessageState={handleNewMessageState}
-            setIsPreviousChatState={setIsPreviousChatState}
-            setCurrentChatIdState={setCurrentChatIdState}
-            newChatState={newChatState}>
-
-          </ChatBox>
-
-
-        </Col>
-      </Row>
 
     </Container>
-
-
   );
 
 }

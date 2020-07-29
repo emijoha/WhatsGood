@@ -30,6 +30,12 @@
     font-size: 15px;
 }
 
+.dark-mode #mess-form-input {
+  border-color: rgb(54, 54, 54);
+  background-color: black !important;
+  color: rgb(195, 195, 195);
+}
+
 #form-input:active, .form-input:focus {
     background: transparent !important;
     outline: none !important;
@@ -42,5 +48,9 @@
 
   #message-form-div {
     border-bottom: solid 1px rgb(218, 218, 218);
+  }
+
+  .dark-mode #message-form-div {
+    border-color: rgb(54, 54, 54);
   }
 }

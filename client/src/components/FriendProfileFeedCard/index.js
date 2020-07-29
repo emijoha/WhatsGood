@@ -53,7 +53,6 @@ function FriendProfileFeedCard(props) {
               })}
             </p>
             <p className='ratingReviewHeading book-border'>{media.username}'s Review</p>
-            <p>{media.userReview.length ? media.userReview : null}</p>
           </div>
           <div className='scroll-box'>
             {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}

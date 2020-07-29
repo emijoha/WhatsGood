@@ -30,7 +30,7 @@ button#side-bar-li:focus {
 
 button#side-bar-li {
     margin-top: 20px;
-    color: black !important;
+    color: black;
     border: none !important;
     padding: none !important;
     background-color: rgba(0, 0, 0, 0) !important;
@@ -38,6 +38,10 @@ button#side-bar-li {
     align-items: center;
     justify-content: center;
     float: right;
+}
+
+.dark-mode button#side-bar-li {
+  color: rgb(136, 136, 136);
 }
 
 .sidebar-icon {
