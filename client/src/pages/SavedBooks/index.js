@@ -132,6 +132,13 @@ function SavedBooks() {
     if (!token) {
       return false;
     }
+
+    API.deleteThisMedia(book_id)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => console.log(err));
+
     API.deleteBook(book_id, token)
       // upon succes, update user data to reflect book change
       .then(() => userData.getUserData())
