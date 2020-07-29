@@ -77,8 +77,7 @@ function UploadPhoto({ handleModalClose }) {
           : (<img src={image} style={{ width: '300px' }} />)
         }
         <Button
-          id='neon-hover'
-          className='btn upload-btn movie-color'
+          className='btn upload-btn'
           onClick={() => handleSavePicture(image)}>UPLOAD
         </Button>
       </Form>

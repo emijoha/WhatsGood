@@ -165,7 +165,7 @@ function SavedCards(props) {
                     setReviewInput={props.setReviewInput}
                   />
                   <Button className='btn-block delete-btn music-color music-border music-hover-fill' onClick={() => props.handleDeleteMusic(music._id)}>
-                    Delete!
+                    Delete this Music!
                   </Button>
                 </Card.Body>
               </Card>
