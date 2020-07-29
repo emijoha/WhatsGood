@@ -138,6 +138,12 @@ function SavedMovies() {
     if (!token) {
       return false;
     }
+    API.deleteThisMedia(movie_id)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => console.log(err));
+
     API.deleteMovie(movie_id, token)
       // upon succes, update user data to reflect book change
       .then(() => userData.getUserData())

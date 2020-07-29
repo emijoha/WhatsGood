@@ -51,17 +51,17 @@ export const searchGoogleBooks = function (query) {
 
 export const searchVideoGames = function (title, platform) {
   return axios({
-    "method":"GET",
-    "url":`https://chicken-coop.p.rapidapi.com/games/${title}`,
-    "headers":{
-    "content-type":"application/octet-stream",
-    "x-rapidapi-host":"chicken-coop.p.rapidapi.com",
-    "x-rapidapi-key":"ad79893db0msh519507ce219a2cep1942b9jsn16290fa29320",
-    "useQueryString":true
-    },"params":{
-    "platform": platform
+    "method": "GET",
+    "url": `https://chicken-coop.p.rapidapi.com/games/${title}`,
+    "headers": {
+      "content-type": "application/octet-stream",
+      "x-rapidapi-host": "chicken-coop.p.rapidapi.com",
+      "x-rapidapi-key": "ad79893db0msh519507ce219a2cep1942b9jsn16290fa29320",
+      "useQueryString": true
+    }, "params": {
+      "platform": platform
     }
-    })
+  })
 };
 
 // save games
@@ -78,20 +78,20 @@ export const getGame = function (game_id) {
   return axios.get(`/api/users/games/${game_id}`);
 };
 
-export const searchMusic = function(query) {
-    return axios({
-      "method":"GET",
-      "url":"https://deezerdevs-deezer.p.rapidapi.com/search",
-      "headers":{
-      "content-type":"application/octet-stream",
-      "x-rapidapi-host":"deezerdevs-deezer.p.rapidapi.com",
-      "x-rapidapi-key":"f2e833be47mshec0532931a48159p122a41jsn86eecf30e6d3",
-      "useQueryString":true
-      },"params":{
-      "q":query
-      }
-      })
- 
+export const searchMusic = function (query) {
+  return axios({
+    "method": "GET",
+    "url": "https://deezerdevs-deezer.p.rapidapi.com/search",
+    "headers": {
+      "content-type": "application/octet-stream",
+      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+      "x-rapidapi-key": "f2e833be47mshec0532931a48159p122a41jsn86eecf30e6d3",
+      "useQueryString": true
+    }, "params": {
+      "q": query
+    }
+  })
+
 };
 
 export const saveMusic = function (musicData, token) {
@@ -171,20 +171,20 @@ export const addLike = function (likeData, token) {
   console.log('addLike like data', likeData, token);
 
   if (likeData.mediaType === "book") {
-  return axios.put(`/api/users/books/${likeData._id}`, likeData, { headers: { authorization: `Bearer ${token}` } });
+    return axios.put(`/api/users/books/${likeData._id}`, likeData, { headers: { authorization: `Bearer ${token}` } });
   }
 
   if (likeData.mediaType === "movie") {
-  return axios.put(`/api/users/movies/${likeData._id}`, likeData, { headers: { authorization: `Bearer ${token}` } });
+    return axios.put(`/api/users/movies/${likeData._id}`, likeData, { headers: { authorization: `Bearer ${token}` } });
   }
 
   if (likeData.mediaType === "music") {
-  return axios.put(`/api/users/music/${likeData._id}`, likeData, { headers: { authorization: `Bearer ${token}` } });
+    return axios.put(`/api/users/music/${likeData._id}`, likeData, { headers: { authorization: `Bearer ${token}` } });
   }
 
   if (likeData.mediaType === "game") {
     return axios.put(`/api/users/games/${likeData._id}`, likeData, { headers: { authorization: `Bearer ${token}` } });
-    }
+  }
 };
 
 export const addNotification = function (notificationData, token) {
@@ -200,20 +200,20 @@ export const addComment = function (commentData, token) {
   console.log("comment data:", commentData, "token:", token);
 
   if (commentData.mediaType === "book") {
-  return axios.put(`/api/users/books/comments/${commentData.mediaId}`, commentData, { headers: { authorization: `Bearer ${token}` } });
+    return axios.put(`/api/users/books/comments/${commentData.mediaId}`, commentData, { headers: { authorization: `Bearer ${token}` } });
   }
 
   if (commentData.mediaType === "movie") {
-  return axios.put(`/api/users/movies/comments/${commentData.mediaId}`, commentData, { headers: { authorization: `Bearer ${token}` } });
+    return axios.put(`/api/users/movies/comments/${commentData.mediaId}`, commentData, { headers: { authorization: `Bearer ${token}` } });
   }
 
   if (commentData.mediaType === "music") {
-  return axios.put(`/api/users/music/comments/${commentData.mediaId}`, commentData, { headers: { authorization: `Bearer ${token}` } });
+    return axios.put(`/api/users/music/comments/${commentData.mediaId}`, commentData, { headers: { authorization: `Bearer ${token}` } });
   }
 
   if (commentData.mediaType === "game") {
     return axios.put(`/api/users/games/comments/${commentData.mediaId}`, commentData, { headers: { authorization: `Bearer ${token}` } });
-    }
+  }
 };
 
 
@@ -225,16 +225,18 @@ export const saveMessage = function (messageData, token) {
   return axios.put('/api/users/messages', messageData, { headers: { authorization: `Bearer ${token}` } });
 };
 
-  export const makeFavorite = function (favorite, token) {
-    console.log(favorite);
-    return axios.put('/api/users/make-favorite', favorite, { headers: { authorization: `Bearer ${token}` } });
-  };
+export const makeFavorite = function (favorite, token) {
+  console.log(favorite);
+  return axios.put('/api/users/make-favorite', favorite, { headers: { authorization: `Bearer ${token}` } });
+};
 
-  // export const getMedia = function (userId) {
-  //   return axios.get(`/api/users/all-media/${userId}`);
-  // };
+export const getMedia = function (request) {
+  return axios.get(`/api/users/all-media/${request}`);
+};
 
-    export const getMedia = function (request) {
-    return axios.get(`/api/users/all-media/${request}`);
-  };
+
+export const deleteThisMedia = function (mediaId) {
+  console.log('media id', mediaId)
+  return axios.delete(`/api/users/all-media/${mediaId}`, mediaId);
+};
 

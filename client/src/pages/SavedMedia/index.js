@@ -132,6 +132,12 @@ function SavedMedia() {
     if (!token) {
       return false;
     }
+    API.deleteThisMedia(bookId)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => console.log(err));
+
     API.deleteBook(bookId, token)
       // upon succes, update user data to reflect book change
       .then(() => userData.getUserData())
@@ -146,6 +152,13 @@ function SavedMedia() {
     if (!token) {
       return false;
     }
+
+    API.deleteThisMedia(musicId)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => console.log(err));
+
     API.deleteMusic(musicId, token)
       // upon succes, update user data to reflect book change
       .then(() => userData.getUserData())
@@ -159,6 +172,13 @@ function SavedMedia() {
     if (!token) {
       return false;
     }
+
+    API.deleteThisMedia(movieId)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => console.log(err));
+
     API.deleteMovie(movieId, token)
       // upon succes, update user data to reflect book change
       .then(() => userData.getUserData())
@@ -172,6 +192,12 @@ function SavedMedia() {
     if (!token) {
       return false;
     }
+    API.deleteThisMedia(gameId)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => console.log(err));
+
     API.deleteGame(gameId, token)
       // upon succes, update user data to reflect book change
       .then(() => userData.getUserData())
