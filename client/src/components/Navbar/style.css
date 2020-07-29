@@ -178,15 +178,16 @@ a:hover {
 
 .modal-header {
   padding: 10px 10px 5px 10px;
+  background-color: rgb(219, 219, 219);
 }
 
-.light-mode .modal-header {
-  background-color: rgb(224, 223, 223);
+/* .light-type .modal-header{
+  background-color: rgb(204, 100, 100) !important;
 }
 
-.dark-mode .modal-header{
- background-color: black;
-}
+.dark-type .modal-header{
+ background-color: black !important;
+} */
 
 button.navbar-toggler {
   border: none !important;
@@ -198,11 +199,6 @@ button.navbar-toggler {
   background-color: rgb(71, 71, 71);
   border-radius: 50px;
 }
-
-/* .navbar-toggler-icon {
-  color: rgb(94, 9, 251)!important;
-} */
-
 .dark-mode #list-drop, .dark-mode #list-drop:hover {
   background-color: rgb(15, 15, 15);
   color: rgb(121, 121, 121);

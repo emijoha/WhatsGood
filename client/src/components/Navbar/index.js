@@ -12,6 +12,7 @@ import AuthService from '../../utils/auth';
 
 
 function AppNavbar(props) {
+  const isDark = localStorage.getItem('dark');
   // set modal display state
   const [showModal, setShowModal] = useState(false);
   // get username out of context object to display in nav
@@ -125,7 +126,7 @@ function AppNavbar(props) {
         </Container>
       </Navbar>
       {/* set modal data up */}
-      <Modal size='md' show={showModal} onHide={() => setShowModal(false)} aria-labelledby='signup-modal'>
+      <Modal size='md' show={showModal} onHide={() => setShowModal(false)} aria-labelledby='signup-modal' className={isDark ? 'dark-type' : 'light-type'}>
         {/* tab container to do either signup or login component */}
         <Tab.Container defaultActiveKey='login'>
           <Modal.Header closeButton>
