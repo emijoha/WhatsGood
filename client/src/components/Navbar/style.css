@@ -176,12 +176,6 @@ a:hover {
   content: none; 
 } 
 
-.modal-header {
-  padding: 10px 10px 5px 10px;
-  background-color: rgb(219, 219, 219);
-}
-
-
 button.navbar-toggler {
   border: none !important;
   background-color: transparent;
@@ -204,4 +198,21 @@ button.navbar-toggler {
 
 .dark-mode #notification-counter {
   color: white;
+}
+
+.modal-header {
+  /* padding: 10px 10px 5px 10px; */
+ 
+  color: white;
+  border: none;
+  background-color: rgb(94, 9, 251)!important;
+}
+
+/* #signup-modal {
+  background-color: rgb(133, 133, 133) !important;
+} */
+
+.modal-content, .modal-content:hover, .modal-content:focus {
+  background-color: rgb(94, 9, 251) !important;
+  border: solid 1px black;
 }
