@@ -64,10 +64,12 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type, 
   } else if (type === 'follow') {
     return (
       <NavDropdown.Item className='notification-item' as={Link} to={`/friend_profile?username=${likerUsername}`}>
-        {likerUsername} started following you
+        <div className='notification-text'>
+          {likerUsername} started following you
+        </div>
         <div onClick={(event) => event.stopPropagation()}>
           <a
-            id="notification-button" 
+            id="notification-button"
             onClick={(event) => handleDeleteNotification(notificationId, event)}
           >
             <FontAwesomeIcon
@@ -82,9 +84,12 @@ const NotificationDropdownItem = ({ likerUsername, title, notificationId, type, 
   } else {
     return (
       <NavDropdown.Item className='notification-item' as={Link} to={'/messages'}>
-        {likerUsername} sent you a new message <div onClick={(event) => { event.stopPropagation() }}>
+        <div className='notification-text'>
+          {likerUsername} sent you a new message
+        </div>
+        <div onClick={(event) => { event.stopPropagation() }}>
           <a id="notification-button"
-           onClick={(event) => handleDeleteNotification(notificationId, event)}>
+            onClick={(event) => handleDeleteNotification(notificationId, event)}>
             <FontAwesomeIcon
               // className='search-icon sidebar-icon'
               id='neon-hover'
