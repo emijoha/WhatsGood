@@ -18,8 +18,7 @@ import Home from './pages/Home';
 import Messages from './pages/Messages';
 import ProfilePage from './pages/Profile';
 import FriendProfile from './pages/FriendProfile';
-
-
+import Footer from './components/Footer';
 import * as API from './utils/API';
 import AuthService from './utils/auth';
 
@@ -109,6 +108,7 @@ function App() {
         {/* wrap our entire app in context provider and provide userInfo state as value */}
         <UserInfoContext.Provider value={userInfo}>
           <div className={darkMode ? "dark-mode" : "light-mode"}>
+            <div className='footer-gutter'>
             <Navbar>
             <button 
               className='mode-btn btn-block movie-color movie-border movie-hover-fill'
@@ -142,6 +142,8 @@ function App() {
               <Route exact path='/messages' component={Messages} />
               <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
             </Switch>
+            </div>
+            <Footer></Footer>
           </div>
         </UserInfoContext.Provider>
       </>

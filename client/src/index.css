@@ -4,6 +4,10 @@
 /* font-family: 'Montserrat Subrayada', sans-serif; */
   }
 
+/* .spinner-div {
+  min-height: 3000px;
+} */
+
 .light-gray {
   color: rgb(189, 189, 189);
 }
@@ -81,6 +85,11 @@ button {
 
 a:hover, a:focus {
   color: rgb(94, 9, 251);
+}
+
+.footer-gutter {
+  min-height: 1500px;
+  padding-bottom: 250px;
 }
 
 /* eventually put this in component styling */
