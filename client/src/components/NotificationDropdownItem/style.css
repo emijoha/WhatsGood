@@ -34,6 +34,11 @@
 
 .notification-text {
   justify-self: flex-end;
+  width: 400px;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+
 }
 
 .notification-scroll {
@@ -41,4 +46,24 @@
   padding-right: 8px;
   max-height: 151px;
   overflow: auto;
+}
+
+@media screen and (max-width: 521px) {
+  .notification-text {
+    justify-self: flex-end;
+    width: 300px;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .notification-text {
+  justify-self: flex-end;
+  width: 200px;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  }
 }
