@@ -1,6 +1,12 @@
 
 #search-wrap {
-  margin-top: 30px;
+  margin-top: 80px !important;
+}
+
+@media screen and (max-width: 991px) {
+  #search-wrap {
+    margin-top: 16px !important;
+  }
 }
 
 #form-hugger {

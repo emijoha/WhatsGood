@@ -35,7 +35,7 @@ function SideBar({ cb, page, username }) {
           <button id="side-bar-li" onClick={() => cb("all")}>
             ALL
             <FontAwesomeIcon
-              className='search-icon sidebar-icon'
+              className='sidebar-icon'
               id='purple-hover'
               icon={faAsterisk}
             />
@@ -46,7 +46,7 @@ function SideBar({ cb, page, username }) {
             <button id="side-bar-li" onClick={() => cb("favorites")}>
               FAVORITES
               <FontAwesomeIcon
-                className='search-icon sidebar-icon'
+                className='sidebar-icon'
                 id='purple-hover'
                 icon={faStar}
               />
@@ -57,7 +57,7 @@ function SideBar({ cb, page, username }) {
           <button id="side-bar-li" onClick={() => cb("music")}>
             MUSIC
             <FontAwesomeIcon
-              className='search-icon sidebar-icon'
+              className='sidebar-icon'
               id='purple-hover'
               icon={faMusic}
             />
@@ -68,7 +68,7 @@ function SideBar({ cb, page, username }) {
           <button id="side-bar-li" onClick={() => cb("movie")}>
             MOVIES
             <FontAwesomeIcon
-              className='search-icon sidebar-icon'
+              className='sidebar-icon'
               id='purple-hover'
               icon={faVideo}
             />
@@ -79,7 +79,7 @@ function SideBar({ cb, page, username }) {
           <button id="side-bar-li" onClick={() => cb("game")}>
             GAMES
             <FontAwesomeIcon
-              className='search-icon sidebar-icon'
+              className='sidebar-icon'
               id='purple-hover'
               icon={faGamepad}
             />
@@ -89,7 +89,7 @@ function SideBar({ cb, page, username }) {
           <button id="side-bar-li" onClick={() => cb("book")}>
             BOOKS
             <FontAwesomeIcon
-              className='search-icon sidebar-icon'
+              className='sidebar-icon'
               id='purple-hover'
               icon={faBookOpen}
             />

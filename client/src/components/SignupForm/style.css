@@ -24,6 +24,7 @@
 .dark-mode #form-input-signup {
   color: rgb(216, 216, 216);
   background-color: black;
+  border-color: rgb(65, 65, 65);
 }
 
 .dark-mode #form-input-signup:active {

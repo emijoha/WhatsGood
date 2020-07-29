@@ -548,7 +548,7 @@ function ProfilePage() {
       </Container>
 
       <Container width="100%">
-        <Row id="main-body-row">
+        <Row id="prof-body-row">
           <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
             <SideBar
               cb={handleRenderMediaPage}

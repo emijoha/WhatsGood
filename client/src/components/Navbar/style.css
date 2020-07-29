@@ -2,7 +2,7 @@
    position: fixed;
   width: 100%;
   z-index: 2 !important;
-  /* padding: 2.5px; */
+  padding: 1px 0px 1px 0px !important;
 }
 
 .light-mode #new-navbar {
@@ -47,24 +47,39 @@
   font-size: 1.25rem;
 }
 
+#notification-counter {
+  position: relative;
+  left: 7px;
+  top: 4px;
+}
+
 @media screen and (max-width: 1238px) {
   .logo-text-main {
     font-size: 1.8rem;
-    padding-top: 2px;
+  }
+
+  #new-navbar {
+    padding: 0px !important;
   }
 }
 
 @media screen and (max-width: 1051px) {
   .logo-text-main {
     font-size: 1.55rem;
-    /* padding-top: 0px; */
+  }
+
+  #new-navbar {
+    padding: 0px!important;
   }
 }
 
 @media screen and (max-width: 991px) {
   .logo-text-main {
     font-size: 1.5rem;
-    /* padding-top: 0px; */
+  }
+
+  #new-navbar {
+    padding: 3px 12px 3px 12px !important;
   }
 
   #notification-counter {
@@ -83,6 +98,10 @@
     /* padding-top: 0px; */
   }
 
+  #new-navbar {
+    padding: 5px 12px 5px 12px !important;
+  }
+
   #notification-counter {
     text-align: center;
     top: 26px;
@@ -94,6 +113,10 @@
   .logo-text-main {
     /* padding-top: 8px; */
     font-size: 1.2rem;
+  }
+
+  #new-navbar {
+    padding: 5px 10px 5px 10px !important;
   }
 
   #notification-counter {
@@ -155,25 +178,20 @@ a:hover {
 
 .modal-header {
   padding: 10px 10px 5px 10px;
+  background-color: rgb(219, 219, 219);
 }
 
-.light-mode .modal-header {
-  background-color: rgb(224, 223, 223);
-}
-
-.dark-mode .modal-header{
- background-color: black;
-}
 
 button.navbar-toggler {
   border: none !important;
   background-color: transparent;
+  border-radius: 50px;
 }
 
-.navbar-toggler-icon {
-  color: rgb(94, 9, 251)!important;
+.dark-mode button.navbar-toggler {
+  background-color: rgb(71, 71, 71);
+  border-radius: 50px;
 }
-
 .dark-mode #list-drop, .dark-mode #list-drop:hover {
   background-color: rgb(15, 15, 15);
   color: rgb(121, 121, 121);

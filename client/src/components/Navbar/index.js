@@ -12,7 +12,7 @@ import AuthService from '../../utils/auth';
 
 
 function AppNavbar(props) {
-  // set modal display state
+    // set modal display state
   const [showModal, setShowModal] = useState(false);
   // get username out of context object to display in nav
   // const { username, picture, notifications  } = useContext(UserInfoContext);

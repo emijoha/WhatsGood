@@ -54,9 +54,9 @@ function SearchFriends({ sendSearchedUserToList }) {
             />
           </Col>
           <Col xs={1} md={1} lg={2} id='search-friend-grouping'>
-            <Button id="search-icon-button" type='submit' size='lg'>
+            <a id="search-icon-button" onClick={handleFormSubmit} size='lg'>
               <FontAwesomeIcon id='search-friend-icon' icon={faSearch} size={'lg'} />
-            </Button>
+            </a>
           </Col>
         </Form.Row>
       </Form>

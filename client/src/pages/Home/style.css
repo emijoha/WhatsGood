@@ -2,7 +2,7 @@
   width: 100%;
   margin-left: 0px !important;
   margin-right: 0px !important;
-  margin-top: 25px;
+  margin-top: 75px;
 }
 
 
@@ -13,7 +13,7 @@
 
 @media screen and (max-width: 991px) {
   #media-feed-column {
-  margin-top: 65px;
+  margin-top: 0px;
 }
 }
 

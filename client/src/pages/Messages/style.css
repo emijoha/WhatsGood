@@ -9,11 +9,7 @@
 }
 
 #message-page {
-  padding-top: 50px;
-}
-
-.dark-mode #message-page {
-  padding-top: 75px;
+  padding-top: 100px;
 }
 
 
@@ -54,15 +50,15 @@
     color: rgb(100, 100, 100) !important;
   }
 
+  #message-page {
+    margin-top: -25px;
+  }
 }
 
-@media screen and (min-width: 991px) {
+@media screen and (min-width: 992px) {
      
     #sm-screen-search {
-        
       display: none !important;
-      
-     
     }
 
     #line-divide {
@@ -86,6 +82,8 @@
       border-color: rgb(47, 47, 47);
       color: rgb(100, 100, 100) !important;
     }
+
+
   
 }
 

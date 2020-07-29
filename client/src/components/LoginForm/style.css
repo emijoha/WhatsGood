@@ -39,6 +39,7 @@
 .dark-mode #form-input-login {
   color: rgb(216, 216, 216);
   background-color: black;
+  border-color: rgb(65, 65, 65);
 }
 
 

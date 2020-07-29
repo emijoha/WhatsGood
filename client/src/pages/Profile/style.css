@@ -1,7 +1,18 @@
+#prof-body-row {
+  width: 100%;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  margin-top: 15px;
+}
+
 
 #media-feed-column2 {
   margin-top: 15px;
   padding: 0px !important;
+}
+
+#profile-card {
+  margin-top: 90px !important;
 }
 
 @media screen and (max-width: 991px) {
