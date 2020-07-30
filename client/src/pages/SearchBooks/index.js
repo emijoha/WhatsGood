@@ -27,7 +27,6 @@ function SearchBooks() {
 
     searchGoogleBooks(searchInput)
       .then(({ data }) => {
-        console.log("BOOK DATA", data);
         if (data.totalItems === 0) {
           return setValidSearch(false);
         }
@@ -41,7 +40,6 @@ function SearchBooks() {
           description: book.volumeInfo.description,
           image: book.volumeInfo.imageLinks?.thumbnail || ''
         }));
-        console.log(bookData);
 
         setSearchedBooks(bookData);
         setValidSearch(true);

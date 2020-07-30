@@ -11,38 +11,8 @@ import AuthService from '../../utils/auth';
 import * as API from '../../utils/API';
 import SavedCards from '../../components/SavedCards';
 function SavedFriends() {
-  // const [friendsArray, setFriendsArray] = useState([]);
-  // get whole userData state object from App.js
+
   const userData = useContext(UserInfoContext);
-  // useEffect(() => {
-  //     console.log("user data Id", userData)
-
-  //     if (userData._id !== '') {
-  //         API.getUser(userData._id)
-  //             .then(result => {
-  //                 console.log("RESULT DATA FRIENDS", result.data.friends);
-  //                 setFriendsArray(friendsArray => [...friendsArray], result.data.friends);
-  //             });
-  //     }
-
-  // }, [userData]);
-
-
-  // OLD WAY TO GET FRIENDS
-  // useEffect(() => {
-
-  //    console.log("mounted")
-  //    console.log("USER DATA INSIDE USE EFFECT", userData.friends)
-  //     userData.friends.map(friend => {
-
-  //         console.log("this is friend", friend)
-  //         API.getUser(friend)
-  //             .then(result => {
-
-  //             setFriendsArray(friendsArray => [...friendsArray, result.data])
-  //             })
-  //     });
-  // }, [userData, userData.friends]);
 
   // create function that accepts the friend's mongo _id value as param and deletes the friend from current user's collection
   const handleDeleteFriend = (friend_id) => {
@@ -55,8 +25,7 @@ function SavedFriends() {
 
     API.deleteFriend(friend_id, token)
       // upon succes, update user data to reflect book change
-      .then(() => userData.getUserData(),
-        console.log("made it back"))
+      .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   };
 

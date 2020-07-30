@@ -15,7 +15,6 @@ import './style.css';
 function FriendProfileFeedCard(props) {
   if (props.media.mediaType === 'book') {
     const media = props.media;
-    console.log(media.authors)
     return (
       <Card className='book-border' key={media._id} border='dark'>
         <Card.Body>

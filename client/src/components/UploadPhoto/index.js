@@ -33,8 +33,6 @@ function UploadPhoto({ handleModalClose }) {
 
     const file = await res.json();
 
-    console.log(file);
-
     setImage(file.secure_url);
     setLoading(false);
   }

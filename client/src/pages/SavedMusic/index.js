@@ -25,11 +25,9 @@ function SavedMusic() {
 
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
-  console.log("this is the user data, ", userData);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const makeFavorite = (media) => {
-    console.log('from SavedMovies: ', media);
 
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
@@ -51,15 +49,12 @@ function SavedMusic() {
       favorite: isFavorite
     }
 
-    console.log('updateCriteria: ', updateCriteria);
-
     API.makeFavorite(updateCriteria, token)
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   }
 
   const startReview = (media) => {
-    console.log('media: ', media);
 
     setSelectedMediaReview(media);
   }
@@ -83,7 +78,6 @@ function SavedMusic() {
       id: selectedMediaReview._id,
       review: reviewInput
     }
-    console.log(updateCriteria);
 
     API.saveUserReview(updateCriteria, token)
       .then(() => setReviewInput(''))
@@ -93,7 +87,6 @@ function SavedMusic() {
   }
 
   const startRating = (music) => {
-    console.log('movie: ', music);
 
     setSelectedMediaRating(music);
   }
@@ -117,7 +110,6 @@ function SavedMusic() {
       id: selectedMediaRating._id,
       userRating: userRating
     }
-    console.log(updateCriteria);
 
     API.saveUserRating(updateCriteria, token)
       .then(() => setUserRating(0))

@@ -30,7 +30,6 @@ function SearchMovies() {
 
     API.searchOMDB(searchInput)
       .then(({ data }) => {
-        console.log("DATA", data);
         if (data.Response === "False") {
           return setValidSearch(false);
         }
@@ -90,7 +89,6 @@ function SearchMovies() {
       userReview: userReview
     }
 
-    console.log('movieToSave: ', movieToSave);
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 

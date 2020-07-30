@@ -27,7 +27,6 @@ function SearchMusic() {
 
     searchMusic(searchInput)
       .then(({ data }) => {
-        console.log("SEARCH MUSIC DATA", data.data[0]);
         if (data.data[0] === undefined) {
           return setValidSearch(false);
         }
@@ -41,7 +40,6 @@ function SearchMusic() {
           preview: music.preview,
           image: music.album.cover_big || '',
         }));
-        console.log(musicData);
 
         setSearchedMusic(musicData);
         setValidSearch(true);
@@ -80,7 +78,6 @@ function SearchMusic() {
     saveMusic(musicToSave, token)
       .then(() => {
         userData.getUserData()
-        console.log(userData.savedMusic)
       }
       )
       .catch((err) => console.log(err));

@@ -40,7 +40,6 @@ function SearchGames() {
           description: data.result.description,
           image: data.result.image || '',
         }];
-        console.log(data);
 
         setSearchedGame(gameData);
         setValidSearch(true);

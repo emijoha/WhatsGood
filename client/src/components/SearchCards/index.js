@@ -217,7 +217,6 @@ function SearchCards(props) {
                     games={searchedUser.games.length}
                     books={searchedUser.books.length}
                   />
-                  {console.log("WHATS THIS,", searchedUser)}
                   {props.savedArray?.every((friend) => friend._id !== searchedUser._id)
                     ? <Button
                       disabled={userData._id === searchedUser._id}
