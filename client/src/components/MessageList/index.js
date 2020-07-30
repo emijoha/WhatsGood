@@ -33,8 +33,6 @@ function MessageList({ userList, getAllUserMessages, handleNewChatState }) {
           }
 
         })}
-
-        {console.log("from message list component,", userListState)}
       </div>
     </div>
 

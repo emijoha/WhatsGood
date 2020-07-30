@@ -63,7 +63,6 @@ function RateSaved(props) {
                 <div className='rating-select'>
                   {[...Array(5)].map((star, i) => {
                     const ratingValue = i + 1;
-                    console.log('faIcon: ', faIcon)
                     return (
                       <label key={i}>
                         <input id='rate-it' type='radio' name='rating'

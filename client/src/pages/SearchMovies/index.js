@@ -30,7 +30,6 @@ function SearchMovies() {
 
     API.searchOMDB(searchInput)
       .then(({ data }) => {
-        console.log("DATA", data);
         if (data.Response === "False") {
           return setValidSearch(false);
         }
@@ -90,7 +89,6 @@ function SearchMovies() {
       userReview: userReview
     }
 
-    console.log('movieToSave: ', movieToSave);
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
@@ -136,14 +134,14 @@ function SearchMovies() {
       </Container>
       <Container>
         {validSearch ?
-            <SearchCards
-              cardType='searchedMovies'
-              resultArray={searchedMovies}
-              savedArray={userData.savedMovies}
-              username={userData.username}
-              cb={handleSaveMedia}
-            />
-          : <h2>Sorry, we could not find any movies that matched your search.</h2>}
+          <SearchCards
+        cardType='searchedMovies'
+        resultArray={searchedMovies}
+        savedArray={userData.savedMovies}
+        username={userData.username}
+        cb={handleSaveMedia}
+        />
+        : <h2 className='muted-subtext3'>Sorry, we could not find any movies that matched your search.</h2>}
       </Container>
     </>
   );

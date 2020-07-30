@@ -38,52 +38,19 @@ function SearchUser() {
             firstName: user.firstName,
             lastName: user.lastName
           }))
-          console.log('searchedUsers: ', foundUsers);
 
           foundUsers.filter(user => (user._id !== userData._id)).sort();
 
-          console.log('now: ', foundUsers);
           return setSearchedUsers(foundUsers);
         })
         .catch(err => console.log(err));
     }
   }, [debouncedSearchInput]);
 
-  // const [queryStringUsername, setQueryStringUsername] = useState()
-
-  // const history = useHistory();
-
-  // useEffect(() => {
-  //   // if (window.location.search) {
-  //   setQueryStringUsername(window.location.search.split('=')[1])
-  //   searchFriend(window.location.search.split('=')[1])
-  //     .then(user => setSearchedUser({
-  //       username: user.data.username,
-  //       _id: user.data._id,
-  //       picture: user.data.picture,
-  //       email: user.data.email,
-  //       music: user.data.savedMusic,
-  //       movies: user.data.savedMovies,
-  //       games: user.data.savedGames,
-  //       books: user.data.savedBooks
-
-  //     }))
-  //   // }
-  // }, [queryStringUsername !== window.location.search.split('=')[1]]);
-
-
-  // const notificationData = {
-  //   likerUsername: userData.username,
-  //   type: "follow",
-  //   ownerId: searchedUser._id,
-  //   followerId: userData._id
-  // };
-
 
   // create method to search for users and set state on form submit
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log("clicked", searchInput)
 
     if (!searchInput) {
       return false;
@@ -103,31 +70,13 @@ function SearchUser() {
           firstName: user.firstName,
           lastName: user.lastName
         }))
-        console.log('searchedUsers: ', foundUsers);
 
         foundUsers.filter(user => (user._id !== userData._id)).sort();
 
-        console.log('now: ', foundUsers);
         return setSearchedUsers(foundUsers);
       })
       .catch(err => console.log(err));
 
-    // NEED TO PASS SEARCHINPUT AS PARAMS.USERNAME
-    // searchFriend(searchInput)
-    //   .then(user => setSearchedUser({
-    //     username: user.data.username,
-    //     _id: user.data._id,
-    //     picture: user.data.picture,
-    //     email: user.data.email,
-    //     music: user.data.savedMusic,
-    //     movies: user.data.savedMovies,
-    //     games: user.data.savedGames,
-    //     books: user.data.savedBooks
-    //   }),
-    //     setSearchInput(''),
-    //     history.push('/search_user')
-    //     // window.location.reload()
-    //   );
   }
 
   // function to handle saving a friend to database
@@ -170,8 +119,7 @@ function SearchUser() {
 
     deleteFriend(friend_id, token)
       // upon succes, update user data to reflect book change
-      .then(() => userData.getUserData(),
-        console.log("made it back"))
+      .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   };
 

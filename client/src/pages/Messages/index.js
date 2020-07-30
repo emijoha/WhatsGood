@@ -19,8 +19,6 @@ function Messages() {
 
   const userData = useContext(UserInfoContext);
 
-  console.log("userDATA DREY:  ", userData);
-
   useEffect(() => {
 
     getAllUserMessages();
@@ -116,8 +114,6 @@ function Messages() {
       users: [newChatState.receiverId, newMessageObject.senderId]
     }
 
-    console.log("chat data, ", chatData)
-
     if (!isPreviousChatState) {
 
       API.saveChat(chatData, token)
@@ -132,7 +128,6 @@ function Messages() {
           //     if (user._id === newChatState.receiverId){
 
           setCurrentChatIdState(chatData._id)
-          console.log("this is the currect chatData._id", chatData._id)
           //     }      
           //   })
 

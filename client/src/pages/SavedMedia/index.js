@@ -27,7 +27,6 @@ function SavedMedia() {
   const userData = useContext(UserInfoContext);
 
   const makeFavorite = (media) => {
-    console.log('from SavedMovies: ', media);
 
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
@@ -49,15 +48,12 @@ function SavedMedia() {
       favorite: isFavorite
     }
 
-    console.log('updateCriteria: ', updateCriteria);
-
     API.makeFavorite(updateCriteria, token)
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   }
 
   const startReview = (media) => {
-    console.log('media: ', media);
 
     setSelectedMediaReview(media);
   }
@@ -81,7 +77,6 @@ function SavedMedia() {
       id: selectedMediaReview._id,
       review: reviewInput
     }
-    console.log(updateCriteria);
 
     API.saveUserReview(updateCriteria, token)
       .then(() => setReviewInput(''))
@@ -91,7 +86,6 @@ function SavedMedia() {
   }
 
   const startRating = (media) => {
-    console.log('movie: ', media);
 
     setSelectedMediaRating(media);
   }
@@ -115,7 +109,6 @@ function SavedMedia() {
       id: selectedMediaRating._id,
       userRating: userRating
     }
-    console.log(updateCriteria);
 
     API.saveUserRating(updateCriteria, token)
       .then(() => setUserRating(0))

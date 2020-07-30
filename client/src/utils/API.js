@@ -99,12 +99,10 @@ export const saveMusic = function (musicData, token) {
 };
 
 export const savePicture = function (pictureData, token) {
-  console.log(pictureData, token);
   return axios.put('/api/users/picture', pictureData, { headers: { authorization: `Bearer ${token}` } });
 };
 
 export const saveUserBio = function (userBio, token) {
-  console.log('userBio: ', userBio)
   return axios.put('/api/users/user-bio', userBio, { headers: { authorization: `Bearer ${token}` } });
 }
 
@@ -117,12 +115,10 @@ export const getMusic = function (music_id) {
 };
 
 export const searchOMDB = function (query) {
-  console.log(query);
   return axios.get(`https://www.omdbapi.com/?apikey=671512a8&s=${query}`, { params: { q: query } });
 };
 
 export const searchEachMovie = function (query) {
-  console.log(query);
   return axios.get(`https://www.omdbapi.com/?apikey=671512a8&i=${query}`, { params: { q: query } });
 };
 
@@ -131,12 +127,10 @@ export const saveMovie = function (movieData, token) {
 };
 
 export const saveUserReview = function (userReview, token) {
-  console.log(userReview, token);
   return axios.put('/api/users/user-review', userReview, { headers: { authorization: `Bearer ${token}` } });
 };
 
 export const saveUserRating = function (userRating, token) {
-  console.log('userRating: ', userRating, token);
   return axios.put('/api/users/user-rating', userRating, { headers: { authorization: `Bearer ${token}` } });
 };
 
@@ -158,17 +152,14 @@ export const saveFriend = function (userData, token) {
 };
 
 export const saveLike = function (likeData, token) {
-  console.log('likeData from API: ', likeData, 'userToken: ', token);
   return axios.put('/api/users/likes', likeData, { headers: { authorization: `Bearer ${token}` } });
 };
 // save friend data for a logged in user
 export const deleteFriend = function (friend_id, token) {
-  console.log("friend id delete", friend_id)
   return axios.delete(`/api/users/friends/${friend_id}`, { headers: { authorization: `Bearer ${token}` } });
 };
 
 export const addLike = function (likeData, token) {
-  console.log('addLike like data', likeData, token);
 
   if (likeData.mediaType === "book") {
     return axios.put(`/api/users/books/${likeData._id}`, likeData, { headers: { authorization: `Bearer ${token}` } });
@@ -192,12 +183,10 @@ export const addNotification = function (notificationData, token) {
 };
 
 export const deleteNotification = function (notificationId) {
-  console.log('notification id', notificationId)
   return axios.delete(`/api/users/notifications/${notificationId}`, notificationId);
 };
 
 export const addComment = function (commentData, token) {
-  console.log("comment data:", commentData, "token:", token);
 
   if (commentData.mediaType === "book") {
     return axios.put(`/api/users/books/comments/${commentData.mediaId}`, commentData, { headers: { authorization: `Bearer ${token}` } });
@@ -226,7 +215,6 @@ export const saveMessage = function (messageData, token) {
 };
 
 export const makeFavorite = function (favorite, token) {
-  console.log(favorite);
   return axios.put('/api/users/make-favorite', favorite, { headers: { authorization: `Bearer ${token}` } });
 };
 
@@ -236,7 +224,6 @@ export const getMedia = function (request) {
 
 
 export const deleteThisMedia = function (mediaId) {
-  console.log('media id', mediaId)
   return axios.delete(`/api/users/all-media/${mediaId}`, mediaId);
 };
 
