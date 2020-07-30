@@ -3,3 +3,38 @@
   bottom: 0px;
 }
 
+#footer-title {
+  padding-bottom: 5px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.dev-name {
+  color: rgb(94, 9, 251);
+  font-size: 1.1rem;
+  padding-top: 10px;
+  margin-bottom: 0px;
+  padding-bottom: 5px;
+}
+
+.dark-mode .dev-name {
+  color: rgb(255, 2, 234);
+}
+
+#footer-links {
+  padding-top: 25px;
+  background: linear-gradient(to bottom, rgb(224, 224, 224) 0%, rgb(255, 255, 255) 7%);
+  padding-bottom: 30px;
+}
+
+.dark-mode #footer-links {
+  padding-top: 25px;
+  background: linear-gradient(to bottom, rgb(224, 224, 224) 0%, rgb(255, 255, 255) 7%);
+}
+
+.dev-link {
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 2px;
+  font-weight: 500;
+}
