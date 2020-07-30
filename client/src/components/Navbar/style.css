@@ -1,15 +1,24 @@
 #new-navbar {
-  background-color: rgb(255, 255, 255) !important;
-  /* backdrop-filter: blur(500px); */
-  position: fixed;
+   position: fixed;
   width: 100%;
   z-index: 2 !important;
-  padding: 2.5px;
+  padding: 1px 0px 1px 0px !important;
 }
 
-#nav-container {
-  padding-left: 20px !important;
-  padding-right: 20px !important;
+.light-mode #new-navbar {
+  background-color: rgb(255, 255, 255) !important;
+}
+
+.dark-mode #new-navbar {
+  background-color: rgb(34, 34, 34) !important;
+}
+
+.dark-mode .nav-link-group {
+  color: rgb(130, 130, 130) !important;
+}
+
+.dark-mode .nav-link-group:hover {
+  color: rgb(255, 255, 255) !important;
 }
 
 .logo-text-main {
@@ -21,36 +30,82 @@
   align-items: center;
 }
 
+#whats-good:hover {
+  color: rgb(94, 9, 251) !important;
+}
+
+.dark-mode #whats-good {
+  color: rgb(221, 221, 221);
+}
+
+.dark-mode .username-logo {
+  color: rgb(102, 102, 102);
+}
+
 .photo-header {
   font-weight: 700;
   font-size: 1.25rem;
 }
 
+#notification-counter {
+  position: relative;
+  left: 7px;
+  top: 4px;
+}
+
 @media screen and (max-width: 1238px) {
   .logo-text-main {
     font-size: 1.8rem;
-    padding-top: 0px;
+  }
+
+  #new-navbar {
+    padding: 0px !important;
   }
 }
 
 @media screen and (max-width: 1051px) {
   .logo-text-main {
     font-size: 1.55rem;
-    padding-top: 0px;
+  }
+
+  #new-navbar {
+    padding: 0px!important;
   }
 }
 
 @media screen and (max-width: 991px) {
   .logo-text-main {
     font-size: 1.5rem;
-    padding-top: 0px;
   }
+
+  #new-navbar {
+    padding: 3px 12px 3px 12px !important;
+  }
+
+  #notification-counter {
+    text-align: center;
+    position: relative;
+    top: 26px;
+    left: -27px;
+  }
+
+
 }
 
 @media screen and (max-width: 767px) {
   .logo-text-main {
     font-size: 1.25rem;
-    padding-top: 0px;
+    /* padding-top: 0px; */
+  }
+
+  #new-navbar {
+    padding: 5px 12px 5px 12px !important;
+  }
+
+  #notification-counter {
+    text-align: center;
+    top: 26px;
+    left: -27px;
   }
 }
 
@@ -58,6 +113,16 @@
   .logo-text-main {
     /* padding-top: 8px; */
     font-size: 1.2rem;
+  }
+
+  #new-navbar {
+    padding: 5px 10px 5px 10px !important;
+  }
+
+  #notification-counter {
+    text-align: center;
+    top: 26px;
+    left: -27px;
   }
 }
 
@@ -78,6 +143,13 @@ a {
   background-color: transparent;
 }
 
+.dark-mode a {
+  color: rgb(216, 216, 216);
+}
+
+.dark-mode a:hover {
+  color: rgb(94, 9, 251);
+}
 /* a:active {
   color: rgb(106, 0, 206) !important;
 } */
@@ -104,16 +176,50 @@ a:hover {
   content: none; 
 } 
 
-.modal-header {
-  padding: 10px 10px 5px 10px;
-  background-color: rgb(224, 223, 223);
-}
-
 button.navbar-toggler {
   border: none !important;
   background-color: transparent;
+  border-radius: 50px;
 }
 
-.navbar-toggler-icon {
-  color: rgb(94, 9, 251)!important;
+.dark-mode button.navbar-toggler {
+  background-color: rgb(71, 71, 71);
+  border-radius: 50px;
+}
+
+#list-drop:hover, #list-drop:focus {
+  color: rgb(94, 9, 251);
+}
+
+.dark-mode #list-drop, .dark-mode #list-drop:hover {
+  background-color: rgb(15, 15, 15);
+  color: rgb(121, 121, 121);
+  font-weight: 500;
+}
+
+.dropdown-menu, .dropdown-menu:hover, .dropdown-menu:focus  {
+  background-color: rgb(255, 255, 255) !important;
+}
+.dark-mode .dropdown-menu, .dark-mode .dropdown-menu:hover, .dark-mode .dropdown-menu:focus {
+  background-color: rgb(15, 15, 15) !important;
+}
+
+.dark-mode #notification-counter {
+  color: white;
+}
+
+.modal-header {
+  padding: 20px 20px 5px 20px;
+  color: rgb(255, 255, 255);
+  border: none;
+}
+
+/* #signup-modal {
+  background-color: rgb(133, 133, 133) !important;
+} */
+
+.modal-content, .modal-content:hover, .modal-content:focus {
+  background: linear-gradient(to bottom right, rgb(94, 9, 251) 30%, rgb(255, 2, 234) 100%) !important;
+  border: none;
+  padding: 10px;
 }

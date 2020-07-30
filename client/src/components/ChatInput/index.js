@@ -77,9 +77,9 @@ function ChatInput({ handleSendMessage, handleNewMessageState, newChatState }) {
           />
         </Col>
         <Col xs={1} md={1} lg={1}>
-          <Button id="message-icon-button" className='purple neon-hover' type='submit' variant='success' size='lg' disabled={!newChatState.username}>
+          <a id="message-icon-button" className='purple neon-hover'  onClick={handleFormSubmit} size='lg' disabled={!newChatState.username}>
             <FontAwesomeIcon icon={faPaperPlane} size={'md'} />
-          </Button>
+          </a>
         </Col>
       </Form.Row>
     </Form>

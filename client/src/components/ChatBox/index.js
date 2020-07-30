@@ -122,16 +122,16 @@ function ChatBox({ handleNewMessageState, newChatState, setIsPreviousChatState, 
             return (
               <div>
                 <Row id="chat-message-row">
-                  <Col xs={6} sm={6} md={6} lg={6}></Col>
-                  <Col xs={6} sm={6} md={6} lg={6}>
+                  <Col xs={0} sm={0} md={6} lg={6}></Col>
+                  <Col xs={12} sm={12} md={6} lg={6}>
                     <div id="this-user-message">
                       {convo.messageText}
                     </div>
                   </Col>
                 </Row>
                 <Row id="chat-message-row">
-                  <Col xs={6} sm={6} md={6} lg={6}></Col>
-                  <Col xs={6} sm={6} md={6} lg={6}>
+                  <Col xs={0} sm={0} md={6} lg={6}></Col>
+                  <Col xs={12} sm={12} md={6} lg={6}>
                     <img id="this-user-pic" src={convo.senderPicture} />
                     <div id="this-user-time">{moment(convo.createdAt).calendar()} </div>
                   </Col>
@@ -142,14 +142,14 @@ function ChatBox({ handleNewMessageState, newChatState, setIsPreviousChatState, 
           return (
             <div>
               <Row id="chat-message-row">
-                <Col xs={6} sm={6} md={6} lg={6}>
+                <Col xs={12} sm={12} md={6} lg={6}>
                   <div id="that-user-message">
                     {convo.messageText}
                   </div>
                 </Col>
               </Row>
               <Row id="chat-message-row">
-                <Col xs={6} sm={6} md={6} lg={6}>
+                <Col xs={12} sm={12} md={6} lg={6}>
                 <img id="that-user-pic" src={convo.senderPicture} />
                   <div id="that-user-time">{moment(convo.createdAt).calendar()}</div>
                 </Col>

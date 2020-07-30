@@ -1,17 +1,18 @@
-#search-icon-button, #search-icon-button:focus {
+#search-icon-button {
     color: rgb(75, 0, 196) !important;
     background-color: rgba(255, 255, 255, 0) !important;
     border: none !important;
     position: absolute;
-    top: 3px;
-    left: -10px;
+    top: 8px;
+    left: 0px;
+    font-size: 1.4rem;
 }
 
 #search-friend-grouping {
   position: relative;
 }
 
-#search-icon-button:hover {
+#search-icon-button:hover, #search-icon-button:focus {
     color: rgb(183, 0, 255) !important;
     background-color: rgba(255, 255, 255, 0) !important;
 }
@@ -30,6 +31,12 @@
     font-size: 15px;
 }
 
+.dark-mode #mess-form-input {
+  border-color: rgb(65, 65, 65);
+  background-color: black !important;
+  color: rgb(195, 195, 195);
+}
+
 #form-input:active, .form-input:focus {
     background: transparent !important;
     outline: none !important;
@@ -43,4 +50,12 @@
   #message-form-div {
     border-bottom: solid 1px rgb(218, 218, 218);
   }
+
+  .dark-mode #message-form-div {
+    border-color: rgb(54, 54, 54);
+  }
+}
+
+.dark-mode #message-form-div {
+  color: rgb(97, 97, 97);
 }

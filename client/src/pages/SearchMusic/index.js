@@ -1,13 +1,10 @@
 import React, { useState, useContext, useCallback } from 'react';
-import { Jumbotron, Row, Container, Col, Form, Button } from 'react-bootstrap';
-import ReactAudioPlayer from 'react-audio-player';
+import { Row, Container, Col, Form, Button} from 'react-bootstrap';
 import SearchCards from '../../components/SearchCards';
 import SearchIconGroup from '../../components/SearchIconGroup';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { saveMusic, searchMusic } from '../../utils/API';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function SearchMusic() {
@@ -31,7 +28,7 @@ function SearchMusic() {
     searchMusic(searchInput)
       .then(({ data }) => {
         console.log("SEARCH MUSIC DATA", data.data[0]);
-        if(data.data[0] === undefined){
+        if (data.data[0] === undefined) {
           return setValidSearch(false);
         }
         const musicData = data.data.map((music) => ({
@@ -57,6 +54,9 @@ function SearchMusic() {
   const handleSaveMedia = useCallback((music, userRating, userReview) => {
     // find the book in `searchedBooks` state by the matching id
     const musicToSave = {
+      username: userData.username,
+      userId: userData._id,
+      mediaType: "music",
       mediaId: music.mediaId,
       timeStamp: Date.now(),
       createdAt: Date(),
@@ -87,36 +87,34 @@ function SearchMusic() {
   });
 
   return (
-    <div id="container">
-      <Row>
-        <Container id='search-wrap'>
-          <Row>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-            <Col xs={12} s={12} md={10} lg={8}>
-              <h5 id="search-heading">SEARCH MUSIC</h5>
-              <div id='form-hugger'>
-                <Form onSubmit={handleFormSubmit}>
-                  <Form.Control
-                    id="api-search-input"
-                    name='searchInput'
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
-                    type='text'
-                    size='lg'
-                    placeholder='Search for music'
-                  />
-                  <SearchIconGroup />
-                  <Button id="form-search-btn" type='submit' size='lg'>
-                    SEARCH
+    <>
+      <Container >
+        <Row>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+          <Col id='search-wrap' xs={12} s={12} md={10} lg={8}>
+            <h5 id="search-heading">SEARCH MUSIC</h5>
+            <div id='form-hugger'>
+              <Form onSubmit={handleFormSubmit}>
+                <Form.Control
+                  id="api-search-input"
+                  name='searchInput'
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  type='text'
+                  size='lg'
+                  placeholder='Search for music'
+                />
+                <SearchIconGroup />
+                <Button id="form-search-btn" type='submit' size='lg'>
+                  SEARCH
                 </Button>
-                </Form>
-              </div>
-            </Col>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-          </Row>
-          <hr></hr>
-        </Container>
-      </Row>
+              </Form>
+            </div>
+          </Col>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+        </Row>
+        <hr></hr>
+      </Container>
       <Container>
         {validSearch ?
           <SearchCards
@@ -128,7 +126,7 @@ function SearchMusic() {
         />
         : <h2 className='muted-subtext3'>Sorry, we could not find any music that matched your search.</h2>}
       </Container>
-    </div>
+    </>
   );
 }
 

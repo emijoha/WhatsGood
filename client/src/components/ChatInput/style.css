@@ -1,21 +1,25 @@
 #chat-input {
-   
-    border-radius: 40px;
-    background: transparent;
-    color: black;
-    border: none;
-    border: 1px solid black;
-    box-shadow: none;
-    background: transparent !important;
-    outline: none !important;
-    margin: 10px;
-    font-size: 15px;
-    margin-right: none; 
+  border-radius: 40px;
+  background: transparent;
+  color: black;
+  border: 1px solid black;
+  box-shadow: none;
+  background: transparent !important;
+  outline: none !important;
+  margin-bottom: 20px;
+  font-size: 15px;
+  margin-right: none; 
 }
 
 #chat-input:active, #chat-input:focus {
     background: transparent !important;
     outline: none !important;
+}
+
+.dark-mode #chat-input {
+  background-color: rgb(0, 0, 0) !important;
+  border-color: rgb(65, 65, 65);
+  color: rgb(175, 175, 175);
 }
 
 #message-submit-group {
@@ -26,6 +30,6 @@
   background: transparent !important;
   font-size: 2rem;
   position: absolute !important;
-  left: -5px;
-  top: -2px;
+  right: 9px;
+  top: -3px;
 }

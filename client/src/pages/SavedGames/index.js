@@ -132,6 +132,13 @@ function SavedGames() {
     if (!token) {
       return false;
     }
+
+    API.deleteThisMedia(game_id)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+
     API.deleteGame(game_id, token)
       // upon succes, update user data to reflect book change
       .then(() => userData.getUserData())
@@ -139,24 +146,22 @@ function SavedGames() {
   };
 
   return (
-    <div id="container">
-      <Row>
-        <Container>
-          <Row>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-            <Col xs={12} s={12} md={10} lg={8}>
-              <div id="sub-container" >
-                <div id="header-div">
-                  <h5 className="text-center" id="media-header">MY GAMES</h5>
-                  <SavedIconLinks userData={userData}></SavedIconLinks>
-                </div>
+    <>
+      <Container>
+        <Row>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+          <Col id='search-wrap' xs={12} s={12} md={10} lg={8}>
+            <div id="sub-container" >
+              <div id="header-div">
+                <h5 className="text-center" id="media-header">MY GAMES</h5>
+                <SavedIconLinks userData={userData}></SavedIconLinks>
               </div>
-            </Col>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-          </Row>
-          <hr></hr>
-        </Container>
-      </Row>
+            </div>
+          </Col>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+        </Row>
+        <hr></hr>
+      </Container>
       <Container>
         <a className='muted-subtext' id='neon-hover' href='/search_games'>
           <div className="empty-message">
@@ -195,7 +200,7 @@ function SavedGames() {
           : null
         } */}
       </Container>
-    </div>
+    </>
   );
 }
 

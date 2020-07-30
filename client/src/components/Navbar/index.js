@@ -11,8 +11,8 @@ import AuthService from '../../utils/auth';
 
 
 
-function AppNavbar() {
-  // set modal display state
+function AppNavbar(props) {
+    // set modal display state
   const [showModal, setShowModal] = useState(false);
   // get username out of context object to display in nav
   // const { username, picture, notifications  } = useContext(UserInfoContext);
@@ -31,15 +31,15 @@ function AppNavbar() {
           {userData.username
             ? <span>
               <Navbar.Brand className='shorten' id='purple-hover' as={Link} to='/home'>
-                <p className='logo-text-main special-font'>WHAT'S GOOD<span>&nbsp;</span></p>
+                <p id='whats-good' className='logo-text-main special-font'>WHAT'S GOOD<span>&nbsp;</span></p>
               </Navbar.Brand>
-              <Navbar.Brand  as={Link} to='/profile'>
-                <p className='logo-text-main special-font light-gray' id='neon-hover'>{`${userData.username.toUpperCase()}?`}</p>
+              <Navbar.Brand as={Link} to='/profile'>
+                <p className='logo-text-main special-font light-gray username-logo' id='neon-hover'>{`${userData.username.toUpperCase()}?`}</p>
               </Navbar.Brand>
             </span>
             :
             <Navbar.Brand id='purple-hover' as={Link} to='/'>
-              <p className='logo-text-main special-font'>WHAT'S GOOD</p>
+              <p id='whats-good' className='logo-text-main special-font'>WHAT'S GOOD</p>
             </Navbar.Brand>
           }
           <Navbar.Toggle aria-controls='navbar' />
@@ -48,36 +48,11 @@ function AppNavbar() {
               <Nav.Link className="nav-link-group" as={Link} to='/search_music'>
                 SEARCH
               </Nav.Link>
-              {/* {userData.username
-                ? <NavDropdown className="nav-link-group" title="SEARCH" id="basic-nav-dropdown" >
-                  <NavDropdown.Item href="/search_user">SEARCH FOR FRIENDS</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_books">SEARCH BOOKS</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_music">SEARCH MUSIC</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_movies">SEARCH MOVIES</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_games">SEARCH GAMES</NavDropdown.Item>
-                </NavDropdown>
-                : <NavDropdown className="nav-link-group" title="SEARCH" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/search-user">SEARCH FOR FRIENDS</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_books">SEARCH BOOKS</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_music">SEARCH MUSIC</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_movies">SEARCH MOVIES</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_games">SEARCH GAMES</NavDropdown.Item>
-                </NavDropdown>
-              } */}
               {userData.username &&
                 <Nav.Link className="nav-link-group" as={Link} to='/saved_media'>
                   MY MEDIA
               </Nav.Link>
               }
-              {/* {userData.username &&
-                <NavDropdown className="nav-link-group" title="MY MEDIA" id="basic-nav-dropdown">
-                  <NavDropdown.Item href='/saved_media'>ALL MY MEDIA</NavDropdown.Item>
-                  <NavDropdown.Item href='/saved_books'>MY BOOKS</NavDropdown.Item>
-                  <NavDropdown.Item href="/saved_music">MY MUSIC</NavDropdown.Item>
-                  <NavDropdown.Item href="/saved_movies">MY MOVIES</NavDropdown.Item>
-                  <NavDropdown.Item href="/saved_games">MY GAMES</NavDropdown.Item>
-                </NavDropdown>
-              } */}
               {userData.username &&
                 <Nav.Link className="nav-link-group" as={Link} to='/saved_friends'>
                   MY FRIENDS
@@ -88,15 +63,16 @@ function AppNavbar() {
               }
               {userData.username &&
                 <NavDropdown
+                  id='drop-down-list'
                   alignRight
                   title={<div className="text-center"><ProfilePic picture={userData.picture} username={userData.username} /></div>}
                 >
-                  <NavDropdown.Item onClick={() => setShowModal(true)}>UPLOAD PHOTO</NavDropdown.Item>
-                  <NavDropdown.Item href="/profile">MY PROFILE</NavDropdown.Item>
-                  
-                  <NavDropdown.Item href="/messages">MESSAGES</NavDropdown.Item>
+                  <NavDropdown.Item id='list-drop' onClick={() => setShowModal(true)}>UPLOAD PHOTO</NavDropdown.Item>
+                  <NavDropdown.Item id='list-drop'  href="/profile">MY PROFILE</NavDropdown.Item>
+
+                  <NavDropdown.Item id='list-drop'  href="/messages">MESSAGES</NavDropdown.Item>
                   {userData.notifications.length
-                    ? <div className='notification-scroll'>
+                    ? <div id='list-drop'  className='notification-scroll'>
                       {userData.notifications.map((notification) => {
                         { console.log("notification in navbar", notification) }
                         return (
@@ -115,7 +91,8 @@ function AppNavbar() {
                     </div>
                     : null
                   }
-                  <NavDropdown.Item onClick={AuthService.logout}>LOGOUT</NavDropdown.Item>
+                  <NavDropdown.Item id='list-drop'  onClick={AuthService.logout}>LOGOUT</NavDropdown.Item>
+                  <NavDropdown.Item id='list-drop' >{props.children}</NavDropdown.Item>
                 </NavDropdown>
               }
             </Nav>
@@ -123,7 +100,7 @@ function AppNavbar() {
         </Container>
       </Navbar>
       {/* set modal data up */}
-      <Modal size='md' show={showModal} onHide={() => setShowModal(false)} aria-labelledby='signup-modal'>
+      <Modal size='md' show={showModal} onHide={() => setShowModal(false)} aria-labelledby='signup-modal' id='upload-modal'>
         {/* tab container to do either signup or login component */}
         <Tab.Container defaultActiveKey='login'>
           <Modal.Header closeButton>

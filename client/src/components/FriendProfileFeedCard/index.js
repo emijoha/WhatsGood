@@ -13,7 +13,7 @@ import './style.css';
 
 
 function FriendProfileFeedCard(props) {
-  if (props.media.mediaType === 'Book') {
+  if (props.media.mediaType === 'book') {
     const media = props.media;
     console.log(media.authors)
     return (
@@ -32,7 +32,7 @@ function FriendProfileFeedCard(props) {
             : null}
           <div id="center-wrap">
             <br />
-            <Card.Title>{media.title.toUpperCase()}
+            <Card.Title><b>{media.title.toUpperCase()}</b>
               <p className='by'>{media.authors.length > 1 ? 'Authors' : 'Author'}: {media.authors}</p>
             </Card.Title>
           </div>
@@ -53,7 +53,6 @@ function FriendProfileFeedCard(props) {
               })}
             </p>
             <p className='ratingReviewHeading book-border'>{media.username}'s Review</p>
-            <p>{media.userReview.length ? media.userReview : null}</p>
           </div>
           <div className='scroll-box'>
             {media.userReview.length ? media.userReview : "What's good... and what's not? No idea, there's no review yet!"}
@@ -80,7 +79,7 @@ function FriendProfileFeedCard(props) {
         </Card.Body>
       </Card>
     )
-  } else if (props.media.mediaType === 'Music') {
+  } else if (props.media.mediaType === 'music') {
     const media = props.media;
     return (
       <Card className='music-border' key={media._id} border='dark'>
@@ -98,11 +97,11 @@ function FriendProfileFeedCard(props) {
             : null}
           <div id="center-wrap">
             <br />
-            <Card.Title>{media.title.toUpperCase()}
+            <Card.Title><b>{media.title.toUpperCase()}</b>
               <p className='by'>Artist: {media.artist}</p>
             </Card.Title>
             <ReactAudioPlayer
-              id="music-player"
+              className='audio-player'
               src={media.preview}
               controls
             />
@@ -148,7 +147,7 @@ function FriendProfileFeedCard(props) {
         </Card.Body>
       </Card>
     );
-  } else if (props.media.mediaType === 'Movie') {
+  } else if (props.media.mediaType === 'movie') {
     const media = props.media;
     return (
       <Card className='movie-border' key={media._id} border='dark'>
@@ -166,7 +165,7 @@ function FriendProfileFeedCard(props) {
             : null}
           <div id='center-wrap'>
             <br />
-            <Card.Title>{media.title.toUpperCase()}
+            <Card.Title><b>{media.title.toUpperCase()}</b>
               <p className='by'>Director: {media.director}</p>
             </Card.Title>
           </div>
@@ -211,7 +210,7 @@ function FriendProfileFeedCard(props) {
         </Card.Body>
       </Card>
     );
-  } else if (props.media.mediaType === 'Game') {
+  } else if (props.media.mediaType === 'game') {
     const media = props.media;
     return (
       <Card className='game-border' key={media._id} border='dark'>
@@ -229,7 +228,7 @@ function FriendProfileFeedCard(props) {
             : null}
           <div id="center-wrap">
             <br />
-            <Card.Title>{media.title.toUpperCase()}
+            <Card.Title><b>{media.title.toUpperCase()}</b>
               <p className='by'>Developer: {media.developer}</p>
             </Card.Title>
           </div>

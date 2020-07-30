@@ -1,10 +1,23 @@
-#container {
-  background-color: rgba(255, 255, 255, 0);
-  height: 100vh;
-}
 
 #search-wrap {
-  margin-top: 30px;
+  margin-top: 80px !important;
+  margin-right: 0px !important;
+}
+
+.dark-mode #search-wrap {
+  background: linear-gradient(412.9deg, rgba(0, 0, 0, 0) 20%, rgb(17, 17, 17) 30%, rgb(37, 37, 37) 100%);
+  margin-top: 28px;
+  margin-right: 0px !important;
+  padding: 15px 0px 15px 0px;
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 991px) {
+  #search-wrap {
+    margin-top: 16px !important;
+    margin-right: 0px !important;
+    margin-right: 0px;
+  }
 }
 
 #form-hugger {
@@ -14,8 +27,8 @@
 }
 
 #api-search-input {
-  width: 100%;
-  display: block;
+  /* width: 100%; */
+  /* display: block; */
   border-radius: 40px;
   background: transparent;
   color: black;
@@ -25,6 +38,13 @@
   font-size: 20px;
   margin-top: 14px;
   margin-bottom: 15px;
+}
+
+.dark-mode #api-search-input {
+  background-color: black;
+  color: rgb(216, 216, 216);
+  border-color: rgb(65, 65, 65);
+
 }
 
 #api-search-input:active, #api-search-input:focus {
@@ -51,6 +71,7 @@
 
 #search-heading {
   color: rgb(94, 9, 251) !important;
+  width: fit-content;
   font-size: 1.45rem;
   font-weight: 700;
   padding-left: 30px;
@@ -70,6 +91,10 @@
   float: left;
   margin-top: 4px;
   margin-bottom: 0px;
+}
+
+.dark-mode .search-icon {
+  color: rgb(93, 93, 93)  !important;
 }
 
 .search-icon {

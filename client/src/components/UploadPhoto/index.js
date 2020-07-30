@@ -12,7 +12,6 @@ var CLOUDINARY_UPLOAD_PRESET = "fzl0siot";
 
 
 function UploadPhoto({ handleModalClose }) {
-
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState("");
 
@@ -64,7 +63,7 @@ function UploadPhoto({ handleModalClose }) {
 
 
   return (
-    <div>
+    <div className='modal-for-pic'>
       <Form>
         <Form.File
           id="custom-file"
@@ -73,15 +72,12 @@ function UploadPhoto({ handleModalClose }) {
           onChange={uploadImage}
           custom
         />
-        {/* <input className="custom-file-input" type="file" name="file" placeholder="Upload a photo"
-        /> */}
         {loading
           ? (<h3>Loading ...</h3>)
           : (<img src={image} style={{ width: '300px' }} />)
         }
         <Button
-          id='neon-hover'
-          className='btn upload-btn movie-color'
+          className='btn upload-btn'
           onClick={() => handleSavePicture(image)}>UPLOAD
         </Button>
       </Form>

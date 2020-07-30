@@ -21,6 +21,7 @@
   margin-bottom: 10px;
 }
 
+
 #center-wrap {
     position: relative;
     width: 100%;
@@ -33,37 +34,61 @@
     font-weight: 400;
     margin-top: 3px;
 }
+
+.dark-mode .by {
+  color: rgb(135, 135, 135);
+}
 .ratingReviewHeading {
   border-bottom: solid 3px;
   font-weight: 500;
-  color: black;
+}
+
+.dark-mode .ratingReviewHeading {
+  color: rgb(212, 212, 212);
 }
 
 .rating {
   margin-bottom: 0;
 }
 
+.dark-mode .rating {
+  color: rgb(130, 130, 130);
+} 
+
 .scroll-box {
   width: 100%;
   padding-right: 8px;
   padding-left: 12px;
   max-height: 135px;
-  overflow: scroll;
+  overflow: auto;
 }
-    
+
+.dark-mode .scroll-box {
+  color: rgb(130, 130, 130);
+}
 /* Scrollbar styles */
 ::-webkit-scrollbar {
 width: 12px;
 height: 12px;
 }
 
+
 ::-webkit-scrollbar-thumb {
     background: rgb(225, 225, 225);  
     border-radius: 10px;
 }
 
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: rgb(77, 77, 77);  
+  border-radius: 10px;
+}
+
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(200, 200, 200);  
+}
+
+.darkmode ::-webkit-scrollbar-thumb:hover {
+  background: rgb(77, 77, 77);  
 }
 
 
@@ -71,7 +96,18 @@ height: 12px;
   font-size: 2.5rem !important;
 }
 
+.dark-mode .read-only-star {
+  color: rgb(130, 130, 130);
+}
+
 #fav-title {
   margin-top: 7px;
 }
 
+.dark-mode .small {
+  color: rgb(138, 138, 138);
+}
+
+.dark-mode b {
+  color: rgb(219, 218, 218);
+}

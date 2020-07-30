@@ -1,14 +1,10 @@
-input {
+/* input {
     display: none;
-}
+} */
 
 .star {
     cursor: pointer;
     transition: color 200ms;
-    padding-left: 0.5rem;
-}
-
-.read-only-star {
     padding-left: 0.5rem;
 }
 
@@ -24,23 +20,40 @@ input {
   border: solid 1px rgb(216, 216, 216);
   border-radius: 4px;
   margin-bottom: 20px;
-  
+}
+
+.dark-mode .center-wrap-rate {
+  border-color: rgb(42, 42, 42);
 }
 
 #rate-btn {
   border: none !important;
   padding: 0px !important;
+  margin-top: 8.5px;
   margin-bottom: 0px !important;
   color: rgb(155, 155, 155) !important;
   font-size: 0.925rem;
   height: 25px;
   font-style: italic;
+  outline: none;
+  cursor: pointer;
+}
+
+.dark-mode #rate-btn {
+  color: rgb(85, 85, 85) !important;
+  font-weight: 500;
 }
 
 #rate-btn:hover, #rate-btn:focus {
   font-size: 1rem;
   color: black !important;
   background-color: transparent;
+  outline: none;
+  border: none;
+}
+
+.dark-mode #rate-btn:hover, .dark-mode #rate-btn:focus {
+  color: white !important;
 }
 
 #rating-submit-btn {
@@ -55,10 +68,16 @@ input {
   height: 25px;
 }
 
+.dark-mode #rating-submit-btn {
+  color: rgb(95, 95, 95);
+}
+
+.dark-mode #rating-submit-btn:hover {
+  color: white !important;
+}
+
 #rating-submit-btn:hover, #rating-submit-btn:focus {
   color: black !important;
   font-weight: 700;
   background-color: transparent;
 }
-/* #ffc107
-#e4e5e9 */

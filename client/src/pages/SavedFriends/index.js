@@ -61,70 +61,54 @@ function SavedFriends() {
   };
 
   return (
-    <div id="container">
-      {/* {userData.username ?
-        <div>
-          <div id="header-div">
-
-            {userData.friends.length === 0
-              ? <div id="no-media-div">
-                <p><h5 className="text-center" id="header">LOOKS EMPTY IN HERE.</h5></p>
-                <p><h5 className="text-center" id="highlight-header">GO TO SEARCH AND ADD SOME FRIENDS!</h5></p>
-              </div>
-              : <h5 className="text-center" id="header">MY FRIENDS</h5>}
-
-
-          </div> */}
-      <Row>
-        <Container>
-          <Row>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-            <Col xs={12} s={12} md={10} lg={8}>
-              <h5 className="text-center friend-text purple">
-                MY FRIENDS
+    <>
+      <Container>
+        <Row>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+          <Col id='search-wrap' xs={12} s={12} md={10} lg={8}>
+            <h5 className="text-center friend-text purple">
+              MY FRIENDS
               </h5>
-              <div id="friend-icon-group">
-                <div id="friend-icon-div">
+            <div id="friend-icon-group">
+              <div id="friend-icon-div">
+                <FontAwesomeIcon
+                  className='friend-page-icon'
+                  icon={faUserFriends}
+                />
+                <p id='friend-count-sub'>
+                  {userData.friends.length}
+                </p>
+              </div>
+              <div id="friend-icon-div">
+                <a href='./messages'>
                   <FontAwesomeIcon
                     className='friend-page-icon'
-                    icon={faUserFriends}
+                    id='neon-hover'
+                    icon={faPaperPlane}
                   />
-                  <p id='friend-count-sub'>
-                    {userData.friends.length}
+                </a>
+                <p id='friend-count-sub'>
+                  MSG
                   </p>
-                </div>
-                <div id="friend-icon-div">
-                  <a href='./messages'>
-                    <FontAwesomeIcon
-                      className='friend-page-icon'
-                      id='neon-hover'
-                      icon={faPaperPlane}
-                    />
-                  </a>
-                  <p id='friend-count-sub'>
-                    MSG
-                  </p>
-                </div>
-                <div id="friend-icon-div">
-                  <a href='./search_user'>
-                    <FontAwesomeIcon
-                      className='friend-page-icon'
-                      id='neon-hover'
-                      icon={faSearch}
-                    />
-                  </a>
-                  <p id='friend-count-sub'>
-                    FIND
-                  </p>
-                </div>
               </div>
-            </Col>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-          </Row>
-          <hr></hr>
-        </Container>
-      </Row>
-
+              <div id="friend-icon-div">
+                <a href='./search_user'>
+                  <FontAwesomeIcon
+                    className='friend-page-icon'
+                    id='neon-hover'
+                    icon={faSearch}
+                  />
+                </a>
+                <p id='friend-count-sub'>
+                  FIND
+                  </p>
+              </div>
+            </div>
+          </Col>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+        </Row>
+        <hr></hr>
+      </Container>
       <Container>
         <CardColumns>
           <SavedCards
@@ -134,13 +118,12 @@ function SavedFriends() {
           />
         </CardColumns>
       </Container>
-
       {/* ITS BUGGY */}
       {/* {!userData.username
           ? <NotLoggedIn />
           : null
         } */}
-    </div>
+    </>
   );
 }
 

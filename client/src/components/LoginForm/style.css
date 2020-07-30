@@ -1,12 +1,13 @@
-.form-outer-div {
-  padding: 40px 0px 10px 60px;
-    background-color: rgba(0, 128, 0, 0);
-}
 
 #form-label {
   margin-bottom: 15px !important;
   margin-top: 10px !important;
   font-weight: 600;
+}
+
+.dark-mode #form-label {
+  color: rgb(93, 93, 93);
+  font-weight: 500;
 }
 
 #form-input-login {
@@ -27,6 +28,20 @@
     outline: none !important;
 }
 
+.dark-mode #form-input-login:active {
+  background-color: black !important;
+}
+
+.dark-mode #form-input-login:focus {
+  background-color: black !important;
+}
+
+.dark-mode #form-input-login {
+  color: rgb(216, 216, 216);
+  background-color: black;
+  border-color: rgb(65, 65, 65);
+}
+
 
 .form-button-login {
   color: rgb(94, 9, 251) !important;
@@ -37,6 +52,10 @@
   font-size: 1.1rem;
   padding: 10px 17.5px 7.5px 17.5px;
   margin-top: 20px;
+}
+
+.dark-mode .form-button-login {
+background-color: rgb(15, 15, 15) !important;
 }
 
 .form-button-login:hover {

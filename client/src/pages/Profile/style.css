@@ -1,13 +1,18 @@
-
-
-#main-body-row {
+#prof-body-row {
   width: 100%;
-  margin: 0px !important;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  margin-top: 15px;
 }
+
 
 #media-feed-column2 {
   margin-top: 15px;
   padding: 0px !important;
+}
+
+#profile-card {
+  margin-top: 90px !important;
 }
 
 @media screen and (max-width: 991px) {
@@ -41,6 +46,14 @@
   margin: 10px 0px 10px 0px;
 }
 
+.dark-mode #profile-card {
+  background: linear-gradient(412.9deg, rgba(0, 0, 0, 0) 20%, rgb(17, 17, 17) 30%, rgb(37, 37, 37) 100%);
+}
+
+.dark-mode #profile-card {
+  margin-top: 30px;
+}
+
 #profile-card-body {
   padding: 0px !important;
   position: relative;
@@ -60,7 +73,7 @@
 
 #user-title {
   font-size: 1.5rem;
-  margin-top: 5px;
+  margin-top: 1px;
   margin-bottom: 10px;
 }
 
@@ -71,7 +84,7 @@
 
 #profile-info {
   padding-top: 10px;
-  width: 66%;
+  width: 68%;
   height: 100%;
   float: right;
 }
@@ -81,7 +94,7 @@
   padding-right: 8px;
   margin-top: 10px;
   max-height: 105px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .bio-btn {
@@ -94,10 +107,19 @@
   font-style: italic;
 }
 
+.dark-mode .bio-btn {
+  color: rgb(122, 122, 122) !important;
+}
+
 .bio-btn:hover, .bio-btn:focus {
   font-size: 0.95rem;
+  font-weight: 500;
   color: black !important;
   background-color: transparent;
+}
+
+.dark-mode .bio-btn:hover {
+  color: white !important;
 }
 
 .upload-icon {
@@ -108,6 +130,10 @@
   left: 7px;
 }
 
+.dark-mode .upload-icon {
+  opacity: 0.75;
+}
+
 .upload-icon:hover {
   opacity: 1;
 }
@@ -115,6 +141,10 @@
 .prof-page-icon {
   font-size: 1.35rem !important;
   color: rgb(190, 190, 190);
+}
+
+.dark-mode .prof-page-icon {
+  color: rgb(70, 70, 70);
 }
 
 @media screen and (max-width: 767px) {
@@ -144,6 +174,10 @@
   position: relative;
 }
 
+.dark-mode .prof-icon-group {
+  color: rgb(105, 105, 105);
+}
+
 .prof-icon-wrap {
   font-size: 0.9rem;
   /* margin-right: 20px; */
@@ -154,4 +188,11 @@
 
 #bio-textarea {
   height: 90px;
+}
+
+.dark-mode #bio-textarea {
+  background-color: rgb(0, 0, 0);
+  border: none;
+  color: rgb(175, 175, 175);
+  width: 92%;
 }

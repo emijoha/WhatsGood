@@ -2,8 +2,13 @@
     /* border-left: 1px solid rgb(195, 195, 195) !important; */
     height: 540px;
     width: 100%; 
-    overflow: scroll;
-  
+    overflow: auto;
+    padding-left: 10px;
+}
+
+.dark-mode #chat-box-body {
+  background: linear-gradient(180deg, rgb(32, 32, 32) 10%, rgba(31, 31, 31, 0.424) 50%, rgba(26, 26, 26, 0) 100%);
+
 }
 
 #chat-message-row {
@@ -45,8 +50,12 @@
     color: black;
     background: none;
     font-size: 10px;
-    margin-right: -3.5px;
+    margin-right: 0px;
     margin-top: 5.5px;
+}
+
+.dark-mode #this-user-time {
+  color: rgb(141, 141, 141);
 }
 
 #that-user-message {
@@ -72,21 +81,21 @@
 }
 
 #that-user-time {
-    
     float: left;
     color: black;
     background: none;
     font-size: 10px;
-    /* margin-right: 10px; */
+    margin-left: 5px;
     margin-top: 5.5px;
-    
-    
 }
 
-
+.dark-mode #that-user-time {
+  color: rgb(141, 141, 141);
+}
 
 @media screen and (max-width: 991px) {
     #chat-box-body {
       height: 560px;
   }
+
 }

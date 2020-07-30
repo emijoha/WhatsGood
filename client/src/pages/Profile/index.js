@@ -438,7 +438,6 @@ function ProfilePage() {
                       {(userData.bio !== '' || null)
                         ?
                         <div>
-                          {console.log("userData.bio", userData.bio)}
                           <p className='about-me' id='purple'>
                             ABOUT ME <a
                               className='btn bio-btn'
@@ -452,12 +451,18 @@ function ProfilePage() {
                         </div>
                         :
                         <>
-                          <a
-                            className='btn bio-btn'
-                            onClick={() => setBioUpdate(true)}
-                          >Add Bio
-                          </a>
-                          <br></br>
+                          <div>
+                          <p className='about-me' id='purple'>
+                            ABOUT ME <a
+                              className='btn bio-btn'
+                              onClick={() => setBioUpdate(true)}
+                            >Add Bio
+                            </a>
+                          </p>
+                          <div className='pr-4' id='bio-scroll'>
+                          What's good? Not this bio! You have not submitted a bio yet.
+                          </div>
+                        </div>
                           <br></br>
                         </>
                       }
@@ -483,7 +488,7 @@ function ProfilePage() {
                           className='btn'
                           id='purple-hover'
                           onClick={() => updateBio(bioText)}
-                        ><b>SUBMIT</b></a>
+                        ><b className="text-right">SUBMIT</b></a>
                       </div>
                     </>
                   }
@@ -543,7 +548,7 @@ function ProfilePage() {
       </Container>
 
       <Container width="100%">
-        <Row id="main-body-row">
+        <Row id="prof-body-row">
           <Col id="side-bar-column" className="text-right" xs={0} s={0} md={1} lg={3}>
             <SideBar
               cb={handleRenderMediaPage}

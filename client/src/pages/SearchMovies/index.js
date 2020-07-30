@@ -1,15 +1,11 @@
 import React, { useState, useContext, useCallback } from 'react';
-import { Jumbotron, Row, Container, Col, Form, Button } from 'react-bootstrap';
+import { Row, Container, Col, Form, Button } from 'react-bootstrap';
 
 import * as API from '../../utils/API';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
-// import { saveMovie, searchOMDB, searchEachMovie, } from '../utils/API';
-// import { saveUserRating, saveMovieReview } as API from '../utils/API';
 import SearchCards from '../../components/SearchCards';
 import SearchIconGroup from '../../components/SearchIconGroup';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function SearchMovies() {
@@ -35,7 +31,7 @@ function SearchMovies() {
     API.searchOMDB(searchInput)
       .then(({ data }) => {
         console.log("DATA", data);
-        if(data.Response === "False"){
+        if (data.Response === "False") {
           return setValidSearch(false);
         }
         const movieID = data.Search.map(movie => (movie.imdbID));
@@ -75,6 +71,9 @@ function SearchMovies() {
   const handleSaveMedia = useCallback((movie, userRating, userReview) => {
     // find the movie in `searchedMovies` state by the matching id
     const movieToSave = {
+      username: userData.username,
+      userId: userData._id,
+      mediaType: "movie",
       mediaId: movie.mediaId,
       timeStamp: Date.now(),
       createdAt: Date(),
@@ -104,39 +103,37 @@ function SearchMovies() {
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   });
-  
+
 
   return (
-    <div id="container">
-      <Row>
-        <Container id='search-wrap'>
-          <Row>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-            <Col xs={12} s={12} md={10} lg={8}>
-              <h5 id="search-heading">SEARCH MOVIES</h5>
-              <div id='form-hugger'>
-                <Form onSubmit={handleFormSubmit}>
-                  <Form.Control
-                    id="api-search-input"
-                    name='searchInput'
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
-                    type='text'
-                    size='lg'
-                    placeholder='Search for a movie'
-                  />
-                  <SearchIconGroup />
-                  <Button id="form-search-btn" type='submit' size='lg'>
-                    SEARCH
+    <>
+      <Container>
+        <Row>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+          <Col id='search-wrap' xs={12} s={12} md={10} lg={8}>
+            <h5 id="search-heading">SEARCH MOVIES</h5>
+            <div id='form-hugger'>
+              <Form onSubmit={handleFormSubmit}>
+                <Form.Control
+                  id="api-search-input"
+                  name='searchInput'
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  type='text'
+                  size='lg'
+                  placeholder='Search for a movie'
+                />
+                <SearchIconGroup />
+                <Button id="form-search-btn" type='submit' size='lg'>
+                  SEARCH
                 </Button>
-                </Form>
-              </div>
-            </Col>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-          </Row>
-          <hr></hr>
-        </Container>
-      </Row>
+              </Form>
+            </div>
+          </Col>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+        </Row>
+        <hr></hr>
+      </Container>
       <Container>
         {validSearch ?
           <SearchCards
@@ -148,7 +145,7 @@ function SearchMovies() {
         />
         : <h2 className='muted-subtext3'>Sorry, we could not find any movies that matched your search.</h2>}
       </Container>
-    </div>
+    </>
   );
 }
 

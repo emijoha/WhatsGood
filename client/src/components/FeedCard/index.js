@@ -15,7 +15,7 @@ import './style.css';
 
 function FeedCard(props) {
 
-  useEffect(()=> {
+  useEffect(() => {
     Aos.init({ duration: 800 })
   }, []);
 
@@ -24,14 +24,14 @@ function FeedCard(props) {
     return (
       <Card data-aos="fade-up" className='book-border' key={media._id} border='dark'>
         <Card.Body>
-          {media.picture
-            ? 
+          {props.picture
+            ?
             <Link to={`/friend_profile?username=${media.username}`}>
-            <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+              <Card.Img id="profile-pic" src={props.picture} alt={media.username} variant='top' />
             </Link>
             : null}
           <Card.Title>
-            <Link to={`/friend_profile?username=${media.username}`}>{media.username}</Link> saved this {props.mediaType}
+            <Link to={`/friend_profile?username=${media.username}`}><span id='name-on-card'>{media.username}</span></Link> saved this {props.mediaType}
             <p className='small'>{moment(media.createdAt).calendar()}</p>
           </Card.Title>
           {media.image
@@ -91,10 +91,10 @@ function FeedCard(props) {
     return (
       <Card data-aos="fade-up" className='music-border' key={media._id} border='dark'>
         <Card.Body>
-        {media.picture
-            ? 
+          {props.picture
+            ?
             <Link to={`/friend_profile?username=${media.username}`}>
-            <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+              <Card.Img id="profile-pic" src={props.picture} alt={media.username} variant='top' />
             </Link>
             : null}
           <Card.Title>
@@ -163,10 +163,10 @@ function FeedCard(props) {
     return (
       <Card data-aos="fade-up" className='movie-border' key={media._id} border='dark'>
         <Card.Body>
-        {media.picture
-            ? 
+          {props.picture
+            ?
             <Link to={`/friend_profile?username=${media.username}`}>
-            <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+              <Card.Img id="profile-pic" src={props.picture} alt={media.username} variant='top' />
             </Link>
             : null}
           <Card.Title>
@@ -231,10 +231,10 @@ function FeedCard(props) {
     return (
       <Card data-aos="fade-up" className='game-border' key={media._id} border='dark'>
         <Card.Body>
-        {media.picture
-            ? 
+          {props.picture
+            ?
             <Link to={`/friend_profile?username=${media.username}`}>
-            <Card.Img id="profile-pic" src={media.picture} alt={media.username} variant='top' />
+              <Card.Img id="profile-pic" src={props.picture} alt={media.username} variant='top' />
             </Link>
             : null}
           <Card.Title>
@@ -298,7 +298,20 @@ function FeedCard(props) {
     const media = props.media;
     const mediatype = media.mediaType.toLowerCase();
     const border = `${mediatype}-border`;
-    console.log('from FeedCard: ', media, props.userData)
+    let icon;
+    switch (mediatype) {
+      case 'movie':
+        icon = faVideo;
+        break;
+      case 'book':
+        icon = faBookOpen;
+        break;
+      case 'game':
+        icon = faGamepad;
+        break;
+      default:
+        icon = faMusic;
+    }
     return (
       <Card data-aos="fade-up" className={border} key={media.mediaId} border='dark'>
         <Card.Body>
@@ -342,7 +355,7 @@ function FeedCard(props) {
               {[...Array(media.userRating)].map((star, i) => {
                 return (
                   <label key={i}>
-                    <FontAwesomeIcon className='read-only-star' icon={faBookOpen} color='black' size={'lg'} />
+                    <FontAwesomeIcon className='read-only-star' icon={icon} color='black' size={'lg'} />
                   </label>
                 )
               })}
