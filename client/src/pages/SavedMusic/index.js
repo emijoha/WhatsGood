@@ -135,10 +135,10 @@ function SavedMusic() {
       return false;
     }
     API.deleteThisMedia(music_id)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => console.log(err));
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
 
     API.deleteMusic(music_id, token)
       // upon succes, update user data to reflect book change
@@ -147,26 +147,24 @@ function SavedMusic() {
   };
 
   return (
-    <div id="container">
-      <Row>
-        <Container>
-          <Row>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-            <Col id='search-wrap' xs={12} s={12} md={10} lg={8}>
-              <div id="sub-container" >
-                <div id="header-div">
-                  <h5 className="text-center" id="media-header">MY MUSIC</h5>
-                  <SavedIconLinks userData={userData}></SavedIconLinks>
-                </div>
-              </div>
-            </Col>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-          </Row>
-          <hr></hr>
-        </Container>
-      </Row>
+    <>
       <Container>
-      <a className='muted-subtext' id='neon-hover' href='/search_music'>
+        <Row>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+          <Col id='search-wrap' xs={12} s={12} md={10} lg={8}>
+            <div id="sub-container" >
+              <div id="header-div">
+                <h5 className="text-center" id="media-header">MY MUSIC</h5>
+                <SavedIconLinks userData={userData}></SavedIconLinks>
+              </div>
+            </div>
+          </Col>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+        </Row>
+        <hr></hr>
+      </Container>
+      <Container>
+        <a className='muted-subtext' id='neon-hover' href='/search_music'>
           <div className="empty-message">
             Add music to your collection
             <FontAwesomeIcon
@@ -203,7 +201,7 @@ function SavedMusic() {
           : null
         } */}
       </Container>
-    </div>
+    </>
   );
 }
 

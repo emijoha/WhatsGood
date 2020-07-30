@@ -86,7 +86,7 @@ a:hover, a:focus {
 
 .footer-gutter {
   min-height: 1500px;
-  padding-bottom: 250px;
+  padding-bottom: 300px;
 }
 
 /* eventually put this in component styling */

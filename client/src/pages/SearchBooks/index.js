@@ -30,7 +30,7 @@ function SearchBooks() {
     searchGoogleBooks(searchInput)
       .then(({ data }) => {
         console.log("BOOK DATA", data);
-        if(data.totalItems === 0){
+        if (data.totalItems === 0) {
           return setValidSearch(false);
         }
 
@@ -84,49 +84,48 @@ function SearchBooks() {
   });
 
   return (
-    <div id="container">
-      <Row>
-        <Container>
-          <Row>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-            <Col id='search-wrap' xs={12} s={12} md={10} lg={8}>
-              <h5 id="search-heading">SEARCH BOOKS</h5>
-              <div id='form-hugger'>
-                <Form onSubmit={handleFormSubmit}>
-                  <Form.Control
-                    id="api-search-input"
-                    name='searchInput'
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
-                    type='text'
-                    size='lg'
-                    placeholder='Search for a book'
-                  />
-                  <SearchIconGroup />
-                  <Button id="form-search-btn" type='submit' size='lg'>
-                    SEARCH
+    <>
+      <Container>
+        <Row>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+          <Col id='search-wrap' xs={12} s={12} md={10} lg={8}>
+            <h5 id="search-heading">SEARCH BOOKS</h5>
+            <div id='form-hugger'>
+              <Form onSubmit={handleFormSubmit}>
+                <Form.Control
+                  id="api-search-input"
+                  name='searchInput'
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  type='text'
+                  size='lg'
+                  placeholder='Search for a book'
+                />
+                <SearchIconGroup />
+                <Button id="form-search-btn" type='submit' size='lg'>
+                  SEARCH
                 </Button>
-                </Form>
-
-              </div>
-            </Col>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-          </Row>
-          <hr></hr>
-        </Container>
-      </Row>
+              </Form>
+            </div>
+          </Col>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+        </Row>
+        <hr></hr>
+      </Container>
       <Container>
         {validSearch ?
-          <SearchCards
-          cardType='searchedBooks'
-          resultArray={searchedBooks}
-          savedArray={userData.savedBooks}
-          username={userData.username}
-          cb={handleSaveMedia}
-        />
-        : <h2>Sorry, we could not find any books that matched your search.</h2>}
+          <CardColumns>
+            <SearchCards
+              cardType='searchedBooks'
+              resultArray={searchedBooks}
+              savedArray={userData.savedBooks}
+              username={userData.username}
+              cb={handleSaveMedia}
+            />
+          </CardColumns>
+          : <h2>Sorry, we could not find any books that matched your search.</h2>}
       </Container>
-    </div>
+    </>
   );
 }
 
