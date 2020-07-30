@@ -1,12 +1,10 @@
 import React, { useState, useContext, useCallback } from 'react';
-import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import SearchCards from '../../components/SearchCards';
 import SearchIconGroup from '../../components/SearchIconGroup';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { saveBook, searchGoogleBooks } from '../../utils/API';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faUserCircle, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import './style.css'
 
 function SearchBooks() {
@@ -30,7 +28,7 @@ function SearchBooks() {
     searchGoogleBooks(searchInput)
       .then(({ data }) => {
         console.log("BOOK DATA", data);
-        if(data.totalItems === 0){
+        if (data.totalItems === 0) {
           return setValidSearch(false);
         }
 
@@ -84,49 +82,46 @@ function SearchBooks() {
   });
 
   return (
-    <div id="container">
-      <Row>
-        <Container>
-          <Row>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-            <Col id='search-wrap' xs={12} s={12} md={10} lg={8}>
-              <h5 id="search-heading">SEARCH BOOKS</h5>
-              <div id='form-hugger'>
-                <Form onSubmit={handleFormSubmit}>
-                  <Form.Control
-                    id="api-search-input"
-                    name='searchInput'
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
-                    type='text'
-                    size='lg'
-                    placeholder='Search for a book'
-                  />
-                  <SearchIconGroup />
-                  <Button id="form-search-btn" type='submit' size='lg'>
-                    SEARCH
+    <>
+      <Container>
+        <Row>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+          <Col id='search-wrap' xs={12} s={12} md={10} lg={8}>
+            <h5 id="search-heading">SEARCH BOOKS</h5>
+            <div id='form-hugger'>
+              <Form onSubmit={handleFormSubmit}>
+                <Form.Control
+                  id="api-search-input"
+                  name='searchInput'
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  type='text'
+                  size='lg'
+                  placeholder='Search for a book'
+                />
+                <SearchIconGroup />
+                <Button id="form-search-btn" type='submit' size='lg'>
+                  SEARCH
                 </Button>
-                </Form>
-
-              </div>
-            </Col>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-          </Row>
-          <hr></hr>
-        </Container>
-      </Row>
+              </Form>
+            </div>
+          </Col>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+        </Row>
+        <hr></hr>
+      </Container>
       <Container>
         {validSearch ?
-          <SearchCards
-          cardType='searchedBooks'
-          resultArray={searchedBooks}
-          savedArray={userData.savedBooks}
-          username={userData.username}
-          cb={handleSaveMedia}
-        />
-        : <h2>Sorry, we could not find any books that matched your search.</h2>}
+            <SearchCards
+              cardType='searchedBooks'
+              resultArray={searchedBooks}
+              savedArray={userData.savedBooks}
+              username={userData.username}
+              cb={handleSaveMedia}
+            />
+          : <h2>Sorry, we could not find any books that matched your search.</h2>}
       </Container>
-    </div>
+    </>
   );
 }
 

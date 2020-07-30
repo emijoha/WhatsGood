@@ -32,7 +32,7 @@ function FriendProfileFeedCard(props) {
             : null}
           <div id="center-wrap">
             <br />
-            <Card.Title>{media.title.toUpperCase()}
+            <Card.Title><b>{media.title.toUpperCase()}</b>
               <p className='by'>{media.authors.length > 1 ? 'Authors' : 'Author'}: {media.authors}</p>
             </Card.Title>
           </div>
@@ -97,7 +97,7 @@ function FriendProfileFeedCard(props) {
             : null}
           <div id="center-wrap">
             <br />
-            <Card.Title>{media.title.toUpperCase()}
+            <Card.Title><b>{media.title.toUpperCase()}</b>
               <p className='by'>Artist: {media.artist}</p>
             </Card.Title>
             <ReactAudioPlayer
@@ -165,7 +165,7 @@ function FriendProfileFeedCard(props) {
             : null}
           <div id='center-wrap'>
             <br />
-            <Card.Title>{media.title.toUpperCase()}
+            <Card.Title><b>{media.title.toUpperCase()}</b>
               <p className='by'>Director: {media.director}</p>
             </Card.Title>
           </div>
@@ -228,7 +228,7 @@ function FriendProfileFeedCard(props) {
             : null}
           <div id="center-wrap">
             <br />
-            <Card.Title>{media.title.toUpperCase()}
+            <Card.Title><b>{media.title.toUpperCase()}</b>
               <p className='by'>Developer: {media.developer}</p>
             </Card.Title>
           </div>

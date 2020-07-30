@@ -1,12 +1,10 @@
 import React, { useState, useContext, useCallback } from 'react';
-import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import SearchCards from '../../components/SearchCards';
 import SearchIconGroup from '../../components/SearchIconGroup';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { saveGame, searchVideoGames } from '../../utils/API';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function SearchGames() {
@@ -32,20 +30,20 @@ function SearchGames() {
       .then(({ data }) => {
         if (data.result === "No result") {
           return setValidSearch(false);
-        } 
-          const gameData = [{
-            mediaId: `${data.result.title}-${data.result.developer}-${searchPlatform}`,
-            timeStamp: Date.now(),
-            createdAt: Date(),
-            developer: data.result.developer || ['No developer to display'],
-            title: data.result.title,
-            description: data.result.description,
-            image: data.result.image || '',
-          }];
-          console.log(data);
+        }
+        const gameData = [{
+          mediaId: `${data.result.title}-${data.result.developer}-${searchPlatform}`,
+          timeStamp: Date.now(),
+          createdAt: Date(),
+          developer: data.result.developer || ['No developer to display'],
+          title: data.result.title,
+          description: data.result.description,
+          image: data.result.image || '',
+        }];
+        console.log(data);
 
-          setSearchedGame(gameData);
-          setValidSearch(true);
+        setSearchedGame(gameData);
+        setValidSearch(true);
       })
       .then(() => {
         setSearchTitle('');
@@ -85,57 +83,55 @@ function SearchGames() {
   });
 
   return (
-    <div id="container">
-      <Row>
-        <Container >
-          <Row>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-            <Col  id='search-wrap' xs={12} s={12} md={10} lg={8}>
-              <h5 id="search-heading">SEARCH VIDEO GAMES</h5>
-              <div id='form-hugger'>
-                <Form onSubmit={handleFormSubmit}>
-                  <Form.Control
-                    id="api-search-input"
-                    name='searchTitle'
-                    value={searchTitle}
-                    onChange={(e) => setSearchTitle(e.target.value)}
-                    type='text'
-                    size='lg'
-                    placeholder='Search a game title'
-                  />
-                  <select id='platform-select'>
-                    <option>Select the platform</option>
-                    <option value='pc'>PC</option>
-                    <option value='xbox-one'>Xbox One</option>
-                    <option value='xbox-360'>Xbox 360</option>
-                    <option value='playstation-3'>PlayStation 3</option>
-                    <option value='playstation-4'>PlayStation 4</option>
-                  </select>
-                  <SearchIconGroup />
-                  <Button id="form-search-btn" type='submit' size='lg'>
-                    SEARCH
+    <>
+      <Container >
+        <Row>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+          <Col id='search-wrap' xs={12} s={12} md={10} lg={8}>
+            <h5 id="search-heading">SEARCH VIDEO GAMES</h5>
+            <div id='form-hugger'>
+              <Form onSubmit={handleFormSubmit}>
+                <Form.Control
+                  id="api-search-input"
+                  name='searchTitle'
+                  value={searchTitle}
+                  onChange={(e) => setSearchTitle(e.target.value)}
+                  type='text'
+                  size='lg'
+                  placeholder='Search a game title'
+                />
+                <select id='platform-select'>
+                  <option>Select the platform</option>
+                  <option value='pc'>PC</option>
+                  <option value='xbox-one'>Xbox One</option>
+                  <option value='xbox-360'>Xbox 360</option>
+                  <option value='playstation-3'>PlayStation 3</option>
+                  <option value='playstation-4'>PlayStation 4</option>
+                </select>
+                <SearchIconGroup />
+                <Button id="form-search-btn" type='submit' size='lg'>
+                  SEARCH
                 </Button>
-                </Form>
-              </div>
-            </Col>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-          </Row>
-          <hr></hr>
-        </Container>
-      </Row>
+              </Form>
+            </div>
+          </Col>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+        </Row>
+        <hr></hr>
+      </Container>
       <Container>
         {validSearch ?
-          <SearchCards
-            cardType='searchedGames'
-            resultArray={searchedGame}
-            savedArray={userData.savedGames}
-            username={userData.username}
-            cb={handleSaveGame}
-          />
+            <SearchCards
+              cardType='searchedGames'
+              resultArray={searchedGame}
+              savedArray={userData.savedGames}
+              username={userData.username}
+              cb={handleSaveGame}
+            />
           : <h2>Sorry, we could not find any video games that matched your search.</h2>
         }
       </Container>
-    </div>
+    </>
   );
 }
 

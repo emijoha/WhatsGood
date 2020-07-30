@@ -176,36 +176,34 @@ function SearchUser() {
   };
 
   return (
-    <div id="container">
-      <Row>
-        <Container >
-          <Row>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-            <Col id='search-wrap' xs={12} s={12} md={10} lg={8}>
-              <h5 id="search-heading">SEARCH FRIENDS</h5>
-              <div id='form-hugger'>
-                <Form onSubmit={handleFormSubmit}>
-                  <Form.Control
-                    id="api-search-input"
-                    name='searchInput'
-                    value={searchInput}
-                    onChange={(e) => setSearchInput(e.target.value)}
-                    type='text'
-                    size='lg'
-                    placeholder='Search for a friend'
-                  />
-                  <SearchIconGroup />
-                  <Button id="form-search-btn" type='submit' size='lg'>
-                    SEARCH
+    <>
+      <Container >
+        <Row>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+          <Col id='search-wrap' xs={12} s={12} md={10} lg={8}>
+            <h5 id="search-heading">SEARCH FRIENDS</h5>
+            <div id='form-hugger'>
+              <Form onSubmit={handleFormSubmit}>
+                <Form.Control
+                  id="api-search-input"
+                  name='searchInput'
+                  value={searchInput}
+                  onChange={(e) => setSearchInput(e.target.value)}
+                  type='text'
+                  size='lg'
+                  placeholder='Search for a friend'
+                />
+                <SearchIconGroup />
+                <Button id="form-search-btn" type='submit' size='lg'>
+                  SEARCH
                   </Button>
-                </Form>
-              </div>
-            </Col>
-            <Col xs={0} s={0} md={1} lg={2}></Col>
-          </Row>
-          <hr></hr>
-        </Container>
-      </Row>
+              </Form>
+            </div>
+          </Col>
+          <Col xs={0} s={0} md={1} lg={2}></Col>
+        </Row>
+        <hr></hr>
+      </Container>
       {/* {searchedUser._id && */}
       <Container>
         <CardColumns>
@@ -219,7 +217,7 @@ function SearchUser() {
         </CardColumns>
       </Container>
       {/* } */}
-    </div>
+    </>
   );
 }
 

@@ -144,7 +144,7 @@ a {
 }
 
 .dark-mode a {
-  color: rgb(255, 255, 255);
+  color: rgb(216, 216, 216);
 }
 
 .dark-mode a:hover {
@@ -186,14 +186,22 @@ button.navbar-toggler {
   background-color: rgb(71, 71, 71);
   border-radius: 50px;
 }
+
+#list-drop:hover, #list-drop:focus {
+  color: rgb(94, 9, 251);
+}
+
 .dark-mode #list-drop, .dark-mode #list-drop:hover {
   background-color: rgb(15, 15, 15);
   color: rgb(121, 121, 121);
   font-weight: 500;
 }
 
-.dark-mode .dropdown-menu {
-  background-color: rgb(15, 15, 15);
+.dropdown-menu, .dropdown-menu:hover, .dropdown-menu:focus  {
+  background-color: rgb(255, 255, 255) !important;
+}
+.dark-mode .dropdown-menu, .dark-mode .dropdown-menu:hover, .dark-mode .dropdown-menu:focus {
+  background-color: rgb(15, 15, 15) !important;
 }
 
 .dark-mode #notification-counter {

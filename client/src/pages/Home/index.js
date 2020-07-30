@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { Container, Col, Row, Spinner } from 'react-bootstrap';
 import "./style.css";
-
+import Footer from '../../components/Footer';
 
 // import context for global state
 import UserInfoContext from '../../utils/UserInfoContext';
@@ -330,7 +330,7 @@ function Home() {
 
             {loadingState ?
 
-              <div className="text-center">
+              <div className="text-center spinner-div">
                 <Spinner animation="border" />
               </div>
 
