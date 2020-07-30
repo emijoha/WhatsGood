@@ -16,23 +16,23 @@ function Footer() {
       <Row id='footer-links'>
         <Col className='developer text-center'>
           <p  className='dev-name'>DANIEL ABELL</p>
-          <p className='dev-link'><a href='https://www.linkedin.com/in/daniel-abell-782350199/'>LinkedIn</a></p>
-          <p className='dev-link'><a href='https://github.com/dmabell693'>GitHub</a></p>
+          <p className='dev-links'><a  id='dev-link' href='https://www.linkedin.com/in/daniel-abell-782350199/'>LinkedIn</a></p>
+          <p className='dev-links'><a  id='dev-link' href='https://github.com/dmabell693'>GitHub</a></p>
         </Col>
         <Col className='developer text-center'>
         <p  className='dev-name'>DANNY REYES</p>
-          <p className='dev-link'><a href='https://www.linkedin.com/in/danny-reyes-dev/'>LinkedIn</a></p>
-          <p className='dev-link'><a href='https://github.com/reyesdmusic'>GitHub</a></p>
+          <p className='dev-links'><a  id='dev-link' href='https://www.linkedin.com/in/danny-reyes-dev/'>LinkedIn</a></p>
+          <p className='dev-links'><a  id='dev-link' href='https://github.com/reyesdmusic'>GitHub</a></p>
         </Col>
         <Col className='developer text-center'>
         <p  className='dev-name'>EMILIA HARTLINE</p>
-          <p className='dev-link'><a href='https://www.linkedin.com/in/emilia-josefina-hartline-a14ab21a0/'>LinkedIn</a></p>
-          <p className='dev-link'><a href='https://github.com/emijoha'>GitHub</a></p>
+          <p className='dev-links'><a id='dev-link' href='https://www.linkedin.com/in/emilia-josefina-hartline-a14ab21a0/'>LinkedIn</a></p>
+          <p className='dev-links'><a id='dev-link' href='https://github.com/emijoha'>GitHub</a></p>
         </Col>
         <Col className='developer text-center'>
         <p  className='dev-name'>ROGER POUNCEY</p>
-          <p className='dev-link'><a href='https://www.linkedin.com/in/roger-pouncey-48568b198/'>LinkedIn</a></p>
-          <p className='dev-link'><a href='https://github.com/rpounceyjr'>GitHub</a></p>
+          <p className='dev-links'><a id='dev-link' href='https://www.linkedin.com/in/roger-pouncey-48568b198/'>LinkedIn</a></p>
+          <p className='dev-links'><a id='dev-link' href='https://github.com/rpounceyjr'>GitHub</a></p>
         </Col>
       </Row>
     </Container>

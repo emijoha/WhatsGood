@@ -23,7 +23,7 @@
 }
 
 .dark-mode .dev-name {
-  color: rgb(192, 51, 192) !important;
+  color: rgb(94, 9, 251) !important;
 }
 
 #footer-links {
@@ -34,12 +34,22 @@
 
 .dark-mode #footer-links {
   padding-top: 25px;
-  background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgba(29, 29, 29, 0.219) 7%);
+  background: linear-gradient(to bottom, #000000 0%, rgba(0, 0, 0, 0.246) 7%);
 }
 
-.dev-link {
+.dev-links {
   margin: 0px;
   padding: 0px;
   padding-bottom: 1px;
   font-weight: 400;
 }
+
+.dark-mode a#dev-link:hover {
+  color: rgb(255, 255, 255) !important;
+  font-weight: 600;
+}
+
+.dark-mode a#dev-link {
+  color: rgb(138, 138, 138);
+}
+

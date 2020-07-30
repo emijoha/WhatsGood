@@ -48,36 +48,11 @@ function AppNavbar(props) {
               <Nav.Link className="nav-link-group" as={Link} to='/search_music'>
                 SEARCH
               </Nav.Link>
-              {/* {userData.username
-                ? <NavDropdown className="nav-link-group" title="SEARCH" id="basic-nav-dropdown" >
-                  <NavDropdown.Item href="/search_user">SEARCH FOR FRIENDS</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_books">SEARCH BOOKS</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_music">SEARCH MUSIC</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_movies">SEARCH MOVIES</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_games">SEARCH GAMES</NavDropdown.Item>
-                </NavDropdown>
-                : <NavDropdown className="nav-link-group" title="SEARCH" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/search-user">SEARCH FOR FRIENDS</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_books">SEARCH BOOKS</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_music">SEARCH MUSIC</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_movies">SEARCH MOVIES</NavDropdown.Item>
-                  <NavDropdown.Item href="/search_games">SEARCH GAMES</NavDropdown.Item>
-                </NavDropdown>
-              } */}
               {userData.username &&
                 <Nav.Link className="nav-link-group" as={Link} to='/saved_media'>
                   MY MEDIA
               </Nav.Link>
               }
-              {/* {userData.username &&
-                <NavDropdown className="nav-link-group" title="MY MEDIA" id="basic-nav-dropdown">
-                  <NavDropdown.Item href='/saved_media'>ALL MY MEDIA</NavDropdown.Item>
-                  <NavDropdown.Item href='/saved_books'>MY BOOKS</NavDropdown.Item>
-                  <NavDropdown.Item href="/saved_music">MY MUSIC</NavDropdown.Item>
-                  <NavDropdown.Item href="/saved_movies">MY MOVIES</NavDropdown.Item>
-                  <NavDropdown.Item href="/saved_games">MY GAMES</NavDropdown.Item>
-                </NavDropdown>
-              } */}
               {userData.username &&
                 <Nav.Link className="nav-link-group" as={Link} to='/saved_friends'>
                   MY FRIENDS
