@@ -1,12 +1,10 @@
 import React, { useState, useContext, useCallback } from 'react';
-import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import SearchCards from '../../components/SearchCards';
 import SearchIconGroup from '../../components/SearchIconGroup';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { saveGame, searchVideoGames } from '../../utils/API';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function SearchGames() {
@@ -123,7 +121,6 @@ function SearchGames() {
       </Container>
       <Container>
         {validSearch ?
-          <CardColumns>
             <SearchCards
               cardType='searchedGames'
               resultArray={searchedGame}
@@ -131,7 +128,6 @@ function SearchGames() {
               username={userData.username}
               cb={handleSaveGame}
             />
-          </CardColumns>
           : <h2>Sorry, we could not find any video games that matched your search.</h2>
         }
       </Container>

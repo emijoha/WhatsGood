@@ -1,15 +1,11 @@
 import React, { useState, useContext, useCallback } from 'react';
-import { Jumbotron, Row, Container, Col, Form, Button, CardColumns } from 'react-bootstrap';
+import { Row, Container, Col, Form, Button } from 'react-bootstrap';
 
 import * as API from '../../utils/API';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
-// import { saveMovie, searchOMDB, searchEachMovie, } from '../utils/API';
-// import { saveUserRating, saveMovieReview } as API from '../utils/API';
 import SearchCards from '../../components/SearchCards';
 import SearchIconGroup from '../../components/SearchIconGroup';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function SearchMovies() {
@@ -140,7 +136,6 @@ function SearchMovies() {
       </Container>
       <Container>
         {validSearch ?
-          <CardColumns>
             <SearchCards
               cardType='searchedMovies'
               resultArray={searchedMovies}
@@ -148,7 +143,6 @@ function SearchMovies() {
               username={userData.username}
               cb={handleSaveMedia}
             />
-          </CardColumns>
           : <h2>Sorry, we could not find any movies that matched your search.</h2>}
       </Container>
     </>

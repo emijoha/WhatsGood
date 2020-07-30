@@ -10,7 +10,7 @@ function Footer() {
     <Container fluid id='app-footer'>
       <Row className='text-center'>
         <Col id='footer-title'>
-          <b>DEVELOPERS</b>
+          DEVELOPERS
         </Col>
       </Row>
       <Row id='footer-links'>

@@ -5,8 +5,12 @@
 
 #footer-title {
   padding-bottom: 10px;
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.dark-mode #footer-title {
+  color: rgb(73, 73, 73);
 }
 
 .dev-name {
@@ -19,7 +23,7 @@
 }
 
 .dark-mode .dev-name {
-  color: rgb(255, 2, 234) !important;
+  color: rgb(192, 51, 192) !important;
 }
 
 #footer-links {
@@ -37,5 +41,5 @@
   margin: 0px;
   padding: 0px;
   padding-bottom: 1px;
-  font-weight: 500;
+  font-weight: 400;
 }

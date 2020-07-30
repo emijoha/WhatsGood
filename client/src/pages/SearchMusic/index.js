@@ -1,13 +1,10 @@
 import React, { useState, useContext, useCallback } from 'react';
-import { Jumbotron, Row, Container, Col, Form, Button, CardColumns } from 'react-bootstrap';
-import ReactAudioPlayer from 'react-audio-player';
+import { Row, Container, Col, Form, Button} from 'react-bootstrap';
 import SearchCards from '../../components/SearchCards';
 import SearchIconGroup from '../../components/SearchIconGroup';
 import UserInfoContext from '../../utils/UserInfoContext';
 import AuthService from '../../utils/auth';
 import { saveMusic, searchMusic } from '../../utils/API';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faVideo, faBookOpen, faGamepad, faMusic, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import './style.css';
 
 function SearchMusic() {
@@ -120,7 +117,6 @@ function SearchMusic() {
       </Container>
       <Container>
         {validSearch ?
-          <CardColumns>
             <SearchCards
               cardType='searchedMusic'
               resultArray={searchedMusic}
@@ -128,7 +124,6 @@ function SearchMusic() {
               username={userData.username}
               cb={handleSaveMedia}
             />
-          </CardColumns>
           : <h2>Sorry, we could not find any music that matched your search.</h2>}
       </Container>
     </>
