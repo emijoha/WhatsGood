@@ -101,7 +101,7 @@ function FriendProfileFeedCard(props) {
               <p className='by'>Artist: {media.artist}</p>
             </Card.Title>
             <ReactAudioPlayer
-              id="music-player"
+              className='audio-player'
               src={media.preview}
               controls
             />
