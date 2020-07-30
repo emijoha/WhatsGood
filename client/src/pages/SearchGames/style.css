@@ -64,6 +64,12 @@
   padding-left: 30px;
 }
 
+.muted-subtext3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  text-align: center;
+  color: rgb(185, 185, 185);
+}
 .search-icon-group {
   display: flex;
   justify-content: start;

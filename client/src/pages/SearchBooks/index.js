@@ -121,7 +121,7 @@ function SearchBooks() {
           username={userData.username}
           cb={handleSaveMedia}
         />
-        : <h2>Sorry, we could not find any books that matched your search.</h2>}
+        : <h2 className='muted-subtext3'>Sorry, we could not find any books that matched your search.</h2>}
       </Container>
     </div>
   );
