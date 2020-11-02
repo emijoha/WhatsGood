@@ -27,7 +27,6 @@ function SearchBooks() {
 
     searchGoogleBooks(searchInput)
       .then(({ data }) => {
-        console.log("BOOK DATA", data);
         if (data.totalItems === 0) {
           return setValidSearch(false);
         }
@@ -41,7 +40,6 @@ function SearchBooks() {
           description: book.volumeInfo.description,
           image: book.volumeInfo.imageLinks?.thumbnail || ''
         }));
-        console.log(bookData);
 
         setSearchedBooks(bookData);
         setValidSearch(true);
@@ -112,14 +110,14 @@ function SearchBooks() {
       </Container>
       <Container>
         {validSearch ?
-            <SearchCards
-              cardType='searchedBooks'
-              resultArray={searchedBooks}
-              savedArray={userData.savedBooks}
-              username={userData.username}
-              cb={handleSaveMedia}
-            />
-          : <h2>Sorry, we could not find any books that matched your search.</h2>}
+          <SearchCards
+          cardType='searchedBooks'
+          resultArray={searchedBooks}
+          savedArray={userData.savedBooks}
+          username={userData.username}
+          cb={handleSaveMedia}
+        />
+        : <h2 className='muted-subtext3'>Sorry, we could not find any books that matched your search.</h2>}
       </Container>
     </>
   );

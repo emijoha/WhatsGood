@@ -23,10 +23,9 @@ function SavedGames() {
 
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
-  console.log("USER DATA", userData);
+
 
   const makeFavorite = (media) => {
-    console.log('from SavedMovies: ', media);
 
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
@@ -48,15 +47,12 @@ function SavedGames() {
       favorite: isFavorite
     }
 
-    console.log('updateCriteria: ', updateCriteria);
-
     API.makeFavorite(updateCriteria, token)
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   }
 
   const startReview = (media) => {
-    console.log('media: ', media);
 
     setSelectedMediaReview(media);
   }
@@ -80,7 +76,6 @@ function SavedGames() {
       id: selectedMediaReview._id,
       review: reviewInput
     }
-    console.log(updateCriteria);
 
     API.saveUserReview(updateCriteria, token)
       .then(() => setReviewInput(''))
@@ -90,7 +85,6 @@ function SavedGames() {
   }
 
   const startRating = (game) => {
-    console.log('movie: ', game);
 
     setSelectedMediaRating(game);
   }
@@ -114,7 +108,6 @@ function SavedGames() {
       id: selectedMediaRating._id,
       userRating: userRating
     }
-    console.log(updateCriteria);
 
     API.saveUserRating(updateCriteria, token)
       .then(() => setUserRating(0))
@@ -125,7 +118,6 @@ function SavedGames() {
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteGame = (game_id) => {
-    console.log(game_id)
     // get token
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 

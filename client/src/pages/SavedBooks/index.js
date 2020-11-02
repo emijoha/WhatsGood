@@ -24,10 +24,8 @@ function SavedBooks() {
 
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
-  console.log("this is the userdata:", userData);
 
   const startReview = (media) => {
-    console.log('media: ', media);
 
     setSelectedMediaReview(media);
   }
@@ -39,7 +37,6 @@ function SavedBooks() {
   }
 
   const makeFavorite = (media) => {
-    console.log('from SavedMovies: ', media);
 
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
@@ -61,8 +58,6 @@ function SavedBooks() {
       favorite: isFavorite
     }
 
-    console.log('updateCriteria: ', updateCriteria);
-
     API.makeFavorite(updateCriteria, token)
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
@@ -81,7 +76,6 @@ function SavedBooks() {
       id: selectedMediaReview._id,
       review: reviewInput
     }
-    console.log(updateCriteria);
 
     API.saveUserReview(updateCriteria, token)
       .then(() => setReviewInput(''))
@@ -91,7 +85,6 @@ function SavedBooks() {
   }
 
   const startRating = (book) => {
-    console.log('movie: ', book);
 
     setSelectedMediaRating(book);
   }
@@ -115,7 +108,6 @@ function SavedBooks() {
       id: selectedMediaRating._id,
       userRating: userRating
     }
-    console.log(updateCriteria);
 
     API.saveUserRating(updateCriteria, token)
       .then(() => setUserRating(0))

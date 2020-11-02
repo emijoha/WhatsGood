@@ -74,7 +74,6 @@ function AppNavbar(props) {
                   {userData.notifications.length
                     ? <div id='list-drop'  className='notification-scroll'>
                       {userData.notifications.map((notification) => {
-                        { console.log("notification in navbar", notification) }
                         return (
                           <NotificationDropdownItem
                             key={notification._id}

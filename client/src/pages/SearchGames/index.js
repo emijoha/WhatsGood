@@ -40,7 +40,6 @@ function SearchGames() {
           description: data.result.description,
           image: data.result.image || '',
         }];
-        console.log(data);
 
         setSearchedGame(gameData);
         setValidSearch(true);
@@ -121,14 +120,14 @@ function SearchGames() {
       </Container>
       <Container>
         {validSearch ?
-            <SearchCards
-              cardType='searchedGames'
-              resultArray={searchedGame}
-              savedArray={userData.savedGames}
-              username={userData.username}
-              cb={handleSaveGame}
-            />
-          : <h2>Sorry, we could not find any video games that matched your search.</h2>
+          <SearchCards
+            cardType='searchedGames'
+            resultArray={searchedGame}
+            savedArray={userData.savedGames}
+            username={userData.username}
+            cb={handleSaveGame}
+          />
+          : <h2 className='muted-subtext3'>Sorry, we could not find any video games that matched your search.</h2>
         }
       </Container>
     </>

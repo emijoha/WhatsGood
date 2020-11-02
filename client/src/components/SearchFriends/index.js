@@ -15,7 +15,6 @@ function SearchFriends({ sendSearchedUserToList }) {
   // create method to search for users and set state on form submit
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log("clicked", searchInput)
 
     if (!searchInput) {
       return false;

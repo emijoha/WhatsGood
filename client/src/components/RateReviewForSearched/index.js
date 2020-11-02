@@ -44,13 +44,11 @@ function RateReviewForSearched(props) {
 
   return (
     <>
-      {console.log('props: ', props)}
       {props.username && (
         <>
           {props.savedArray?.some((savedMedia) => savedMedia.mediaId === props.media.mediaId)
             ?
             <>
-              {console.log('savedArray: ', props.savedArray, 'media: ', props.media.mediaId)}
               <div className='center-wrap'>
                 <p className='already-saved'>This {props.mediatype} has already been saved!</p>
                 <Link to={props.link}>
@@ -62,7 +60,6 @@ function RateReviewForSearched(props) {
             </>
             :
             <>
-              {console.log('savedArray: ', props.savedArray, 'media: ', props.media.mediaId)}
               <div className='center-wrap'>
                 <p className={`ratingReviewHeading ${props.mediatype}-border`}>Rate</p>
                 <p className='rating'>
