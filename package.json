@@ -24,7 +24,7 @@
     "aos": "^2.3.4",
     "axios": "^0.19.2",
     "if-env": "^1.0.4",
-    "moment": "^2.27.0",
+    "moment": "^2.29.4",
     "mongoose": "^5.10.11",
     "react-audio-player": "^0.13.0",
     "react-icon": "^1.0.0",
